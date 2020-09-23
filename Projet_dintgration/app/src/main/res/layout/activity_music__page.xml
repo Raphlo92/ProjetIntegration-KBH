@@ -4,22 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".Music_Page">
+
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Activity 1"
+        android:text="Activity 2"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:id="@+id/textView"  />
+        android:layout_centerVertical="true"/>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/button3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="got to music"
         android:layout_below="@+id/textView"
-        android:layout_centerHorizontal="true"  />
+        android:layout_centerHorizontal="true"
+        android:text="Button" />
 
 </RelativeLayout>
