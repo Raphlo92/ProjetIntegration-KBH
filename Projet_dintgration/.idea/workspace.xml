@@ -1,18 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="AndroidLayouts">
-    <shared>
-      <config />
-    </shared>
-  </component>
   <component name="ChangeListManager">
-    <list default="true" id="5ec9c839-5fcb-4e65-8d39-f22f3535cae6" name="Default Changelist" comment="" />
+    <list default="true" id="d81c3706-c82e-42c0-b44e-c319f576d3fd" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="Pixel_2_API_28" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -25,15 +21,15 @@
       </state>
     </system>
   </component>
-  <component name="ProjectId" id="1hvYk5pPHXgOgpPhjlgHzVz9LTS" />
-  <component name="ProjectViewState">
-    <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
-    <option name="showLibraryContents" value="true" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
+  <component name="ProjectId" id="1hveV80HKQTKgVKvuOS5FIe83Yx" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RunManager">
     <configuration default="true" type="AndroidJUnit" factoryName="Android JUnit">
@@ -43,7 +39,7 @@
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App">
+    <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
       <module name="app" />
       <option name="DEPLOY" value="true" />
       <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
@@ -100,18 +96,22 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="5ec9c839-5fcb-4e65-8d39-f22f3535cae6" name="Default Changelist" comment="" />
-      <created>1600893172870</created>
+      <changelist id="d81c3706-c82e-42c0-b44e-c319f576d3fd" name="Default Changelist" comment="" />
+      <created>1600896016517</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1600893172870</updated>
+      <updated>1600896016517</updated>
     </task>
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="656" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1600893181047">
+    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1600895954934">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="656" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1600893181047" />
+    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1600895954934" />
+    <state x="396" y="324" key="com.intellij.ide.util.TipDialog" timestamp="1600896022660">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="396" y="324" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1600896022660" />
   </component>
 </project>
