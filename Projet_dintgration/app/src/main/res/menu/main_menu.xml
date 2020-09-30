@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_home"
+            android:title="@string/nav_home" />
+        <item
+            android:id="@+id/nav_favoris"
+            android:icon="@drawable/ic_favoris"
+            android:title="@string/nav_favoris" />
+        <item
+            android:id="@+id/nav_liste_lecture"
+            android:title="@string/nav_liste_lecture" />
+        <!--android:icon="@drawable/ic_home" icone à trouver et rajouter -->
+        <item
+            android:id="@+id/nav_bibliotheque"
+            android:icon="@drawable/ic_file"
+            android:title="@string/nav_bibliotheque" />
+    </group>
+
+
+    <item android:title="@string/nav_spotify_section">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_spotify_lier"
+                    android:title="@string/nav_spotify_liercompte" />
+                <!-- android:icon="@drawable/ic_home"  ajouter icone Spotify -->
+                <item
+                    android:id="@+id/nav_spotify_chanson_aimee"
+                    android:icon="@drawable/ic_favoris"
+                    android:title="@string/nav_spotify_aimee" /> <!-- temporaire, changer couleur icone pour couleur de Spotify ? -->
+                <item
+                    android:id="@+id/nav_spotify_liste_lecture"
+                    android:title="@string/nav_spotify_liste_lecture" />
+                <!-- android:icon="@drawable/ic_file"-->  <!-- temporaire, changer couleur icone pour couleur de Spotify ? -->
+                <item
+                    android:id="@+id/nav_spotify_bibliotheque"
+                    android:icon="@drawable/ic_file"
+                    android:title="@string/nav_spotify_bibliotheque" /> <!-- temporaire, changer couleur icone pour couleur de Spotify ? -->
+                <item
+                    android:id="@+id/nav_spotify_logout"
+                    android:title="@string/nav_spotify_logout" />
+            </group>
+        </menu>
+    </item>
+</menu>

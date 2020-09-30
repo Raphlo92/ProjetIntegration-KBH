@@ -9,4 +9,22 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="homescreen_favoris">Vos favoris</string>
+    <string name="homescreen_listes_lecture">Vos listes de lecture</string>
+    <string name="homescreen_albums">Vos albums</string>
+    <string name="homescreen_artiste">Vos artistes</string>
+    <string name="nav_home">Page d\'accueil</string>
+    <string name="nav_favoris">Favoris</string>
+    <string name="nav_liste_lecture">Listes de lecture</string>
+    <string name="nav_bibliotheque">Bibliothèque</string>
+    <string name="nav_spotify_liercompte">Lier un compte</string>
+    <string name="nav_spotify_section">Spotify</string>
+    <string name="nav_spotify_liste_lecture">Listes de lecture Spotify</string>
+    <string name="nav_spotify_aimee">Chansons aimées</string>
+    <string name="nav_spotify_bibliotheque">Bibliothèque Spotify</string>
+    <string name="nav_spotify_logout">Déconnecter son compte Spotify</string>
+    <string name="navigation_open_drawer_description">Ouvrir le menu</string>
+    <string name="navigation_close_drawer_description">Fermer le menu</string>
+
+
 </resources>

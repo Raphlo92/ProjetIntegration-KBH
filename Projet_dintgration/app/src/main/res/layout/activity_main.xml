@@ -1,25 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    tools:context=".MainActivity"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
-
-    <TextView
+    android:layout_width="match_parent"
+    android:fitsSystemWindows="true"
+    android:id="@+id/drawer_layout"
+    android:layout_gravity="start"
+    tools:openDrawer="start">
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Activity 1"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:id="@+id/textView"  />
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        app:headerLayout="@layout/navigation_drawer_header"
+        app:menu="@menu/main_menu">
+    </com.google.android.material.navigation.NavigationView>
+    <RelativeLayout android:layout_height="match_parent"
+        android:layout_width="match_parent">
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="got to music"
-        android:layout_below="@+id/textView"
-        android:layout_centerHorizontal="true"  />
+        <TextView
+            android:id="@+id/textView_homescreen_favoris"
+            style="@style/basic_title_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="40dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="111dp"
+            android:text="@string/homescreen_favoris" />
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/textView_homescreen_liste_lecture"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView_homescreen_favoris"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginStart="42dp"
+            android:layout_marginLeft="42dp"
+            android:layout_marginTop="24dp"
+            android:text="@string/homescreen_listes_lecture"
+            style="@style/basic_title_text"/>
+
+        <TextView
+            android:id="@+id/textView_homescreen_albums"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView_homescreen_liste_lecture"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginStart="42dp"
+            android:layout_marginLeft="42dp"
+            android:layout_marginTop="26dp"
+            android:text="@string/homescreen_albums"
+            style="@style/basic_title_text"/>
+
+        <TextView
+            android:id="@+id/textView_homescreen_artiste"
+            style="@style/basic_title_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView_homescreen_albums"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginStart="44dp"
+            android:layout_marginLeft="44dp"
+            android:layout_marginTop="29dp"
+            android:text="@string/homescreen_artiste" />
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="19dp"
+            android:layout_marginTop="18dp"
+            android:minHeight="?attr/actionBarSize"
+            app:navigationIcon="@drawable/ic_hamburger_1" />
+    </RelativeLayout>
+</androidx.drawerlayout.widget.DrawerLayout>

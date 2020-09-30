@@ -1,12 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 16
 
     defaultConfig {
         applicationId "com.example.projet_dintgration"
         minSdkVersion 16
-        targetSdkVersion 29
+        targetSdkVersion 16
         versionCode 1
         versionName "1.0"
 
