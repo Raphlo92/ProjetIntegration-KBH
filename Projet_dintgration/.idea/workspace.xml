@@ -39,9 +39,6 @@
       </list>
     </option>
   </component>
-  <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
-  </component>
   <component name="ProjectId" id="1iEhOdPQy3I7HkFL0cILEvdO8zj" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -52,8 +49,7 @@
     <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="R5CN20R30NE" />
     <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-09-30T18:01:16.594Z" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="settings.github" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/res/raw" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -190,10 +186,6 @@
       <screen x="-1920" y="-68" width="1920" height="1050" />
     </state>
     <state width="1877" height="351" key="GridCell.Tab.1.right/0.0.1920.1050/-1920.-68.1920.1050@-1920.-68.1920.1050" timestamp="1601485499696" />
-    <state x="-1459" y="99" key="SettingsEditor" timestamp="1601491391256">
-      <screen x="-1920" y="-68" width="1920" height="1050" />
-    </state>
-    <state x="-1459" y="99" key="SettingsEditor/0.0.1920.1050/-1920.-68.1920.1050@-1920.-68.1920.1050" timestamp="1601491391256" />
     <state x="-1828" y="24" width="1736" height="866" key="com.android.tools.idea.avdmanager.AvdListDialog" timestamp="1601484218480">
       <screen x="-1920" y="-68" width="1920" height="1050" />
     </state>
