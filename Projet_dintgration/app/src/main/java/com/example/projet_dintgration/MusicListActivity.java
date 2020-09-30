@@ -3,12 +3,17 @@ package com.example.projet_dintgration;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.projet_dintgration.DBHelpers.Classes.Music;
+import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,12 +23,30 @@ import java.util.List;
 
 public class MusicListActivity extends AppCompatActivity {
     private static final String TAG = "MusicListActivity";
-
+    DrawerLayout drawerLayout;
+    NavigationView navigationView;
+    Toolbar toolbar;
+    Menu menu;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_music_list);
         Log.d(TAG, "onCreate: Started.");
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        navigationView.bringToFront();
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_open_drawer_description,
+                R.string.navigation_close_drawer_description);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+        navigationView.setNavigationItemSelectedListener(new NavigationManager(this,this) {
+            @Override
+            public void gotoBibliotheque(){ }
+        });
+        navigationView.setCheckedItem(R.id.nav_bibliotheque);
+        NavigationManager.afficherOptionDeconnecteSpotify(navigationView.getMenu());
 
         final ListView listView = (ListView) findViewById(R.id.musicListView);
 

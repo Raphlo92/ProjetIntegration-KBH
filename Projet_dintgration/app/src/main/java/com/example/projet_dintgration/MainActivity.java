@@ -7,7 +7,6 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.media.MediaPlayer;
@@ -38,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, "onCreate: Started.");
 
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        navigationView = (NavigationView) findViewById(R.id.nav_view); // TODO régler erreur
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         navigationView.bringToFront();
@@ -49,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         navigationView.setNavigationItemSelectedListener(new NavigationManager(this,this) {
             @Override
             public void gotoHome(){ }
-        }); // TODO à tester
+        });
         navigationView.setCheckedItem(R.id.nav_home);
         NavigationManager.afficherOptionDeconnecteSpotify(navigationView.getMenu());
     }
@@ -73,10 +72,10 @@ public class MainActivity extends AppCompatActivity {
 class NavigationManager implements NavigationView.OnNavigationItemSelectedListener {
     
     private static final String TAG = "NavigationManager";
-    
-    Activity currentActivity;
+
+    AppCompatActivity currentActivity;
     Context context;
-    public NavigationManager(Activity current, Context packageContext){
+    public NavigationManager(AppCompatActivity current, Context packageContext){
         Log.d(TAG, "NavigationManager: Created");
         currentActivity = current;
         context = packageContext;
