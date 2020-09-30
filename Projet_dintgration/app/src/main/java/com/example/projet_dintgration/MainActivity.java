@@ -71,9 +71,9 @@ public class MainActivity extends AppCompatActivity {
 }
 
 class NavigationManager implements NavigationView.OnNavigationItemSelectedListener {
-    
+
     private static final String TAG = "NavigationManager";
-    
+
     Activity currentActivity;
     Context context;
     public NavigationManager(Activity current, Context packageContext){
