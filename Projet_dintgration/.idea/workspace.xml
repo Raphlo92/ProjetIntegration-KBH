@@ -1,24 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="AndroidLayouts">
-    <shared>
-      <config>
-        <device id="pixel_3a_xl" />
-      </config>
-    </shared>
-  </component>
-  <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_LOG_LEVEL" value="verbose" />
-    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
-  </component>
   <component name="ChangeListManager">
-    <list default="true" id="92b91901-c37e-49a8-8819-a43a15cc2f4a" name="Default Changelist" comment="" />
+<<<<<<< Updated upstream
+    <list default="true" id="d81c3706-c82e-42c0-b44e-c319f576d3fd" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+=======
+    <list default="true" id="5ec9c839-5fcb-4e65-8d39-f22f3535cae6" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/projet_dintgration/Music_Page.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/navigation/nav_graph.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/values/dimens.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/app/app.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/projet_dintgration/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/projet_dintgration/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" afterDir="false" />
+>>>>>>> Stashed changes
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="Pixel_3a_XL_API_16" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -31,30 +44,35 @@
       </state>
     </system>
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Class" />
-        <option value="layoutResourceFile" />
-      </list>
-    </option>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+<<<<<<< Updated upstream
+=======
   </component>
-  <component name="ProjectId" id="1iEhOdPQy3I7HkFL0cILEvdO8zj" />
+  <component name="ProjectId" id="1hvYk5pPHXgOgpPhjlgHzVz9LTS" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
+>>>>>>> Stashed changes
   </component>
+  <component name="ProjectId" id="1hveV80HKQTKgVKvuOS5FIe83Yx" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
-    <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="R5CN20R30NE" />
-    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-09-30T18:01:16.594Z" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/res/raw" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+<<<<<<< Updated upstream
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+=======
+    <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\hugob\AndroidStudioProjects\Lecture\app\src\main\res\raw" />
+    <key name="android.template.1490827285">
+      <recent name="com.example.projet_dintgration" />
     </key>
+>>>>>>> Stashed changes
   </component>
   <component name="RunManager">
     <configuration default="true" type="AndroidJUnit" factoryName="Android JUnit">
@@ -121,74 +139,49 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="92b91901-c37e-49a8-8819-a43a15cc2f4a" name="Default Changelist" comment="" />
-      <created>1601478627196</created>
+      <changelist id="d81c3706-c82e-42c0-b44e-c319f576d3fd" name="Default Changelist" comment="" />
+      <created>1600896016517</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1601478627196</updated>
+      <updated>1600896016517</updated>
     </task>
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="-1279" y="260" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1601482463712">
-      <screen x="-1920" y="-68" width="1920" height="1050" />
+<<<<<<< Updated upstream
+    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1600895954934">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="-1279" y="260" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1050/-1920.-68.1920.1050@-1920.-68.1920.1050" timestamp="1601482463712" />
-    <state x="641" y="328" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1050/-1920.-68.1920.1050@0.0.1920.1050" timestamp="1601481441575" />
-    <state x="-1155" y="166" key="#com.intellij.ide.util.MemberChooser" timestamp="1601485819622">
-      <screen x="-1920" y="-68" width="1920" height="1050" />
+    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1600895954934" />
+    <state x="396" y="324" key="com.intellij.ide.util.TipDialog" timestamp="1600896022660">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="-1155" y="166" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1050/-1920.-68.1920.1050@-1920.-68.1920.1050" timestamp="1601485819622" />
-    <state x="765" y="234" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1050/-1920.-68.1920.1050@0.0.1920.1050" timestamp="1601481466969" />
-    <state x="-1380" y="212" key="AndroidCreateResourceDirectoryDialog" timestamp="1601482646534">
-      <screen x="-1920" y="-68" width="1920" height="1050" />
+    <state x="396" y="324" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1600896022660" />
+=======
+    <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1600894341160">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="-1380" y="212" key="AndroidCreateResourceDirectoryDialog/0.0.1920.1050/-1920.-68.1920.1050@-1920.-68.1920.1050" timestamp="1601482646534" />
-    <state x="540" y="280" key="AndroidCreateResourceDirectoryDialog/0.0.1920.1050/-1920.-68.1920.1050@0.0.1920.1050" timestamp="1601481393972" />
-    <state x="-1380" y="212" key="AndroidCreateResourceFileDialog" timestamp="1601482125490">
-      <screen x="-1920" y="-68" width="1920" height="1050" />
+    <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1600894341160" />
+    <state width="1877" height="281" key="GridCell.Tab.0.bottom" timestamp="1600895469385">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="-1380" y="212" key="AndroidCreateResourceFileDialog/0.0.1920.1050/-1920.-68.1920.1050@-1920.-68.1920.1050" timestamp="1601482125490" />
-    <state x="540" y="280" key="AndroidCreateResourceFileDialog/0.0.1920.1050/-1920.-68.1920.1050@0.0.1920.1050" timestamp="1601480564239" />
-    <state x="740" y="280" key="FileChooserDialogImpl" timestamp="1601480947581">
-      <screen x="0" y="0" width="1920" height="1050" />
+    <state width="1877" height="281" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1600895469385" />
+    <state width="1877" height="281" key="GridCell.Tab.0.center" timestamp="1600895469385">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="740" y="280" key="FileChooserDialogImpl/0.0.1920.1050/-1920.-68.1920.1050@0.0.1920.1050" timestamp="1601480947581" />
-    <state width="1877" height="285" key="GridCell.Tab.0.bottom" timestamp="1601490606434">
-      <screen x="-1920" y="-68" width="1920" height="1050" />
+    <state width="1877" height="281" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1600895469385" />
+    <state width="1877" height="281" key="GridCell.Tab.0.left" timestamp="1600895469385">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="285" key="GridCell.Tab.0.bottom/0.0.1920.1050/-1920.-68.1920.1050@-1920.-68.1920.1050" timestamp="1601490606434" />
-    <state width="1877" height="285" key="GridCell.Tab.0.center" timestamp="1601490606433">
-      <screen x="-1920" y="-68" width="1920" height="1050" />
+    <state width="1877" height="281" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1600895469385" />
+    <state width="1877" height="281" key="GridCell.Tab.0.right" timestamp="1600895469385">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="285" key="GridCell.Tab.0.center/0.0.1920.1050/-1920.-68.1920.1050@-1920.-68.1920.1050" timestamp="1601490606433" />
-    <state width="1877" height="285" key="GridCell.Tab.0.left" timestamp="1601490606433">
-      <screen x="-1920" y="-68" width="1920" height="1050" />
+    <state width="1877" height="281" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1600895469385" />
+    <state x="656" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1600893669322">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="285" key="GridCell.Tab.0.left/0.0.1920.1050/-1920.-68.1920.1050@-1920.-68.1920.1050" timestamp="1601490606433" />
-    <state width="1877" height="285" key="GridCell.Tab.0.right" timestamp="1601490606433">
-      <screen x="-1920" y="-68" width="1920" height="1050" />
-    </state>
-    <state width="1877" height="285" key="GridCell.Tab.0.right/0.0.1920.1050/-1920.-68.1920.1050@-1920.-68.1920.1050" timestamp="1601490606433" />
-    <state width="1877" height="351" key="GridCell.Tab.1.bottom" timestamp="1601485499697">
-      <screen x="-1920" y="-68" width="1920" height="1050" />
-    </state>
-    <state width="1877" height="351" key="GridCell.Tab.1.bottom/0.0.1920.1050/-1920.-68.1920.1050@-1920.-68.1920.1050" timestamp="1601485499697" />
-    <state width="1877" height="351" key="GridCell.Tab.1.center" timestamp="1601485499696">
-      <screen x="-1920" y="-68" width="1920" height="1050" />
-    </state>
-    <state width="1877" height="351" key="GridCell.Tab.1.center/0.0.1920.1050/-1920.-68.1920.1050@-1920.-68.1920.1050" timestamp="1601485499696" />
-    <state width="1877" height="351" key="GridCell.Tab.1.left" timestamp="1601485499696">
-      <screen x="-1920" y="-68" width="1920" height="1050" />
-    </state>
-    <state width="1877" height="351" key="GridCell.Tab.1.left/0.0.1920.1050/-1920.-68.1920.1050@-1920.-68.1920.1050" timestamp="1601485499696" />
-    <state width="1877" height="351" key="GridCell.Tab.1.right" timestamp="1601485499696">
-      <screen x="-1920" y="-68" width="1920" height="1050" />
-    </state>
-    <state width="1877" height="351" key="GridCell.Tab.1.right/0.0.1920.1050/-1920.-68.1920.1050@-1920.-68.1920.1050" timestamp="1601485499696" />
-    <state x="-1828" y="24" width="1736" height="866" key="com.android.tools.idea.avdmanager.AvdListDialog" timestamp="1601484218480">
-      <screen x="-1920" y="-68" width="1920" height="1050" />
-    </state>
-    <state x="-1828" y="24" width="1736" height="866" key="com.android.tools.idea.avdmanager.AvdListDialog/0.0.1920.1050/-1920.-68.1920.1050@-1920.-68.1920.1050" timestamp="1601484218480" />
+    <state x="656" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1600893669322" />
+>>>>>>> Stashed changes
   </component>
 </project>
