@@ -7,7 +7,6 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.media.MediaPlayer;
@@ -62,9 +61,9 @@ public class MainActivity extends AppCompatActivity {
 
 class NavigationManager implements NavigationView.OnNavigationItemSelectedListener {
 
-    Activity currentActivity;
+    AppCompatActivity currentActivity;
     Context context;
-    public NavigationManager(Activity current, Context packageContext){
+    public NavigationManager(AppCompatActivity current, Context packageContext){
         currentActivity = current;
         context = packageContext;
     }
