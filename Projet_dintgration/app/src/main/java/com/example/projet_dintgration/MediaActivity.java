@@ -1,6 +1,9 @@
-package com.example.lecture;
+package com.example.projet_dintgration;
 
+import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -11,16 +14,19 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Button;
 import android.widget.SeekBar;
+import android.widget.VideoView;
 
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class MediaActivity extends AppCompatActivity {
+import java.io.IOException;
 
-    MediaPlayer mediaPlayer;
+public class MediaActivity extends AppCompatActivity{
+
     SeekBar seekBar;
-    SurfaceView surfaceView;
     Handler handler = new Handler();
+    VideoView videoView;
+    private static final String VIDEO_SAMPLE = "tacoma_narrows";
     private static final String TAG = "MediaActivity";
 
     @Override
@@ -33,7 +39,7 @@ public class MediaActivity extends AppCompatActivity {
         Button pauseButton = findViewById(R.id.pauseButton);
         Button stopButton = findViewById(R.id.stopButton);
         seekBar = findViewById(R.id.seekBar);
-        surfaceView = findViewById(R.id.surfaceView);
+        videoView = findViewById(R.id.videoView);
 
         playButton.setOnClickListener(new GestionnairePlay());
         pauseButton.setOnClickListener(new GestionnairePause());
@@ -41,8 +47,8 @@ public class MediaActivity extends AppCompatActivity {
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                if(mediaPlayer != null && fromUser){
-                    mediaPlayer.seekTo(progress*1000);
+                if(videoView != null && fromUser){
+                    videoView.seekTo(progress*1000);
                 }
             }
 
@@ -57,7 +63,6 @@ public class MediaActivity extends AppCompatActivity {
             }
         });
         SeekBarUpdater();
-
 
     }
 
@@ -82,12 +87,52 @@ public class MediaActivity extends AppCompatActivity {
         }
     }
 
+    public void initializePlayer(){
+        if(videoView == null) {
+            videoView = findViewById(R.id.videoView);
+        }
+        Uri videoUri = getMedia(VIDEO_SAMPLE);
+        videoView.setVideoURI(videoUri);
+    }
+
+    private void releasePlayer(){
+        videoView.stopPlayback();
+    }
+
+    @Override
+    protected void onStart(){
+        super.onStart();
+        initializePlayer();
+        videoView.start();
+    }
+
+    @Override
+    protected void onStop(){
+        super.onStop();
+        StopPlayer();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
+            videoView.pause();
+        }
+    }
+
+    private Uri getMedia(String mediaName)
+    {
+        return Uri.parse("android.resource://" + getPackageName() +
+                "/raw/" + mediaName);
+    }
+
     public void SeekBarUpdater(){
         MediaActivity.this.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                if(mediaPlayer != null){
-                    int currentPosition = mediaPlayer.getCurrentPosition() / 1000;
+                if(videoView != null){
+                    int currentPosition = videoView.getCurrentPosition() / 1000;
                     seekBar.setProgress(currentPosition);
                 }
                 handler.postDelayed(this, 1000);
@@ -96,44 +141,35 @@ public class MediaActivity extends AppCompatActivity {
     }
 
     public void Play(View v) {
-        if(mediaPlayer == null) {
-            mediaPlayer = MediaPlayer.create(this, R.raw.bladee);
-            seekBar.setMax(mediaPlayer.getDuration()/1000);
-            SurfaceHolder surfaceHolder = surfaceView.getHolder();
-
-
-
-            mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+        if(videoView == null) {
+            initializePlayer();
+            seekBar.setMax(videoView.getDuration()/1000);
+            videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
                 public void onCompletion(MediaPlayer mp) {
                     StopPlayer();
             }
             });
         }
-        mediaPlayer.start();
+        videoView.start();
     }
 
     public void Pause(View v)
     {
-        if(mediaPlayer != null){
-            mediaPlayer.pause();
+        if(videoView != null){
+            videoView.pause();
         }
     }
 
     public void StopPlayer(){
-        if(mediaPlayer != null) {
-            mediaPlayer.release();
-            mediaPlayer = null;
+        if(videoView != null) {
+            releasePlayer();
+            videoView = null;
             Toast.makeText(this, "mediaPlayer released", Toast.LENGTH_LONG).show();
         }
     }
 
     public void Stop(View v){
-        StopPlayer();
-    }
-    @Override
-    protected void onStop(){
-        super.onStop();
         StopPlayer();
     }
 

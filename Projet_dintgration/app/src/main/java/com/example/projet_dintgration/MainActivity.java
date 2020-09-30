@@ -62,9 +62,9 @@ public class MainActivity extends AppCompatActivity {
             super.onBackPressed();
     }
 
-    public void openMusicPage() {
-        Log.d(TAG, "openMusicPage: Started");
-        Intent intent = new Intent(this, Music_Page.class);
+    public void openMediaActivity(View v) {
+        Log.d(TAG, "openMediaActivity: Started");
+        Intent intent = new Intent(this, MediaActivity.class);
         startActivity(intent);
     }
 }
@@ -104,6 +104,8 @@ class NavigationManager implements NavigationView.OnNavigationItemSelectedListen
         }
         return true;
     }
+
+
 
     private void startActivity(Class<?> cls){
         Log.d(TAG, "startActivity: Started");

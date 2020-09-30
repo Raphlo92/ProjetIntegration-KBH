@@ -16,9 +16,19 @@
         android:layout_gravity="start"
         app:headerLayout="@layout/navigation_drawer_header"
         app:menu="@menu/main_menu">
+
     </com.google.android.material.navigation.NavigationView>
     <RelativeLayout android:layout_height="match_parent"
         android:layout_width="match_parent">
+
+        <Button
+            android:id="@+id/mediaActivityButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="700dp"
+            android:text="Musique"
+            android:onClick="openMediaActivity"
+            />
 
         <TextView
             android:id="@+id/textView_homescreen_favoris"
