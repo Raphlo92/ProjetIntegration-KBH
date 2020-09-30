@@ -13,8 +13,7 @@ public class Music_Page extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_music__page);
-
+        setContentView(R.layout.activity_music_page);
     }
 
     public void play(View v){

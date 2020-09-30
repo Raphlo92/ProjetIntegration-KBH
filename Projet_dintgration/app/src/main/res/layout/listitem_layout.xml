@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="?android:attr/listPreferredItemHeight"
+    android:padding="6dip">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/fullscreen"
+        android:orientation="horizontal"
+        android:weightSum="100">
+
+        <RelativeLayout
+            android:id="@+id/titleContainer"
+            android:layout_width="0dp"
+            android:layout_weight="50"
+            android:layout_height="fill_parent">
+
+            <TextView
+                android:id="@+id/title"
+
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentBottom="true"
+                android:singleLine="true"
+                android:gravity="center_vertical"
+                android:textSize="16sp"
+
+                android:text="Title"
+                />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/artistContainer"
+            android:layout_width="0dp"
+            android:layout_weight="25"
+            android:layout_height="fill_parent">
+
+            <TextView
+                android:id="@+id/artist"
+
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentBottom="true"
+                android:singleLine="true"
+                android:gravity="center_vertical"
+                android:textSize="16sp"
+
+                android:text="Artist"
+                />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/lengthContainer"
+            android:layout_width="0dp"
+            android:layout_weight="25"
+            android:layout_height="fill_parent">
+
+            <TextView
+                android:id="@+id/length"
+
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentBottom="true"
+                android:singleLine="true"
+                android:gravity="center_vertical"
+                android:textSize="16sp"
+
+                android:text="Length"
+                />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>
+
