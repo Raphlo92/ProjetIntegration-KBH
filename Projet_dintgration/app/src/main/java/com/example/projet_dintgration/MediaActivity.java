@@ -26,7 +26,10 @@ public class MediaActivity extends AppCompatActivity{
     SeekBar seekBar;
     Handler handler = new Handler();
     VideoView videoView;
-    private static final String VIDEO_SAMPLE = "tacoma_narrows";
+    TextView currentTime;
+    TextView maxTime;
+    TextView mediaName;
+    private static final String VIDEO_SAMPLE = "sea";
     private static final String TAG = "MediaActivity";
 
     @Override
@@ -40,6 +43,9 @@ public class MediaActivity extends AppCompatActivity{
         Button stopButton = findViewById(R.id.stopButton);
         seekBar = findViewById(R.id.seekBar);
         videoView = findViewById(R.id.videoView);
+        currentTime = findViewById(R.id.currentTime);
+        maxTime = findViewById(R.id.maxTime);
+        mediaName = findViewById(R.id.mediaName);
 
         playButton.setOnClickListener(new GestionnairePlay());
         pauseButton.setOnClickListener(new GestionnairePause());
@@ -49,6 +55,8 @@ public class MediaActivity extends AppCompatActivity{
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 if(videoView != null && fromUser){
                     videoView.seekTo(progress*1000);
+                    String time = String.valueOf(progress/60) + ":" + String.format("%02d", progress);
+                    currentTime.setText(time);
                 }
             }
 
@@ -63,7 +71,6 @@ public class MediaActivity extends AppCompatActivity{
             }
         });
         SeekBarUpdater();
-
     }
 
     public class GestionnairePlay implements View.OnClickListener {
@@ -95,15 +102,20 @@ public class MediaActivity extends AppCompatActivity{
         videoView.setVideoURI(videoUri);
     }
 
-    private void releasePlayer(){
-        videoView.stopPlayback();
-    }
-
     @Override
     protected void onStart(){
         super.onStart();
         initializePlayer();
         videoView.start();
+        videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mediaPlayer) {
+                String time = String.valueOf(videoView.getDuration()/1000/60) + ":" + String.format("%02d", videoView.getDuration()/1000);
+                maxTime.setText(time);
+                seekBar.setMax(videoView.getDuration()/1000);
+                mediaName.setText(VIDEO_SAMPLE);
+            }
+        });
     }
 
     @Override
@@ -121,8 +133,7 @@ public class MediaActivity extends AppCompatActivity{
         }
     }
 
-    private Uri getMedia(String mediaName)
-    {
+    private Uri getMedia(String mediaName) {
         return Uri.parse("android.resource://" + getPackageName() +
                 "/raw/" + mediaName);
     }
@@ -134,8 +145,10 @@ public class MediaActivity extends AppCompatActivity{
                 if(videoView != null){
                     int currentPosition = videoView.getCurrentPosition() / 1000;
                     seekBar.setProgress(currentPosition);
+                    String time = String.valueOf(currentPosition/60) + ":" + String.format("%02d", currentPosition);
+                    currentTime.setText(time);
                 }
-                handler.postDelayed(this, 1000);
+                handler.postDelayed(this, 100);
             }
         });
     }
@@ -143,7 +156,6 @@ public class MediaActivity extends AppCompatActivity{
     public void Play(View v) {
         if(videoView == null) {
             initializePlayer();
-            seekBar.setMax(videoView.getDuration()/1000);
             videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
                 public void onCompletion(MediaPlayer mp) {
@@ -154,8 +166,7 @@ public class MediaActivity extends AppCompatActivity{
         videoView.start();
     }
 
-    public void Pause(View v)
-    {
+    public void Pause(View v) {
         if(videoView != null){
             videoView.pause();
         }
@@ -163,7 +174,7 @@ public class MediaActivity extends AppCompatActivity{
 
     public void StopPlayer(){
         if(videoView != null) {
-            releasePlayer();
+            videoView.stopPlayback();
             videoView = null;
             Toast.makeText(this, "mediaPlayer released", Toast.LENGTH_LONG).show();
         }
