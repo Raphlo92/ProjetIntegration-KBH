@@ -6,12 +6,13 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.example.projet_dintgration.DBHelpers.Classes.IDBClass;
 import com.example.projet_dintgration.DBHelpers.Classes.Music;
+import com.example.projet_dintgration.DBHelpers.DBHelper.Contract.TableMusic;
 
 import java.util.ArrayList;
 
 public class Musics extends AbstractDBHelper {
     //region BD values
-    public static final String TABLE_NAME = DBHelper.Contract.TableMusic.TABLE_NAME;
+    public static final String TABLE_NAME = TableMusic.TABLE_NAME;
     public long createdRowId;
     public int deletedRows;
     public int nbUpdatedRows;
@@ -21,6 +22,62 @@ public class Musics extends AbstractDBHelper {
     public ArrayList<IDBClass> musics;
     //endregion
 
+    public static ContentValues getTestValues1(){
+        ContentValues values = new ContentValues();
+
+        values.put(TableMusic._ID, 0);
+        values.put(TableMusic.COLUMN_NAME_TITLE, "Music1");
+        values.put(TableMusic.COLUMN_NAME_LENGTH, 120);
+        values.put(TableMusic.COLUMN_NAME_TYPE, "audio");
+        values.put(TableMusic.COLUMN_NAME_FILE, "path");
+        values.put(TableMusic.COLUMN_NAME_ID_ALBUM, 0);
+        values.put(TableMusic.COLUMN_NAME_ID_ARTIST, 0);
+        values.put(TableMusic.COLUMN_NAME_ID_CATEGORY, 1);
+
+        return values;
+    }
+    public static ContentValues getTestValues2(){
+        ContentValues values = new ContentValues();
+
+        values.put(TableMusic._ID, 1);
+        values.put(TableMusic.COLUMN_NAME_TITLE, "Music2");
+        values.put(TableMusic.COLUMN_NAME_LENGTH, 120);
+        values.put(TableMusic.COLUMN_NAME_TYPE, "audio");
+        values.put(TableMusic.COLUMN_NAME_FILE, "path");
+        values.put(TableMusic.COLUMN_NAME_ID_ALBUM, 1);
+        values.put(TableMusic.COLUMN_NAME_ID_ARTIST, 1);
+        values.put(TableMusic.COLUMN_NAME_ID_CATEGORY, 0);
+
+        return values;
+    }
+    public static ContentValues getTestValues3(){
+        ContentValues values = new ContentValues();
+
+        values.put(TableMusic._ID, 2);
+        values.put(TableMusic.COLUMN_NAME_TITLE, "Music3");
+        values.put(TableMusic.COLUMN_NAME_LENGTH, 120);
+        values.put(TableMusic.COLUMN_NAME_TYPE, "audio");
+        values.put(TableMusic.COLUMN_NAME_FILE, "path");
+        values.put(TableMusic.COLUMN_NAME_ID_ALBUM, 0);
+        values.put(TableMusic.COLUMN_NAME_ID_ARTIST, 0);
+        values.put(TableMusic.COLUMN_NAME_ID_CATEGORY, 1);
+
+        return values;
+    }
+    public static ContentValues getTestValues4(){
+        ContentValues values = new ContentValues();
+
+        values.put(TableMusic._ID, 3);
+        values.put(TableMusic.COLUMN_NAME_TITLE, "Music4");
+        values.put(TableMusic.COLUMN_NAME_LENGTH, 120);
+        values.put(TableMusic.COLUMN_NAME_TYPE, "audio");
+        values.put(TableMusic.COLUMN_NAME_FILE, "path");
+        values.put(TableMusic.COLUMN_NAME_ID_ALBUM, 1);
+        values.put(TableMusic.COLUMN_NAME_ID_ARTIST, 1);
+        values.put(TableMusic.COLUMN_NAME_ID_CATEGORY, 0);
+
+        return values;
+    }
 
     public Musics(SQLiteDatabase db){
         super(db);
@@ -39,18 +96,18 @@ public class Musics extends AbstractDBHelper {
         ArrayList<IDBClass> newMusics = new ArrayList<>();
         while (cursor.moveToNext()){
             //region set values
-            int id =  cursor.getInt(cursor.getColumnIndexOrThrow(DBHelper.Contract.TableMusic._ID));
-            String title = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.Contract.TableMusic.COLUMN_NAME_TITLE));
-            int length = cursor.getInt(cursor.getColumnIndexOrThrow(DBHelper.Contract.TableMusic.COLUMN_NAME_LENGTH));
-            String type = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.Contract.TableMusic.COLUMN_NAME_TYPE));
-            String path = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.Contract.TableMusic.COLUMN_NAME_FILE));
-            String artist = Artists.getNameById(DB, cursor.getInt(cursor.getColumnIndexOrThrow(DBHelper.Contract.TableMusic.COLUMN_NAME_ID_ARTIST)));
-            String category = Categories.getNameById(DB, cursor.getInt(cursor.getColumnIndexOrThrow(DBHelper.Contract.TableMusic.COLUMN_NAME_ID_CATEGORY)));
-            String album = Albums.getNameById(DB, cursor.getInt(cursor.getColumnIndexOrThrow(DBHelper.Contract.TableMusic.COLUMN_NAME_ID_ALBUM)));
+            int id =  cursor.getInt(cursor.getColumnIndexOrThrow(TableMusic._ID));
+            String title = cursor.getString(cursor.getColumnIndexOrThrow(TableMusic.COLUMN_NAME_TITLE));
+            int length = cursor.getInt(cursor.getColumnIndexOrThrow(TableMusic.COLUMN_NAME_LENGTH));
+            String type = cursor.getString(cursor.getColumnIndexOrThrow(TableMusic.COLUMN_NAME_TYPE));
+            String path = cursor.getString(cursor.getColumnIndexOrThrow(TableMusic.COLUMN_NAME_FILE));
+            String artist = Artists.getNameById(DB, cursor.getInt(cursor.getColumnIndexOrThrow(TableMusic.COLUMN_NAME_ID_ARTIST)));
+            String category = Categories.getNameById(DB, cursor.getInt(cursor.getColumnIndexOrThrow(TableMusic.COLUMN_NAME_ID_CATEGORY)));
+            String album = Albums.getNameById(DB, cursor.getInt(cursor.getColumnIndexOrThrow(TableMusic.COLUMN_NAME_ID_ALBUM)));
             //endregion
 
             //TODO find if favorite or not
-            newMusics.add(new Music(id, title, length, type, path, category,artist, album, false));
+            newMusics.add(new Music(id, title, length, type, path, category, artist, album, false));
         }
         musics = newMusics;
         return newMusics;

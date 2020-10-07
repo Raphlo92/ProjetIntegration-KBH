@@ -1,5 +1,6 @@
 package com.example.projet_dintgration.DBHelpers;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -53,7 +54,7 @@ public class DBHelper extends SQLiteOpenHelper {
     //region SQL
     public static final String SQL_CREATE_TABLE_MUSIC =
             "CREATE TABLE IF NOT EXISTS " + Contract.TableMusic.TABLE_NAME + " (" +
-                    Contract.TableMusic._ID + " INTEGER PRIMARY KEY," +
+                    Contract.TableMusic._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                     Contract.TableMusic.COLUMN_NAME_TITLE + " TEXT NOT NULL," +
                     Contract.TableMusic.COLUMN_NAME_LENGTH + " INTEGER NOT NULL," +
                     Contract.TableMusic.COLUMN_NAME_TYPE + " INTEGER NOT NULL," +
@@ -76,12 +77,12 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public static final String SQL_CREATE_TABLE_ARTIST =
             "CREATE TABLE IF NOT EXISTS " + Contract.TableArtist.TABLE_NAME + " (" +
-                    Contract.TableArtist._ID + " INTEGER PRIMARY KEY," +
+                    Contract.TableArtist._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                     Contract.TableArtist.COLUMN_NAME_NAME + " TEXT NOT NULL)";
 
     public static final String SQL_CREATE_TABLE_ALBUM =
             "CREATE TABLE IF NOT EXISTS " + Contract.TableAlbum.TABLE_NAME + " (" +
-                    Contract.TableAlbum._ID + " INTEGER PRIMARY KEY," +
+                    Contract.TableAlbum._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                     Contract.TableAlbum.COLUMN_NAME_ID_ARTIST + " INTEGER NOT NULL," +
                     Contract.TableAlbum.COLUMN_NAME_ID_CATEGORY + " INTEGER NOT NULL," +
                     Contract.TableAlbum.COLUMN_NAME_TITLE + " TEXT NOT NULL," +
@@ -96,12 +97,12 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public static final String SQL_CREATE_TABLE_CATEGORY =
             "CREATE TABLE IF NOT EXISTS " + Contract.TableCategory.TABLE_NAME + " (" +
-                    Contract.TableCategory._ID + " INTEGER PRIMARY KEY," +
+                    Contract.TableCategory._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                     Contract.TableCategory.COLUMN_NAME_NAME + " TEXT NOT NULL)";
 
     public static final String SQL_CREATE_TABLE_PLAYLIST =
             "CREATE TABLE IF NOT EXISTS " + Contract.TablePlaylist.TABLE_NAME + " (" +
-                    Contract.TablePlaylist._ID + " INTEGER PRIMARY KEY," +
+                    Contract.TablePlaylist._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                     Contract.TablePlaylist.COLUMN_NAME_NAME + " TEXT NOT NULL," +
                     Contract.TablePlaylist.COLUMN_NAME_TYPE + " TEXT NOT NULL)";
 
@@ -167,5 +168,25 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         onUpgrade(db, oldVersion, newVersion);
+    }
+
+    public void enterTestValues(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.insert(Contract.TableArtist.TABLE_NAME,null,  Artists.getTestValues1());
+        db.insert(Contract.TableArtist.TABLE_NAME,null,  Artists.getTestValues2());
+
+        db.insert(Contract.TableCategory.TABLE_NAME,null,  Categories.getTestValues1());
+        db.insert(Contract.TableCategory.TABLE_NAME,null,  Categories.getTestValues2());
+
+        db.insert(Contract.TablePlaylist.TABLE_NAME,null,  Playlists.getTestValues1());
+        db.insert(Contract.TablePlaylist.TABLE_NAME,null,  Playlists.getTestValues2());
+
+        db.insert(Contract.TableAlbum.TABLE_NAME,null,  Albums.getTestValues1());
+        db.insert(Contract.TableAlbum.TABLE_NAME,null,  Albums.getTestValues2());
+
+        db.insert(Contract.TableMusic.TABLE_NAME,null,  Musics.getTestValues1());
+        db.insert(Contract.TableMusic.TABLE_NAME,null,  Musics.getTestValues2());
+        db.insert(Contract.TableMusic.TABLE_NAME,null,  Musics.getTestValues3());
+        db.insert(Contract.TableMusic.TABLE_NAME,null,  Musics.getTestValues4());
     }
 }

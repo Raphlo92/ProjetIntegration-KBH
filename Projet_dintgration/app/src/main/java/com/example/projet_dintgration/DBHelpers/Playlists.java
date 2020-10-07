@@ -6,12 +6,13 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.example.projet_dintgration.DBHelpers.Classes.IDBClass;
 import com.example.projet_dintgration.DBHelpers.Classes.Playlist;
+import com.example.projet_dintgration.DBHelpers.DBHelper.Contract.TablePlaylist;
 
 import java.util.ArrayList;
 
 public class Playlists extends AbstractDBHelper {
     //region BD values
-    public static final String TABLE_NAME = DBHelper.Contract.TablePlaylist.TABLE_NAME;
+    public static final String TABLE_NAME = TablePlaylist.TABLE_NAME;
     public long createdRowId;
     public int deletedRows;
     public int nbUpdatedRows;
@@ -21,6 +22,24 @@ public class Playlists extends AbstractDBHelper {
     public ArrayList<IDBClass> playlists;
     //endregion
 
+    public static ContentValues getTestValues1(){
+        ContentValues values = new ContentValues();
+
+        values.put(TablePlaylist._ID, 0);
+        values.put(TablePlaylist.COLUMN_NAME_NAME, "Playlist1");
+        values.put(TablePlaylist.COLUMN_NAME_TYPE, "normal");
+
+        return values;
+    }
+    public static ContentValues getTestValues2(){
+        ContentValues values = new ContentValues();
+
+        values.put(TablePlaylist._ID, 1);
+        values.put(TablePlaylist.COLUMN_NAME_NAME, "Playlist2");
+        values.put(TablePlaylist.COLUMN_NAME_TYPE, "normal");
+
+        return values;
+    }
 
     public Playlists(SQLiteDatabase db){
         super(db);
@@ -39,9 +58,9 @@ public class Playlists extends AbstractDBHelper {
         ArrayList<IDBClass> newPlaylists = new ArrayList<>();
         while (cursor.moveToNext()){
             //region set values
-            int id =  cursor.getInt(cursor.getColumnIndexOrThrow(DBHelper.Contract.TablePlaylist._ID));
-            String name = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.Contract.TablePlaylist.COLUMN_NAME_NAME));
-            String type = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.Contract.TablePlaylist.COLUMN_NAME_TYPE));
+            int id =  cursor.getInt(cursor.getColumnIndexOrThrow(TablePlaylist._ID));
+            String name = cursor.getString(cursor.getColumnIndexOrThrow(TablePlaylist.COLUMN_NAME_NAME));
+            String type = cursor.getString(cursor.getColumnIndexOrThrow(TablePlaylist.COLUMN_NAME_TYPE));
             //endregion
             newPlaylists.add(new Playlist(id, name, type));
         }

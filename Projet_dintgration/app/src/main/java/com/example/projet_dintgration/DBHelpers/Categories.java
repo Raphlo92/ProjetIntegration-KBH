@@ -6,13 +6,14 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.example.projet_dintgration.DBHelpers.Classes.Category;
 import com.example.projet_dintgration.DBHelpers.Classes.IDBClass;
+import com.example.projet_dintgration.DBHelpers.DBHelper.Contract.TableCategory;
 
 import java.util.ArrayList;
 
 public class Categories extends AbstractDBHelper {
 
     //region BD values
-    public static final String TABLE_NAME = DBHelper.Contract.TableCategory.TABLE_NAME;
+    public static final String TABLE_NAME = TableCategory.TABLE_NAME;
     public long createdRowId;
     public int deletedRows;
     public int nbUpdatedRows;
@@ -22,6 +23,22 @@ public class Categories extends AbstractDBHelper {
     public ArrayList<IDBClass> categories;
     //endregion
 
+    public static ContentValues getTestValues1(){
+        ContentValues values = new ContentValues();
+
+        values.put(TableCategory._ID, 0);
+        values.put(TableCategory.COLUMN_NAME_NAME, "Category1");
+
+        return values;
+    }
+    public static ContentValues getTestValues2(){
+        ContentValues values = new ContentValues();
+
+        values.put(TableCategory._ID, 1);
+        values.put(TableCategory.COLUMN_NAME_NAME, "Category2");
+
+        return values;
+    }
 
     public Categories(SQLiteDatabase db){
         super(db);
@@ -40,8 +57,8 @@ public class Categories extends AbstractDBHelper {
         ArrayList<IDBClass> newCategories = new ArrayList<>();
         while (cursor.moveToNext()){
             //region set values
-            int id =  cursor.getInt(cursor.getColumnIndexOrThrow(DBHelper.Contract.TableCategory._ID));
-            String name = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.Contract.TableCategory.COLUMN_NAME_NAME));
+            int id =  cursor.getInt(cursor.getColumnIndexOrThrow(TableCategory._ID));
+            String name = cursor.getString(cursor.getColumnIndexOrThrow(TableCategory.COLUMN_NAME_NAME));
             //endregion
             newCategories.add(new Category(id, name));
         }
@@ -62,12 +79,12 @@ public class Categories extends AbstractDBHelper {
 
     public static String getNameById(SQLiteDatabase db, int id){
         String name = null;
-        String selection = DBHelper.Contract.TableCategory._ID + " = ?";
+        String selection = TableCategory._ID + " = ?";
         String[] selectionArgs = { id + "" };
         Cursor cursor = db.query(TABLE_NAME, null, selection, selectionArgs, null, null, null);
 
         while (cursor.moveToNext()){
-            name = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.Contract.TableCategory.COLUMN_NAME_NAME));;
+            name = cursor.getString(cursor.getColumnIndexOrThrow(TableCategory.COLUMN_NAME_NAME));;
         }
 
         return name;

@@ -6,12 +6,13 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.example.projet_dintgration.DBHelpers.Classes.Artist;
 import com.example.projet_dintgration.DBHelpers.Classes.IDBClass;
+import com.example.projet_dintgration.DBHelpers.DBHelper.Contract.TableArtist;
 
 import java.util.ArrayList;
 
 public class Artists extends AbstractDBHelper {
     //region BD values
-    public static final String TABLE_NAME = DBHelper.Contract.TableArtist.TABLE_NAME;
+    public static final String TABLE_NAME = TableArtist.TABLE_NAME;
     public long createdRowId;
     public int deletedRows;
     public int nbUpdatedRows;
@@ -21,6 +22,22 @@ public class Artists extends AbstractDBHelper {
     public ArrayList<IDBClass> artists;
     //endregion
 
+    public static ContentValues getTestValues1(){
+        ContentValues values = new ContentValues();
+
+        values.put(TableArtist._ID, 0);
+        values.put(TableArtist.COLUMN_NAME_NAME, "Artist1");
+
+        return values;
+    }
+    public static ContentValues getTestValues2(){
+        ContentValues values = new ContentValues();
+
+        values.put(TableArtist._ID, 1);
+        values.put(TableArtist.COLUMN_NAME_NAME, "Artist1");
+
+        return values;
+    }
 
     public Artists(SQLiteDatabase db){
         super(db);
@@ -39,8 +56,8 @@ public class Artists extends AbstractDBHelper {
         ArrayList<IDBClass> newArtists = new ArrayList<>();
         while (cursor.moveToNext()){
             //region set values
-            int id =  cursor.getInt(cursor.getColumnIndexOrThrow(DBHelper.Contract.TableArtist._ID));
-            String name = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.Contract.TableArtist.COLUMN_NAME_NAME));
+            int id =  cursor.getInt(cursor.getColumnIndexOrThrow(TableArtist._ID));
+            String name = cursor.getString(cursor.getColumnIndexOrThrow(TableArtist.COLUMN_NAME_NAME));
             //endregion
             newArtists.add(new Artist(id, name));
         }
@@ -61,12 +78,12 @@ public class Artists extends AbstractDBHelper {
 
     public static String getNameById(SQLiteDatabase db, int id){
         String name = null;
-        String selection = DBHelper.Contract.TableArtist._ID + " = ?";
+        String selection = TableArtist._ID + " = ?";
         String[] selectionArgs = { id + "" };
         Cursor cursor = db.query(TABLE_NAME, null, selection, selectionArgs, null, null, null);
 
         while (cursor.moveToNext()){
-            name = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.Contract.TableArtist.COLUMN_NAME_NAME));;
+            name = cursor.getString(cursor.getColumnIndexOrThrow(TableArtist.COLUMN_NAME_NAME));;
         }
 
         return name;

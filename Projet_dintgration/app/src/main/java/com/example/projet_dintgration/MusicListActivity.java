@@ -1,6 +1,7 @@
 package com.example.projet_dintgration;
 
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -13,13 +14,13 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.projet_dintgration.DBHelpers.Classes.Music;
+import com.example.projet_dintgration.DBHelpers.DBHelper;
+import com.example.projet_dintgration.DBHelpers.Musics;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
-
 
 public class MusicListActivity extends AppCompatActivity {
     private static final String TAG = "MusicListActivity";
@@ -27,11 +28,23 @@ public class MusicListActivity extends AppCompatActivity {
     NavigationView navigationView;
     Toolbar toolbar;
     Menu menu;
+    DBHelper dbHelper;
+    Musics DBMusicsReader;
+    Musics DBMusicsWriter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_music_list);
         Log.d(TAG, "onCreate: Started.");
+
+        //region DB
+        dbHelper = new DBHelper(getApplicationContext());
+        DBMusicsReader = new Musics(dbHelper.getReadableDatabase());
+        DBMusicsWriter = new Musics(dbHelper.getWritableDatabase());
+        //
+
+        //region Navigation
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -47,6 +60,8 @@ public class MusicListActivity extends AppCompatActivity {
         });
         navigationView.setCheckedItem(R.id.nav_bibliotheque);
         NavigationManager.afficherOptionDeconnecteSpotify(navigationView.getMenu());
+        //endregion
+
 
         final ListView listView = (ListView) findViewById(R.id.musicListView);
 
