@@ -1,10 +1,8 @@
 package com.example.projet_dintgration;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -16,9 +14,6 @@ import com.example.projet_dintgration.DBHelpers.Classes.Music;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
 
 
 public class MusicListActivity extends AppCompatActivity {
@@ -27,6 +22,7 @@ public class MusicListActivity extends AppCompatActivity {
     NavigationView navigationView;
     Toolbar toolbar;
     Menu menu;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,9 +37,10 @@ public class MusicListActivity extends AppCompatActivity {
                 R.string.navigation_close_drawer_description);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
-        navigationView.setNavigationItemSelectedListener(new NavigationManager(this,this) {
+        navigationView.setNavigationItemSelectedListener(new NavigationManager(this, this) {
             @Override
-            public void gotoBibliotheque(){ }
+            public void gotoBibliotheque() {
+            }
         });
         navigationView.setCheckedItem(R.id.nav_bibliotheque);
         NavigationManager.afficherOptionDeconnecteSpotify(navigationView.getMenu());

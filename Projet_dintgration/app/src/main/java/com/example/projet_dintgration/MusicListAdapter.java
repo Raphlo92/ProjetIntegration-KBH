@@ -4,20 +4,15 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import androidx.annotation.AnimatorRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.example.projet_dintgration.DBHelpers.Classes.*;
-import com.example.projet_dintgration.DBHelpers.*;
+import com.example.projet_dintgration.DBHelpers.Classes.Music;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class MusicListAdapter extends ArrayAdapter<Music> {
     private static final String TAG = "MusicListAdapter";
@@ -55,7 +50,7 @@ public class MusicListAdapter extends ArrayAdapter<Music> {
         final View result;
         ViewHolder holder;
 
-        if(convertView == null){
+        if (convertView == null) {
             LayoutInflater inflater = LayoutInflater.from(mContext);
             convertView = inflater.inflate(mRessource, parent, false);
 
@@ -66,8 +61,7 @@ public class MusicListAdapter extends ArrayAdapter<Music> {
             result = convertView;
 
             convertView.setTag(holder);
-        }
-        else{
+        } else {
             holder = (ViewHolder) convertView.getTag();
             result = convertView;
         }

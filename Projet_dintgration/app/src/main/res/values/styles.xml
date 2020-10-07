@@ -11,7 +11,7 @@
 
     <color name="color1">#ffb62a23</color>
     <color name="color2">#ffedeba6</color>
-    <color name="color3">#8BC34A</color>
+    <color name="color3">#8bf500</color>
 
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>

@@ -41,14 +41,14 @@ public class MainActivity extends AppCompatActivity {
                 R.string.navigation_close_drawer_description);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
-        navigationView.setNavigationItemSelectedListener(new NavigationManager(this,this) {
+        navigationView.setNavigationItemSelectedListener(new NavigationManager(this, this) {
             @Override
-            public void gotoHome(){ }
+            public void gotoHome() {
+            }
         });
         navigationView.setCheckedItem(R.id.nav_home);
         NavigationManager.afficherOptionDeconnecteSpotify(navigationView.getMenu());
     }
-
 
 
     @Override
@@ -73,11 +73,13 @@ class NavigationManager implements NavigationView.OnNavigationItemSelectedListen
 
     AppCompatActivity currentActivity;
     Context context;
-    public NavigationManager(AppCompatActivity current, Context packageContext){
+
+    public NavigationManager(AppCompatActivity current, Context packageContext) {
         Log.d(TAG, "NavigationManager: Created");
         currentActivity = current;
         context = packageContext;
     }
+
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         Log.d(TAG, "onNavigationItemSelected: Started");
@@ -108,9 +110,9 @@ class NavigationManager implements NavigationView.OnNavigationItemSelectedListen
         return true;
     }
 
-    private void startActivity(Class<?> cls){
+    private void startActivity(Class<?> cls) {
         Log.d(TAG, "startActivity: Started");
-        currentActivity.startActivity(new Intent(context,cls));
+        currentActivity.startActivity(new Intent(context, cls));
     }
 
     public void gotoHome() {
