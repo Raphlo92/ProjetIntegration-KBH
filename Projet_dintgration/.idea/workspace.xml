@@ -12,227 +12,23 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="991b20f7-fe8e-4a60-ba1b-24e35bb58485" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/arrow-right.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/delete.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/favoris.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/file.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/hamburger.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/hamburger_1.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/home.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/loudspeaker-1.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/loudspeaker.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/muted.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png.zip" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/001-selection.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/002-framework.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/003-combine-1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/004-widening-1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/005-spreadsheet-8.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/006-locked.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/007-zoom.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/008-objetive.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/009-plugs.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/010-contrast.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/011-lines.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/012-clover.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/013-navigation-1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/014-electron.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/015-week.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/016-reign.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/017-text-1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/018-point-at.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/019-maps-and-flags-4.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/020-shopping-trolley.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/021-zoom-out.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/022-tick-1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/023-zoom-in.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/024-storage-device.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/025-asteroid.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/026-import.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/027-playing-cards.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/028-cancel-1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/029-combine.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/030-entry.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/031-pencil.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/032-spreadsheet-7.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/033-spreadsheet-6.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/034-widening.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/035-insert-4.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/036-insert-3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/037-insert-2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/038-insert-1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/039-insert.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/040-spreadsheet-5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/041-spreadsheet-4.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/042-spreadsheet-3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/043-narrowing.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/044-spreadsheet-2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/045-spreadsheet-1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/046-cells.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/047-table.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/048-spreadsheet.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/049-image-2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/050-empty.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/051-tv.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/052-voice-recording.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/053-padlock-2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/054-magnifier.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/055-minute.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/056-playing-card.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/057-loudspeaker-1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/058-safe.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/059-phone-book-1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/060-tools-and-utensils-4.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/061-hash-key-1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/062-year.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/063-cf.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/064-continuous-line.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/065-arrow-right.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/066-down-arrow-2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/067-importance.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/068-tools-and-utensils-3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/069-diamond.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/070-padlock-1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/071-ink.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/072-scroll.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/073-menu.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/074-character.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/075-arroba.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/076-phone-book.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/077-more.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/078-game-control.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/079-clockwise.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/080-down-arrow-1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/081-wifi.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/082-wealth.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/083-photography.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/084-rotation.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/085-left-arrow-2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/086-v-neck.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/087-work-tools.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/088-opened-1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/089-steering.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/090-soccer.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/091-speaker.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/092-bulb-outline.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/093-right-arrow-2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/094-grab.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/095-image-1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/096-broken-line.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/097-opened.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/098-image.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/099-ebook.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/100-businessman.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/101-data.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/102-document-1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/103-doubt.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/104-down-arrow.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/105-turn-on.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/106-maps-and-flags-3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/107-first-aid.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/108-other-1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/109-chat-balloon-1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/110-magician.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/111-film.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/112-information.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/113-canvas.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/114-maps-and-flags-2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/115-gestures-1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/116-right-arrow-1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/117-blank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/118-number-1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/119-attached.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/120-tools-and-utensils-2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/121-interface.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/122-cancel.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/123-chat-balloon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/124-loudspeaker.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/125-mic.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/126-automobile.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/127-door-key-2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/128-preference.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/129-navigation.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/130-attache-case.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/131-ecommerce.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/132-cardinal-point.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/133-column.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/134-document.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/135-label.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/136-pie.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/137-female.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/138-maps-and-flags-1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/139-phonebook-1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/140-education-1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/141-passion.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/142-geometry.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/143-dislike.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/144-hyperlink.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/145-gestures.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/146-padlock.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/147-royal.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/148-user-2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/149-magnifying-glass-1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/150-user-1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/151-file.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/152-binoculars-1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/153-binoculars.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/154-tick.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/155-status.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/156-door-key-1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/157-door-key.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/158-computing.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/159-up.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/160-education.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/161-idea.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/162-mug.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/163-funnel.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/164-coin.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/165-clipboard-1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/166-refresh.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/167-rubbish-1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/168-fairy.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/169-floppy-disk.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/170-left-arrow-1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/171-room-door.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/172-left-arrow.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/173-muted.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/174-text.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/175-tools-and-utensils-1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/176-other.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/177-subtract.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/178-printing.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/179-position.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/180-right-arrow.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/181-division-1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/182-thumb-up.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/183-phonebook.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/184-spanner.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/185-maps-and-flags.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/186-loading.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/187-statistical.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/188-rubbish.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/189-mail.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/190-tools-and-utensils.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/191-connector.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/192-clipboard.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/193-magnifying-glass.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/194-division.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/195-house.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/196-user.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/197-hash-key.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/198-browser.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/199-telemarketer.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/png/200-terminal.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeletedFiles/speaker.svg" afterDir="false" />
+    <list default="true" id="b4879a38-7ea4-4085-84f5-dee0639366ef" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/projet_dintgration/splashScreenActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/app/app.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/projet_dintgration/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/projet_dintgration/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/local.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -240,7 +36,10 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="181916V01500310" />
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="Pixel_2_API_28" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -249,15 +48,20 @@
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
       <state>
-        <projects_view />
+        <projects_view>
+          <tree_state>
+            <expand />
+            <select />
+          </tree_state>
+        </projects_view>
       </state>
     </system>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="layoutResourceFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -265,6 +69,9 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="ProjectId" id="1iEhOdPQy3I7HkFL0cILEvdO8zj" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -278,6 +85,13 @@
     <property name="settings.editor.selected.configurable" value="settings.github" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Kevin\OneDrive\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\res\drawable-v24" />
+      <recent name="C:\Users\Kevin\OneDrive\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\res\raw" />
+    </key>
+    <key name="android.template.-861654617">
+      <recent name="com.example.projet_dintgration" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\hugob\AndroidStudioProjects\Lecture\app\src\main\res\raw" />
     </key>
@@ -403,10 +217,11 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="641" y="-715" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1601495163347">
-      <screen x="0" y="-1040" width="1920" height="1040" />
+    <state x="641" y="325" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1602040811277">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="641" y="-715" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040/0.-1040.1920.1040@0.-1040.1920.1040" timestamp="1601495163347" />
+    <state x="641" y="325" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1602040811277" />
     <state x="-1279" y="260" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1050/-1920.-68.1920.1050@-1920.-68.1920.1050" timestamp="1601482463712" />
     <state x="641" y="328" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1050/-1920.-68.1920.1050@0.0.1920.1050" timestamp="1601481441575" />
     <state x="-1155" y="166" key="#com.intellij.ide.util.MemberChooser" timestamp="1601485819622">
@@ -414,6 +229,14 @@
     </state>
     <state x="-1155" y="166" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1050/-1920.-68.1920.1050@-1920.-68.1920.1050" timestamp="1601485819622" />
     <state x="765" y="234" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1050/-1920.-68.1920.1050@0.0.1920.1050" timestamp="1601481466969" />
+    <state x="301" y="391" width="360" height="257" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages" timestamp="1602077586286">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="301" y="391" width="360" height="257" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages/0.0.1920.1040@0.0.1920.1040" timestamp="1602077586286" />
+    <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1602041859505">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1602041859505" />
     <state x="-1380" y="212" key="AndroidCreateResourceDirectoryDialog" timestamp="1601482646534">
       <screen x="-1920" y="-68" width="1920" height="1050" />
     </state>
@@ -424,29 +247,37 @@
     </state>
     <state x="-1380" y="212" key="AndroidCreateResourceFileDialog/0.0.1920.1050/-1920.-68.1920.1050@-1920.-68.1920.1050" timestamp="1601482125490" />
     <state x="540" y="280" key="AndroidCreateResourceFileDialog/0.0.1920.1050/-1920.-68.1920.1050@0.0.1920.1050" timestamp="1601480564239" />
+    <state x="818" y="333" key="AndroidCreateXmlResourceDialog" timestamp="1602027648926">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="818" y="333" key="AndroidCreateXmlResourceDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1602027648926" />
     <state x="740" y="280" key="FileChooserDialogImpl" timestamp="1601480947581">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="740" y="280" key="FileChooserDialogImpl/0.0.1920.1050/-1920.-68.1920.1050@0.0.1920.1050" timestamp="1601480947581" />
-    <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1601495643315">
-      <screen x="0" y="-1040" width="1920" height="1040" />
+    <state width="1340" height="266" key="GridCell.Tab.0.bottom" timestamp="1602029349087">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040/0.-1040.1920.1040@0.-1040.1920.1040" timestamp="1601495643315" />
+    <state width="1340" height="266" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1602029349087" />
     <state width="1877" height="285" key="GridCell.Tab.0.bottom/0.0.1920.1050/-1920.-68.1920.1050@-1920.-68.1920.1050" timestamp="1601490606434" />
-    <state width="1877" height="282" key="GridCell.Tab.0.center" timestamp="1601495643315">
-      <screen x="0" y="-1040" width="1920" height="1040" />
+    <state width="1340" height="266" key="GridCell.Tab.0.center" timestamp="1602029349087">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040/0.-1040.1920.1040@0.-1040.1920.1040" timestamp="1601495643315" />
+    <state width="1340" height="266" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1602029349087" />
     <state width="1877" height="285" key="GridCell.Tab.0.center/0.0.1920.1050/-1920.-68.1920.1050@-1920.-68.1920.1050" timestamp="1601490606433" />
-    <state width="1877" height="282" key="GridCell.Tab.0.left" timestamp="1601495643314">
-      <screen x="0" y="-1040" width="1920" height="1040" />
+    <state width="1340" height="266" key="GridCell.Tab.0.left" timestamp="1602029349087">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040/0.-1040.1920.1040@0.-1040.1920.1040" timestamp="1601495643314" />
+    <state width="1340" height="266" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1602029349087" />
     <state width="1877" height="285" key="GridCell.Tab.0.left/0.0.1920.1050/-1920.-68.1920.1050@-1920.-68.1920.1050" timestamp="1601490606433" />
-    <state width="1877" height="282" key="GridCell.Tab.0.right" timestamp="1601495643315">
-      <screen x="0" y="-1040" width="1920" height="1040" />
+    <state width="1340" height="266" key="GridCell.Tab.0.right" timestamp="1602029349087">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040/0.-1040.1920.1040@0.-1040.1920.1040" timestamp="1601495643315" />
+    <state width="1340" height="266" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1602029349087" />
     <state width="1877" height="285" key="GridCell.Tab.0.right/0.0.1920.1050/-1920.-68.1920.1050@-1920.-68.1920.1050" timestamp="1601490606433" />
     <state width="1877" height="351" key="GridCell.Tab.1.bottom" timestamp="1601485499697">
       <screen x="-1920" y="-68" width="1920" height="1050" />
@@ -472,5 +303,9 @@
       <screen x="-1920" y="-68" width="1920" height="1050" />
     </state>
     <state x="-1828" y="24" width="1736" height="866" key="com.android.tools.idea.avdmanager.AvdListDialog/0.0.1920.1050/-1920.-68.1920.1050@-1920.-68.1920.1050" timestamp="1601484218480" />
+    <state x="136" y="244" key="run.anything.popup" timestamp="1602084793584">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="136" y="244" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1602084793584" />
   </component>
 </project>

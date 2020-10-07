@@ -1,5 +1,12 @@
 package com.example.projet_dintgration;
 
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -7,21 +14,10 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import android.content.Context;
-import android.content.Intent;
-import android.media.MediaPlayer;
-import android.nfc.Tag;
-import android.os.Bundle;
-import android.text.LoginFilter;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-
 import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity {
+
 
     private static final String TAG = "MainActivity";
 
@@ -53,6 +49,8 @@ public class MainActivity extends AppCompatActivity {
         NavigationManager.afficherOptionDeconnecteSpotify(navigationView.getMenu());
     }
 
+
+
     @Override
     public void onBackPressed() {
         Log.d(TAG, "onBackPressed: Started");
@@ -62,15 +60,15 @@ public class MainActivity extends AppCompatActivity {
             super.onBackPressed();
     }
 
-    public void openMediaActivity(View v) {
-        Log.d(TAG, "openMediaActivity: Started");
+    public void openMusicPage() {
+        Log.d(TAG, "openMusicPage: Started");
         Intent intent = new Intent(this, MediaActivity.class);
         startActivity(intent);
     }
 }
 
 class NavigationManager implements NavigationView.OnNavigationItemSelectedListener {
-    
+
     private static final String TAG = "NavigationManager";
 
     AppCompatActivity currentActivity;
@@ -100,12 +98,15 @@ class NavigationManager implements NavigationView.OnNavigationItemSelectedListen
                 Log.d(TAG, "onNavigationItemSelected: Switched to bibliotheque");
                 gotoBibliotheque();
                 break;
+            /*case R.id.nav_music_page:
+                Log.d(TAG, "onNavigationItemSelected: Switched to bibliotheque");
+                //gotoBibliotheque();
+                startActivity(MediaActivity.class);
+                break;*/
             // TODO terminer toutes les options du switch case
         }
         return true;
     }
-
-
 
     private void startActivity(Class<?> cls){
         Log.d(TAG, "startActivity: Started");
