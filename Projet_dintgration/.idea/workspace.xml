@@ -14,14 +14,8 @@
   <component name="ChangeListManager">
     <list default="true" id="991b20f7-fe8e-4a60-ba1b-24e35bb58485" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/projet_dintgration/DBHelpers/Albums.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/projet_dintgration/DBHelpers/Albums.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/projet_dintgration/DBHelpers/Artists.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/projet_dintgration/DBHelpers/Artists.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/projet_dintgration/DBHelpers/Categories.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/projet_dintgration/DBHelpers/Categories.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/projet_dintgration/DBHelpers/DBHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/projet_dintgration/DBHelpers/DBHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/projet_dintgration/DBHelpers/Musics.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/projet_dintgration/DBHelpers/Musics.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/projet_dintgration/DBHelpers/Playlists.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/projet_dintgration/DBHelpers/Playlists.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/projet_dintgration/MusicListActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/projet_dintgration/MusicListActivity.java" afterDir="false" />
     </list>
@@ -64,7 +58,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="181916V01500310" />
-    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-10-06T22:51:32.855Z" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-10-07T16:49:54.046Z" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="settings.github" />

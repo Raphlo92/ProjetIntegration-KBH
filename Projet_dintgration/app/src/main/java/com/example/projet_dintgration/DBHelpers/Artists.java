@@ -34,7 +34,7 @@ public class Artists extends AbstractDBHelper {
         ContentValues values = new ContentValues();
 
         values.put(TableArtist._ID, 1);
-        values.put(TableArtist.COLUMN_NAME_NAME, "Artist1");
+        values.put(TableArtist.COLUMN_NAME_NAME, "Artist2");
 
         return values;
     }

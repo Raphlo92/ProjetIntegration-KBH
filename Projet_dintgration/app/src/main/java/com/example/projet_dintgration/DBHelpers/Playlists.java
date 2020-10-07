@@ -7,8 +7,11 @@ import android.database.sqlite.SQLiteDatabase;
 import com.example.projet_dintgration.DBHelpers.Classes.IDBClass;
 import com.example.projet_dintgration.DBHelpers.Classes.Playlist;
 import com.example.projet_dintgration.DBHelpers.DBHelper.Contract.TablePlaylist;
+import com.example.projet_dintgration.DBHelpers.DBHelper.Contract.TableMusicPlaylist;
+import com.example.projet_dintgration.DBHelpers.DBHelper.Contract.TableMusic;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Playlists extends AbstractDBHelper {
     //region BD values
@@ -27,7 +30,7 @@ public class Playlists extends AbstractDBHelper {
 
         values.put(TablePlaylist._ID, 0);
         values.put(TablePlaylist.COLUMN_NAME_NAME, "Playlist1");
-        values.put(TablePlaylist.COLUMN_NAME_TYPE, "normal");
+        values.put(TablePlaylist.COLUMN_NAME_TYPE, "favorites");
 
         return values;
     }
@@ -77,5 +80,67 @@ public class Playlists extends AbstractDBHelper {
     @Override
     public void Update(ContentValues values, String whereClause, String[] whereArgs) {
         nbUpdatedRows = DB.update(TABLE_NAME, values, whereClause, whereArgs);
+    }
+
+    public void AddToPlaylist(int musicId, int playlistId){
+        ContentValues values = new ContentValues();
+
+        values.put(TableMusicPlaylist.COLUMN_NAME_ID_MUSIC, musicId);
+        values.put(TableMusicPlaylist.COLUMN_NAME_ID_PLAYLIST, playlistId);
+
+        DB.insert(TableMusicPlaylist.TABLE_NAME, null, values);
+    }
+
+    public ArrayList<Integer> getAllMusicsIdsInPlaylist(int playlistId){
+        String[] columns = { TableMusicPlaylist.COLUMN_NAME_ID_MUSIC };
+        Cursor cursor = DB.query(TableMusicPlaylist.TABLE_NAME, columns , null, null, null, null, null);
+
+        ArrayList<Integer> ids = new ArrayList<>();
+
+        while (cursor.moveToNext()){
+            //region set values
+            int id =  cursor.getInt(cursor.getColumnIndexOrThrow(TableMusicPlaylist.COLUMN_NAME_ID_MUSIC));
+            //endregion
+            ids.add(id);
+        }
+
+        return ids;
+    }
+
+    private String toCommaSeparatedString(ArrayList<Integer> list) {
+        if (list.size() > 0) {
+            StringBuilder nameBuilder = new StringBuilder();
+            for (Integer item : list) {
+                nameBuilder.append(item).append(", ");
+            }
+            nameBuilder.deleteCharAt(nameBuilder.length() - 1);
+            nameBuilder.deleteCharAt(nameBuilder.length() - 1);
+            return nameBuilder.toString();
+        } else {
+            return "";
+        }
+    }
+
+    public ArrayList<IDBClass> getAllMusicsInPlaylist(int playlistId){
+        ArrayList<IDBClass> musics = new ArrayList<>();
+        String CSIds = toCommaSeparatedString(getAllMusicsIdsInPlaylist(playlistId));
+        Musics musicsDBHelper = new Musics(DB);
+
+        String[] columns = {
+                TableMusic._ID,
+                TableMusic.COLUMN_NAME_TITLE,
+                TableMusic.COLUMN_NAME_LENGTH,
+                TableMusic.COLUMN_NAME_FILE,
+                TableMusic.COLUMN_NAME_TYPE,
+                TableMusic.COLUMN_NAME_ID_ALBUM,
+                TableMusic.COLUMN_NAME_ID_ARTIST,
+                TableMusic.COLUMN_NAME_ID_CATEGORY
+        };
+
+        String whereClause = TableMusic._ID + " IN (" + CSIds + ")";
+
+        musics = musicsDBHelper.Select(columns, whereClause, null, null, null, null);
+
+        return musics;
     }
 }
