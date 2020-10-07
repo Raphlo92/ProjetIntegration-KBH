@@ -4,20 +4,15 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import androidx.annotation.AnimatorRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.projet_dintgration.DBHelpers.Classes.*;
-import com.example.projet_dintgration.DBHelpers.*;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class MusicListAdapter extends ArrayAdapter<Music> {
     private static final String TAG = "MusicListAdapter";
@@ -41,7 +36,7 @@ public class MusicListAdapter extends ArrayAdapter<Music> {
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         int id = getItem(position).getId();
-        String title = getItem(position).getTitle();
+        String title = getItem(position).getName();
         int length = getItem(position).getLength(); // in seconds
         String type = getItem(position).getType();
         String path = getItem(position).getPath();
@@ -81,7 +76,7 @@ public class MusicListAdapter extends ArrayAdapter<Music> {
 
         lastPosition = position;
 
-        holder.title.setText(music.getTitle());
+        holder.title.setText(music.getName());
         holder.artist.setText(music.getArtist());
         holder.length.setText(Music.TimeToString(music.getLength()));
 
