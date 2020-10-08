@@ -144,6 +144,9 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public DBHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
+
+        //test
+        //this.enterTestValues();
     }
 
     public void onCreate(SQLiteDatabase db) {
@@ -188,5 +191,12 @@ public class DBHelper extends SQLiteOpenHelper {
         db.insert(Contract.TableMusic.TABLE_NAME,null,  Musics.getTestValues2());
         db.insert(Contract.TableMusic.TABLE_NAME,null,  Musics.getTestValues3());
         db.insert(Contract.TableMusic.TABLE_NAME,null,  Musics.getTestValues4());
+
+        Playlists playlists = new Playlists(db);
+        playlists.AddToPlaylist(0, 0);
+        playlists.AddToPlaylist(1, 0);
+        playlists.AddToPlaylist(0, 1);
+        playlists.AddToPlaylist(3, 1);
+        playlists.AddToPlaylist(2, 1);
     }
 }

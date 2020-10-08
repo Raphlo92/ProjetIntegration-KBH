@@ -3,6 +3,7 @@ package com.example.projet_dintgration.DBHelpers;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.example.projet_dintgration.DBHelpers.Classes.IDBClass;
 import com.example.projet_dintgration.DBHelpers.Classes.Playlist;
@@ -14,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Playlists extends AbstractDBHelper {
+    private static final String TAG = "Playlists";
     //region BD values
     public static final String TABLE_NAME = TablePlaylist.TABLE_NAME;
     public long createdRowId;
@@ -122,8 +124,9 @@ public class Playlists extends AbstractDBHelper {
     }
 
     public ArrayList<IDBClass> getAllMusicsInPlaylist(int playlistId){
-        ArrayList<IDBClass> musics = new ArrayList<>();
+        ArrayList<IDBClass> musics;
         String CSIds = toCommaSeparatedString(getAllMusicsIdsInPlaylist(playlistId));
+        Log.d(TAG, "getAllMusicsInPlaylist: CSIds = " + CSIds);
         Musics musicsDBHelper = new Musics(DB);
 
         String[] columns = {

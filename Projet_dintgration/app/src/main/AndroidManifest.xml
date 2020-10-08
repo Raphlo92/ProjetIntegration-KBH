@@ -29,6 +29,10 @@
             </intent-filter>
         </activity>
 
+    <activity android:name=".PlaylistListActivity"
+        android:label="PlaylistListActivity"
+        android:theme="@style/AppTheme.NoActionBar"/>
+
     </application>
 
 

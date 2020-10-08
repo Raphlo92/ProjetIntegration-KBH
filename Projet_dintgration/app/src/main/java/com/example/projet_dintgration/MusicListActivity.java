@@ -1,11 +1,8 @@
 package com.example.projet_dintgration;
 
-import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -17,12 +14,10 @@ import com.example.projet_dintgration.DBHelpers.Classes.IDBClass;
 import com.example.projet_dintgration.DBHelpers.Classes.Music;
 import com.example.projet_dintgration.DBHelpers.DBHelper;
 import com.example.projet_dintgration.DBHelpers.Musics;
-import com.example.projet_dintgration.NavigationManager;
+import com.example.projet_dintgration.DBHelpers.Playlists;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 public class MusicListActivity extends AppCompatActivity {
     private static final String TAG = "MusicListActivity";
@@ -37,17 +32,18 @@ public class MusicListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_music_list);
+
+        int playlistId = getIntent().getIntExtra(DBHelper.Contract.TablePlaylist._ID, -1);
+
+        setContentView(R.layout.activity_list);
         Log.d(TAG, "onCreate: Started.");
+        Log.d(TAG, "onCreate: playlistId: " + playlistId);
 
         //region DB
         dbHelper = new DBHelper(getApplicationContext());
         DBMusicsReader = new Musics(dbHelper.getReadableDatabase());
         DBMusicsWriter = new Musics(dbHelper.getWritableDatabase());
         //
-
-        //testValues
-        dbHelper.enterTestValues();
 
         //region Navigation
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -67,8 +63,9 @@ public class MusicListActivity extends AppCompatActivity {
         NavigationManager.afficherOptionDeconnecteSpotify(navigationView.getMenu());
         //endregion
 
-        final ListView listView = (ListView) findViewById(R.id.musicListView);
+        final ListView listView = (ListView) findViewById(R.id.listView);
 
+        /*
         Music song1 = new Music(0, "Song1", 125, "audio", "./nowhere", "Rock", "Bob", "Yeeters", false);
         Music song2 = new Music(0, "Song2", 180, "audio", "./nowhere", "Rock", "Bob", "Yeeters", false);
         Music song3 = new Music(0, "Song3", 220, "audio", "./nowhere", "Rock", "Bob", "Yeeters", false);
@@ -83,10 +80,18 @@ public class MusicListActivity extends AppCompatActivity {
         Music song5 = new Music(0, "Song5", 195, "audio", "./nowhere", "Rock", "John", "Others", false);
         Music song6 = new Music(0, "Song6", 145, "audio", "./nowhere", "Rock", "John", "Others", false);
         Music song7 = new Music(0, "Song7", 105, "audio", "./nowhere", "Rock", "John", "Others", false);
+        */
 
-
-        ArrayList<IDBClass> dbMusics = DBMusicsReader.Select(null, null, null, null, null, null);
+        ArrayList<IDBClass> dbMusics = new ArrayList<>();
         ArrayList<Music> musics = new ArrayList<>();
+
+        if(playlistId > -1){
+            dbMusics = DBMusicsReader.Select(null, null, null, null, null, null);
+        }
+        else{
+            Playlists DBPlaylistsReader = new Playlists(dbHelper.getReadableDatabase());
+            dbMusics = DBPlaylistsReader.getAllMusicsInPlaylist(playlistId);
+        }
 
         for (IDBClass music: dbMusics) {
             musics.add((Music) music);
@@ -110,7 +115,7 @@ public class MusicListActivity extends AppCompatActivity {
         musics.add(song6);
         musics.add(song7);
         */
-        MusicListAdapter adapter = new MusicListAdapter(this, R.layout.listitem_layout, musics);
+        MusicListAdapter adapter = new MusicListAdapter(this, R.layout.music_listitem_layout, musics);
         listView.setAdapter(adapter);
 
     }
