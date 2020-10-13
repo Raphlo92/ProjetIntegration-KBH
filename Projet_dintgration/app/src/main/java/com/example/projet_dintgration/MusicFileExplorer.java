@@ -1,0 +1,79 @@
+package com.example.projet_dintgration;
+
+import android.util.Log;
+
+import java.io.*;
+import java.util.ArrayList;
+
+public class MusicFileExplorer {
+    //PATH TO MUSICS : /storage/emulated/0/Music/{Artist}/{Album}/{Music}
+    //PATH TO ALBUM PROPS : /storage/emulated/0/Music/{Artist}/{Album}/{PropFile}
+
+    //FileOutputStream
+    //FileInputStream
+    //File
+    static ArrayList<File> files = new ArrayList<>();
+    static final String DIRECTORY_MUSIC = "/storage/emulated/0/Music";
+    private static final String TAG = "MusicFileExplorer";
+    private MusicFileExplorer() { }
+
+    public static String[] getAllArtistsDirectory() {
+        return new File(DIRECTORY_MUSIC).list();
+    }
+
+    public static String[] getAlbumsDirectory(String artist) {
+        return new File(DIRECTORY_MUSIC + "/" + artist).list();
+    }
+
+    public static String[] getAlbumFiles(String albumPath) {
+        return new File(DIRECTORY_MUSIC + "/" + albumPath).list();
+    }
+
+    public static ArrayList<File> getAllMusicFiles(){
+        //PATH TO MUSICS : /storage/emulated/0/Music/{Artist}/{Album}/{Music}
+        ArrayList<File> files = new ArrayList<>();
+
+        String[] artists = getAllArtistsDirectory();
+        if (artists != null){
+            for (String artist: artists) {
+                files.add(new File(DIRECTORY_MUSIC + "/" + artist));
+                String[] artistAlbums = getAlbumsDirectory(artist);
+                if (artistAlbums != null){
+                    for (String album: artistAlbums) {
+                        files.add(new File(DIRECTORY_MUSIC + "/" + artist + "/" + album));
+                        String[] albumFiles = getAlbumFiles(artist + "/" + album);
+                        if (albumFiles != null){
+                            for (String file: albumFiles) {
+                                files.add(new File(DIRECTORY_MUSIC + "/" + artist + "/" + album + "/" + file));
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        return files;
+    }
+
+    public static ArrayList<File> getAllChildren(String path){
+        Log.d(TAG, "getAllChildren: Started");
+        File file = new File(path);
+        String[] children = file.list();
+        //ArrayList<File> files = new ArrayList<>();
+
+        if(children != null){
+            for (String child: children) {
+                Log.d(TAG, "getAllChildren: childPath = " + file.getAbsolutePath() + "/" + child);
+                ArrayList<File> child_children = getAllChildren(file.getAbsolutePath() + "/" + child);
+                files.add(new File(file.getAbsolutePath() + "/" + child));
+                files.addAll(child_children);
+            }
+        }
+        return files;
+
+    }
+
+    public static File getFile(String path) {
+        return new File(path);
+    }
+}

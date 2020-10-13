@@ -9,6 +9,7 @@ import com.example.projet_dintgration.DBHelpers.Classes.IDBClass;
 import com.example.projet_dintgration.DBHelpers.DBHelper.Contract.TableCategory;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Categories extends AbstractDBHelper {
 
@@ -50,6 +51,20 @@ public class Categories extends AbstractDBHelper {
         createdRowId = DB.insert(TABLE_NAME, null, values);
     }
 
+    public void Insert(Category category){
+        ContentValues values = new ContentValues();
+
+        values.put(TableCategory.COLUMN_NAME_NAME, category.getName());
+
+        Insert(values);
+    }
+
+    public void Insert(List<Category> categories){
+        for (Category category : categories) {
+            Insert(category);
+        }
+    }
+
     @Override
     public ArrayList<IDBClass> Select(String[] columns, String whereClause, String[] whereArgs, String groupBy, String having, String orderBy) {
         //TODO check integrity of parameters
@@ -88,6 +103,19 @@ public class Categories extends AbstractDBHelper {
         }
 
         return name;
+    }
+
+    public static int getIdByName(SQLiteDatabase db, String name){
+        int id = -1;
+        String selection = TableCategory.COLUMN_NAME_NAME + " = ?";
+        String[] selectionArgs = { name };
+        Cursor cursor = db.query(TABLE_NAME, null, selection, selectionArgs, null, null, null);
+
+        while (cursor.moveToNext()){
+            id = cursor.getInt(cursor.getColumnIndexOrThrow(TableCategory._ID));
+        }
+
+        return id;
     }
 
 }

@@ -9,6 +9,7 @@ import com.example.projet_dintgration.DBHelpers.Classes.Music;
 import com.example.projet_dintgration.DBHelpers.DBHelper.Contract.TableMusic;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Musics extends AbstractDBHelper {
     //region BD values
@@ -88,6 +89,31 @@ public class Musics extends AbstractDBHelper {
         //TODO check integrity of values
         createdRowId = DB.insert(TABLE_NAME, null, values);
     }
+
+    public void Insert(Music music){
+        ContentValues values = new ContentValues();
+
+        int albumId = Albums.getIdByName(DB, music.getAlbum());
+        int artistId = Artists.getIdByName(DB, music.getArtist());
+        int categoryId = Categories.getIdByName(DB, music.getCategory());
+
+        values.put(TableMusic.COLUMN_NAME_TITLE, music.getName());
+        values.put(TableMusic.COLUMN_NAME_LENGTH, music.getLength());
+        values.put(TableMusic.COLUMN_NAME_TYPE, music.getType());
+        values.put(TableMusic.COLUMN_NAME_FILE, music.getPath());
+        values.put(TableMusic.COLUMN_NAME_ID_ALBUM, albumId);
+        values.put(TableMusic.COLUMN_NAME_ID_ARTIST, artistId);
+        values.put(TableMusic.COLUMN_NAME_ID_CATEGORY, categoryId);
+
+        Insert(values);
+    }
+
+    public void Insert(List<Music> musics){
+        for (Music music : musics) {
+            Insert(music);
+        }
+    }
+
 
     @Override
     public ArrayList<IDBClass> Select(String[] columns, String whereClause, String[] whereArgs, String groupBy, String having, String orderBy) {

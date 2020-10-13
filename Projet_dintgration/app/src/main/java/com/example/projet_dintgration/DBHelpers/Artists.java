@@ -9,6 +9,7 @@ import com.example.projet_dintgration.DBHelpers.Classes.IDBClass;
 import com.example.projet_dintgration.DBHelpers.DBHelper.Contract.TableArtist;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Artists extends AbstractDBHelper {
     //region BD values
@@ -49,6 +50,20 @@ public class Artists extends AbstractDBHelper {
         createdRowId = DB.insert(TABLE_NAME, null, values);
     }
 
+    public void Insert(Artist artist){
+        ContentValues values = new ContentValues();
+
+        values.put(TableArtist.COLUMN_NAME_NAME, artist.getName());
+
+        Insert(values);
+    }
+
+    public void Insert(List<Artist> artists){
+        for (Artist artist : artists) {
+            Insert(artist);
+        }
+    }
+
     @Override
     public ArrayList<IDBClass> Select(String[] columns, String whereClause, String[] whereArgs, String groupBy, String having, String orderBy) {
         //TODO check integrity of parameters
@@ -87,5 +102,18 @@ public class Artists extends AbstractDBHelper {
         }
 
         return name;
+    }
+
+    public static int getIdByName(SQLiteDatabase db, String name){
+        int id = -1;
+        String selection = TableArtist.COLUMN_NAME_NAME + " = ?";
+        String[] selectionArgs = { name };
+        Cursor cursor = db.query(TABLE_NAME, null, selection, selectionArgs, null, null, null);
+
+        while (cursor.moveToNext()){
+            id = cursor.getInt(cursor.getColumnIndexOrThrow(TableArtist._ID));
+        }
+
+        return id;
     }
 }

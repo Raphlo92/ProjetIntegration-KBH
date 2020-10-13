@@ -56,6 +56,21 @@ public class Playlists extends AbstractDBHelper {
         createdRowId = DB.insert(TABLE_NAME, null, values);
     }
 
+    public void Insert(Playlist playlist){
+        ContentValues values = new ContentValues();
+
+        values.put(TablePlaylist.COLUMN_NAME_NAME, playlist.getName());
+        values.put(TablePlaylist.COLUMN_NAME_TYPE, playlist.getType());
+
+        Insert(values);
+    }
+
+    public void Insert(List<Playlist> playlists){
+        for (Playlist playlist : playlists) {
+            Insert(playlist);
+        }
+    }
+
     @Override
     public ArrayList<IDBClass> Select(String[] columns, String whereClause, String[] whereArgs, String groupBy, String having, String orderBy) {
         //TODO check integrity of parameters

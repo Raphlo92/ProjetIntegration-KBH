@@ -9,6 +9,7 @@ import com.example.projet_dintgration.DBHelpers.Classes.IDBClass;
 import com.example.projet_dintgration.DBHelpers.DBHelper.Contract.TableAlbum;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Albums extends AbstractDBHelper{
     //region BD values
@@ -43,14 +44,31 @@ public class Albums extends AbstractDBHelper{
         return values;
     }
 
-    public Albums(SQLiteDatabase db){
-        super(db);
-    }
+    public Albums(SQLiteDatabase db){ super(db); }
 
     @Override
     public void Insert(ContentValues values) {
         //TODO check integrity of values
         createdRowId = DB.insert(TABLE_NAME, null, values);
+    }
+
+    public void Insert(Album album){
+        ContentValues values = new ContentValues();
+
+        int artistId = Artists.getIdByName(DB, album.getArtist());
+        int categoryId = Categories.getIdByName(DB, album.getCategory());
+
+        values.put(TableAlbum.COLUMN_NAME_TITLE, album.getName());
+        values.put(TableAlbum.COLUMN_NAME_ID_ARTIST, album.getArtist());
+        values.put(TableAlbum.COLUMN_NAME_ID_CATEGORY, album.getCategory());
+
+        Insert(values);
+    }
+
+    public void Insert(List<Album> albums){
+        for (Album album : albums) {
+            Insert(album);
+        }
     }
 
     @Override
@@ -93,5 +111,31 @@ public class Albums extends AbstractDBHelper{
         }
 
         return name;
+    }
+
+    public static int getIdByName(SQLiteDatabase db, String name){
+        int id = -1;
+        String selection = TableAlbum.COLUMN_NAME_TITLE + " = ?";
+        String[] selectionArgs = { name };
+        Cursor cursor = db.query(TABLE_NAME, null, selection, selectionArgs, null, null, null);
+
+        while (cursor.moveToNext()){
+            id = cursor.getInt(cursor.getColumnIndexOrThrow(TableAlbum._ID));
+        }
+
+        return id;
+    }
+
+    public static int getCategoryByName(SQLiteDatabase db, String name){
+        int id = -1;
+        String selection = TableAlbum.COLUMN_NAME_TITLE + " = ?";
+        String[] selectionArgs = { name };
+        Cursor cursor = db.query(TABLE_NAME, null, selection, selectionArgs, null, null, null);
+
+        while (cursor.moveToNext()){
+            id = cursor.getInt(cursor.getColumnIndexOrThrow(TableAlbum.COLUMN_NAME_ID_CATEGORY));
+        }
+
+        return id;
     }
 }
