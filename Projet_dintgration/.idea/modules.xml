@@ -3,10 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Lecture.iml" filepath="$PROJECT_DIR$/.idea/modules/Lecture.iml" group="Lecture" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/app.iml" group="Lecture/app" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Projet_d'intégration.iml" filepath="$PROJECT_DIR$/.idea/modules/Projet_d'intégration.iml" group="Projet_d'intégration" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Projet_d'intégration.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Projet_d'intégration.app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/app.iml" group="Projet_d'intégration/app" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Projet_dintgration-Lecture.iml" filepath="$PROJECT_DIR$/.idea/modules/Projet_dintgration-Lecture.iml" group="Lecture" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/app.iml" group="Lecture/app" />
     </modules>
   </component>
 </project>

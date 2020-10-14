@@ -4,7 +4,7 @@ ADDED from C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIn
 INJECTED from C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:2:1-41:12
 INJECTED from C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:2:1-41:12
 INJECTED from C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:2:1-41:12
-MERGED from [androidx.constraintlayout:constraintlayout:2.0.1] C:\Users\raphc\.gradle\caches\transforms-2\files-2.1\86e1e5d883ec66c1063a0d9a82a27792\constraintlayout-2.0.1\AndroidManifest.xml:2:1-11:12
+MERGED from [androidx.constraintlayout:constraintlayout:2.0.2] C:\Users\raphc\.gradle\caches\transforms-2\files-2.1\d6f2d911e6420eddbe1a6bafc49b6353\constraintlayout-2.0.2\AndroidManifest.xml:2:1-11:12
 MERGED from [androidx.navigation:navigation-ui:2.3.0] C:\Users\raphc\.gradle\caches\transforms-2\files-2.1\d0f92c0b26fabb47a28488bab3cc8456\navigation-ui-2.3.0\AndroidManifest.xml:17:1-24:12
 MERGED from [com.google.android.material:material:1.2.1] C:\Users\raphc\.gradle\caches\transforms-2\files-2.1\fee048776b4040c0a73e83e4303a6cff\material-1.2.1\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.appcompat:appcompat:1.2.0] C:\Users\raphc\.gradle\caches\transforms-2\files-2.1\bf96d2b5a86ecd602a621e7e96856420\appcompat-1.2.0\AndroidManifest.xml:17:1-24:12
@@ -72,8 +72,8 @@ ADDED from C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIn
 		ADDED from C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:7:22-78
 application
 ADDED from C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:9:5-38:19
-MERGED from [androidx.constraintlayout:constraintlayout:2.0.1] C:\Users\raphc\.gradle\caches\transforms-2\files-2.1\86e1e5d883ec66c1063a0d9a82a27792\constraintlayout-2.0.1\AndroidManifest.xml:9:5-20
-MERGED from [androidx.constraintlayout:constraintlayout:2.0.1] C:\Users\raphc\.gradle\caches\transforms-2\files-2.1\86e1e5d883ec66c1063a0d9a82a27792\constraintlayout-2.0.1\AndroidManifest.xml:9:5-20
+MERGED from [androidx.constraintlayout:constraintlayout:2.0.2] C:\Users\raphc\.gradle\caches\transforms-2\files-2.1\d6f2d911e6420eddbe1a6bafc49b6353\constraintlayout-2.0.2\AndroidManifest.xml:9:5-20
+MERGED from [androidx.constraintlayout:constraintlayout:2.0.2] C:\Users\raphc\.gradle\caches\transforms-2\files-2.1\d6f2d911e6420eddbe1a6bafc49b6353\constraintlayout-2.0.2\AndroidManifest.xml:9:5-20
 MERGED from [com.google.android.material:material:1.2.1] C:\Users\raphc\.gradle\caches\transforms-2\files-2.1\fee048776b4040c0a73e83e4303a6cff\material-1.2.1\AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.material:material:1.2.1] C:\Users\raphc\.gradle\caches\transforms-2\files-2.1\fee048776b4040c0a73e83e4303a6cff\material-1.2.1\AndroidManifest.xml:22:5-20
 MERGED from [androidx.core:core:1.3.1] C:\Users\raphc\.gradle\caches\transforms-2\files-2.1\ae3468b444d41a56f261ecbb8448fe17\core-1.3.1\AndroidManifest.xml:24:5-89
@@ -136,8 +136,8 @@ uses-sdk
 INJECTED from C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml
 INJECTED from C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml
-MERGED from [androidx.constraintlayout:constraintlayout:2.0.1] C:\Users\raphc\.gradle\caches\transforms-2\files-2.1\86e1e5d883ec66c1063a0d9a82a27792\constraintlayout-2.0.1\AndroidManifest.xml:5:5-7:41
-MERGED from [androidx.constraintlayout:constraintlayout:2.0.1] C:\Users\raphc\.gradle\caches\transforms-2\files-2.1\86e1e5d883ec66c1063a0d9a82a27792\constraintlayout-2.0.1\AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.constraintlayout:constraintlayout:2.0.2] C:\Users\raphc\.gradle\caches\transforms-2\files-2.1\d6f2d911e6420eddbe1a6bafc49b6353\constraintlayout-2.0.2\AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.constraintlayout:constraintlayout:2.0.2] C:\Users\raphc\.gradle\caches\transforms-2\files-2.1\d6f2d911e6420eddbe1a6bafc49b6353\constraintlayout-2.0.2\AndroidManifest.xml:5:5-7:41
 MERGED from [androidx.navigation:navigation-ui:2.3.0] C:\Users\raphc\.gradle\caches\transforms-2\files-2.1\d0f92c0b26fabb47a28488bab3cc8456\navigation-ui-2.3.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.navigation:navigation-ui:2.3.0] C:\Users\raphc\.gradle\caches\transforms-2\files-2.1\d0f92c0b26fabb47a28488bab3cc8456\navigation-ui-2.3.0\AndroidManifest.xml:20:5-22:41
 MERGED from [com.google.android.material:material:1.2.1] C:\Users\raphc\.gradle\caches\transforms-2\files-2.1\fee048776b4040c0a73e83e4303a6cff\material-1.2.1\AndroidManifest.xml:20:5-44

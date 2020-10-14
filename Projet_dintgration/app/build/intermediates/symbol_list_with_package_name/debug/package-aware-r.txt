@@ -1,4 +1,4 @@
-com.example.projet_dintgration
+com.example.lecture
 anim abc_fade_in
 anim abc_fade_out
 anim abc_grow_fade_in_from_bottom
@@ -1720,6 +1720,7 @@ id button1
 id button2
 id button3
 id buttonPanel
+id cache_measures
 id cancel_button
 id center
 id center_horizontal
@@ -1754,6 +1755,7 @@ id decelerateAndComplete
 id decor_content_parent
 id default_activity_button
 id deltaRelative
+id dependency_ordering
 id design_bottom_sheet
 id design_menu_item_action_area
 id design_menu_item_action_area_stub
@@ -1801,6 +1803,7 @@ id gone
 id graph
 id graph_wrap
 id group_divider
+id grouping
 id groups
 id hideable
 id home
@@ -1867,7 +1870,6 @@ id mtrl_picker_text_input_range_end
 id mtrl_picker_text_input_range_start
 id mtrl_picker_title_text
 id multiply
-id musicListView
 id name
 id nameContainer
 id nav_bibliotheque
@@ -1997,6 +1999,7 @@ id textEnd
 id textSpacerNoButtons
 id textSpacerNoTitle
 id textStart
+id textView2
 id textView_homescreen_albums
 id textView_homescreen_artiste
 id textView_homescreen_favoris
@@ -2102,10 +2105,10 @@ layout abc_search_dropdown_item_icons_2line
 layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
+layout activity_home
 layout activity_list
 layout activity_main
 layout activity_media_activity
-layout activity_music_list
 layout activity_music_page
 layout activity_playlist
 layout custom_dialog
@@ -2124,7 +2127,6 @@ layout design_navigation_menu
 layout design_navigation_menu_item
 layout design_text_input_end_icon
 layout design_text_input_start_icon
-layout listitem_layout
 layout mtrl_alert_dialog
 layout mtrl_alert_dialog_actions
 layout mtrl_alert_dialog_title

@@ -5,3 +5,6 @@
 *.properties
 Projet_dintgration/.idea/workspace.xml
 Projet_dintgration/.idea/misc.xml
+*.lock
+*.bin
+*.ser
