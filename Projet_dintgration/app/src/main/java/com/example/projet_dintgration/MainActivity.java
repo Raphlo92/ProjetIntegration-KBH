@@ -3,6 +3,14 @@ package com.example.projet_dintgration;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+<<<<<<< HEAD
+=======
+import android.os.Environment;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+>>>>>>> 7c6385b1b2f6373d36dd834329a5e041dbecf9ee
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,6 +26,10 @@ import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity {
 
+<<<<<<< HEAD
+=======
+    private static boolean firstRun = true;
+>>>>>>> 7c6385b1b2f6373d36dd834329a5e041dbecf9ee
 
     private static final String TAG = "MainActivity";
 

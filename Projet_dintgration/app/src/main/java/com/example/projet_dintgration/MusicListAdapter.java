@@ -10,7 +10,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+<<<<<<< HEAD
 import com.example.projet_dintgration.DBHelpers.Classes.Music;
+=======
+import com.example.projet_dintgration.DBHelpers.Classes.*;
+>>>>>>> 7c6385b1b2f6373d36dd834329a5e041dbecf9ee
 
 import java.util.ArrayList;
 
