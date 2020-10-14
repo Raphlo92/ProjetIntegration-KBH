@@ -24,6 +24,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static boolean firstRun = true;
     private static final String TAG = "MainActivity";
     Context context = this;
     DrawerLayout drawerLayout;
@@ -46,7 +47,18 @@ public class MainActivity extends AppCompatActivity {
         });
 
         th.start();
+        if (firstRun = !firstRun) {
+            Thread th = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    ArrayList<File> files = MusicFileExplorer.getAllMusicFiles();
+                    new DBInitializer(context).Init(files);
+                }
+            });
 
+            th.setDaemon(true);
+            th.start();
+        }
 
 
 
