@@ -3,6 +3,7 @@ package com.example.projet_dintgration.DBHelpers;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.media.MediaPlayer;
+import android.media.MediaMetadataRetriever;
 import android.util.Log;
 
 import com.example.projet_dintgration.DBHelpers.Classes.Album;
