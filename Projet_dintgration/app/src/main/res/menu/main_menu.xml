@@ -19,7 +19,7 @@
             android:title="@string/nav_bibliotheque" />
         <item
             android:id="@+id/nav_mediaActivity"
-            android:icon="@drawable/ic_folder_open_24"
+            android:icon="@drawable/ic_baseline_play_arrow_24"
             android:title="@string/nav_mediaActivity" />
     </group>
 
