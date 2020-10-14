@@ -34,7 +34,7 @@ public class Categories extends AbstractDBHelper {
     }
 
     public void init() {
-        ContentValues values = new ContentValues();
+        ContentValues values;
         String[] music = {"Blues", "Classic rock", "Country", "Dance", "Disco", "Funk", "Grunge", "Hip-Hop", "Jazz", "Metal", "New Age", "Oldies", "Other ", "Pop", "Rhythm and Blues", "Rap", "Reggae", "Rock", "Techno"
                 , "Industrial", "Alternative", "Ska", "Death metal", "Pranks", "Soundtrack", "Euro-Techno", "Ambient", "Trip-Hop", "Vocal", "Jazz & Funk", "Fusion", "Trance", "Classical", "Instrumental", "Acid", "House", "Game", "Sound clip", "Gospel", "Noise"
                 , "Alternative Rock", "Bass", "Soul", "Punk", "Space", "Meditative", "Instrumental Pop", "Instrumental Rock", "Ethnic", "Gothic", "Darkwave", "Techno-Industrial", "Electronic", "Pop-Folk", "Eurodance", "Dream", "Southern Rock", "Comedy"

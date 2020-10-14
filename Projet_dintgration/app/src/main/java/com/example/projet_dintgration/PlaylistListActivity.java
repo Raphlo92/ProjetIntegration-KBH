@@ -10,6 +10,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.example.projet_dintgration.DBHelpers.Categories;
+import com.example.projet_dintgration.DBHelpers.Classes.Category;
 import com.example.projet_dintgration.DBHelpers.Classes.IDBClass;
 import com.example.projet_dintgration.DBHelpers.Classes.Music;
 import com.example.projet_dintgration.DBHelpers.Classes.Playlist;
@@ -40,6 +42,17 @@ public class PlaylistListActivity extends AppCompatActivity {
         DBPlaylistsReader = new Playlists(dbHelper.getReadableDatabase());
         DBPlaylistsWriter = new Playlists(dbHelper.getWritableDatabase());
         //endregion
+
+        //testing categories for Kevin ;)
+        String[] columns = {
+                DBHelper.Contract.TableCategory._ID,
+                DBHelper.Contract.TableCategory.COLUMN_NAME_NAME
+        };
+        ArrayList<IDBClass> list = new Categories(dbHelper.getReadableDatabase()).Select(columns, null, null, null, null, null);
+        Log.d(TAG, "onCreate: listSize = " + list.size());
+        for (IDBClass item : list) {
+            Log.d(TAG, "onCreate: Categories: cat = " + item.getName());
+        }
 
         //region Navigation
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);

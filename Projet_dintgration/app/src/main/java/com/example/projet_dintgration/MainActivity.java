@@ -45,7 +45,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        th.setDaemon(true);
         th.start();
 
 

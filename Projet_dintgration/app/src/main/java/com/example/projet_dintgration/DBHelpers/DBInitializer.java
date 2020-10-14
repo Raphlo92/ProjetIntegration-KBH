@@ -51,7 +51,12 @@ public class DBInitializer {
 
         dbHelper.onUpgrade(dbHelper.getWritableDatabase(), DBHelper.DB_VERSION, DBHelper.DB_VERSION + 1);
 
+        Categories categoriesDBHelper = new Categories(DBWriter);
+        categoriesDBHelper.init();
+
+        Log.d(TAG, "Init: FilesSize() = " + files.size());
         for (File file : files) {
+            Log.d(TAG, "Init: File reading");
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
                 Path path = Paths.get(file.toURI());
                 switch (path.getNameCount()){
@@ -128,6 +133,8 @@ public class DBInitializer {
     }
 
     public String[] getMetadata(String path){
+        //TODO Strip genre and make sure they are in the DB
+        //TODO - Extra: find the closes resembling genre
         MediaMetadataRetriever mmr = new MediaMetadataRetriever();
         String[] res = {"unknown", "unknown", "unknown", "0"};
         try {
