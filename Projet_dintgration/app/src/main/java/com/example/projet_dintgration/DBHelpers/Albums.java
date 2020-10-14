@@ -110,6 +110,7 @@ public class Albums extends AbstractDBHelper{
             name = cursor.getString(cursor.getColumnIndexOrThrow(TableAlbum.COLUMN_NAME_TITLE));
         }
 
+        cursor.close();
         return name;
     }
 
@@ -123,6 +124,7 @@ public class Albums extends AbstractDBHelper{
             id = cursor.getInt(cursor.getColumnIndexOrThrow(TableAlbum._ID));
         }
 
+        cursor.close();
         return id;
     }
 
@@ -136,6 +138,7 @@ public class Albums extends AbstractDBHelper{
             id = cursor.getInt(cursor.getColumnIndexOrThrow(TableAlbum.COLUMN_NAME_ID_CATEGORY));
         }
 
+        cursor.close();
         return id;
     }
 }

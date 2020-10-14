@@ -1,6 +1,7 @@
 package com.example.projet_dintgration;
 
 import android.util.Log;
+import android.webkit.MimeTypeMap;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -55,7 +56,7 @@ public class MusicFileExplorer {
         return files;
     }
 
-    public static ArrayList<File> getAllChildren(String path){
+    public static void getAllChildren(String path, ArrayList<File> files){
         Log.d(TAG, "getAllChildren: Started");
         File file = new File(path);
         String[] children = file.list();
@@ -63,14 +64,31 @@ public class MusicFileExplorer {
 
         if(children != null){
             for (String child: children) {
+                File childFile = new File(file.getAbsolutePath() + "/" + child);
                 Log.d(TAG, "getAllChildren: childPath = " + file.getAbsolutePath() + "/" + child);
-                ArrayList<File> child_children = getAllChildren(file.getAbsolutePath() + "/" + child);
-                files.add(new File(file.getAbsolutePath() + "/" + child));
-                files.addAll(child_children);
+
+                files.add(childFile);
+                if(childFile.list() != null)
+                    getAllChildren(file.getAbsolutePath() + "/" + child, files);
             }
         }
-        return files;
 
+    }
+
+    public static String getMimeType(File file){
+        String extension = MimeTypeMap.getFileExtensionFromUrl(file.getName().replaceAll(" ", ""));
+
+        if (extension.equals("") && file.getName().contains(new StringBuffer().append(".").subSequence(0, 1))){
+            String[] splitFileName = file.getName().split(".");
+            if (splitFileName.length > 0){
+                extension = splitFileName[1];
+            }
+
+        }
+
+        Log.d(TAG, "getMimeType: extension = "+ extension);
+
+        return MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension);
     }
 
     public static File getFile(String path) {

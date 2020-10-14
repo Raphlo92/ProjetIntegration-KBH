@@ -101,6 +101,7 @@ public class Artists extends AbstractDBHelper {
             name = cursor.getString(cursor.getColumnIndexOrThrow(TableArtist.COLUMN_NAME_NAME));;
         }
 
+        cursor.close();
         return name;
     }
 
@@ -114,6 +115,7 @@ public class Artists extends AbstractDBHelper {
             id = cursor.getInt(cursor.getColumnIndexOrThrow(TableArtist._ID));
         }
 
+        cursor.close();
         return id;
     }
 }

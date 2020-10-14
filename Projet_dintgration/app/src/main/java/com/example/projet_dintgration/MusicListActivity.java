@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.example.projet_dintgration.DBHelpers.Categories;
 import com.example.projet_dintgration.DBHelpers.Classes.IDBClass;
 import com.example.projet_dintgration.DBHelpers.Classes.Music;
 import com.example.projet_dintgration.DBHelpers.DBHelper;
@@ -44,6 +45,8 @@ public class MusicListActivity extends AppCompatActivity {
         DBMusicsReader = new Musics(dbHelper.getReadableDatabase());
         DBMusicsWriter = new Musics(dbHelper.getWritableDatabase());
         //
+
+        Categories.exists(dbHelper.getReadableDatabase(), "Ro");
 
         //region Navigation
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);

@@ -136,6 +136,7 @@ public class Musics extends AbstractDBHelper {
             newMusics.add(new Music(id, title, length, type, path, category, artist, album, false));
         }
         musics = newMusics;
+        cursor.close();
         return newMusics;
     }
 

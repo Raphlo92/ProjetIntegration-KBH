@@ -38,25 +38,18 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Log.d(TAG, "onCreate: Started.");
 
-        Thread th = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                ArrayList<File> files = MusicFileExplorer.getAllMusicFiles();
-                new DBInitializer(context).Init(files);
-            }
-        });
-
-        th.start();
-        if (firstRun = !firstRun) {
+        if (firstRun) {
+            firstRun = false;
             Thread th = new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    ArrayList<File> files = MusicFileExplorer.getAllMusicFiles();
+                    //ArrayList<File> files = MusicFileExplorer.getAllMusicFiles();
+                    ArrayList<File> files = new ArrayList<>();
+                    MusicFileExplorer.getAllChildren(MusicFileExplorer.DIRECTORY_MUSIC, files);
                     new DBInitializer(context).Init(files);
                 }
             });
 
-            th.setDaemon(true);
             th.start();
         }
 

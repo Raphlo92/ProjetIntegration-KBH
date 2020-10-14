@@ -3,6 +3,7 @@ package com.example.projet_dintgration.DBHelpers;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.example.projet_dintgration.DBHelpers.Classes.Category;
 import com.example.projet_dintgration.DBHelpers.Classes.IDBClass;
@@ -13,6 +14,8 @@ import java.util.List;
 
 public class Categories extends AbstractDBHelper {
 
+    private static final String TAG = "Categories";
+    
     //region BD values
     public static final String TABLE_NAME = TableCategory.TABLE_NAME;
     public long createdRowId;
@@ -122,6 +125,7 @@ public class Categories extends AbstractDBHelper {
             name = cursor.getString(cursor.getColumnIndexOrThrow(TableCategory.COLUMN_NAME_NAME));;
         }
 
+        cursor.close();
         return name;
     }
 
@@ -135,7 +139,18 @@ public class Categories extends AbstractDBHelper {
             id = cursor.getInt(cursor.getColumnIndexOrThrow(TableCategory._ID));
         }
 
+        cursor.close();
         return id;
+    }
+
+    public static boolean exists(SQLiteDatabase db, String name){
+        //String currentName;
+        String selection = TableCategory.COLUMN_NAME_NAME + " = ?";
+        String[] selectionArgs = { name };
+        Cursor cursor = db.query(TABLE_NAME, null, selection, selectionArgs, null, null, null);
+        boolean res = cursor.moveToNext();
+        cursor.close();
+        return res;
     }
 
 }

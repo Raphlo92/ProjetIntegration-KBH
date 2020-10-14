@@ -85,6 +85,7 @@ public class Playlists extends AbstractDBHelper {
             newPlaylists.add(new Playlist(id, name, type));
         }
         playlists = newPlaylists;
+        cursor.close();
         return newPlaylists;
     }
 
@@ -121,6 +122,8 @@ public class Playlists extends AbstractDBHelper {
             ids.add(id);
         }
 
+
+        cursor.close();
         return ids;
     }
 
