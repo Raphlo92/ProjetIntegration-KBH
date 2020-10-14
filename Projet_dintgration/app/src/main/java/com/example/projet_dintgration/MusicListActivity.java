@@ -19,10 +19,6 @@ import com.example.projet_dintgration.DBHelpers.Playlists;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
-<<<<<<< HEAD
-=======
-
->>>>>>> 7c6385b1b2f6373d36dd834329a5e041dbecf9ee
 
 public class MusicListActivity extends AppCompatActivity {
     private static final String TAG = "MusicListActivity";

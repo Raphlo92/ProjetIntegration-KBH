@@ -10,11 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-<<<<<<< HEAD
 import com.example.projet_dintgration.DBHelpers.Classes.Music;
-=======
 import com.example.projet_dintgration.DBHelpers.Classes.*;
->>>>>>> 7c6385b1b2f6373d36dd834329a5e041dbecf9ee
 
 import java.util.ArrayList;
 
@@ -40,8 +37,8 @@ public class MusicListAdapter extends ArrayAdapter<Music> {
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         int id = getItem(position).getId();
-        String title = getItem(position).getTitle();
-        int length = getItem(position).getLength(); // in seconds
+        String title = getItem(position).getName();
+        double length = getItem(position).getLength(); // in seconds
         String type = getItem(position).getType();
         String path = getItem(position).getPath();
         String category = getItem(position).getCategory();
@@ -79,7 +76,7 @@ public class MusicListAdapter extends ArrayAdapter<Music> {
 
         lastPosition = position;
 
-        holder.title.setText(music.getTitle());
+        holder.title.setText(music.getName());
         holder.artist.setText(music.getArtist());
         holder.length.setText(Music.TimeToString(music.getLength()));
 
