@@ -1,4 +1,4 @@
-package com.example.projet_dintgration;
+package com.example.projetdintegration;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,7 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.example.projet_dintgration.DBHelpers.Classes.Music;
+import com.example.projetdintegration.DBHelpers.Classes.Music;
 
 import java.util.ArrayList;
 

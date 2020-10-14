@@ -9,7 +9,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.example.projet_dintgration"
+        applicationId "com.example.projetdintegration"
         minSdkVersion 21
         targetSdkVersion 30
         versionCode 1

@@ -1,4 +1,4 @@
-package com.example.projet_dintgration;
+package com.example.projetdintegration;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import com.example.projet_dintgration.DBHelpers.Classes.Music;
+import com.example.projetdintegration.DBHelpers.Classes.Music;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
@@ -43,7 +43,7 @@ public class MusicListActivity extends AppCompatActivity {
             }
         });
         navigationView.setCheckedItem(R.id.nav_bibliotheque);
-        NavigationManager.afficherOptionDeconnecteSpotify(navigationView.getMenu());
+        NavigationManager.determinerOptionsAfficher(navigationView.getMenu());
 
         final ListView listView = (ListView) findViewById(R.id.musicListView);
 

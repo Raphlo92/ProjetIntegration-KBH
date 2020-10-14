@@ -1,4 +1,4 @@
-package com.example.projet_dintgration.DBHelpers.Classes;
+package com.example.projetdintegration.DBHelpers.Classes;
 
 public class Music {
     private int id;

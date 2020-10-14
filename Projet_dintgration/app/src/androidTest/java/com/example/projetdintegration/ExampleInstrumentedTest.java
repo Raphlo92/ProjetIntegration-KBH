@@ -1,4 +1,4 @@
-package com.example.projet_dintgration;
+package com.example.projetdintegration;
 
 import android.content.Context;
 

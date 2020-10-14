@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.projet_dintgration">
+    package="com.example.projetdintegration">
 
     <uses-permission android:name="android.persmission.INTERNET" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
@@ -12,6 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".SpotifyMusicPlayer"></activity>
+        <activity android:name=".SpotifyMusicListActivity" />
         <activity android:name=".LierSpotifyActivity" />
         <activity
             android:name=".MediaActivity"

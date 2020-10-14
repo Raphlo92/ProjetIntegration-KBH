@@ -1,7 +1,8 @@
-package com.example.projet_dintgration;
+package com.example.projetdintegration;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -15,11 +16,13 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.navigation.NavigationView;
+import com.spotify.android.appremote.api.Connector;
+import com.spotify.android.appremote.api.SpotifyAppRemote;
 
 public class MainActivity extends AppCompatActivity {
 
     public static final String CLIENT_ID = "40353253f030456297bcab99af268e6c";
-    public static final String REDIRECT_URI = "com.example.projet_dintegration://callback";
+    public static final String REDIRECT_URI = "com.example.projetdintegration://callback";
     private static final String TAG = "MainActivity";
 
     DrawerLayout drawerLayout;
@@ -32,7 +35,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Log.d(TAG, "onCreate: Started.");
-
+        SharedPreferences reglages = getPreferences(MODE_PRIVATE);
+        if(reglages.getBoolean("compte_est_liee", false)){
+            LierSpotifyActivity.connexionSpotify(this, new Connector.ConnectionListener() {
+                @Override
+                public void onConnected(SpotifyAppRemote spotifyAppRemote) {
+                    NavigationManager.determinerOptionsAfficher(navigationView.getMenu());
+                }
+                @Override
+                public void onFailure(Throwable throwable) { }
+            });
+        }
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -48,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         navigationView.setCheckedItem(R.id.nav_home);
-        NavigationManager.afficherOptionDeconnecteSpotify(navigationView.getMenu());
+        NavigationManager.determinerOptionsAfficher(navigationView.getMenu());
     }
 
 
@@ -148,14 +161,14 @@ class NavigationManager implements NavigationView.OnNavigationItemSelectedListen
     public void gotoBibliothequeSpotify(){
 
     }
-    static public void afficherOptionConnecteSpotify(Menu menu) {
+    static private void afficherOptionConnecteSpotify(Menu menu) {
         Log.d(TAG, "afficherOptionConnecteSpotify: Started");
         menu.findItem(R.id.nav_spotify_lier).setVisible(false);
         modifierVisibiliteMenu(true, menu, R.id.nav_spotify_liste_lecture, R.id.nav_spotify_chanson_aimee,
                 R.id.nav_spotify_bibliotheque, R.id.nav_spotify_logout);
     }
 
-    static public void afficherOptionDeconnecteSpotify(Menu menu) {
+    static private void afficherOptionDeconnecteSpotify(Menu menu) {
         Log.d(TAG, "afficherOptionDeconnecteSpotify: Started");
         menu.findItem(R.id.nav_spotify_lier).setVisible(true);
         modifierVisibiliteMenu(false, menu, R.id.nav_spotify_liste_lecture, R.id.nav_spotify_chanson_aimee,
@@ -166,6 +179,13 @@ class NavigationManager implements NavigationView.OnNavigationItemSelectedListen
         Log.d(TAG, "modifierVisibiliteMenu: Started");
         for (int option : options) {
             menu.findItem(option).setVisible(estVisible);
+        }
+    }
+    static public void determinerOptionsAfficher(Menu menu){
+        if(LierSpotifyActivity.appRemote != null && LierSpotifyActivity.appRemote.isConnected()){
+            afficherOptionConnecteSpotify(menu);
+        }else{
+            afficherOptionDeconnecteSpotify(menu);
         }
     }
 }

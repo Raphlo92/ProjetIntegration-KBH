@@ -1,5 +1,6 @@
-package com.example.projet_dintgration;
+package com.example.projetdintegration;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
@@ -47,20 +48,17 @@ public class LierSpotifyActivity extends AppCompatActivity {
             public void gotoLierSpotify() {
             }
         });
-        navigationView.setCheckedItem(R.id.nav_home);
-        NavigationManager.afficherOptionDeconnecteSpotify(navigationView.getMenu());
+        navigationView.setCheckedItem(R.id.nav_spotify_lier);
+        NavigationManager.determinerOptionsAfficher(navigationView.getMenu());
     }
 
     @Override
     protected void onStart(){
         super.onStart();
-        ConnectionParams connectionParams =     new ConnectionParams.Builder(MainActivity.CLIENT_ID)
-                                                .setRedirectUri(MainActivity.REDIRECT_URI).showAuthView(true).build();
-        SpotifyAppRemote.connect(this, connectionParams, new Connector.ConnectionListener() {
+        connexionSpotify(this, new Connector.ConnectionListener() {
             @Override
             public void onConnected(SpotifyAppRemote spotifyAppRemote) {
-                appRemote = spotifyAppRemote;
-                //startActivity(new Intent(this, /* TODO add class*/));
+                connected(spotifyAppRemote);
             }
 
             @Override
@@ -90,5 +88,16 @@ public class LierSpotifyActivity extends AppCompatActivity {
                 Log.d("SpotifyConnectionError",throwable.getMessage(), throwable);
             }
         });
+    }
+
+    public static void connexionSpotify(Context context,Connector.ConnectionListener listener){
+        ConnectionParams connectionParams = new ConnectionParams.Builder(MainActivity.CLIENT_ID)
+                .setRedirectUri(MainActivity.REDIRECT_URI).showAuthView(true).build();
+        SpotifyAppRemote.connect(context, connectionParams,listener);
+    }
+
+    private void connected(SpotifyAppRemote spotifyAppRemote) {
+        appRemote = spotifyAppRemote;
+        startActivity(new Intent(this, SpotifyMusicListActivity.class));
     }
 }
