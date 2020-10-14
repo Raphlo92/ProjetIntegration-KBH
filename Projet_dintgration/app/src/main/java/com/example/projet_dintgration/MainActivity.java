@@ -1,12 +1,5 @@
 package com.example.projet_dintgration;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,6 +8,16 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.projet_dintgration.DBHelpers.DBInitializer;
 import com.google.android.material.navigation.NavigationView;
@@ -25,6 +28,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     private static boolean firstRun = true;
+
     private static final String TAG = "MainActivity";
     Context context = this;
     DrawerLayout drawerLayout;
@@ -64,13 +68,15 @@ public class MainActivity extends AppCompatActivity {
                 R.string.navigation_close_drawer_description);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
-        navigationView.setNavigationItemSelectedListener(new NavigationManager(this,this) {
+        navigationView.setNavigationItemSelectedListener(new NavigationManager(this, this) {
             @Override
-            public void gotoHome(){ }
+            public void gotoHome() {
+            }
         });
         navigationView.setCheckedItem(R.id.nav_home);
         NavigationManager.afficherOptionDeconnecteSpotify(navigationView.getMenu());
     }
+
 
     @Override
     public void onBackPressed() {
@@ -81,24 +87,26 @@ public class MainActivity extends AppCompatActivity {
             super.onBackPressed();
     }
 
-    public void openMediaActivity(View v) {
-        Log.d(TAG, "openMediaActivity: Started");
+    public void openMusicPage() {
+        Log.d(TAG, "openMusicPage: Started");
         Intent intent = new Intent(this, MediaActivity.class);
         startActivity(intent);
     }
 }
 
 class NavigationManager implements NavigationView.OnNavigationItemSelectedListener {
-    
+
     private static final String TAG = "NavigationManager";
 
     AppCompatActivity currentActivity;
     Context context;
-    public NavigationManager(AppCompatActivity current, Context packageContext){
+
+    public NavigationManager(AppCompatActivity current, Context packageContext) {
         Log.d(TAG, "NavigationManager: Created");
         currentActivity = current;
         context = packageContext;
     }
+
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         Log.d(TAG, "onNavigationItemSelected: Started");
@@ -119,16 +127,18 @@ class NavigationManager implements NavigationView.OnNavigationItemSelectedListen
                 Log.d(TAG, "onNavigationItemSelected: Switched to bibliotheque");
                 gotoBibliotheque();
                 break;
+            case R.id.nav_mediaActivity:
+                Log.d(TAG, "onNavigationItemSelected: Switched to mediaActivity");
+                gotoMediaActivity();
+                break;
             // TODO terminer toutes les options du switch case
         }
         return true;
     }
 
-
-
-    private void startActivity(Class<?> cls){
+    private void startActivity(Class<?> cls) {
         Log.d(TAG, "startActivity: Started");
-        currentActivity.startActivity(new Intent(context,cls));
+        currentActivity.startActivity(new Intent(context, cls));
     }
 
     public void gotoHome() {
@@ -151,6 +161,11 @@ class NavigationManager implements NavigationView.OnNavigationItemSelectedListen
         startActivity(PlaylistListActivity.class);
         // TODO startActivity();
     }
+
+    public void gotoMediaActivity(){
+        startActivity(MediaActivity.class);
+    }
+
 
     static public void afficherOptionConnecteSpotify(Menu menu) {
         Log.d(TAG, "afficherOptionConnecteSpotify: Started");

@@ -20,6 +20,7 @@ import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
 
+
 public class MusicListActivity extends AppCompatActivity {
     private static final String TAG = "MusicListActivity";
     DrawerLayout drawerLayout;
@@ -58,9 +59,10 @@ public class MusicListActivity extends AppCompatActivity {
                 R.string.navigation_close_drawer_description);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
-        navigationView.setNavigationItemSelectedListener(new NavigationManager(this,this) {
+        navigationView.setNavigationItemSelectedListener(new NavigationManager(this, this) {
             @Override
-            public void gotoBibliotheque(){ }
+            public void gotoBibliotheque() {
+            }
         });
         navigationView.setCheckedItem(R.id.nav_bibliotheque);
         NavigationManager.afficherOptionDeconnecteSpotify(navigationView.getMenu());

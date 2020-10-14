@@ -6,7 +6,12 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:windowFullscreen">true</item>
+        <item name="android:windowBackground">@color/color3</item>
     </style>
+
+    <color name="color1">#ffb62a23</color>
+    <color name="color2">#ffedeba6</color>
+    <color name="color3">#8bf500</color>
 
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>

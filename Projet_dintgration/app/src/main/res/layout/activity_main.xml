@@ -17,80 +17,255 @@
         app:headerLayout="@layout/navigation_drawer_header"
         app:menu="@menu/main_menu">
 
-    </com.google.android.material.navigation.NavigationView>
-    <RelativeLayout android:layout_height="match_parent"
-        android:layout_width="match_parent">
 
-        <Button
-            android:id="@+id/mediaActivityButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="700dp"
-            android:text="Musique"
-            android:onClick="openMediaActivity"
-            />
+    </com.google.android.material.navigation.NavigationView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <HorizontalScrollView
+            android:id="@+id/slideshow"
+            android:layout_width="400dp"
+            android:layout_height="200dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="12dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="100dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginRight="12dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+                <ImageButton
+                    android:id="@+id/mediaActivityButton1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:adjustViewBounds="true"
+                    android:maxWidth="150dp"
+                    android:maxHeight="150dp"
+                    android:onClick="openMediaActivity"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_file" />
+
+                <ImageButton
+                    android:id="@+id/mediaActivityButton2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:adjustViewBounds="true"
+                    android:maxWidth="150dp"
+                    android:maxHeight="150dp"
+                    android:onClick="openMediaActivity"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_file" />
+
+                <ImageButton
+                    android:id="@+id/mediaActivityButton3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:adjustViewBounds="true"
+                    android:maxWidth="150dp"
+                    android:maxHeight="150dp"
+                    android:onClick="openMediaActivity"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_file" />
+
+                <ImageButton
+                    android:id="@+id/mediaActivityButton4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:adjustViewBounds="true"
+                    android:maxWidth="150dp"
+                    android:maxHeight="150dp"
+                    android:onClick="openMediaActivity"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_file" />
+
+                <ImageButton
+                    android:id="@+id/mediaActivityButton5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:adjustViewBounds="true"
+                    android:maxWidth="150dp"
+                    android:maxHeight="150dp"
+                    android:onClick="openMediaActivity"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_file" />
+
+                <ImageButton
+                    android:id="@+id/mediaActivityButton6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:adjustViewBounds="true"
+                    android:maxWidth="150dp"
+                    android:maxHeight="150dp"
+                    android:onClick="openMediaActivity"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_file" />
+
+                <ImageButton
+                    android:id="@+id/mediaActivityButton7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:adjustViewBounds="true"
+                    android:maxWidth="150dp"
+                    android:maxHeight="150dp"
+                    android:onClick="openMediaActivity"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_file" />
+
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <HorizontalScrollView
+            android:id="@+id/slideshow2"
+            android:layout_width="400dp"
+            android:layout_height="200dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="12dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="350dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginRight="12dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+                <ImageButton
+                    android:id="@+id/mediaActivityButton8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:adjustViewBounds="true"
+                    android:maxWidth="150dp"
+                    android:maxHeight="150dp"
+                    android:onClick="openMediaActivity"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_file" />
+
+                <ImageButton
+                    android:id="@+id/mediaActivityButton9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:adjustViewBounds="true"
+                    android:maxWidth="150dp"
+                    android:maxHeight="150dp"
+                    android:onClick="openMediaActivity"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_file" />
+
+                <ImageButton
+                    android:id="@+id/mediaActivityButton10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:adjustViewBounds="true"
+                    android:maxWidth="150dp"
+                    android:maxHeight="150dp"
+                    android:onClick="openMediaActivity"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_file" />
+
+                <ImageButton
+                    android:id="@+id/mediaActivityButton11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:adjustViewBounds="true"
+                    android:maxWidth="150dp"
+                    android:maxHeight="150dp"
+                    android:onClick="openMediaActivity"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_file" />
+
+                <ImageButton
+                    android:id="@+id/mediaActivityButton12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:adjustViewBounds="true"
+                    android:maxWidth="150dp"
+                    android:maxHeight="150dp"
+                    android:onClick="openMediaActivity"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_file" />
+
+                <ImageButton
+                    android:id="@+id/mediaActivityButton13"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:adjustViewBounds="true"
+                    android:maxWidth="150dp"
+                    android:maxHeight="150dp"
+                    android:onClick="openMediaActivity"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_file" />
+
+                <ImageButton
+                    android:id="@+id/mediaActivityButton14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:adjustViewBounds="true"
+                    android:maxWidth="150dp"
+                    android:maxHeight="150dp"
+                    android:onClick="openMediaActivity"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_file" />
+
+            </LinearLayout>
+        </HorizontalScrollView>
 
         <TextView
-            android:id="@+id/textView_homescreen_favoris"
+            android:id="@+id/favoris"
             style="@style/basic_title_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="40dp"
-            android:layout_marginLeft="40dp"
-            android:layout_marginTop="111dp"
+            android:layout_width="250dp"
+            android:layout_height="30dp"
+            android:layout_above="@+id/slideshow2"
+            android:layout_marginLeft="18dp"
+            android:layout_marginBottom="-100dp"
             android:text="@string/homescreen_favoris" />
 
         <TextView
-            android:id="@+id/textView_homescreen_liste_lecture"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/textView_homescreen_favoris"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
-            android:layout_marginStart="42dp"
-            android:layout_marginLeft="42dp"
-            android:layout_marginTop="24dp"
-            android:text="@string/homescreen_listes_lecture"
-            style="@style/basic_title_text"/>
-
-        <TextView
-            android:id="@+id/textView_homescreen_albums"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/textView_homescreen_liste_lecture"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
-            android:layout_marginStart="42dp"
-            android:layout_marginLeft="42dp"
-            android:layout_marginTop="26dp"
-            android:text="@string/homescreen_albums"
-            style="@style/basic_title_text"/>
-
-        <TextView
-            android:id="@+id/textView_homescreen_artiste"
+            android:id="@+id/liste_de_lecture"
             style="@style/basic_title_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/textView_homescreen_albums"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
-            android:layout_marginStart="44dp"
-            android:layout_marginLeft="44dp"
-            android:layout_marginTop="29dp"
-            android:text="@string/homescreen_artiste" />
+            android:layout_width="250dp"
+            android:layout_height="30dp"
+            android:layout_above="@+id/slideshow2"
+            android:layout_marginLeft="18dp"
+            android:layout_marginBottom="-350dp"
+            android:text="@string/homescreen_listes_lecture" />
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="?attr/actionBarSize"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:layout_marginLeft="19dp"
             android:layout_marginTop="18dp"
-            android:minHeight="?attr/actionBarSize"
-            app:navigationIcon="@drawable/ic_hamburger_1" />
+            app:navigationIcon="@drawable/ic_hamburger_1"
+            android:theme="@style/ThemeOverlay.AppCompat.Light"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Dark"
+            android:elevation="4dp"/>
+
     </RelativeLayout>
 </androidx.drawerlayout.widget.DrawerLayout>

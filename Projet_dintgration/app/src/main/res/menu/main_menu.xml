@@ -3,20 +3,24 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home"
-            android:icon="@drawable/ic_home"
+            android:icon="@drawable/ic_baseline_home_24"
             android:title="@string/nav_home" />
         <item
             android:id="@+id/nav_favoris"
-            android:icon="@drawable/ic_favoris"
+            android:icon="@drawable/ic_favorite_24"
             android:title="@string/nav_favoris" />
         <item
             android:id="@+id/nav_liste_lecture"
-            android:title="@string/nav_liste_lecture" />
-        <!--android:icon="@drawable/ic_home" icone à trouver et rajouter -->
+            android:title="@string/nav_liste_lecture"
+            android:icon="@drawable/ic_music_note_24" />
         <item
             android:id="@+id/nav_bibliotheque"
-            android:icon="@drawable/ic_file"
+            android:icon="@drawable/ic_folder_open_24"
             android:title="@string/nav_bibliotheque" />
+        <item
+            android:id="@+id/nav_mediaActivity"
+            android:icon="@drawable/ic_baseline_play_arrow_24"
+            android:title="@string/nav_mediaActivity" />
     </group>
 
 
