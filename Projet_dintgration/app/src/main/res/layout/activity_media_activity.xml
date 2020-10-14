@@ -12,7 +12,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="93dp"
-        android:layout_marginLeft="93dp"
         android:layout_marginBottom="38dp"
         android:text="play"
         app:layout_constraintBottom_toTopOf="@+id/stopButton"
@@ -34,7 +33,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="159dp"
-        android:layout_marginLeft="159dp"
         android:layout_marginBottom="37dp"
         android:text="Stop"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -46,7 +44,6 @@
         android:layout_width="316dp"
         android:layout_height="27dp"
         android:layout_marginStart="44dp"
-        android:layout_marginLeft="44dp"
         android:layout_marginBottom="45dp"
         app:layout_constraintBottom_toTopOf="@+id/pauseButton"
         app:layout_constraintStart_toStartOf="parent" />
@@ -68,7 +65,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="44dp"
-        android:layout_marginLeft="44dp"
         android:layout_marginBottom="73dp"
         android:text="0:00"
         app:layout_constraintBottom_toTopOf="@+id/playButton"
@@ -79,7 +75,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="51dp"
-        android:layout_marginRight="51dp"
         android:layout_marginBottom="26dp"
         app:layout_constraintBottom_toTopOf="@+id/pauseButton"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -89,7 +84,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="176dp"
-        android:layout_marginLeft="176dp"
         android:layout_marginBottom="25dp"
         app:layout_constraintBottom_toTopOf="@+id/seekBar"
         app:layout_constraintStart_toStartOf="parent" />

@@ -18,7 +18,8 @@ import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity {
 
-
+    public static final String CLIENT_ID = "40353253f030456297bcab99af268e6c";
+    public static final String REDIRECT_URI = "com.example.projet_dintegration://callback";
     private static final String TAG = "MainActivity";
 
     DrawerLayout drawerLayout;
@@ -105,6 +106,12 @@ class NavigationManager implements NavigationView.OnNavigationItemSelectedListen
                 //gotoBibliotheque();
                 startActivity(MediaActivity.class);
                 break;*/
+            case R.id.nav_spotify_lier:
+                gotoLierSpotify();
+                break;
+            case R.id.nav_spotify_bibliotheque:
+                gotoBibliothequeSpotify();
+                break;
             // TODO terminer toutes les options du switch case
         }
         return true;
@@ -135,6 +142,12 @@ class NavigationManager implements NavigationView.OnNavigationItemSelectedListen
         // TODO startActivity();
     }
 
+    public void gotoLierSpotify(){
+        startActivity(LierSpotifyActivity.class);
+    }
+    public void gotoBibliothequeSpotify(){
+
+    }
     static public void afficherOptionConnecteSpotify(Menu menu) {
         Log.d(TAG, "afficherOptionConnecteSpotify: Started");
         menu.findItem(R.id.nav_spotify_lier).setVisible(false);
