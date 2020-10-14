@@ -25,7 +25,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
-
+    Context context = this;
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar;
@@ -37,9 +37,19 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Log.d(TAG, "onCreate: Started.");
 
-        ArrayList<File> files = MusicFileExplorer.getAllMusicFiles();
+        Thread th = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                ArrayList<File> files = MusicFileExplorer.getAllMusicFiles();
+                new DBInitializer(context).Init(files);
+            }
+        });
 
-        new DBInitializer(this).Init(files);
+        th.setDaemon(true);
+        th.start();
+
+
+
 
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         navigationView = (NavigationView) findViewById(R.id.nav_view);

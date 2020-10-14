@@ -2,8 +2,14 @@ package com.example.projet_dintgration.DBHelpers;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
+import android.media.MediaMetadata;
+import android.media.MediaMetadataRetriever;
 import android.media.MediaPlayer;
+import android.os.Build;
+import android.provider.MediaStore;
 import android.util.Log;
+
+import androidx.annotation.RequiresApi;
 
 import com.example.projet_dintgration.DBHelpers.Classes.Album;
 import com.example.projet_dintgration.DBHelpers.Classes.Artist;
@@ -41,6 +47,9 @@ public class DBInitializer {
 
     public void Init(ArrayList<File> files){
         Log.d(TAG, "Init: Started");
+        String[] metadata;
+
+        dbHelper.onUpgrade(dbHelper.getWritableDatabase(), DBHelper.DB_VERSION, DBHelper.DB_VERSION + 1);
 
         for (File file : files) {
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
@@ -49,23 +58,30 @@ public class DBInitializer {
                     case ARTIST_NAME_COUNT:
                         Log.d(TAG, "Init: artistName = " + path.getFileName());
                         Artist artist = new Artist(0, path.getFileName().toString());
+                        Artists artistsDBHelper = new Artists(DBWriter);
+                        artistsDBHelper.Insert(artist);
                         break;
                     case ALBUM_NAME_COUNT:
                         Log.d(TAG, "Init: albumName = " + path.getFileName());
 
-                        Album album = new Album(0, path.getFileName().toString(), path.getName(ARTIST_NAME_COUNT).toString(), "");
-                        album.setCategory(getCategory(album));
+                        String firstMusic = file.list()[0];
 
+                        Path musicPath = Paths.get(path.toAbsolutePath() + "/" + firstMusic);
+                        metadata = getMetadata(musicPath.toAbsolutePath().toString());
+
+                        Album album = new Album(0, path.getFileName().toString(), path.getName(ARTIST_NAME_COUNT).toString(), metadata[2]);
+                        Albums albumsDBHelper = new Albums(DBWriter);
+                        albumsDBHelper.Insert(album);
                         break;
                     case MUSIC_NAME_COUNT:
                         Log.d(TAG, "Init: musicName = " + path.getFileName());
-                        Music music = new Music(0, path.getFileName().toString(), new MediaPlayer().getDuration(), "", "", "", "", "", false);
-                        album.setCategory(getCategory(Music));
+                        metadata = getMetadata(path.toAbsolutePath().toString());
+                        Music music = new Music(0, path.getFileName().toString(), Double.parseDouble(metadata[3]) / 1000, "audio",  path.toAbsolutePath().toString(), metadata[2], metadata[0], metadata[1], false);
+                        Musics musicsDBHelper = new Musics(DBWriter);
+                        musicsDBHelper.Insert(music);
                         break;
                 }
             }
-
-
         }
     }
 
@@ -111,7 +127,31 @@ public class DBInitializer {
         return category;
     }
 
-    public int getLength(URI uri){
-        Media
+    public String[] getMetadata(String path){
+        MediaMetadataRetriever mmr = new MediaMetadataRetriever();
+        String[] res = {"unknown", "unknown", "unknown", "0"};
+        try {
+            mmr.setDataSource(path);
+
+            Log.d(TAG, "metadata: artist = " + mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ARTIST));
+            Log.d(TAG, "metadata: album = " + mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ALBUM));
+            Log.d(TAG, "metadata: genre = " + mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_GENRE));
+            Log.d(TAG, "metadata: duration = " + mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION));
+
+            if (mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ARTIST) != null)
+                res[0] = mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ARTIST);
+
+            if (mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ALBUM) != null)
+                res[1] = mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ALBUM);
+
+            if (mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_GENRE) != null)
+                res[2] = mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_GENRE);
+
+            if (mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION) != null)
+                res[3] = mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION);
+        }
+        catch(Exception e){}
+
+        return res;
     }
 }

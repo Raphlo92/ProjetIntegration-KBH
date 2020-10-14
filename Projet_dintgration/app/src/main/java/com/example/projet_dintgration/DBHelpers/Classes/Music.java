@@ -3,7 +3,7 @@ package com.example.projet_dintgration.DBHelpers.Classes;
 public class Music implements IDBClass{
     private int id;
     private String name;
-    private int length; // in seconds
+    private double length; // in seconds
     private String type;
     private String path;
     private String category;
@@ -11,7 +11,7 @@ public class Music implements IDBClass{
     private String album;
     private boolean favorite;
 
-    public Music(int id, String name, int length, String type, String path, String category, String artist, String album, boolean favorite) {
+    public Music(int id, String name, double length, String type, String path, String category, String artist, String album, boolean favorite) {
         this.id = id;
         this.name = name;
         this.length = length;
@@ -23,14 +23,17 @@ public class Music implements IDBClass{
         this.favorite = favorite;
     }
 
-    public static String TimeToString(int length){
+    public static String TimeToString(double length){
+        if(length == 0)
+            return "unknown";
+
         int hours;
         int minutes;
         int seconds;
 
         hours = (int)Math.floor(length / 3600);
         minutes = (int)Math.floor((length % 3600)/60);
-        seconds = length % 60;
+        seconds = (int)length % 60;
 
         String result;
 
@@ -57,11 +60,11 @@ public class Music implements IDBClass{
         this.name = name;
     }
 
-    public int getLength() {
+    public double getLength() {
         return length;
     }
 
-    public void setLength(int length) {
+    public void setLength(double length) {
         this.length = length;
     }
 

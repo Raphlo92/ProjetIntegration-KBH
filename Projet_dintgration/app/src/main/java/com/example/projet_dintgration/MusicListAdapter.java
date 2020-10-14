@@ -37,7 +37,7 @@ public class MusicListAdapter extends ArrayAdapter<Music> {
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         int id = getItem(position).getId();
         String title = getItem(position).getName();
-        int length = getItem(position).getLength(); // in seconds
+        double length = getItem(position).getLength(); // in seconds
         String type = getItem(position).getType();
         String path = getItem(position).getPath();
         String category = getItem(position).getCategory();

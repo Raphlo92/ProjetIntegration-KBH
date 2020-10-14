@@ -86,11 +86,11 @@ public class MusicListActivity extends AppCompatActivity {
         ArrayList<Music> musics = new ArrayList<>();
 
         if(playlistId > -1){
-            dbMusics = DBMusicsReader.Select(null, null, null, null, null, null);
-        }
-        else{
             Playlists DBPlaylistsReader = new Playlists(dbHelper.getReadableDatabase());
             dbMusics = DBPlaylistsReader.getAllMusicsInPlaylist(playlistId);
+        }
+        else{
+            dbMusics = DBMusicsReader.Select(null, null, null, null, null, null);
         }
 
         for (IDBClass music: dbMusics) {
