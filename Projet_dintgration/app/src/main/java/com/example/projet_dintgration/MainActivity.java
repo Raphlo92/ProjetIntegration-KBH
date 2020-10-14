@@ -100,11 +100,10 @@ class NavigationManager implements NavigationView.OnNavigationItemSelectedListen
                 Log.d(TAG, "onNavigationItemSelected: Switched to bibliotheque");
                 gotoBibliotheque();
                 break;
-            /*case R.id.nav_music_page:
-                Log.d(TAG, "onNavigationItemSelected: Switched to bibliotheque");
-                //gotoBibliotheque();
-                startActivity(MediaActivity.class);
-                break;*/
+            case R.id.nav_mediaActivity:
+                Log.d(TAG, "onNavigationItemSelected: Switched to mediaActivity");
+                gotoMediaActivity();
+                break;
             // TODO terminer toutes les options du switch case
         }
         return true;
@@ -134,6 +133,11 @@ class NavigationManager implements NavigationView.OnNavigationItemSelectedListen
         Log.d(TAG, "gotoListeLecture: Started");
         // TODO startActivity();
     }
+
+    public void gotoMediaActivity(){
+        startActivity(MediaActivity.class);
+    }
+
 
     static public void afficherOptionConnecteSpotify(Menu menu) {
         Log.d(TAG, "afficherOptionConnecteSpotify: Started");
