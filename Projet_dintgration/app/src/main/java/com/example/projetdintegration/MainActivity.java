@@ -7,10 +7,16 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-<<<<<<< HEAD:Projet_dintgration/app/src/main/java/com/example/projetdintegration/MainActivity.java
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,13 +27,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-=======
 import android.os.Environment;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
->>>>>>> parent of 7c6385b... Merge branch 'MergedProject':Projet_dintgration/app/src/main/java/com/example/projet_dintgration/MainActivity.java
 
 import com.google.android.material.navigation.NavigationView;
 
