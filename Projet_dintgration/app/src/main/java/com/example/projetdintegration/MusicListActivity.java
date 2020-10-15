@@ -63,7 +63,11 @@ public class MusicListActivity extends AppCompatActivity {
             public void gotoBibliotheque(){ }
         });
         navigationView.setCheckedItem(R.id.nav_bibliotheque);
+<<<<<<< HEAD
         NavigationManager.afficherOptionDeconnecteSpotify(navigationView.getMenu());
+=======
+        NavigationManager.determinerOptionsAfficher(navigationView.getMenu());
+>>>>>>> MergedProject
         //endregion
 
         final ListView listView = (ListView) findViewById(R.id.listView);

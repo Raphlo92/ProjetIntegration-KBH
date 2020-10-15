@@ -10,6 +10,10 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+<<<<<<< HEAD
+=======
+<<<<<<<< HEAD:Projet_dintgration/app/src/main/java/com/example/projetdintegration/MainActivity.java
+>>>>>>> MergedProject
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -20,11 +24,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+<<<<<<< HEAD
+=======
+========
+>>>>>>> MergedProject
 import android.os.Environment;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+<<<<<<< HEAD
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -34,6 +43,28 @@ public class MainActivity extends AppCompatActivity {
     private static boolean firstRun = true;
     private static final String TAG = "MainActivity";
 
+=======
+>>>>>>>> MergedProject:Projet_dintgration/app/src/main/java/com/example/projet_dintgration/MainActivity.java
+
+import com.example.projetdintegration.DBHelpers.DBInitializer;
+import com.google.android.material.navigation.NavigationView;
+
+import java.io.File;
+import java.util.ArrayList;
+
+public class MainActivity extends AppCompatActivity {
+
+<<<<<<<< HEAD:Projet_dintgration/app/src/main/java/com/example/projetdintegration/MainActivity.java
+    public static final String CLIENT_ID = "40353253f030456297bcab99af268e6c";
+    public static final String REDIRECT_URI = "com.example.projetdintegration://callback";
+
+    //just a simple comment
+========
+>>>>>>>> MergedProject:Projet_dintgration/app/src/main/java/com/example/projet_dintgration/MainActivity.java
+    private static boolean firstRun = true;
+    private static final String TAG = "MainActivity";
+    Context context = this;
+>>>>>>> MergedProject
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar;
@@ -45,6 +76,26 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Log.d(TAG, "onCreate: Started.");
 
+<<<<<<< HEAD
+=======
+        if (firstRun) {
+            firstRun = false;
+            Thread th = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    //ArrayList<File> files = MusicFileExplorer.getAllMusicFiles();
+                    ArrayList<File> files = new ArrayList<>();
+                    MusicFileExplorer.getAllChildren(MusicFileExplorer.DIRECTORY_MUSIC, files);
+                    new DBInitializer(context).Init(files);
+                }
+            });
+
+            th.start();
+        }
+
+
+
+>>>>>>> MergedProject
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -59,7 +110,11 @@ public class MainActivity extends AppCompatActivity {
             public void gotoHome(){ }
         });
         navigationView.setCheckedItem(R.id.nav_home);
+<<<<<<< HEAD
         NavigationManager.afficherOptionDeconnecteSpotify(navigationView.getMenu());
+=======
+        NavigationManager.determinerOptionsAfficher(navigationView.getMenu());
+>>>>>>> MergedProject
     }
 
     @Override
@@ -109,6 +164,23 @@ class NavigationManager implements NavigationView.OnNavigationItemSelectedListen
                 Log.d(TAG, "onNavigationItemSelected: Switched to bibliotheque");
                 gotoBibliotheque();
                 break;
+<<<<<<< HEAD
+=======
+<<<<<<<< HEAD:Projet_dintgration/app/src/main/java/com/example/projetdintegration/MainActivity.java
+            /*case R.id.nav_music_page:
+                Log.d(TAG, "onNavigationItemSelected: Switched to bibliotheque");
+                //gotoBibliotheque();
+                startActivity(MediaActivity.class);
+                break;*/
+            case R.id.nav_spotify_lier:
+                gotoLierSpotify();
+                break;
+            case R.id.nav_spotify_bibliotheque:
+                gotoBibliothequeSpotify();
+                break;
+========
+>>>>>>>> MergedProject:Projet_dintgration/app/src/main/java/com/example/projet_dintgration/MainActivity.java
+>>>>>>> MergedProject
             // TODO terminer toutes les options du switch case
         }
         return true;
@@ -141,14 +213,32 @@ class NavigationManager implements NavigationView.OnNavigationItemSelectedListen
         // TODO startActivity();
     }
 
+<<<<<<< HEAD
     static public void afficherOptionConnecteSpotify(Menu menu) {
+=======
+<<<<<<<< HEAD:Projet_dintgration/app/src/main/java/com/example/projetdintegration/MainActivity.java
+    public void gotoLierSpotify(){
+        startActivity(LierSpotifyActivity.class);
+    }
+    public void gotoBibliothequeSpotify(){
+
+    }
+    static private void afficherOptionConnecteSpotify(Menu menu) {
+========
+    static public void afficherOptionConnecteSpotify(Menu menu) {
+>>>>>>>> MergedProject:Projet_dintgration/app/src/main/java/com/example/projet_dintgration/MainActivity.java
+>>>>>>> MergedProject
         Log.d(TAG, "afficherOptionConnecteSpotify: Started");
         menu.findItem(R.id.nav_spotify_lier).setVisible(false);
         modifierVisibiliteMenu(true, menu, R.id.nav_spotify_liste_lecture, R.id.nav_spotify_chanson_aimee,
                 R.id.nav_spotify_bibliotheque, R.id.nav_spotify_logout);
     }
 
+<<<<<<< HEAD
     static public void afficherOptionDeconnecteSpotify(Menu menu) {
+=======
+    static private void afficherOptionDeconnecteSpotify(Menu menu) {
+>>>>>>> MergedProject
         Log.d(TAG, "afficherOptionDeconnecteSpotify: Started");
         menu.findItem(R.id.nav_spotify_lier).setVisible(true);
         modifierVisibiliteMenu(false, menu, R.id.nav_spotify_liste_lecture, R.id.nav_spotify_chanson_aimee,
@@ -161,4 +251,14 @@ class NavigationManager implements NavigationView.OnNavigationItemSelectedListen
             menu.findItem(option).setVisible(estVisible);
         }
     }
+<<<<<<< HEAD
+=======
+    static public void determinerOptionsAfficher(Menu menu){
+        if(LierSpotifyActivity.appRemote != null && LierSpotifyActivity.appRemote.isConnected()){
+            afficherOptionConnecteSpotify(menu);
+        }else{
+            afficherOptionDeconnecteSpotify(menu);
+        }
+    }
+>>>>>>> MergedProject
 }

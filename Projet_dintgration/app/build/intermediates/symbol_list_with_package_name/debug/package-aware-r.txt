@@ -1,4 +1,4 @@
-com.example.lecture
+com.example.projetdintegration
 anim abc_fade_in
 anim abc_fade_out
 anim abc_grow_fade_in_from_bottom
@@ -968,6 +968,9 @@ color cardview_light_background
 color cardview_shadow_end_color
 color cardview_shadow_start_color
 color checkbox_themeable_attribute_color
+color color1
+color color2
+color color3
 color colorAccent
 color colorPrimary
 color colorPrimaryDark
@@ -1574,9 +1577,17 @@ drawable design_ic_visibility_off
 drawable design_password_eye
 drawable design_snackbar_background
 drawable ic_arrow_right
+drawable ic_baseline_fast_forward_24
+drawable ic_baseline_fast_rewind_24
+drawable ic_baseline_home_24
+drawable ic_baseline_pause_24
+drawable ic_baseline_play_arrow_24
+drawable ic_baseline_stop_24
 drawable ic_delete
 drawable ic_favoris
+drawable ic_favorite_24
 drawable ic_file
+drawable ic_folder_open_24
 drawable ic_hamburger
 drawable ic_hamburger_1
 drawable ic_hamburger_1_small
@@ -1589,6 +1600,7 @@ drawable ic_mtrl_checked_circle
 drawable ic_mtrl_chip_checked_black
 drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
+drawable ic_music_note_24
 drawable ic_muted
 drawable ic_speaker
 drawable material_ic_calendar_black_24dp
@@ -1620,6 +1632,7 @@ drawable notification_template_icon_bg
 drawable notification_template_icon_low_bg
 drawable notification_tile_bg
 drawable notify_panel_notification_icon_bg
+drawable roundedbutton
 drawable test_custom_background
 drawable tooltip_frame_dark
 drawable tooltip_frame_light
@@ -1695,6 +1708,7 @@ id action_text
 id actions
 id activity_chooser_view_content
 id add
+id after_logo_tv
 id alertTitle
 id aligned
 id all
@@ -1711,6 +1725,7 @@ id autoCompleteToEnd
 id autoCompleteToStart
 id barrier
 id baseline
+id before_logo_tv
 id beginOnFirstDraw
 id beginning
 id blocking
@@ -1739,6 +1754,8 @@ id clear_text
 id clip_horizontal
 id clip_vertical
 id collapseActionView
+id com_spotify_sdk_login_webview
+id com_spotify_sdk_login_webview_container
 id confirm_button
 id container
 id content
@@ -1786,6 +1803,7 @@ id exitUntilCollapsed
 id expand_activities_button
 id expanded_menu
 id fade
+id favoris
 id fill
 id fill_horizontal
 id fill_vertical
@@ -1794,7 +1812,9 @@ id fitToContents
 id fixed
 id flip
 id floating
+id footer_tv
 id forever
+id forwardButton
 id fragment_container_view_tag
 id fullscreen
 id ghost_view
@@ -1805,6 +1825,7 @@ id graph_wrap
 id group_divider
 id grouping
 id groups
+id header_tv
 id hideable
 id home
 id homeAsUp
@@ -1834,9 +1855,24 @@ id linear
 id listMode
 id listView
 id list_item
+id liste_de_lecture
+id logo
 id masked
 id maxTime
-id mediaActivityButton
+id mediaActivityButton1
+id mediaActivityButton10
+id mediaActivityButton11
+id mediaActivityButton12
+id mediaActivityButton13
+id mediaActivityButton14
+id mediaActivityButton2
+id mediaActivityButton3
+id mediaActivityButton4
+id mediaActivityButton5
+id mediaActivityButton6
+id mediaActivityButton7
+id mediaActivityButton8
+id mediaActivityButton9
 id mediaName
 id message
 id middle
@@ -1879,6 +1915,7 @@ id nav_graph
 id nav_home
 id nav_host_fragment_container
 id nav_liste_lecture
+id nav_mediaActivity
 id nav_spotify_bibliotheque
 id nav_spotify_chanson_aimee
 id nav_spotify_lier
@@ -1905,7 +1942,6 @@ id parent_matrix
 id password_toggle
 id path
 id pathRelative
-id pauseButton
 id peekHeight
 id percent
 id pin
@@ -1920,6 +1956,7 @@ id radio
 id ratio
 id rectangles
 id reverseSawtooth
+id rewindButton
 id right
 id right_icon
 id right_side
@@ -1955,12 +1992,15 @@ id showTitle
 id sin
 id skipCollapsed
 id slide
+id slideshow
+id slideshow2
 id smallLabel
 id snackbar_action
 id snackbar_text
 id snap
 id snapMargins
 id spacer
+id splash_wrapper_rl
 id spline
 id split_action_bar
 id spread
@@ -2000,10 +2040,6 @@ id textSpacerNoButtons
 id textSpacerNoTitle
 id textStart
 id textView2
-id textView_homescreen_albums
-id textView_homescreen_artiste
-id textView_homescreen_favoris
-id textView_homescreen_liste_lecture
 id text_input_end_icon
 id text_input_start_icon
 id textinput_counter
@@ -2106,11 +2142,14 @@ layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
 layout activity_home
+layout activity_lier_spotify
 layout activity_list
 layout activity_main
 layout activity_media_activity
 layout activity_music_page
 layout activity_playlist
+layout com_spotify_sdk_login_activity
+layout com_spotify_sdk_login_dialog
 layout custom_dialog
 layout design_bottom_navigation_item
 layout design_bottom_sheet_dialog
@@ -2167,6 +2206,7 @@ layout playlist_listitem_layout
 layout select_dialog_item_material
 layout select_dialog_multichoice_material
 layout select_dialog_singlechoice_material
+layout splash
 layout support_simple_spinner_dropdown_item
 layout test_action_chip
 layout test_chip_zero_corner_radius
@@ -2226,6 +2266,7 @@ string character_counter_overflowed_content_description
 string character_counter_pattern
 string chip_text
 string clear_text_end_icon_content_description
+string com_spotify_sdk_login_progress
 string error_icon_content_description
 string exposed_dropdown_menu_content_description
 string fab_transformation_scrim_behavior
@@ -2283,6 +2324,7 @@ string nav_bibliotheque
 string nav_favoris
 string nav_home
 string nav_liste_lecture
+string nav_mediaActivity
 string nav_spotify_aimee
 string nav_spotify_bibliotheque
 string nav_spotify_liercompte
@@ -2312,6 +2354,7 @@ style Animation_Design_BottomSheetDialog
 style Animation_MaterialComponents_BottomSheetDialog
 style AppTheme
 style AppTheme_AppBarOverlay
+style AppTheme_AppStyled
 style AppTheme_NoActionBar
 style AppTheme_PopupOverlay
 style Base_AlertDialog_AppCompat
