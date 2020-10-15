@@ -30,6 +30,7 @@ import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity {
 
+    //just a simple comment
     private static boolean firstRun = true;
     private static final String TAG = "MainActivity";
 
