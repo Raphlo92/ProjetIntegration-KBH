@@ -27,6 +27,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
+    //just a simple comment
     private static boolean firstRun = true;
 
     private static final String TAG = "MainActivity";
