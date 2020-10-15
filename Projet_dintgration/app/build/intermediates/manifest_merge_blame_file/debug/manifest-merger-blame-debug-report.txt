@@ -1,83 +1,86 @@
 1<?xml version="1.0" encoding="utf-8"?>
 2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-3    package="com.example.projet_dintgration"
+3    package="com.example.projetdintgration"
 4    android:versionCode="1"
 5    android:versionName="1.0" >
 6
 7    <uses-sdk
 8        android:minSdkVersion="16"
-8-->D:\Cegep\ProjetIntegration\Android\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml
+8-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml
 9        android:targetSdkVersion="29" />
-9-->D:\Cegep\ProjetIntegration\Android\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml
+9-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml
 10
 11    <uses-permission android:name="android.persmission.INTERNET" />
-11-->D:\Cegep\ProjetIntegration\Android\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:5:5-68
-11-->D:\Cegep\ProjetIntegration\Android\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:5:22-65
+11-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:5:5-68
+11-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:5:22-65
 12    <uses-permission android:name="android.permission.WAKE_LOCK" />
-12-->D:\Cegep\ProjetIntegration\Android\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:6:5-68
-12-->D:\Cegep\ProjetIntegration\Android\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:6:22-65
-13
-14    <application
-14-->D:\Cegep\ProjetIntegration\Android\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:8:5-34:19
-15        android:allowBackup="true"
-15-->D:\Cegep\ProjetIntegration\Android\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:9:9-35
-16        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-16-->[androidx.core:core:1.3.1] C:\Users\hugob\.gradle\caches\transforms-2\files-2.1\ae3468b444d41a56f261ecbb8448fe17\core-1.3.1\AndroidManifest.xml:24:18-86
-17        android:configChanges="orientation|keyboardHidden|screenSize"
-17-->[gr.pantrif:easy-android-splash-screen:0.0.1] C:\Users\hugob\.gradle\caches\transforms-2\files-2.1\c85e3ac63bc3dae0cd42e41cf11ffd31\jetified-easy-android-splash-screen-0.0.1\AndroidManifest.xml:14:9-70
-18        android:debuggable="true"
-19        android:icon="@mipmap/ic_launcher"
-19-->D:\Cegep\ProjetIntegration\Android\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:10:9-43
-20        android:label="@string/app_name"
-20-->D:\Cegep\ProjetIntegration\Android\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:11:9-41
-21        android:roundIcon="@mipmap/ic_launcher_round"
-21-->D:\Cegep\ProjetIntegration\Android\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:12:9-54
-22        android:supportsRtl="true"
-22-->D:\Cegep\ProjetIntegration\Android\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:13:9-35
-23        android:testOnly="true"
-24        android:theme="@style/AppTheme" >
-24-->D:\Cegep\ProjetIntegration\Android\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:14:9-40
-25        <activity
-25-->D:\Cegep\ProjetIntegration\Android\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:15:9-18:59
-26            android:name="com.example.projet_dintgration.MediaActivity"
-26-->D:\Cegep\ProjetIntegration\Android\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:16:13-42
-27            android:label="MediaActivity"
-27-->D:\Cegep\ProjetIntegration\Android\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:17:13-42
-28            android:theme="@style/AppTheme.NoActionBar" />
-28-->D:\Cegep\ProjetIntegration\Android\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:18:13-56
-29        <activity
-29-->D:\Cegep\ProjetIntegration\Android\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:19:9-22:59
-30            android:name="com.example.projet_dintgration.MusicListActivity"
-30-->D:\Cegep\ProjetIntegration\Android\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:20:13-46
-31            android:label="MusicListActivity"
-31-->D:\Cegep\ProjetIntegration\Android\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:21:13-46
-32            android:theme="@style/AppTheme.NoActionBar" />
-32-->D:\Cegep\ProjetIntegration\Android\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:22:13-56
-33        <activity android:name="com.example.projet_dintgration.splashScreenActivity" >
-33-->D:\Cegep\ProjetIntegration\Android\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:23:9-29:20
-33-->D:\Cegep\ProjetIntegration\Android\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:23:19-55
-34            <intent-filter>
-34-->D:\Cegep\ProjetIntegration\Android\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:24:13-28:29
-35                <action android:name="android.intent.action.MAIN" />
-35-->D:\Cegep\ProjetIntegration\Android\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:25:17-69
-35-->D:\Cegep\ProjetIntegration\Android\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:25:25-66
-36
-37                <category android:name="android.intent.category.LAUNCHER" />
-37-->D:\Cegep\ProjetIntegration\Android\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:27:17-77
-37-->D:\Cegep\ProjetIntegration\Android\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:27:27-74
-38            </intent-filter>
-39        </activity>
-40        <activity
-40-->D:\Cegep\ProjetIntegration\Android\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:30:5-32:54
-41            android:name="com.example.projet_dintgration.PlaylistListActivity"
-41-->D:\Cegep\ProjetIntegration\Android\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:30:15-51
-42            android:label="PlaylistListActivity"
-42-->D:\Cegep\ProjetIntegration\Android\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:31:9-45
-43            android:theme="@style/AppTheme.NoActionBar" />
-43-->D:\Cegep\ProjetIntegration\Android\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:32:9-52
-44        <activity android:name="com.example.projet_dintgration.MainActivity" />
-44-->D:\Cegep\ProjetIntegration\Android\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:33:9-59
-44-->D:\Cegep\ProjetIntegration\Android\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:33:19-47
-45    </application>
-46
-47</manifest>
+12-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:6:5-68
+12-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:6:22-65
+13    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+13-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:7:5-80
+13-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:7:22-77
+14
+15    <application
+15-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:9:5-35:19
+16        android:allowBackup="true"
+16-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:10:9-35
+17        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+17-->[androidx.core:core:1.3.1] C:\Users\raphc\.gradle\caches\transforms-2\files-2.1\ae3468b444d41a56f261ecbb8448fe17\core-1.3.1\AndroidManifest.xml:24:18-86
+18        android:configChanges="orientation|keyboardHidden|screenSize"
+18-->[gr.pantrif:easy-android-splash-screen:0.0.1] C:\Users\raphc\.gradle\caches\transforms-2\files-2.1\c85e3ac63bc3dae0cd42e41cf11ffd31\jetified-easy-android-splash-screen-0.0.1\AndroidManifest.xml:14:9-70
+19        android:debuggable="true"
+20        android:icon="@mipmap/ic_launcher"
+20-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:11:9-43
+21        android:label="@string/app_name"
+21-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:12:9-41
+22        android:roundIcon="@mipmap/ic_launcher_round"
+22-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:13:9-54
+23        android:supportsRtl="true"
+23-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:14:9-35
+24        android:testOnly="true"
+25        android:theme="@style/AppTheme" >
+25-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:15:9-40
+26        <activity
+26-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:16:9-19:59
+27            android:name="com.example.projetdintegration.MediaActivity"
+27-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:17:13-42
+28            android:label="MediaActivity"
+28-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:18:13-42
+29            android:theme="@style/AppTheme.NoActionBar" />
+29-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:19:13-56
+30        <activity
+30-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:20:9-23:59
+31            android:name="com.example.projetdintegration.MusicListActivity"
+31-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:21:13-46
+32            android:label="MusicListActivity"
+32-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:22:13-46
+33            android:theme="@style/AppTheme.NoActionBar" />
+33-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:23:13-56
+34        <activity android:name="com.example.projetdintegration.splashScreenActivity" >
+34-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:24:9-30:20
+34-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:24:19-55
+35            <intent-filter>
+35-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:25:13-29:29
+36                <action android:name="android.intent.action.MAIN" />
+36-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:26:17-69
+36-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:26:25-66
+37
+38                <category android:name="android.intent.category.LAUNCHER" />
+38-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:28:17-77
+38-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:28:27-74
+39            </intent-filter>
+40        </activity>
+41        <activity
+41-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:31:5-33:54
+42            android:name="com.example.projetdintegration.PlaylistListActivity"
+42-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:31:15-51
+43            android:label="PlaylistListActivity"
+43-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:32:9-45
+44            android:theme="@style/AppTheme.NoActionBar" />
+44-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:33:9-52
+45        <activity android:name="com.example.projetdintegration.MainActivity" />
+45-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:34:9-59
+45-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:34:19-47
+46    </application>
+47
+48</manifest>
