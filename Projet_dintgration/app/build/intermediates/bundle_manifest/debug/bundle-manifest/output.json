@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "applicationId": "com.example.projetdintgration",
+  "applicationId": "com.example.lecture",
   "variantType": "BASE_APK",
   "elements": [
     {
@@ -19,7 +19,7 @@
       },
       "path": "AndroidManifest.xml",
       "properties": {
-        "packageId": "com.example.projetdintgration",
+        "packageId": "com.example.lecture",
         "split": "",
         "minSdkVersion": "16"
       }
