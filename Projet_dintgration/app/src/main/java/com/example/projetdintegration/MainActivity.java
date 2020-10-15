@@ -22,6 +22,9 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static final String CLIENT_ID = "40353253f030456297bcab99af268e6c";
+    public static final String REDIRECT_URI = "com.example.projetdintegration://callback";
+
     //just a simple comment
     private static boolean firstRun = true;
 
@@ -70,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         navigationView.setCheckedItem(R.id.nav_home);
-        NavigationManager.afficherOptionDeconnecteSpotify(navigationView.getMenu());
+        NavigationManager.determinerOptionsAfficher(navigationView.getMenu());
     }
 
 
@@ -123,9 +126,16 @@ class NavigationManager implements NavigationView.OnNavigationItemSelectedListen
                 Log.d(TAG, "onNavigationItemSelected: Switched to bibliotheque");
                 gotoBibliotheque();
                 break;
-            case R.id.nav_mediaActivity:
-                Log.d(TAG, "onNavigationItemSelected: Switched to mediaActivity");
-                gotoMediaActivity();
+            /*case R.id.nav_music_page:
+                Log.d(TAG, "onNavigationItemSelected: Switched to bibliotheque");
+                //gotoBibliotheque();
+                startActivity(MediaActivity.class);
+                break;*/
+            case R.id.nav_spotify_lier:
+                gotoLierSpotify();
+                break;
+            case R.id.nav_spotify_bibliotheque:
+                gotoBibliothequeSpotify();
                 break;
             // TODO terminer toutes les options du switch case
         }
@@ -154,23 +164,23 @@ class NavigationManager implements NavigationView.OnNavigationItemSelectedListen
 
     public void gotoListeLecture() {
         Log.d(TAG, "gotoListeLecture: Started");
-        startActivity(PlaylistListActivity.class);
         // TODO startActivity();
     }
 
-    public void gotoMediaActivity(){
-        startActivity(MediaActivity.class);
+    public void gotoLierSpotify(){
+        startActivity(LierSpotifyActivity.class);
     }
+    public void gotoBibliothequeSpotify(){
 
-
-    static public void afficherOptionConnecteSpotify(Menu menu) {
+    }
+    static private void afficherOptionConnecteSpotify(Menu menu) {
         Log.d(TAG, "afficherOptionConnecteSpotify: Started");
         menu.findItem(R.id.nav_spotify_lier).setVisible(false);
         modifierVisibiliteMenu(true, menu, R.id.nav_spotify_liste_lecture, R.id.nav_spotify_chanson_aimee,
                 R.id.nav_spotify_bibliotheque, R.id.nav_spotify_logout);
     }
 
-    static public void afficherOptionDeconnecteSpotify(Menu menu) {
+    static private void afficherOptionDeconnecteSpotify(Menu menu) {
         Log.d(TAG, "afficherOptionDeconnecteSpotify: Started");
         menu.findItem(R.id.nav_spotify_lier).setVisible(true);
         modifierVisibiliteMenu(false, menu, R.id.nav_spotify_liste_lecture, R.id.nav_spotify_chanson_aimee,
@@ -181,6 +191,13 @@ class NavigationManager implements NavigationView.OnNavigationItemSelectedListen
         Log.d(TAG, "modifierVisibiliteMenu: Started");
         for (int option : options) {
             menu.findItem(option).setVisible(estVisible);
+        }
+    }
+    static public void determinerOptionsAfficher(Menu menu){
+        if(LierSpotifyActivity.appRemote != null && LierSpotifyActivity.appRemote.isConnected()){
+            afficherOptionConnecteSpotify(menu);
+        }else{
+            afficherOptionDeconnecteSpotify(menu);
         }
     }
 }

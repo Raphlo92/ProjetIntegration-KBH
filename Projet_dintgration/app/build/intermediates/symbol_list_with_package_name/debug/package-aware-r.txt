@@ -1754,6 +1754,8 @@ id clear_text
 id clip_horizontal
 id clip_vertical
 id collapseActionView
+id com_spotify_sdk_login_webview
+id com_spotify_sdk_login_webview_container
 id confirm_button
 id container
 id content
@@ -2140,11 +2142,14 @@ layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
 layout activity_home
+layout activity_lier_spotify
 layout activity_list
 layout activity_main
 layout activity_media_activity
 layout activity_music_page
 layout activity_playlist
+layout com_spotify_sdk_login_activity
+layout com_spotify_sdk_login_dialog
 layout custom_dialog
 layout design_bottom_navigation_item
 layout design_bottom_sheet_dialog
@@ -2261,6 +2266,7 @@ string character_counter_overflowed_content_description
 string character_counter_pattern
 string chip_text
 string clear_text_end_icon_content_description
+string com_spotify_sdk_login_progress
 string error_icon_content_description
 string exposed_dropdown_menu_content_description
 string fab_transformation_scrim_behavior

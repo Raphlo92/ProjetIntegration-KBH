@@ -708,6 +708,10 @@
         "source": "C:\\Users\\raphc\\OneDrive\\Documents\\Ecole\\KBH-ProjetInt\\github\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-ldpi\\ic_hamburger_1_small.png"
     },
     {
+        "merged": "C:\\Users\\raphc\\OneDrive\\Documents\\Ecole\\KBH-ProjetInt\\github\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_lier_spotify.xml.flat",
+        "source": "C:\\Users\\raphc\\OneDrive\\Documents\\Ecole\\KBH-ProjetInt\\github\\ProjetIntegration-KBH\\Projet_dintgration\\app\\src\\main\\res\\layout\\activity_lier_spotify.xml"
+    },
+    {
         "merged": "C:\\Users\\raphc\\OneDrive\\Documents\\Ecole\\KBH-ProjetInt\\github\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21_ic_loudspeaker_1.xml.flat",
         "source": "C:\\Users\\raphc\\OneDrive\\Documents\\Ecole\\KBH-ProjetInt\\github\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-anydpi-v21\\ic_loudspeaker_1.xml"
     },

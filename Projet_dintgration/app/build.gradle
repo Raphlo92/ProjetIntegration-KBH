@@ -4,6 +4,12 @@ android {
     compileSdkVersion 29
     buildToolsVersion "30.0.2"
 
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
     defaultConfig {
         applicationId "com.example.projetdintegration"
         minSdkVersion 16
@@ -34,5 +40,8 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    implementation "com.google.code.gson:gson:2.8.5"
+    implementation project(':spotify-app-remote-release-0.7.1')
+    implementation project(":spotify-auth-release-1.2.3")
 
 }
