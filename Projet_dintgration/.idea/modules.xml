@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Lecture.iml" filepath="$PROJECT_DIR$/.idea/modules/Lecture.iml" group="Lecture" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Projet_d'intégration.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Projet_d'intégration.app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/app.iml" group="projet_dintgration/app" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/projet_dintgration.iml" filepath="$PROJECT_DIR$/.idea/modules/projet_dintgration.iml" group="projet_dintgration" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Projet_dintgration-projetdintegration.iml" filepath="$PROJECT_DIR$/.idea/modules/Projet_dintgration-projetdintegration.iml" group="projetdintegration" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/app.iml" group="projetdintegration/app" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/projetdintegration.iml" filepath="$PROJECT_DIR$/.idea/modules/projetdintegration.iml" group="projetdintegration" />
     </modules>
   </component>
 </project>
