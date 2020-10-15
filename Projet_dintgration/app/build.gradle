@@ -4,7 +4,7 @@ android {
     compileSdkVersion 29
 
     defaultConfig {
-        applicationId "com.example.projet_dintgration"
+        applicationId "com.example.projetdintgration"
         minSdkVersion 16
         targetSdkVersion 29
         versionCode 1

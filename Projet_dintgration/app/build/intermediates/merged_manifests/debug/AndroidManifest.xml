@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.projet_dintgration"
+    package="com.example.projetdintgration"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -10,6 +10,7 @@
 
     <uses-permission android:name="android.persmission.INTERNET" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -23,14 +24,14 @@
         android:testOnly="true"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.example.projet_dintgration.MediaActivity"
+            android:name="com.example.projetdintegration.MediaActivity"
             android:label="MediaActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.example.projet_dintgration.MusicListActivity"
+            android:name="com.example.projetdintegration.MusicListActivity"
             android:label="MusicListActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name="com.example.projet_dintgration.splashScreenActivity" >
+        <activity android:name="com.example.projetdintegration.splashScreenActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -38,10 +39,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.example.projet_dintgration.PlaylistListActivity"
+            android:name="com.example.projetdintegration.PlaylistListActivity"
             android:label="PlaylistListActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name="com.example.projet_dintgration.MainActivity" />
+        <activity android:name="com.example.projetdintegration.MainActivity" />
     </application>
 
 </manifest>
