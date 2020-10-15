@@ -1,6 +1,6 @@
 1<?xml version="1.0" encoding="utf-8"?>
 2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-3    package="com.example.projet_dintegration"
+3    package="com.example.projetdintegration"
 4    android:versionCode="1"
 5    android:versionName="1.0" >
 6
@@ -45,7 +45,7 @@
 26-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:16:9-40
 27        <activity
 27-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:17:9-20:59
-28            android:name="com.example.projet_dintgration.MediaActivity"
+28            android:name="com.example.projetdintegration.MediaActivity"
 28-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:18:13-42
 29            android:label="MediaActivity"
 29-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:19:13-42
@@ -53,13 +53,13 @@
 30-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:20:13-56
 31        <activity
 31-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:21:9-24:59
-32            android:name="com.example.projet_dintgration.MusicListActivity"
+32            android:name="com.example.projetdintegration.MusicListActivity"
 32-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:22:13-46
 33            android:label="MusicListActivity"
 33-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:23:13-46
 34            android:theme="@style/AppTheme.NoActionBar" />
 34-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:24:13-56
-35        <activity android:name="com.example.projet_dintgration.splashScreenActivity" >
+35        <activity android:name="com.example.projetdintegration.splashScreenActivity" >
 35-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:25:9-31:20
 35-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:25:19-55
 36            <intent-filter>
@@ -75,13 +75,13 @@
 41        </activity>
 42        <activity
 42-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:33:5-35:54
-43            android:name="com.example.projet_dintgration.PlaylistListActivity"
+43            android:name="com.example.projetdintegration.PlaylistListActivity"
 43-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:33:15-51
 44            android:label="PlaylistListActivity"
 44-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:34:9-45
 45            android:theme="@style/AppTheme.NoActionBar" />
 45-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:35:9-52
-46        <activity android:name="com.example.projet_dintgration.MainActivity" />
+46        <activity android:name="com.example.projetdintegration.MainActivity" />
 46-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:37:9-59
 46-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:37:19-47
 47    </application>
