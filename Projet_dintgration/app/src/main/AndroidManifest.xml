@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+<<<<<<< HEAD
     package="com.example.projetdintegration">
 
     <uses-permission android:name="android.persmission.INTERNET" />
+=======
+    package="com.example.projet_dintgration">
+    <uses-permission android:name="android.persmission.INTERNET"/>
+>>>>>>> parent of 7c6385b... Merge branch 'MergedProject'
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
@@ -13,17 +18,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".MediaActivity"
-            android:label="MediaActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".MusicListActivity"
+        <activity android:name=".MediaActivity"
+                  android:label="MediaActivity"
+                  android:theme="@style/AppTheme.NoActionBar"
+            />
+
+        <activity android:name=".MusicListActivity"
             android:label="MusicListActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".splashScreenActivity">
+            android:theme="@style/AppTheme.NoActionBar"
+            />
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
@@ -31,7 +38,12 @@
     <activity android:name=".PlaylistListActivity"
         android:label="PlaylistListActivity"
         android:theme="@style/AppTheme.NoActionBar"/>
+<<<<<<< HEAD
         <activity android:name=".MainActivity"></activity>
+=======
+
+>>>>>>> parent of 7c6385b... Merge branch 'MergedProject'
     </application>
+
 
 </manifest>

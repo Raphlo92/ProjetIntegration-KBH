@@ -50,7 +50,7 @@ public class MusicListAdapter extends ArrayAdapter<Music> {
         final View result;
         ViewHolder holder;
 
-        if (convertView == null) {
+        if(convertView == null){
             LayoutInflater inflater = LayoutInflater.from(mContext);
             convertView = inflater.inflate(mRessource, parent, false);
 
@@ -61,7 +61,8 @@ public class MusicListAdapter extends ArrayAdapter<Music> {
             result = convertView;
 
             convertView.setTag(holder);
-        } else {
+        }
+        else{
             holder = (ViewHolder) convertView.getTag();
             result = convertView;
         }
