@@ -15,10 +15,7 @@ tools:openDrawer="start">
     android:layout_height="match_parent"
     android:layout_gravity="start"
     app:headerLayout="@layout/navigation_drawer_header"
-    app:menu="@menu/main_menu">
-
-
-</com.google.android.material.navigation.NavigationView>
+    app:menu="@menu/main_menu"/>
 
 <RelativeLayout
     android:layout_width="match_parent"
@@ -34,6 +31,8 @@ tools:openDrawer="start">
         app:navigationIcon="@drawable/ic_hamburger_1"
         android:theme="@style/ThemeOverlay.AppCompat.Light"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Dark"
-        android:elevation="4dp"/>
+        android:elevation="4dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="19dp" />
 </RelativeLayout>
 </androidx.drawerlayout.widget.DrawerLayout>

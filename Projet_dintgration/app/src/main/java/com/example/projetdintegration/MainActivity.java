@@ -2,6 +2,7 @@ package com.example.projetdintegration;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -16,15 +17,17 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.projetdintegration.DBHelpers.DBInitializer;
 import com.google.android.material.navigation.NavigationView;
+import com.spotify.android.appremote.api.SpotifyAppRemote;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.BitSet;
 
 public class MainActivity extends AppCompatActivity {
 
     public static final String CLIENT_ID = "40353253f030456297bcab99af268e6c";
     public static final String REDIRECT_URI = "com.example.projetdintegration://callback";
-
+    public static final String OPTIONS_DEJA_CONNECTE_SPOTIFY = "CONNECTE_A_SPOTIFY";
     //just a simple comment
     private static boolean firstRun = true;
 
@@ -56,8 +59,11 @@ public class MainActivity extends AppCompatActivity {
             th.start();
         }
 
-
-
+        SharedPreferences options = getPreferences(MODE_PRIVATE);
+        Log.i(TAG,"GEtSharedPreferencesOPtionVAlue: " + options.getBoolean(OPTIONS_DEJA_CONNECTE_SPOTIFY,false));
+        if(options.getBoolean(OPTIONS_DEJA_CONNECTE_SPOTIFY,false) && LierSpotifyActivity.appRemote == null){
+            LierSpotifyActivity.connexionSpotify(this,LierSpotifyActivity.getDefaultConnectionListener(this,this,this::connectedToSpotify));
+        }
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -76,6 +82,10 @@ public class MainActivity extends AppCompatActivity {
         NavigationManager.determinerOptionsAfficher(navigationView.getMenu());
     }
 
+    private void connectedToSpotify(SpotifyAppRemote appRemote){
+        LierSpotifyActivity.appRemote = appRemote;
+        NavigationManager.determinerOptionsAfficher(navigationView.getMenu());
+    }
 
     @Override
     public void onBackPressed() {
@@ -126,18 +136,20 @@ class NavigationManager implements NavigationView.OnNavigationItemSelectedListen
                 Log.d(TAG, "onNavigationItemSelected: Switched to bibliotheque");
                 gotoBibliotheque();
                 break;
-            /*case R.id.nav_music_page:
+            case R.id.nav_mediaActivity:
                 Log.d(TAG, "onNavigationItemSelected: Switched to bibliotheque");
-                //gotoBibliotheque();
                 startActivity(MediaActivity.class);
-                break;*/
+                break;
             case R.id.nav_spotify_lier:
                 gotoLierSpotify();
                 break;
             case R.id.nav_spotify_bibliotheque:
                 gotoBibliothequeSpotify();
                 break;
-            // TODO terminer toutes les options du switch case
+            case R.id.nav_spotify_chanson_aimee:
+                break;
+            case R.id.nav_spotify_liste_lecture:
+                break;
         }
         return true;
     }
@@ -171,7 +183,7 @@ class NavigationManager implements NavigationView.OnNavigationItemSelectedListen
         startActivity(LierSpotifyActivity.class);
     }
     public void gotoBibliothequeSpotify(){
-
+        startActivity(SpotifyMusicListActivity.class);
     }
     static private void afficherOptionConnecteSpotify(Menu menu) {
         Log.d(TAG, "afficherOptionConnecteSpotify: Started");
