@@ -21,66 +21,6 @@
     <RelativeLayout android:layout_height="match_parent"
         android:layout_width="match_parent">
 
-        <Button
-            android:id="@+id/mediaActivityButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="700dp"
-            android:text="Musique"
-            android:onClick="openMediaActivity"
-            />
-
-        <TextView
-            android:id="@+id/textView_homescreen_favoris"
-            style="@style/basic_title_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="40dp"
-            android:layout_marginLeft="40dp"
-            android:layout_marginTop="111dp"
-            android:text="@string/homescreen_favoris" />
-
-        <TextView
-            android:id="@+id/textView_homescreen_liste_lecture"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/textView_homescreen_favoris"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
-            android:layout_marginStart="42dp"
-            android:layout_marginLeft="42dp"
-            android:layout_marginTop="24dp"
-            android:text="@string/homescreen_listes_lecture"
-            style="@style/basic_title_text"/>
-
-        <TextView
-            android:id="@+id/textView_homescreen_albums"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/textView_homescreen_liste_lecture"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
-            android:layout_marginStart="42dp"
-            android:layout_marginLeft="42dp"
-            android:layout_marginTop="26dp"
-            android:text="@string/homescreen_albums"
-            style="@style/basic_title_text"/>
-
-        <TextView
-            android:id="@+id/textView_homescreen_artiste"
-            style="@style/basic_title_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/textView_homescreen_albums"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
-            android:layout_marginStart="44dp"
-            android:layout_marginLeft="44dp"
-            android:layout_marginTop="29dp"
-            android:text="@string/homescreen_artiste" />
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"

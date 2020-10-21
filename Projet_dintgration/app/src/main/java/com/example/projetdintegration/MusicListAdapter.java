@@ -10,11 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-<<<<<<< HEAD
 import com.example.projetdintegration.DBHelpers.Classes.Music;
-=======
 import com.example.projetdintegration.DBHelpers.Classes.*;
->>>>>>> MergedProject
 
 import java.util.ArrayList;
 
