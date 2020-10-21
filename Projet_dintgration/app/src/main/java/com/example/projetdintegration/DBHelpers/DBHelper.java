@@ -28,6 +28,7 @@ public class DBHelper extends SQLiteOpenHelper {
         public static class TableAlbum implements BaseColumns {
             public static final String TABLE_NAME = "album";
             public static final String COLUMN_NAME_TITLE = "title";
+            public static final String COLUMN_NAME_IMAGE = "image";
             public static final String COLUMN_NAME_ID_ARTIST = "idartist";
             public static final String COLUMN_NAME_ID_CATEGORY = "idcategory";
         }
@@ -85,6 +86,7 @@ public class DBHelper extends SQLiteOpenHelper {
                     Contract.TableAlbum.COLUMN_NAME_ID_ARTIST + " INTEGER NOT NULL," +
                     Contract.TableAlbum.COLUMN_NAME_ID_CATEGORY + " INTEGER NOT NULL," +
                     Contract.TableAlbum.COLUMN_NAME_TITLE + " TEXT NOT NULL," +
+                    Contract.TableAlbum.COLUMN_NAME_IMAGE + "TEXT NOT NULL," +
                     "FOREIGN KEY (" + Contract.TableAlbum.COLUMN_NAME_ID_ARTIST + ")" +
                     "REFERENCES " + Contract.TableArtist.TABLE_NAME + "(" + Contract.TableArtist._ID + ")" +
                     "ON DELETE CASCADE " +

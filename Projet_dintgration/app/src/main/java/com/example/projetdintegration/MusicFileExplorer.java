@@ -14,7 +14,7 @@ public class MusicFileExplorer {
     //FileInputStream
     //File
     static ArrayList<File> files = new ArrayList<>();
-    static final String DIRECTORY_MUSIC = "/storage/emulated/0/Music";
+    public static final String DIRECTORY_MUSIC = "/storage/emulated/0/Music";
     private static final String TAG = "MusicFileExplorer";
     private MusicFileExplorer() { }
 

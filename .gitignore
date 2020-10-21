@@ -8,3 +8,10 @@ Projet_dintgration/.idea/misc.xml
 *.lock
 *.bin
 *.ser
+*.class
+*.json
+*.ap_
+*.dex
+*.apk
+*.json
+*.txt

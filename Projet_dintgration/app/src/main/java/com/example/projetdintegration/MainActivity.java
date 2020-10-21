@@ -1,5 +1,6 @@
 package com.example.projetdintegration;
 
+import android.app.IntentService;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -41,9 +43,16 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Log.d(TAG, "onCreate: Started.");
 
+
+
         if (firstRun) {
             firstRun = false;
-            Thread th = new Thread(new Runnable() {
+
+            Intent intent = new Intent(this, DBInitializer.DBInitialisingService.class);
+
+            startService(intent);
+
+            /*Thread th = new Thread(new Runnable() {
                 @Override
                 public void run() {
                     //ArrayList<File> files = MusicFileExplorer.getAllMusicFiles();
@@ -53,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
 
-            th.start();
+            th.start();*/
         }
 
 
@@ -126,11 +135,11 @@ class NavigationManager implements NavigationView.OnNavigationItemSelectedListen
                 Log.d(TAG, "onNavigationItemSelected: Switched to bibliotheque");
                 gotoBibliotheque();
                 break;
-            /*case R.id.nav_music_page:
+            case R.id.nav_mediaActivity:
                 Log.d(TAG, "onNavigationItemSelected: Switched to bibliotheque");
                 //gotoBibliotheque();
                 startActivity(MediaActivity.class);
-                break;*/
+                break;
             case R.id.nav_spotify_lier:
                 gotoLierSpotify();
                 break;

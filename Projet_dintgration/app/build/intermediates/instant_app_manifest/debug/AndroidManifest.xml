@@ -49,6 +49,9 @@
         <activity android:name="com.example.projetdintegration.SpotifyMusicListActivity" />
         <activity android:name="com.example.projetdintegration.SpotifyMusicPlayer" />
         <activity android:name="com.example.projetdintegration.MainActivity" />
+
+        <service android:name="com.example.projetdintegration.DBHelpers.DBInitializer$DBInitialisingService" />
+
         <activity
             android:name="com.spotify.sdk.android.auth.LoginActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" >

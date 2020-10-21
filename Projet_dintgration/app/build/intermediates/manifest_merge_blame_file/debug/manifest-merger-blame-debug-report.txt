@@ -27,7 +27,7 @@
 15-->[:spotify-auth-release-1.2.3] C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\spotify-auth-release-1.2.3\build\.transforms\ec462e7d6910e6822ecb937a2099c4b9\jetified-spotify-auth-release-1.2.3\AndroidManifest.xml:31:22-64
 16
 17    <application
-17-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:10:5-42:19
+17-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:10:5-43:19
 18        android:allowBackup="true"
 18-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:11:9-35
 19        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
@@ -96,13 +96,18 @@
 50        <activity android:name="com.example.projetdintegration.MainActivity" />
 50-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:41:9-50
 50-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:41:19-47
-51        <activity
-51-->[:spotify-auth-release-1.2.3] C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\spotify-auth-release-1.2.3\build\.transforms\ec462e7d6910e6822ecb937a2099c4b9\jetified-spotify-auth-release-1.2.3\AndroidManifest.xml:34:9-37:20
-52            android:name="com.spotify.sdk.android.auth.LoginActivity"
-52-->[:spotify-auth-release-1.2.3] C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\spotify-auth-release-1.2.3\build\.transforms\ec462e7d6910e6822ecb937a2099c4b9\jetified-spotify-auth-release-1.2.3\AndroidManifest.xml:35:13-70
-53            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
-53-->[:spotify-auth-release-1.2.3] C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\spotify-auth-release-1.2.3\build\.transforms\ec462e7d6910e6822ecb937a2099c4b9\jetified-spotify-auth-release-1.2.3\AndroidManifest.xml:36:13-72
-54        </activity>
-55    </application>
-56
-57</manifest>
+51
+52        <service android:name="com.example.projetdintegration.DBHelpers.DBInitializer$DBInitialisingService" />
+52-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:42:9-81
+52-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:42:18-79
+53
+54        <activity
+54-->[:spotify-auth-release-1.2.3] C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\spotify-auth-release-1.2.3\build\.transforms\ec462e7d6910e6822ecb937a2099c4b9\jetified-spotify-auth-release-1.2.3\AndroidManifest.xml:34:9-37:20
+55            android:name="com.spotify.sdk.android.auth.LoginActivity"
+55-->[:spotify-auth-release-1.2.3] C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\spotify-auth-release-1.2.3\build\.transforms\ec462e7d6910e6822ecb937a2099c4b9\jetified-spotify-auth-release-1.2.3\AndroidManifest.xml:35:13-70
+56            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+56-->[:spotify-auth-release-1.2.3] C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\spotify-auth-release-1.2.3\build\.transforms\ec462e7d6910e6822ecb937a2099c4b9\jetified-spotify-auth-release-1.2.3\AndroidManifest.xml:36:13-72
+57        </activity>
+58    </application>
+59
+60</manifest>
