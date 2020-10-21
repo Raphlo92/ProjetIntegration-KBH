@@ -20,12 +20,12 @@
         "source": "D:\\Utilisateur\\Colin Roy\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxhdpi\\ic_baseline_stop_24.png"
     },
     {
-        "merged": "D:\\Utilisateur\\Colin Roy\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi_ic_baseline_home_24.png.flat",
-        "source": "D:\\Utilisateur\\Colin Roy\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-ldpi\\ic_baseline_home_24.png"
-    },
-    {
         "merged": "D:\\Utilisateur\\Colin Roy\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_muted.png.flat",
         "source": "D:\\Utilisateur\\Colin Roy\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxhdpi\\ic_muted.png"
+    },
+    {
+        "merged": "D:\\Utilisateur\\Colin Roy\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi_ic_baseline_home_24.png.flat",
+        "source": "D:\\Utilisateur\\Colin Roy\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-ldpi\\ic_baseline_home_24.png"
     },
     {
         "merged": "D:\\Utilisateur\\Colin Roy\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_playlist.xml.flat",
@@ -44,12 +44,12 @@
         "source": "D:\\Utilisateur\\Colin Roy\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-xhdpi\\ic_baseline_fast_forward_24.png"
     },
     {
-        "merged": "D:\\Utilisateur\\Colin Roy\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi_ic_baseline_pause_24.png.flat",
-        "source": "D:\\Utilisateur\\Colin Roy\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-ldpi\\ic_baseline_pause_24.png"
-    },
-    {
         "merged": "D:\\Utilisateur\\Colin Roy\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_baseline_fast_forward_24.png.flat",
         "source": "D:\\Utilisateur\\Colin Roy\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-mdpi\\ic_baseline_fast_forward_24.png"
+    },
+    {
+        "merged": "D:\\Utilisateur\\Colin Roy\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi_ic_baseline_pause_24.png.flat",
+        "source": "D:\\Utilisateur\\Colin Roy\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-ldpi\\ic_baseline_pause_24.png"
     },
     {
         "merged": "D:\\Utilisateur\\Colin Roy\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi_ic_loudspeaker.png.flat",
@@ -446,6 +446,10 @@
     {
         "merged": "D:\\Utilisateur\\Colin Roy\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi_ic_favoris.png.flat",
         "source": "D:\\Utilisateur\\Colin Roy\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-ldpi\\ic_favoris.png"
+    },
+    {
+        "merged": "D:\\Utilisateur\\Colin Roy\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\layout_progress_layout.xml.flat",
+        "source": "D:\\Utilisateur\\Colin Roy\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\src\\main\\res\\layout\\progress_layout.xml"
     },
     {
         "merged": "D:\\Utilisateur\\Colin Roy\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_hamburger.png.flat",

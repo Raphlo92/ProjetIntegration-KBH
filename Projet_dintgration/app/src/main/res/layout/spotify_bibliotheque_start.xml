@@ -11,23 +11,25 @@
         android:layout_gravity="start"
         app:headerLayout="@layout/navigation_drawer_header"
         app:menu="@menu/main_menu"/>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="wrap_content"
             android:layout_height="?attr/actionBarSize"
             android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:layout_marginStart="19dp"
+            android:layout_marginLeft="19dp"
             android:layout_marginTop="18dp"
-            app:navigationIcon="@drawable/ic_hamburger_1"
-            android:theme="@style/ThemeOverlay.AppCompat.Light"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Dark"
             android:elevation="4dp"
-            android:layout_alignParentLeft="true"
-            android:layout_marginLeft="19dp" />
+            android:theme="@style/ThemeOverlay.AppCompat.Light"
+            app:navigationIcon="@drawable/ic_hamburger_1"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Dark" />
 
         <ListView
             android:id="@+id/list_spotify_bibliotheque_start"
@@ -42,8 +44,17 @@
             android:layout_marginLeft="6dp"
             android:layout_marginTop="12dp"
             android:layout_marginEnd="-7dp"
-            android:layout_marginRight="-7dp">
-        </ListView>
+            android:layout_marginRight="-7dp"  />
+
+        <include
+            android:id="@+id/loadItemsListView"
+            layout="@layout/progress_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:visibility="gone" />
     </RelativeLayout>
 
 
