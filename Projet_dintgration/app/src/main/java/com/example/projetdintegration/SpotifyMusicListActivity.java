@@ -182,4 +182,7 @@ class SpotifyNavigationList{
     public void setListOnClickListener(AdapterView.OnItemClickListener clickListener, ListView listView){
         listView.setOnItemClickListener(clickListener);
     }
+    //TODO Faire un principe de loading progressif avec le scroll down pour afficher plus de 10 résultats.
+    // TODO Permettre le visionnement du contenu jouable mais ayant des enfants
+    // TODO actualiser l'affichage pour prendre le même que la bibliothèque locale.
 }
