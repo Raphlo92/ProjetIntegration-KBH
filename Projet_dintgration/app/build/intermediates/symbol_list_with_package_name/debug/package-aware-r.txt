@@ -2353,6 +2353,7 @@ string previous
 string search_menu_title
 string second_fragment_label
 string spotify_bibliotheque_default_categorie
+string spotify_playlist_view_base_text
 string status_bar_notification_info_overflow
 string title_activity_music__page
 style AlertDialog_AppCompat

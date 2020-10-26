@@ -14,6 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".SpotifyPlaylistActivity"></activity>
+        <activity android:name=".SpotifyLikedSongsActivity" />
         <activity
             android:name=".MediaActivity"
             android:label="MediaActivity"
@@ -29,15 +31,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".PlaylistListActivity"
+        <activity
+            android:name=".PlaylistListActivity"
             android:label="PlaylistListActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-
-        <activity android:name=".LierSpotifyActivity"/>
-        <activity android:name=".SpotifyMusicListActivity"/>
-        <activity android:name=".SpotifyMusicPlayer"/>
-
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".LierSpotifyActivity" />
+        <activity android:name=".SpotifyMusicListActivity" />
+        <activity android:name=".SpotifyMusicPlayer" />
         <activity android:name=".MainActivity" />
     </application>
 

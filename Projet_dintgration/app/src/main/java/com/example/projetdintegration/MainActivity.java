@@ -147,60 +147,55 @@ class NavigationManager implements NavigationView.OnNavigationItemSelectedListen
                 gotoBibliothequeSpotify();
                 break;
             case R.id.nav_spotify_chanson_aimee:
+                gotoLikedSongsSpotify();
                 break;
             case R.id.nav_spotify_liste_lecture:
+                gotoListeLectureSpotify();
                 break;
         }
         return true;
     }
-
     private void startActivity(Class<?> cls) {
         Log.d(TAG, "startActivity: Started");
         currentActivity.startActivity(new Intent(context, cls));
     }
-
-    public void gotoHome() {
+    protected void gotoHome() {
         Log.d(TAG, "gotoHome: Started");
         startActivity(MainActivity.class);
     }
-
-    public void gotoFavoris() {
+    protected void gotoFavoris() {
         Log.d(TAG, "gotoFavoris: Started");
         //TODO startActivity();
     }
-
-    public void gotoBibliotheque() {
+    protected void gotoBibliotheque() {
         Log.d(TAG, "gotoBibliotheque: Started");
         startActivity(MusicListActivity.class);
     }
-
-    public void gotoListeLecture() {
+    protected void gotoListeLecture() {
         Log.d(TAG, "gotoListeLecture: Started");
         // TODO startActivity();
     }
-
-    public void gotoLierSpotify(){
+    protected void gotoLierSpotify(){
         startActivity(LierSpotifyActivity.class);
     }
-    public void gotoBibliothequeSpotify(){
+    protected void gotoBibliothequeSpotify(){
         startActivity(SpotifyMusicListActivity.class);
     }
+    protected void gotoLikedSongsSpotify(){startActivity(SpotifyLikedSongsActivity.class);}
+    protected void gotoListeLectureSpotify() { startActivity(SpotifyPlaylistActivity.class);}
     static private void afficherOptionConnecteSpotify(Menu menu) {
         Log.d(TAG, "afficherOptionConnecteSpotify: Started");
         menu.findItem(R.id.nav_spotify_lier).setVisible(false);
         modifierVisibiliteMenu(true, menu, R.id.nav_spotify_liste_lecture, R.id.nav_spotify_chanson_aimee,
                 R.id.nav_spotify_bibliotheque, R.id.nav_spotify_logout);
     }
-
     static private void afficherOptionDeconnecteSpotify(Menu menu) {
         Log.d(TAG, "afficherOptionDeconnecteSpotify: Started");
         menu.findItem(R.id.nav_spotify_lier).setVisible(true);
         modifierVisibiliteMenu(false, menu, R.id.nav_spotify_liste_lecture, R.id.nav_spotify_chanson_aimee,
                 R.id.nav_spotify_bibliotheque, R.id.nav_spotify_logout);
     }
-
     static private void modifierVisibiliteMenu(boolean estVisible, Menu menu, int... options) {
-        Log.d(TAG, "modifierVisibiliteMenu: Started");
         for (int option : options) {
             menu.findItem(option).setVisible(estVisible);
         }

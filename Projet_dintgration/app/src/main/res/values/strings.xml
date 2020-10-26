@@ -28,7 +28,7 @@
     <string name="navigation_close_drawer_description">Fermer le menu</string>
     <string name="loadmore">Veuillez patienter, en recherche de plus de contenu</string>
     <string name="spotify_bibliotheque_default_categorie">Votre bibliothèque</string>
-
+    <string name="spotify_playlist_view_base_text">Vos listes de lectures</string>
 
 
 </resources>

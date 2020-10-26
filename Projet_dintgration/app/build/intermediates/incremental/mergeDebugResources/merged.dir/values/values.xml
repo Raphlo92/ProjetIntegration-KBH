@@ -1066,6 +1066,7 @@
     <string name="search_menu_title">Search</string>
     <string name="second_fragment_label">Second Fragment</string>
     <string name="spotify_bibliotheque_default_categorie">Votre bibliothèque</string>
+    <string name="spotify_playlist_view_base_text">Vos listes de lectures</string>
     <string name="status_bar_notification_info_overflow">999+</string>
     <string name="title_activity_music__page">Music_Page</string>
     <style name="AlertDialog.AppCompat" parent="Base.AlertDialog.AppCompat"/>

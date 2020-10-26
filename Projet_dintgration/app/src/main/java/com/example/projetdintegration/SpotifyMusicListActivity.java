@@ -52,9 +52,16 @@ public class SpotifyMusicListActivity extends AppCompatActivity {
     RelativeLayout progressBar;
     Boolean noMoreDataToFetch;
     int startIndexOfDataFetch;
-    static final String SPOTIFY_ARTIST_LINK = "artist";
-    static final String SPOTIFY_ALBUM_LINK = "album";
-    static final String SPOTIFY_PLAYLIST_LINK = "playlist";
+    public static final String SPOTIFY_ID_LIBRARY = "com.spotify.your-library";
+    public static final String SPOTIFY_COLLECTION_LINK = "collection";
+    public static final String SPOTIFY_ID_PLAYLIST = "com.spotify.your-playlists";
+    public static final String SPOTIFY_ID_ALBUMS = "com.spotify.your-albums";
+    public static final String SPOTIFY_ID_PODCASTS = "com.spotify.your-podcasts";
+    public static final String SPOTIFY_ID_ARTISTS = "com.spotify.your-artists";
+    public static final String SPOTIFY_ID_LIKED_SONGS_PLAYLIST = "spotify:user:" + ":collection";
+    public static final String SPOTIFY_ARTIST_LINK = "artist";
+    public static final String SPOTIFY_ALBUM_LINK = "album";
+    public static final String SPOTIFY_PLAYLIST_LINK = "playlist";
     boolean userScrolled;
     public static final int NUMBER_OF_ELEMENTS_TO_LOAD = 15;
     public static final String EXTRA_LIST_ITEM_SELECTED = "EXTRA_LIST_ITEM_SELECTED";
@@ -71,7 +78,8 @@ public class SpotifyMusicListActivity extends AppCompatActivity {
     }
     private void determineContentViewToSet(){
         if(lastSelected != null) {
-            if (lastSelected.id.contains(SPOTIFY_ALBUM_LINK))
+            if ((lastSelected.id.contains(SPOTIFY_ALBUM_LINK) && !lastSelected.id.equals(SPOTIFY_ID_ALBUMS)) ||
+                    lastSelected.id.contains(SPOTIFY_PLAYLIST_LINK) && !lastSelected.id.equals(SPOTIFY_ID_PLAYLIST))
                 manageAlbumView();
             else
                 setContentView(R.layout.spotify_bibliotheque_start);
@@ -80,7 +88,6 @@ public class SpotifyMusicListActivity extends AppCompatActivity {
         }else
             setContentView(R.layout.spotify_bibliotheque_start);
     }
-
     private void manageAlbumView() {
         setContentView(R.layout.album_view_layout);
         ImageView image = findViewById(R.id.album_view_image);
@@ -92,7 +99,6 @@ public class SpotifyMusicListActivity extends AppCompatActivity {
             }
         });
     }
-
     private void initializeListViewContent(){
         noMoreDataToFetch = false;
         startIndexOfDataFetch = 0;
@@ -106,7 +112,7 @@ public class SpotifyMusicListActivity extends AppCompatActivity {
                 public void onResult(ListItems listItems) {
                     for (ListItem item : listItems.items
                     ) {
-                        if (item.id.equals("com.spotify.your-library")) {
+                        if (item.id.equals(SPOTIFY_ID_LIBRARY)) {
                             getElementChildren(item);
                         }
                     }
@@ -114,7 +120,6 @@ public class SpotifyMusicListActivity extends AppCompatActivity {
             });
         }
     }
-
     private void initializeNavigationElements(){
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         navigationView = (NavigationView) findViewById(R.id.nav_view);
@@ -133,7 +138,6 @@ public class SpotifyMusicListActivity extends AppCompatActivity {
         navigationView.setCheckedItem(R.id.nav_spotify_bibliotheque);
         NavigationManager.determinerOptionsAfficher(navigationView.getMenu());
     }
-
     @Override
     public void onBackPressed() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START))
@@ -141,7 +145,6 @@ public class SpotifyMusicListActivity extends AppCompatActivity {
         else
             super.onBackPressed();
     }
-
     private void initializeOnClickListItemListeners() {
         navigationListener = new AdapterView.OnItemClickListener() {
             @Override
@@ -156,8 +159,6 @@ public class SpotifyMusicListActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 SpotifyNavigationItem selectedItem = (SpotifyNavigationItem) parent.getItemAtPosition(position);
-                Log.i("SpotifyMusicList",selectedItem.baseNavigationItem.toString());
-                Log.i("SpotifyMusicList", Boolean.toString(determineIfHasChildren(selectedItem)));
                 if(determineIfHasChildren(selectedItem))
                     sendPlayableToMusicPlayer(selectedItem.getURI());
                 else{
@@ -167,18 +168,20 @@ public class SpotifyMusicListActivity extends AppCompatActivity {
             }
         };
     }
-
-    private boolean determineIfHasChildren(SpotifyNavigationItem selectedItem){
+    public static boolean determineIfHasChildren(SpotifyNavigationItem selectedItem){
         return !selectedItem.hasChildren() && (!selectedItem.getID().contains(SPOTIFY_ALBUM_LINK) || selectedItem.getID().equals(lastSelected.id)) &&
-                !selectedItem.getID().contains(SPOTIFY_ARTIST_LINK) && !selectedItem.getID().contains(SPOTIFY_PLAYLIST_LINK);
+                (!selectedItem.getID().contains(SPOTIFY_ARTIST_LINK) ||
+                 getSpotifyIdUniqueKeyPart(selectedItem.getID()).equals(getSpotifyIdUniqueKeyPart(lastSelected.id))) &&
+                !selectedItem.getID().contains(SPOTIFY_PLAYLIST_LINK) && !selectedItem.getID().contains(SPOTIFY_COLLECTION_LINK);
     }
-
+    public static String getSpotifyIdUniqueKeyPart(String spotifyId){
+        return spotifyId.substring(spotifyId.lastIndexOf(':') + 1);
+    }
     private void sendPlayableToMusicPlayer(String uri) {
         Intent intent = new Intent(this,SpotifyMusicPlayer.class);
         intent.putExtra(SpotifyMusicPlayer.EXTRA_SPOTIFY_MUSIC_PLAYER_URI,uri);
         startActivity(intent);
     }
-
     private void getElementChildren(ListItem item){
         contenu.getChildrenOfItem(item,NUMBER_OF_ELEMENTS_TO_LOAD,startIndexOfDataFetch).setResultCallback(new CallResult.ResultCallback<ListItems>() {
             @Override
@@ -271,6 +274,7 @@ class SpotifyNavigationItem{
     public ListItem getBaseListItem(){
         return baseNavigationItem;
     }
+    public String getTitle(){return baseNavigationItem.title;}
     @Override
     public String toString(){
         return baseNavigationItem.title;
@@ -305,6 +309,6 @@ class SpotifyNavigationList{
     public void setListOnScrollListener(AbsListView.OnScrollListener scrollListener, ListView listView){
         listView.setOnScrollListener(scrollListener);
     }
-    // TODO Permettre le visionnement du contenu jouable mais ayant des enfants
+    // TODO Actualiser affichage pôur l'artiste
     // TODO actualiser l'affichage pour prendre le même que la bibliothèque locale.
 }

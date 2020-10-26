@@ -46,63 +46,69 @@
 26        android:testOnly="true"
 27        android:theme="@style/AppTheme" >
 27-->D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:16:9-40
-28        <activity
-28-->D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:17:9-20:59
-29            android:name="com.example.projetdintegration.MediaActivity"
-29-->D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:18:13-42
-30            android:label="MediaActivity"
-30-->D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:19:13-42
-31            android:theme="@style/AppTheme.NoActionBar" />
-31-->D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:20:13-56
-32        <activity
-32-->D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:21:9-24:59
-33            android:name="com.example.projetdintegration.MusicListActivity"
-33-->D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:22:13-46
-34            android:label="MusicListActivity"
-34-->D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:23:13-46
-35            android:theme="@style/AppTheme.NoActionBar" />
-35-->D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:24:13-56
-36        <activity android:name="com.example.projetdintegration.splashScreenActivity" >
-36-->D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:25:9-31:20
-36-->D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:25:19-55
-37            <intent-filter>
-37-->D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:26:13-30:29
-38                <action android:name="android.intent.action.MAIN" />
-38-->D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:27:17-69
-38-->D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:27:25-66
-39
-40                <category android:name="android.intent.category.LAUNCHER" />
-40-->D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:29:17-77
-40-->D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:29:27-74
-41            </intent-filter>
-42        </activity>
-43        <activity
-43-->D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:33:9-35:58
-44            android:name="com.example.projetdintegration.PlaylistListActivity"
-44-->D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:33:19-55
-45            android:label="PlaylistListActivity"
-45-->D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:34:13-49
-46            android:theme="@style/AppTheme.NoActionBar" />
-46-->D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:35:13-56
-47        <activity android:name="com.example.projetdintegration.LierSpotifyActivity" />
-47-->D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:37:9-56
-47-->D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:37:19-54
-48        <activity android:name="com.example.projetdintegration.SpotifyMusicListActivity" />
-48-->D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:38:9-61
-48-->D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:38:19-59
-49        <activity android:name="com.example.projetdintegration.SpotifyMusicPlayer" />
-49-->D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:39:9-55
-49-->D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:39:19-53
-50        <activity android:name="com.example.projetdintegration.MainActivity" />
-50-->D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:41:9-50
-50-->D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:41:19-47
-51        <activity
-51-->[:spotify-auth-release-1.2.3] D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\spotify-auth-release-1.2.3\build\.transforms\03c56f9dad1fed833f9408f25e21147b\jetified-spotify-auth-release-1.2.3\AndroidManifest.xml:34:9-37:20
-52            android:name="com.spotify.sdk.android.auth.LoginActivity"
-52-->[:spotify-auth-release-1.2.3] D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\spotify-auth-release-1.2.3\build\.transforms\03c56f9dad1fed833f9408f25e21147b\jetified-spotify-auth-release-1.2.3\AndroidManifest.xml:35:13-70
-53            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
-53-->[:spotify-auth-release-1.2.3] D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\spotify-auth-release-1.2.3\build\.transforms\03c56f9dad1fed833f9408f25e21147b\jetified-spotify-auth-release-1.2.3\AndroidManifest.xml:36:13-72
-54        </activity>
-55    </application>
-56
-57</manifest>
+28        <activity android:name="com.example.projetdintegration.SpotifyPlaylistActivity" />
+28-->D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:17:9-70
+28-->D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:17:19-58
+29        <activity android:name="com.example.projetdintegration.SpotifyLikedSongsActivity" />
+29-->D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:18:9-63
+29-->D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:18:19-60
+30        <activity
+30-->D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:19:9-22:59
+31            android:name="com.example.projetdintegration.MediaActivity"
+31-->D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:20:13-42
+32            android:label="MediaActivity"
+32-->D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:21:13-42
+33            android:theme="@style/AppTheme.NoActionBar" />
+33-->D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:22:13-56
+34        <activity
+34-->D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:23:9-26:59
+35            android:name="com.example.projetdintegration.MusicListActivity"
+35-->D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:24:13-46
+36            android:label="MusicListActivity"
+36-->D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:25:13-46
+37            android:theme="@style/AppTheme.NoActionBar" />
+37-->D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:26:13-56
+38        <activity android:name="com.example.projetdintegration.splashScreenActivity" >
+38-->D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:27:9-33:20
+38-->D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:27:19-55
+39            <intent-filter>
+39-->D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:28:13-32:29
+40                <action android:name="android.intent.action.MAIN" />
+40-->D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:29:17-69
+40-->D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:29:25-66
+41
+42                <category android:name="android.intent.category.LAUNCHER" />
+42-->D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:31:17-77
+42-->D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:31:27-74
+43            </intent-filter>
+44        </activity>
+45        <activity
+45-->D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:34:9-37:59
+46            android:name="com.example.projetdintegration.PlaylistListActivity"
+46-->D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:35:13-49
+47            android:label="PlaylistListActivity"
+47-->D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:36:13-49
+48            android:theme="@style/AppTheme.NoActionBar" />
+48-->D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:37:13-56
+49        <activity android:name="com.example.projetdintegration.LierSpotifyActivity" />
+49-->D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:38:9-57
+49-->D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:38:19-54
+50        <activity android:name="com.example.projetdintegration.SpotifyMusicListActivity" />
+50-->D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:39:9-62
+50-->D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:39:19-59
+51        <activity android:name="com.example.projetdintegration.SpotifyMusicPlayer" />
+51-->D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:40:9-56
+51-->D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:40:19-53
+52        <activity android:name="com.example.projetdintegration.MainActivity" />
+52-->D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:41:9-50
+52-->D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:41:19-47
+53        <activity
+53-->[:spotify-auth-release-1.2.3] D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\spotify-auth-release-1.2.3\build\.transforms\03c56f9dad1fed833f9408f25e21147b\jetified-spotify-auth-release-1.2.3\AndroidManifest.xml:34:9-37:20
+54            android:name="com.spotify.sdk.android.auth.LoginActivity"
+54-->[:spotify-auth-release-1.2.3] D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\spotify-auth-release-1.2.3\build\.transforms\03c56f9dad1fed833f9408f25e21147b\jetified-spotify-auth-release-1.2.3\AndroidManifest.xml:35:13-70
+55            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+55-->[:spotify-auth-release-1.2.3] D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\spotify-auth-release-1.2.3\build\.transforms\03c56f9dad1fed833f9408f25e21147b\jetified-spotify-auth-release-1.2.3\AndroidManifest.xml:36:13-72
+56        </activity>
+57    </application>
+58
+59</manifest>

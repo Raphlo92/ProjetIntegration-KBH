@@ -2352,8 +2352,9 @@ int string previous 0x7f11006d
 int string search_menu_title 0x7f11006e
 int string second_fragment_label 0x7f11006f
 int string spotify_bibliotheque_default_categorie 0x7f110070
-int string status_bar_notification_info_overflow 0x7f110071
-int string title_activity_music__page 0x7f110072
+int string spotify_playlist_view_base_text 0x7f110071
+int string status_bar_notification_info_overflow 0x7f110072
+int string title_activity_music__page 0x7f110073
 int style AlertDialog_AppCompat 0x7f120000
 int style AlertDialog_AppCompat_Light 0x7f120001
 int style AndroidThemeColorAccentYellow 0x7f120002
