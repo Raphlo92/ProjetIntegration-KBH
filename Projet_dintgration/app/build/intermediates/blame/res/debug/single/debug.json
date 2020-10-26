@@ -360,6 +360,10 @@
         "source": "D:\\Utilisateur\\Colin Roy\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-mdpi\\ic_hamburger_1.png"
     },
     {
+        "merged": "D:\\Utilisateur\\Colin Roy\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\layout_album_view_layout.xml.flat",
+        "source": "D:\\Utilisateur\\Colin Roy\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\src\\main\\res\\layout\\album_view_layout.xml"
+    },
+    {
         "merged": "D:\\Utilisateur\\Colin Roy\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi_ic_launcher.png.flat",
         "source": "D:\\Utilisateur\\Colin Roy\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.png"
     },

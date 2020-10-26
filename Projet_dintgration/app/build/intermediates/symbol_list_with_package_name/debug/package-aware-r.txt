@@ -1709,6 +1709,7 @@ id actions
 id activity_chooser_view_content
 id add
 id after_logo_tv
+id album_view_image
 id alertTitle
 id aligned
 id all
@@ -1857,6 +1858,7 @@ id listView
 id list_item
 id list_spotify_bibliotheque_start
 id liste_de_lecture
+id loadItemsLierSpotifyView
 id loadItemsListView
 id logo
 id masked
@@ -2043,6 +2045,7 @@ id textSpacerNoButtons
 id textSpacerNoTitle
 id textStart
 id textView2
+id textView_categorie_name
 id text_input_end_icon
 id text_input_start_icon
 id textinput_counter
@@ -2151,6 +2154,7 @@ layout activity_main
 layout activity_media_activity
 layout activity_music_page
 layout activity_playlist
+layout album_view_layout
 layout com_spotify_sdk_login_activity
 layout com_spotify_sdk_login_dialog
 layout custom_dialog
@@ -2348,6 +2352,7 @@ string path_password_strike_through
 string previous
 string search_menu_title
 string second_fragment_label
+string spotify_bibliotheque_default_categorie
 string status_bar_notification_info_overflow
 string title_activity_music__page
 style AlertDialog_AppCompat

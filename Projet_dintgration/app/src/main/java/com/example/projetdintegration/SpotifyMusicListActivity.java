@@ -2,6 +2,8 @@ package com.example.projetdintegration;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -11,8 +13,10 @@ import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
@@ -25,6 +29,8 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.google.android.material.navigation.NavigationView;
 import com.spotify.android.appremote.api.ContentApi;
+import com.spotify.android.appremote.api.ImagesApi;
+import com.spotify.android.appremote.internal.ImagesApiImpl;
 import com.spotify.protocol.client.CallResult;
 import com.spotify.protocol.types.ImageUri;
 import com.spotify.protocol.types.ListItem;
@@ -46,6 +52,9 @@ public class SpotifyMusicListActivity extends AppCompatActivity {
     RelativeLayout progressBar;
     Boolean noMoreDataToFetch;
     int startIndexOfDataFetch;
+    static final String SPOTIFY_ARTIST_LINK = "artist";
+    static final String SPOTIFY_ALBUM_LINK = "album";
+    static final String SPOTIFY_PLAYLIST_LINK = "playlist";
     boolean userScrolled;
     public static final int NUMBER_OF_ELEMENTS_TO_LOAD = 15;
     public static final String EXTRA_LIST_ITEM_SELECTED = "EXTRA_LIST_ITEM_SELECTED";
@@ -53,12 +62,35 @@ public class SpotifyMusicListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.spotify_bibliotheque_start);
+        determineContentViewToSet();
         progressBar = findViewById(R.id.loadItemsListView);
         initializeNavigationElements();
         initializeOnClickListItemListeners();
         listView = (ListView) findViewById(R.id.list_spotify_bibliotheque_start);
         initializeListViewContent();
+    }
+    private void determineContentViewToSet(){
+        if(lastSelected != null) {
+            if (lastSelected.id.contains(SPOTIFY_ALBUM_LINK))
+                manageAlbumView();
+            else
+                setContentView(R.layout.spotify_bibliotheque_start);
+            TextView categorieName = findViewById(R.id.textView_categorie_name);
+            categorieName.setText(lastSelected.title);
+        }else
+            setContentView(R.layout.spotify_bibliotheque_start);
+    }
+
+    private void manageAlbumView() {
+        setContentView(R.layout.album_view_layout);
+        ImageView image = findViewById(R.id.album_view_image);
+        ImagesApi imagesApi = LierSpotifyActivity.appRemote.getImagesApi();
+        imagesApi.getImage(lastSelected.imageUri).setResultCallback(new CallResult.ResultCallback<Bitmap>() {
+            @Override
+            public void onResult(Bitmap bitmap) {
+                image.setImageBitmap(bitmap);
+            }
+        });
     }
 
     private void initializeListViewContent(){
@@ -124,8 +156,9 @@ public class SpotifyMusicListActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 SpotifyNavigationItem selectedItem = (SpotifyNavigationItem) parent.getItemAtPosition(position);
-                Log.i("SpotifyMusicList",selectedItem.hasChildren() + " " + selectedItem.isPlayable());
-                if(!selectedItem.hasChildren())
+                Log.i("SpotifyMusicList",selectedItem.baseNavigationItem.toString());
+                Log.i("SpotifyMusicList", Boolean.toString(determineIfHasChildren(selectedItem)));
+                if(determineIfHasChildren(selectedItem))
                     sendPlayableToMusicPlayer(selectedItem.getURI());
                 else{
                     lastSelected = selectedItem.getBaseListItem();
@@ -133,6 +166,11 @@ public class SpotifyMusicListActivity extends AppCompatActivity {
                 }
             }
         };
+    }
+
+    private boolean determineIfHasChildren(SpotifyNavigationItem selectedItem){
+        return !selectedItem.hasChildren() && (!selectedItem.getID().contains(SPOTIFY_ALBUM_LINK) || selectedItem.getID().equals(lastSelected.id)) &&
+                !selectedItem.getID().contains(SPOTIFY_ARTIST_LINK) && !selectedItem.getID().contains(SPOTIFY_PLAYLIST_LINK);
     }
 
     private void sendPlayableToMusicPlayer(String uri) {
