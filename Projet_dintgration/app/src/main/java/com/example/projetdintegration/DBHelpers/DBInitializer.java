@@ -130,7 +130,7 @@ public class DBInitializer {
                     Path musicPath = Paths.get(path.toAbsolutePath() + "/" + firstMusic);
                     metadata = getMetadata(musicPath.toAbsolutePath().toString());
 
-                    Album album = new Album(0, path.getFileName().toString(),metadata[4], path.getName(ARTIST_NAME_COUNT).toString(), metadata[2]);
+                    Album album = new Album(0, path.getFileName().toString(),metadata[4], path.getName(ARTIST_NAME_COUNT).toString()/*, metadata[2]*/);
                     Albums albumsDBHelper = new Albums(DBWriter);
                     albumsDBHelper.Insert(album);
                 }

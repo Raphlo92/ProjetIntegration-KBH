@@ -25,6 +25,8 @@ public class HomeActivity extends AppCompatActivity {
 
     private static boolean firstRun = true;
     private final int SPLASH_SREEN = 4000;
+    Musics DBMusicsReader;
+    Musics DBMusicsWriter;
     DBHelper dbHelper;
     Context context = this;
     Animation topAnim, BottomAnim;
