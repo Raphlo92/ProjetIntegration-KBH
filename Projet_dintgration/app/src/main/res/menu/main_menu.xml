@@ -43,6 +43,8 @@
                     android:id="@+id/nav_spotify_bibliotheque"
                     android:icon="@drawable/ic_file"
                     android:title="@string/nav_spotify_bibliotheque" /> <!-- temporaire, changer couleur icone pour couleur de Spotify ? -->
+                <item android:id="@+id/nav_spotify_recently_listened"
+                    android:title="@string/nav_spotify_recently_listened" />
                 <item
                     android:id="@+id/nav_spotify_logout"
                     android:title="@string/nav_spotify_logout" />

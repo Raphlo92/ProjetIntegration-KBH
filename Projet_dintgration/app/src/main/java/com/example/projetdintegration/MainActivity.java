@@ -75,8 +75,7 @@ public class MainActivity extends AppCompatActivity {
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(new NavigationManager(this, this) {
             @Override
-            public void gotoHome() {
-            }
+            public void gotoHome() {}
         });
         navigationView.setCheckedItem(R.id.nav_home);
         NavigationManager.determinerOptionsAfficher(navigationView.getMenu());
@@ -155,6 +154,9 @@ class NavigationManager implements NavigationView.OnNavigationItemSelectedListen
             case R.id.nav_spotify_logout:
                 gotoDeconnectionSpotify();
                 break;
+            case R.id.nav_spotify_recently_listened:
+                gotoRecentlyListened();
+                break;
         }
         return true;
     }
@@ -178,6 +180,7 @@ class NavigationManager implements NavigationView.OnNavigationItemSelectedListen
         Log.d(TAG, "gotoListeLecture: Started");
         // TODO startActivity();
     }
+    private void gotoRecentlyListened() { startActivity(SpotifyRecentlyListenedActivity.class);}
     protected void gotoLierSpotify(){
         startActivity(LierSpotifyActivity.class);
     }
@@ -191,13 +194,13 @@ class NavigationManager implements NavigationView.OnNavigationItemSelectedListen
         Log.d(TAG, "afficherOptionConnecteSpotify: Started");
         menu.findItem(R.id.nav_spotify_lier).setVisible(false);
         modifierVisibiliteMenu(true, menu, R.id.nav_spotify_liste_lecture, R.id.nav_spotify_chanson_aimee,
-                R.id.nav_spotify_bibliotheque, R.id.nav_spotify_logout);
+                R.id.nav_spotify_bibliotheque, R.id.nav_spotify_logout, R.id.nav_spotify_recently_listened);
     }
     static private void afficherOptionDeconnecteSpotify(Menu menu) {
         Log.d(TAG, "afficherOptionDeconnecteSpotify: Started");
         menu.findItem(R.id.nav_spotify_lier).setVisible(true);
         modifierVisibiliteMenu(false, menu, R.id.nav_spotify_liste_lecture, R.id.nav_spotify_chanson_aimee,
-                R.id.nav_spotify_bibliotheque, R.id.nav_spotify_logout);
+                R.id.nav_spotify_bibliotheque, R.id.nav_spotify_logout, R.id.nav_spotify_recently_listened);
     }
     static private void modifierVisibiliteMenu(boolean estVisible, Menu menu, int... options) {
         for (int option : options) {

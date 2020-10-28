@@ -30,9 +30,11 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.google.android.material.navigation.NavigationView;
 import com.spotify.android.appremote.api.ContentApi;
 import com.spotify.android.appremote.api.ImagesApi;
+import com.spotify.android.appremote.api.UserApi;
 import com.spotify.android.appremote.internal.ImagesApiImpl;
 import com.spotify.protocol.client.CallResult;
 import com.spotify.protocol.types.ImageUri;
+import com.spotify.protocol.types.LibraryState;
 import com.spotify.protocol.types.ListItem;
 import com.spotify.protocol.types.ListItems;
 
@@ -76,6 +78,13 @@ public class SpotifyMusicListActivity extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.list_spotify_bibliotheque_start);
         initializeListViewContent();
     }
+
+    private void TestAddFonctionOfLibraryManager() {
+        SpotifyLibraryManager libraryManager = new SpotifyLibraryManager(LierSpotifyActivity.appRemote.getUserApi());
+        libraryManager.addToLibrary("spotify:album:5i7MWkomxEzODJS6ZNJO2l");
+        libraryManager.getLibraryState("spotify:album:5i7MWkomxEzODJS6ZNJO2l",SpotifyLibraryManager.getBaseLibraryStateResult());
+    }
+
     private void determineContentViewToSet(){
         if(lastSelected != null) {
             if ((lastSelected.id.contains(SPOTIFY_ALBUM_LINK) && !lastSelected.id.equals(SPOTIFY_ID_ALBUMS)) ||
@@ -309,6 +318,32 @@ class SpotifyNavigationList{
     public void setListOnScrollListener(AbsListView.OnScrollListener scrollListener, ListView listView){
         listView.setOnScrollListener(scrollListener);
     }
-    // TODO Actualiser affichage pôur l'artiste
+    // TODO Actualiser affichage pour l'artiste
     // TODO actualiser l'affichage pour prendre le même que la bibliothèque locale.
+}
+class SpotifyLibraryManager{
+    private static final String TAG = "SPOTIFY_LIBRARY_MANAGER";
+    UserApi userApi;
+    public SpotifyLibraryManager(UserApi api){
+        userApi = api;
+    }
+
+    public void addToLibrary(String uri){
+        userApi.addToLibrary(uri);
+    }
+    public void removeFromLibrary(String uri){
+        userApi.removeFromLibrary(uri);
+    }
+    public void getLibraryState(String uri, CallResult.ResultCallback<LibraryState> callback){
+        userApi.getLibraryState(uri).setResultCallback(callback);
+    }
+
+    public static CallResult.ResultCallback<LibraryState> getBaseLibraryStateResult(){ //Peut être l'enlever ou le modifier complètement le onResult
+        return new CallResult.ResultCallback<LibraryState>() {
+            @Override
+            public void onResult(LibraryState libraryState) {
+                Log.i(TAG, libraryState.canAdd + " " + libraryState.isAdded + " for uri: " + libraryState.uri);
+            }
+        };
+    }
 }

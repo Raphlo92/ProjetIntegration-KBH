@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:2:1-45:12
-INJECTED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:2:1-45:12
-INJECTED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:2:1-45:12
-INJECTED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:2:1-45:12
+ADDED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:2:1-46:12
+INJECTED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:2:1-46:12
+INJECTED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:2:1-46:12
+INJECTED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:2:1-46:12
 MERGED from [androidx.constraintlayout:constraintlayout:2.0.2] C:\Users\Colin Roy\.gradle\caches\transforms-2\files-2.1\d6f2d911e6420eddbe1a6bafc49b6353\constraintlayout-2.0.2\AndroidManifest.xml:2:1-11:12
 MERGED from [androidx.navigation:navigation-ui:2.3.0] C:\Users\Colin Roy\.gradle\caches\transforms-2\files-2.1\d0f92c0b26fabb47a28488bab3cc8456\navigation-ui-2.3.0\AndroidManifest.xml:17:1-24:12
 MERGED from [com.google.android.material:material:1.2.1] C:\Users\Colin Roy\.gradle\caches\transforms-2\files-2.1\fee048776b4040c0a73e83e4303a6cff\material-1.2.1\AndroidManifest.xml:17:1-24:12
@@ -40,20 +40,20 @@ MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\Colin Roy\.gr
 MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.2.0] C:\Users\Colin Roy\.gradle\caches\transforms-2\files-2.1\336e4d7f5d818582899034e03216341f\lifecycle-livedata-core-2.2.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.arch.core:core-runtime:2.1.0] C:\Users\Colin Roy\.gradle\caches\transforms-2\files-2.1\e737982ea91fdf7ea321d344c75db0be\core-runtime-2.1.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.annotation:annotation-experimental:1.0.0] C:\Users\Colin Roy\.gradle\caches\transforms-2\files-2.1\1e0614212b25f4ae67724a3587ed8129\jetified-annotation-experimental-1.0.0\AndroidManifest.xml:17:1-24:12
-INJECTED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:2:1-45:12
-INJECTED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:2:1-45:12
-INJECTED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:2:1-45:12
+INJECTED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:2:1-46:12
+INJECTED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:2:1-46:12
+INJECTED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:2:1-46:12
 	package
 		ADDED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:3:5-45
 		INJECTED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml
 		INJECTED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml
 	android:versionName
 		INJECTED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml
-		ADDED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:2:1-45:12
+		ADDED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:2:1-46:12
 		INJECTED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml
 	android:versionCode
 		INJECTED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml
-		ADDED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:2:1-45:12
+		ADDED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:2:1-46:12
 		INJECTED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml
 	xmlns:android
 		ADDED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:2:11-69
@@ -74,7 +74,7 @@ ADDED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Proje
 	android:name
 		ADDED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:8:22-78
 application
-ADDED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:10:5-43:19
+ADDED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:10:5-44:19
 MERGED from [androidx.constraintlayout:constraintlayout:2.0.2] C:\Users\Colin Roy\.gradle\caches\transforms-2\files-2.1\d6f2d911e6420eddbe1a6bafc49b6353\constraintlayout-2.0.2\AndroidManifest.xml:9:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.0.2] C:\Users\Colin Roy\.gradle\caches\transforms-2\files-2.1\d6f2d911e6420eddbe1a6bafc49b6353\constraintlayout-2.0.2\AndroidManifest.xml:9:5-20
 MERGED from [com.google.android.material:material:1.2.1] C:\Users\Colin Roy\.gradle\caches\transforms-2\files-2.1\fee048776b4040c0a73e83e4303a6cff\material-1.2.1\AndroidManifest.xml:22:5-20
@@ -105,72 +105,76 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\Co
 		ADDED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:11:9-35
 	android:theme
 		ADDED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:16:9-40
+activity#com.example.projetdintegration.SpotifyRecentlyListenedActivity
+ADDED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:17:9-78
+	android:name
+		ADDED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:17:19-66
 activity#com.example.projetdintegration.SpotifyDeconnectionActivity
-ADDED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:17:9-74
+ADDED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:18:9-65
 	android:name
-		ADDED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:17:19-62
+		ADDED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:18:19-62
 activity#com.example.projetdintegration.SpotifyPlaylistActivity
-ADDED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:18:9-61
+ADDED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:19:9-61
 	android:name
-		ADDED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:18:19-58
+		ADDED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:19:19-58
 activity#com.example.projetdintegration.SpotifyLikedSongsActivity
-ADDED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:19:9-63
+ADDED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:20:9-63
 	android:name
-		ADDED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:19:19-60
+		ADDED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:20:19-60
 activity#com.example.projetdintegration.MediaActivity
-ADDED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:20:9-23:59
+ADDED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:21:9-24:59
 	android:label
+		ADDED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:23:13-42
+	android:theme
+		ADDED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:24:13-56
+	android:name
 		ADDED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:22:13-42
-	android:theme
-		ADDED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:23:13-56
-	android:name
-		ADDED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:21:13-42
 activity#com.example.projetdintegration.MusicListActivity
-ADDED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:24:9-27:59
+ADDED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:25:9-28:59
 	android:label
+		ADDED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:27:13-46
+	android:theme
+		ADDED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:28:13-56
+	android:name
 		ADDED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:26:13-46
-	android:theme
-		ADDED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:27:13-56
-	android:name
-		ADDED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:25:13-46
 activity#com.example.projetdintegration.splashScreenActivity
-ADDED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:28:9-34:20
+ADDED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:29:9-35:20
 	android:name
-		ADDED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:28:19-55
+		ADDED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:29:19-55
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:29:13-33:29
+ADDED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:30:13-34:29
 action#android.intent.action.MAIN
-ADDED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:30:17-69
+ADDED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:31:17-69
 	android:name
-		ADDED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:30:25-66
+		ADDED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:31:25-66
 category#android.intent.category.LAUNCHER
-ADDED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:32:17-77
+ADDED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:33:17-77
 	android:name
-		ADDED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:32:27-74
+		ADDED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:33:27-74
 activity#com.example.projetdintegration.PlaylistListActivity
-ADDED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:35:9-38:59
+ADDED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:36:9-39:59
 	android:label
-		ADDED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:37:13-49
+		ADDED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:38:13-49
 	android:theme
-		ADDED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:38:13-56
+		ADDED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:39:13-56
 	android:name
-		ADDED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:36:13-49
+		ADDED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:37:13-49
 activity#com.example.projetdintegration.LierSpotifyActivity
-ADDED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:39:9-57
+ADDED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:40:9-57
 	android:name
-		ADDED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:39:19-54
+		ADDED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:40:19-54
 activity#com.example.projetdintegration.SpotifyMusicListActivity
-ADDED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:40:9-62
+ADDED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:41:9-62
 	android:name
-		ADDED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:40:19-59
+		ADDED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:41:19-59
 activity#com.example.projetdintegration.SpotifyMusicPlayer
-ADDED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:41:9-56
+ADDED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:42:9-56
 	android:name
-		ADDED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:41:19-53
+		ADDED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:42:19-53
 activity#com.example.projetdintegration.MainActivity
-ADDED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:42:9-50
+ADDED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:43:9-50
 	android:name
-		ADDED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:42:19-47
+		ADDED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:43:19-47
 uses-sdk
 INJECTED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from D:\Utilisateur\Colin Roy\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml

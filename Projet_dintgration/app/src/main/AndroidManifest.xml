@@ -14,7 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SpotifyDeconnectionActivity"></activity>
+        <activity android:name=".SpotifyRecentlyListenedActivity"></activity>
+        <activity android:name=".SpotifyDeconnectionActivity" />
         <activity android:name=".SpotifyPlaylistActivity" />
         <activity android:name=".SpotifyLikedSongsActivity" />
         <activity

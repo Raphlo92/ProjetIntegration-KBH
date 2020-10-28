@@ -1926,6 +1926,7 @@ id nav_spotify_chanson_aimee
 id nav_spotify_lier
 id nav_spotify_liste_lecture
 id nav_spotify_logout
+id nav_spotify_recently_listened
 id nav_view
 id navigation_header_container
 id never
@@ -2343,6 +2344,7 @@ string nav_spotify_bibliotheque
 string nav_spotify_liercompte
 string nav_spotify_liste_lecture
 string nav_spotify_logout
+string nav_spotify_recently_listened
 string nav_spotify_section
 string navigation_close_drawer_description
 string navigation_open_drawer_description
@@ -2359,6 +2361,7 @@ string spotify_bibliotheque_default_categorie
 string spotify_deconnexion_prompt
 string spotify_not_found
 string spotify_playlist_view_base_text
+string spotify_recently_played_base_text
 string status_bar_notification_info_overflow
 string title_activity_music__page
 style AlertDialog_AppCompat
