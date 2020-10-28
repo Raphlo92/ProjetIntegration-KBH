@@ -1,9 +1,16 @@
 package com.example.projetdintegration.DBHelpers;
 
+import android.app.IntentService;
+import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.media.MediaMetadata;
 import android.media.MediaMetadataRetriever;
 import android.util.Log;
+import android.view.contentcapture.ContentCaptureCondition;
+
+import androidx.annotation.Nullable;
 
 import com.example.projetdintegration.DBHelpers.Classes.Album;
 import com.example.projetdintegration.DBHelpers.Classes.Artist;
@@ -26,23 +33,39 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
+
+
 public class DBInitializer {
     private static final String TAG = "DBInitializer";
     private static final int ARTIST_NAME_COUNT = 5;
     private static final int ALBUM_NAME_COUNT = 6;
-    private static final int MUSIC_NAME_COUNT = 7;
+    Context mContext;
     DBHelper dbHelper;
     SQLiteDatabase DBWriter;
     SQLiteDatabase DBReader;
     public DBInitializer(Context context) {
+        mContext = context;
         dbHelper = new DBHelper(context);
         DBWriter = dbHelper.getWritableDatabase();
         DBReader = dbHelper.getReadableDatabase();
     }
 
-    public void Init(ArrayList<File> files){
+    public static class DBInitialisingService extends IntentService{
 
-        
+        public DBInitialisingService() {
+            super("DBInitialisingService");
+        }
+
+        @Override
+        protected void onHandleIntent(@Nullable Intent intent) {
+            Log.d(TAG, "onHandleIntent: Started");
+            ArrayList<File> files = new ArrayList<>();
+            MusicFileExplorer.getAllChildren(MusicFileExplorer.DIRECTORY_MUSIC, files);
+            new DBInitializer(this).Init(files);
+        }
+    }
+
+    public void Init(ArrayList<File> files){
         Log.d(TAG, "Init: Started");
         String[] metadata;
 
@@ -53,9 +76,6 @@ public class DBInitializer {
 
         Log.d(TAG, "Init: FilesSize() = " + files.size());
         for (File file : files) {
-
-
-
             Log.d(TAG, "Init: File reading");
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
                 Path path = Paths.get(file.toURI());
@@ -77,6 +97,24 @@ public class DBInitializer {
                         Musics musicsDBHelper = new Musics(DBWriter);
                         musicsDBHelper.Insert(music);
                     }
+                    else if(mimeType.equals("image")){
+                        //TODO update image in Album DB Table
+
+                        //get Album Id by Name => name being the name of folder where the image is (ALBUM_NAME_COUNT = 6)
+                        //  PATH TO ALBUM PROPS : /storage/emulated/0/Music/{Artist}/{Album}/*/{PropFile}
+                        //                            1        2    3   4       5       6
+                        String albumName = path.getName(ALBUM_NAME_COUNT).toString();
+                        //update Album using know data (ID)
+                        //  update image = "imagePath" where Id = (ID)
+                        Albums albumsDBHelper = new Albums(DBWriter);
+
+                        ContentValues values = new ContentValues();
+                        values.put(DBHelper.Contract.TableAlbum.COLUMN_NAME_IMAGE, path.toAbsolutePath().toString());
+                        String whereClause = DBHelper.Contract.TableAlbum.COLUMN_NAME_TITLE + " = ?";
+                        String[] whereArgs = { albumName };
+
+                        albumsDBHelper.Update(values, whereClause, whereArgs);
+                    }
                 }
                 else if(path.getNameCount() == ARTIST_NAME_COUNT){
                     Log.d(TAG, "Init: artistName = " + path.getFileName());
@@ -92,7 +130,7 @@ public class DBInitializer {
                     Path musicPath = Paths.get(path.toAbsolutePath() + "/" + firstMusic);
                     metadata = getMetadata(musicPath.toAbsolutePath().toString());
 
-                    Album album = new Album(0, path.getFileName().toString(), path.getName(ARTIST_NAME_COUNT).toString(), metadata[2]);
+                    Album album = new Album(0, path.getFileName().toString(),metadata[4], path.getName(ARTIST_NAME_COUNT).toString(), metadata[2]);
                     Albums albumsDBHelper = new Albums(DBWriter);
                     albumsDBHelper.Insert(album);
                 }
@@ -189,6 +227,9 @@ public class DBInitializer {
             String album =  mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ALBUM);
             String genre =  mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_GENRE);
             String duration =  mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION);
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.P) {
+                String albumImagePath = mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_HAS_IMAGE);
+            }
 
 
             Log.d(TAG, "metadata: artist = " + artist);
