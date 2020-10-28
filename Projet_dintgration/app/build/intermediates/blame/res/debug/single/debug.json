@@ -20,12 +20,12 @@
         "source": "C:\\Users\\Kevin\\OneDrive\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\src\\main\\res\\raw\\boku.mp3"
     },
     {
-        "merged": "C:\\Users\\Kevin\\OneDrive\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_hamburger.png.flat",
-        "source": "C:\\Users\\Kevin\\OneDrive\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-hdpi\\ic_hamburger.png"
-    },
-    {
         "merged": "C:\\Users\\Kevin\\OneDrive\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_ic_favoris.xml.flat",
         "source": "C:\\Users\\Kevin\\OneDrive\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\src\\main\\res\\drawable-v24\\ic_favoris.xml"
+    },
+    {
+        "merged": "C:\\Users\\Kevin\\OneDrive\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_hamburger.png.flat",
+        "source": "C:\\Users\\Kevin\\OneDrive\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-hdpi\\ic_hamburger.png"
     },
     {
         "merged": "C:\\Users\\Kevin\\OneDrive\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_loudspeaker.png.flat",
@@ -72,16 +72,16 @@
         "source": "C:\\Users\\Kevin\\OneDrive\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher.png"
     },
     {
-        "merged": "C:\\Users\\Kevin\\OneDrive\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_file.png.flat",
-        "source": "C:\\Users\\Kevin\\OneDrive\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-hdpi\\ic_file.png"
+        "merged": "C:\\Users\\Kevin\\OneDrive\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_ic_delete.xml.flat",
+        "source": "C:\\Users\\Kevin\\OneDrive\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\src\\main\\res\\drawable-v24\\ic_delete.xml"
     },
     {
         "merged": "C:\\Users\\Kevin\\OneDrive\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21_ic_favoris.xml.flat",
         "source": "C:\\Users\\Kevin\\OneDrive\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-anydpi-v21\\ic_favoris.xml"
     },
     {
-        "merged": "C:\\Users\\Kevin\\OneDrive\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_ic_delete.xml.flat",
-        "source": "C:\\Users\\Kevin\\OneDrive\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\src\\main\\res\\drawable-v24\\ic_delete.xml"
+        "merged": "C:\\Users\\Kevin\\OneDrive\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_file.png.flat",
+        "source": "C:\\Users\\Kevin\\OneDrive\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-hdpi\\ic_file.png"
     },
     {
         "merged": "C:\\Users\\Kevin\\OneDrive\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_delete.png.flat",
@@ -156,12 +156,12 @@
         "source": "C:\\Users\\Kevin\\OneDrive\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-ldpi\\ic_favoris.png"
     },
     {
-        "merged": "C:\\Users\\Kevin\\OneDrive\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21_ic_hamburger_1.xml.flat",
-        "source": "C:\\Users\\Kevin\\OneDrive\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-anydpi-v21\\ic_hamburger_1.xml"
-    },
-    {
         "merged": "C:\\Users\\Kevin\\OneDrive\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_ic_baseline_play_arrow_24.xml.flat",
         "source": "C:\\Users\\Kevin\\OneDrive\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\src\\main\\res\\drawable-v24\\ic_baseline_play_arrow_24.xml"
+    },
+    {
+        "merged": "C:\\Users\\Kevin\\OneDrive\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21_ic_hamburger_1.xml.flat",
+        "source": "C:\\Users\\Kevin\\OneDrive\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-anydpi-v21\\ic_hamburger_1.xml"
     },
     {
         "merged": "C:\\Users\\Kevin\\OneDrive\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21_ic_launcher_background.xml.flat",
@@ -174,6 +174,10 @@
     {
         "merged": "C:\\Users\\Kevin\\OneDrive\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi_ic_favoris.png.flat",
         "source": "C:\\Users\\Kevin\\OneDrive\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxxhdpi\\ic_favoris.png"
+    },
+    {
+        "merged": "C:\\Users\\Kevin\\OneDrive\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable_header_designe.xml.flat",
+        "source": "C:\\Users\\Kevin\\OneDrive\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\src\\main\\res\\drawable\\header_designe.xml"
     },
     {
         "merged": "C:\\Users\\Kevin\\OneDrive\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_ic_baseline_stop_24.xml.flat",
@@ -220,12 +224,12 @@
         "source": "C:\\Users\\Kevin\\OneDrive\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-ldpi\\ic_launcher_background.png"
     },
     {
-        "merged": "C:\\Users\\Kevin\\OneDrive\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_favoris.png.flat",
-        "source": "C:\\Users\\Kevin\\OneDrive\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxhdpi\\ic_favoris.png"
-    },
-    {
         "merged": "C:\\Users\\Kevin\\OneDrive\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_ic_home.xml.flat",
         "source": "C:\\Users\\Kevin\\OneDrive\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\src\\main\\res\\drawable-v24\\ic_home.xml"
+    },
+    {
+        "merged": "C:\\Users\\Kevin\\OneDrive\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_favoris.png.flat",
+        "source": "C:\\Users\\Kevin\\OneDrive\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxhdpi\\ic_favoris.png"
     },
     {
         "merged": "C:\\Users\\Kevin\\OneDrive\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi_ic_hamburger.png.flat",
@@ -292,12 +296,12 @@
         "source": "C:\\Users\\Kevin\\OneDrive\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxxhdpi\\ic_loudspeaker.png"
     },
     {
-        "merged": "C:\\Users\\Kevin\\OneDrive\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_home.png.flat",
-        "source": "C:\\Users\\Kevin\\OneDrive\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-hdpi\\ic_home.png"
-    },
-    {
         "merged": "C:\\Users\\Kevin\\OneDrive\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_ic_folder_open_24.xml.flat",
         "source": "C:\\Users\\Kevin\\OneDrive\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\src\\main\\res\\drawable-v24\\ic_folder_open_24.xml"
+    },
+    {
+        "merged": "C:\\Users\\Kevin\\OneDrive\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_home.png.flat",
+        "source": "C:\\Users\\Kevin\\OneDrive\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-hdpi\\ic_home.png"
     },
     {
         "merged": "C:\\Users\\Kevin\\OneDrive\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_hamburger_1.png.flat",
@@ -364,16 +368,20 @@
         "source": "C:\\Users\\Kevin\\OneDrive\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxhdpi\\ic_muted.png"
     },
     {
+        "merged": "C:\\Users\\Kevin\\OneDrive\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\layout_appbar.xml.flat",
+        "source": "C:\\Users\\Kevin\\OneDrive\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\src\\main\\res\\layout\\appbar.xml"
+    },
+    {
         "merged": "C:\\Users\\Kevin\\OneDrive\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\anim_load_down_anim.xml.flat",
         "source": "C:\\Users\\Kevin\\OneDrive\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\src\\main\\res\\anim\\load_down_anim.xml"
     },
     {
-        "merged": "C:\\Users\\Kevin\\OneDrive\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_hamburger_1_small.png.flat",
-        "source": "C:\\Users\\Kevin\\OneDrive\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-xhdpi\\ic_hamburger_1_small.png"
-    },
-    {
         "merged": "C:\\Users\\Kevin\\OneDrive\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_ic_baseline_fast_rewind_24.xml.flat",
         "source": "C:\\Users\\Kevin\\OneDrive\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\src\\main\\res\\drawable-v24\\ic_baseline_fast_rewind_24.xml"
+    },
+    {
+        "merged": "C:\\Users\\Kevin\\OneDrive\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_hamburger_1_small.png.flat",
+        "source": "C:\\Users\\Kevin\\OneDrive\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-xhdpi\\ic_hamburger_1_small.png"
     },
     {
         "merged": "C:\\Users\\Kevin\\OneDrive\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_ic_loudspeaker.xml.flat",

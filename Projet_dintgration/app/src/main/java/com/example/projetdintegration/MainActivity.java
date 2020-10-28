@@ -13,7 +13,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.HorizontalScrollView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ScrollView;
 
@@ -29,6 +32,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -56,6 +60,9 @@ public class MainActivity extends AppCompatActivity {
     NavigationView navigationView;
     Toolbar toolbar;
     Menu menu;
+    Animation topAnim, BottomAnim;
+    ImageView image;
+    TextView logo, slogan;
     DBHelper dbHelper;
     Musics DBMusicsReader;
     Musics DBMusicsWriter;
@@ -64,6 +71,19 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //this is for the splash sreen
+        topAnim = AnimationUtils.loadAnimation(this,R.anim.top_animation);
+        BottomAnim = AnimationUtils.loadAnimation(this,R.anim.bottom_animation);
+
+        image = findViewById(R.id.imageView);
+        logo = findViewById(R.id.BottomAnim);
+        slogan = findViewById(R.id.BottomAnim);
+
+        image.setAnimation(topAnim);
+        logo.setAnimation(BottomAnim);
+        slogan.setAnimation(BottomAnim);
+
 
         int playlistId = getIntent().getIntExtra(DBHelper.Contract.TablePlaylist._ID, -1);
 
