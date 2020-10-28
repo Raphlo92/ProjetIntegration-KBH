@@ -34,7 +34,7 @@
             android:name="com.example.projetdintegration.MusicListActivity"
             android:label="MusicListActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name="com.example.projetdintegration.splashScreenActivity" >
+        <activity android:name="com.example.projetdintegration.HomeActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

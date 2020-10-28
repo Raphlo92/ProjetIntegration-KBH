@@ -15,22 +15,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.ScrollView;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-
-import android.os.Environment;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
@@ -42,7 +29,6 @@ import com.example.projetdintegration.DBHelpers.DBHelper;
 import com.example.projetdintegration.DBHelpers.DBInitializer;
 import com.example.projetdintegration.DBHelpers.Musics;
 import com.example.projetdintegration.DBHelpers.Playlists;
-import com.google.android.material.navigation.NavigationView;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -60,9 +46,6 @@ public class MainActivity extends AppCompatActivity {
     NavigationView navigationView;
     Toolbar toolbar;
     Menu menu;
-    Animation topAnim, BottomAnim;
-    ImageView image;
-    TextView logo, slogan;
     DBHelper dbHelper;
     Musics DBMusicsReader;
     Musics DBMusicsWriter;
@@ -71,19 +54,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        //this is for the splash sreen
-        topAnim = AnimationUtils.loadAnimation(this,R.anim.top_animation);
-        BottomAnim = AnimationUtils.loadAnimation(this,R.anim.bottom_animation);
-
-        image = findViewById(R.id.imageView);
-        logo = findViewById(R.id.BottomAnim);
-        slogan = findViewById(R.id.BottomAnim);
-
-        image.setAnimation(topAnim);
-        logo.setAnimation(BottomAnim);
-        slogan.setAnimation(BottomAnim);
-
 
         int playlistId = getIntent().getIntExtra(DBHelper.Contract.TablePlaylist._ID, -1);
 
@@ -157,6 +127,7 @@ public class MainActivity extends AppCompatActivity {
             super.onBackPressed();
     }
 
+
     public void openMediaActivity(View v) {
         Log.d(TAG, "openMediaActivity: Started");
         Intent intent = new Intent(this, MediaActivity.class);
@@ -165,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
 }
 
 class NavigationManager implements NavigationView.OnNavigationItemSelectedListener {
-    
+
     private static final String TAG = "NavigationManager";
 
     AppCompatActivity currentActivity;
