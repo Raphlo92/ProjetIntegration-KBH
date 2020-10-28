@@ -20,3 +20,10 @@ Projet_dintgration/.idea/misc.xml
 *.ser
 *.iml
 *.json
+*.lock
+*.bin
+*.ser
+*.iml
+*.txt
+*.apk
+*.zip
