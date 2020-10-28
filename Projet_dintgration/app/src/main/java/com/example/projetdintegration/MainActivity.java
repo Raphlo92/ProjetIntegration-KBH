@@ -32,12 +32,6 @@ import android.view.View;
 
 import com.google.android.material.navigation.NavigationView;
 
-public class MainActivity extends AppCompatActivity {
-
-    //just a simple comment
-    private static boolean firstRun = true;
-    private static final String TAG = "MainActivity";
-
 import com.example.projetdintegration.DBHelpers.Classes.IDBClass;
 import com.example.projetdintegration.DBHelpers.Classes.Music;
 import com.example.projetdintegration.DBHelpers.DBHelper;
@@ -109,7 +103,6 @@ public class MainActivity extends AppCompatActivity {
             public void gotoHome(){ }
         });
         navigationView.setCheckedItem(R.id.nav_home);
-        NavigationManager.afficherOptionDeconnecteSpotify(navigationView.getMenu());
         NavigationManager.determinerOptionsAfficher(navigationView.getMenu());
 
 
@@ -225,14 +218,12 @@ class NavigationManager implements NavigationView.OnNavigationItemSelectedListen
         // TODO startActivity();
     }
 
-    static public void afficherOptionConnecteSpotify(Menu menu) {
     public void gotoLierSpotify(){
         startActivity(LierSpotifyActivity.class);
     }
     public void gotoBibliothequeSpotify(){
 
     }
-    static private void afficherOptionConnecteSpotify(Menu menu) {
     static public void afficherOptionConnecteSpotify(Menu menu) {
         Log.d(TAG, "afficherOptionConnecteSpotify: Started");
         menu.findItem(R.id.nav_spotify_lier).setVisible(false);
@@ -240,7 +231,7 @@ class NavigationManager implements NavigationView.OnNavigationItemSelectedListen
                 R.id.nav_spotify_bibliotheque, R.id.nav_spotify_logout);
     }
 
-    static public void afficherOptionDeconnecteSpotify(Menu menu) {
+
     static private void afficherOptionDeconnecteSpotify(Menu menu) {
         Log.d(TAG, "afficherOptionDeconnecteSpotify: Started");
         menu.findItem(R.id.nav_spotify_lier).setVisible(true);

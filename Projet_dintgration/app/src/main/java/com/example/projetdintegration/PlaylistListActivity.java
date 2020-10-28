@@ -69,11 +69,7 @@ public class PlaylistListActivity extends AppCompatActivity {
             }
         });
         navigationView.setCheckedItem(R.id.nav_liste_lecture);
-<<<<<<< HEAD
-        NavigationManager.afficherOptionDeconnecteSpotify(navigationView.getMenu());
-=======
         NavigationManager.determinerOptionsAfficher(navigationView.getMenu());
->>>>>>> MergedProject
         //endregion
 
         final ListView listView = (ListView) findViewById(R.id.listView);
