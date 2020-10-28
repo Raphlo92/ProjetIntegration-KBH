@@ -2154,6 +2154,7 @@ layout activity_main
 layout activity_media_activity
 layout activity_music_page
 layout activity_playlist
+layout activity_spotify_deconnection
 layout album_view_layout
 layout com_spotify_sdk_login_activity
 layout com_spotify_sdk_login_dialog
@@ -2267,6 +2268,8 @@ string abc_searchview_description_voice
 string abc_shareactionprovider_share_with
 string abc_shareactionprovider_share_with_application
 string abc_toolbar_collapse_description
+string alertbox_negative_button_text
+string alertbox_positive_button_text
 string app_name
 string appbar_scrolling_view_behavior
 string bottom_sheet_behavior
@@ -2353,6 +2356,8 @@ string previous
 string search_menu_title
 string second_fragment_label
 string spotify_bibliotheque_default_categorie
+string spotify_deconnexion_prompt
+string spotify_not_found
 string spotify_playlist_view_base_text
 string status_bar_notification_info_overflow
 string title_activity_music__page

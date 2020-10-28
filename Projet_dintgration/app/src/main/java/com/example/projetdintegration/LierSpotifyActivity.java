@@ -112,8 +112,8 @@ public class LierSpotifyActivity extends AppCompatActivity {
                 if(throwable instanceof NotLoggedInException || throwable instanceof UserNotAuthorizedException){
 
                 }else if (throwable instanceof CouldNotFindSpotifyApp) {
-                    createAlertBox(context,"Spotify n'a pas été trouvé, voulez-vous télécharger l'application du Google Play Store ?",
-                            "OUI", new DialogInterface.OnClickListener() {
+                    createAlertBox(context,R.string.spotify_not_found,
+                            R.string.alertbox_positive_button_text, new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     try{
@@ -122,24 +122,22 @@ public class LierSpotifyActivity extends AppCompatActivity {
                                         currentActivity.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.spotify.music")));
                                     }
                                 }
-                            },"NON", new DialogInterface.OnClickListener() {
+                            },R.string.alertbox_negative_button_text, new DialogInterface.OnClickListener() {
                         @Override
-                        public void onClick(DialogInterface dialog, int which) {
-
-                        }
+                        public void onClick(DialogInterface dialog, int which) { }
                     }).show();
                 }
                 Log.d("SpotifyConnectionError",throwable.getMessage(), throwable);
             }
         };
     }
-    public static AlertDialog.Builder createAlertBox(Context context, String message, String positiveButtonText,
+    public static AlertDialog.Builder createAlertBox(Context context, int message, int positiveButtonText,
                                               DialogInterface.OnClickListener positiveResponseAction,
-                                              String negativeButtonText,
+                                              int negativeButtonText,
                                               DialogInterface.OnClickListener negativeResponseAction){
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setMessage(message).setPositiveButton(positiveButtonText,positiveResponseAction)
-                .setNegativeButton(negativeButtonText,negativeResponseAction);
+        builder.setMessage(context.getResources().getString(message)).setPositiveButton(context.getResources().getString(positiveButtonText),positiveResponseAction)
+                .setNegativeButton(context.getResources().getString(negativeButtonText),negativeResponseAction);
         return builder;
     }
 }

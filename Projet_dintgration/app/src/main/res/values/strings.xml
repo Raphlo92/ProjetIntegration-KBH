@@ -29,6 +29,8 @@
     <string name="loadmore">Veuillez patienter, en recherche de plus de contenu</string>
     <string name="spotify_bibliotheque_default_categorie">Votre bibliothèque</string>
     <string name="spotify_playlist_view_base_text">Vos listes de lectures</string>
-
-
+    <string name="spotify_not_found">Spotify n\'a pas été trouvé, voulez-vous télécharger l\'application du Google Play Store ?</string>
+    <string name="alertbox_positive_button_text">OUI</string>
+    <string name="alertbox_negative_button_text">NON</string>
+    <string name="spotify_deconnexion_prompt">Voulez-vous vraiment vous déconnecter de Spotify ?</string>
 </resources>

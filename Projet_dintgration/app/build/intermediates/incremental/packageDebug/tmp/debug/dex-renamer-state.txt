@@ -1,4 +1,4 @@
-#Mon Oct 26 16:21:44 EDT 2020
+#Wed Oct 28 11:22:17 EDT 2020
 base.0=D\:\\Utilisateur\\Colin Roy\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
 path.0=classes.dex
 renamed.0=classes.dex

@@ -152,6 +152,9 @@ class NavigationManager implements NavigationView.OnNavigationItemSelectedListen
             case R.id.nav_spotify_liste_lecture:
                 gotoListeLectureSpotify();
                 break;
+            case R.id.nav_spotify_logout:
+                gotoDeconnectionSpotify();
+                break;
         }
         return true;
     }
@@ -183,6 +186,7 @@ class NavigationManager implements NavigationView.OnNavigationItemSelectedListen
     }
     protected void gotoLikedSongsSpotify(){startActivity(SpotifyLikedSongsActivity.class);}
     protected void gotoListeLectureSpotify() { startActivity(SpotifyPlaylistActivity.class);}
+    protected void gotoDeconnectionSpotify(){startActivity(SpotifyDeconnectionActivity.class);}
     static private void afficherOptionConnecteSpotify(Menu menu) {
         Log.d(TAG, "afficherOptionConnecteSpotify: Started");
         menu.findItem(R.id.nav_spotify_lier).setVisible(false);
@@ -207,4 +211,5 @@ class NavigationManager implements NavigationView.OnNavigationItemSelectedListen
             afficherOptionDeconnecteSpotify(menu);
         }
     }
+
 }

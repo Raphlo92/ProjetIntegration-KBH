@@ -64,12 +64,12 @@
         "source": "D:\\Utilisateur\\Colin Roy\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-mdpi\\ic_home.png"
     },
     {
-        "merged": "D:\\Utilisateur\\Colin Roy\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi_ic_home.png.flat",
-        "source": "D:\\Utilisateur\\Colin Roy\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-ldpi\\ic_home.png"
-    },
-    {
         "merged": "D:\\Utilisateur\\Colin Roy\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\layout_playlist_listitem_layout.xml.flat",
         "source": "D:\\Utilisateur\\Colin Roy\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\src\\main\\res\\layout\\playlist_listitem_layout.xml"
+    },
+    {
+        "merged": "D:\\Utilisateur\\Colin Roy\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi_ic_home.png.flat",
+        "source": "D:\\Utilisateur\\Colin Roy\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-ldpi\\ic_home.png"
     },
     {
         "merged": "D:\\Utilisateur\\Colin Roy\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_hamburger_1_small.png.flat",
@@ -506,6 +506,10 @@
     {
         "merged": "D:\\Utilisateur\\Colin Roy\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_delete.png.flat",
         "source": "D:\\Utilisateur\\Colin Roy\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxhdpi\\ic_delete.png"
+    },
+    {
+        "merged": "D:\\Utilisateur\\Colin Roy\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_spotify_deconnection.xml.flat",
+        "source": "D:\\Utilisateur\\Colin Roy\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\src\\main\\res\\layout\\activity_spotify_deconnection.xml"
     },
     {
         "merged": "D:\\Utilisateur\\Colin Roy\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_favorite_24.png.flat",
