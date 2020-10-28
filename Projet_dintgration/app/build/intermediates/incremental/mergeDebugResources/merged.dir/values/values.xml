@@ -1046,6 +1046,7 @@
     <string name="nav_favoris">Favoris</string>
     <string name="nav_home">Page d\'accueil</string>
     <string name="nav_liste_lecture">Listes de lecture</string>
+    <string name="nav_mediaActivity">En écoute</string>
     <string name="nav_spotify_aimee">Chansons aimées</string>
     <string name="nav_spotify_bibliotheque">Bibliothèque Spotify</string>
     <string name="nav_spotify_liercompte">Lier un compte</string>

@@ -28,6 +28,7 @@ public class Albums extends AbstractDBHelper{
 
         values.put(TableAlbum._ID, 0);
         values.put(TableAlbum.COLUMN_NAME_TITLE, "Album1");
+        values.put(TableAlbum.COLUMN_NAME_IMAGE, "Album1.png");
         values.put(TableAlbum.COLUMN_NAME_ID_ARTIST, 0);
         values.put(TableAlbum.COLUMN_NAME_ID_CATEGORY, 1);
 
@@ -38,6 +39,7 @@ public class Albums extends AbstractDBHelper{
 
         values.put(TableAlbum._ID, 1);
         values.put(TableAlbum.COLUMN_NAME_TITLE, "Album2");
+        values.put(TableAlbum.COLUMN_NAME_IMAGE, "Album2.png");
         values.put(TableAlbum.COLUMN_NAME_ID_ARTIST, 1);
         values.put(TableAlbum.COLUMN_NAME_ID_CATEGORY, 0);
 
@@ -59,6 +61,7 @@ public class Albums extends AbstractDBHelper{
         int categoryId = Categories.getIdByName(DB, album.getCategory());
 
         values.put(TableAlbum.COLUMN_NAME_TITLE, album.getName());
+        values.put(TableAlbum.COLUMN_NAME_IMAGE, album.getImagePath());
         values.put(TableAlbum.COLUMN_NAME_ID_ARTIST, album.getArtist());
         values.put(TableAlbum.COLUMN_NAME_ID_CATEGORY, album.getCategory());
 
@@ -80,10 +83,11 @@ public class Albums extends AbstractDBHelper{
             //region set values
             int id =  cursor.getInt(cursor.getColumnIndexOrThrow(TableAlbum._ID));
             String title = cursor.getString(cursor.getColumnIndexOrThrow(TableAlbum.COLUMN_NAME_TITLE));
+            String imagePath = cursor.getString(cursor.getColumnIndexOrThrow(TableAlbum.COLUMN_NAME_IMAGE));
             String artist = Artists.getNameById(DB, cursor.getInt(cursor.getColumnIndexOrThrow(TableAlbum.COLUMN_NAME_ID_ARTIST)));
             String category = Categories.getNameById(DB, cursor.getInt(cursor.getColumnIndexOrThrow(TableAlbum.COLUMN_NAME_ID_CATEGORY)));
             //endregion
-            newAlbums.add(new Album(id, title, artist, category));
+            newAlbums.add(new Album(id, title, imagePath, artist, category));
         }
         albums = newAlbums;
         return newAlbums;

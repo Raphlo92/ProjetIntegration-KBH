@@ -7,6 +7,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.app.IntentService;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,6 +21,13 @@ import android.widget.ListView;
 
 import android.view.View;
 import android.widget.TextView;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -62,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
         DBMusicsWriter = new Musics(dbHelper.getWritableDatabase());
 
         Log.d(TAG, "onCreate: Started.");
+
 
 
         if (firstRun) {
@@ -171,11 +180,11 @@ class NavigationManager implements NavigationView.OnNavigationItemSelectedListen
                 Log.d(TAG, "onNavigationItemSelected: Switched to bibliotheque");
                 gotoBibliotheque();
                 break;
-            /*case R.id.nav_music_page:
+            case R.id.nav_mediaActivity:
                 Log.d(TAG, "onNavigationItemSelected: Switched to bibliotheque");
                 //gotoBibliotheque();
                 startActivity(MediaActivity.class);
-                break;*/
+                break;
             case R.id.nav_spotify_lier:
                 gotoLierSpotify();
                 break;

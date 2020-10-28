@@ -1914,6 +1914,7 @@ id nav_graph
 id nav_home
 id nav_host_fragment_container
 id nav_liste_lecture
+id nav_mediaActivity
 id nav_spotify_bibliotheque
 id nav_spotify_chanson_aimee
 id nav_spotify_lier
@@ -2323,6 +2324,7 @@ string nav_bibliotheque
 string nav_favoris
 string nav_home
 string nav_liste_lecture
+string nav_mediaActivity
 string nav_spotify_aimee
 string nav_spotify_bibliotheque
 string nav_spotify_liercompte

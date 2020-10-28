@@ -38,13 +38,16 @@ public class HomeActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_home);
         animtionsplashsreen();
+
+
+        Intent intent = new Intent(this, DBInitializer.DBInitialisingService.class);
+        startService(intent);
     }
 
-    public void animtionsplashsreen()
-    {
+    public void animtionsplashsreen() {
         //this is for the splash sreen
-        topAnim = AnimationUtils.loadAnimation(this,R.anim.top_animation);
-        BottomAnim = AnimationUtils.loadAnimation(this,R.anim.bottom_animation);
+        topAnim = AnimationUtils.loadAnimation(this, R.anim.top_animation);
+        BottomAnim = AnimationUtils.loadAnimation(this, R.anim.bottom_animation);
 
         image1 = findViewById(R.id.musicdroite);
         image2 = findViewById(R.id.musicgauche);
@@ -63,28 +66,9 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(intent);
                 finish();
             }
-        },SPLASH_SREEN);
+        }, SPLASH_SREEN);
 
 
-        int playlistId = getIntent().getIntExtra(DBHelper.Contract.TablePlaylist._ID, -1);
 
-        dbHelper = new DBHelper(getApplicationContext());
-        DBMusicsReader = new Musics(dbHelper.getReadableDatabase());
-        DBMusicsWriter = new Musics(dbHelper.getWritableDatabase());
-
-        if (firstRun) {
-            firstRun = false;
-            Thread th = new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    //ArrayList<File> files = MusicFileExplorer.getAllMusicFiles();
-                    ArrayList<File> files = new ArrayList<>();
-                    MusicFileExplorer.getAllChildren(MusicFileExplorer.DIRECTORY_MUSIC, files);
-                    new DBInitializer(context).Init(files);
-                }
-            });
-
-            th.start();
-        }
     }
 }
