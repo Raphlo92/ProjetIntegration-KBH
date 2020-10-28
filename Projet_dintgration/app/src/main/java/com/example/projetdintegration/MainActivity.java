@@ -66,7 +66,12 @@ public class MainActivity extends AppCompatActivity {
 
         if (firstRun) {
             firstRun = false;
-            Thread th = new Thread(new Runnable() {
+
+            Intent intent = new Intent(this, DBInitializer.DBInitialisingService.class);
+
+            startService(intent);
+
+            /*Thread th = new Thread(new Runnable() {
                 @Override
                 public void run() {
                     //ArrayList<File> files = MusicFileExplorer.getAllMusicFiles();
@@ -76,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
 
-            th.start();
+            th.start();*/
         }
 
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);

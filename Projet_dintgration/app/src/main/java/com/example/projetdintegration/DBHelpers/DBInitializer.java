@@ -41,6 +41,8 @@ public class DBInitializer {
     }
 
     public void Init(ArrayList<File> files){
+
+        
         Log.d(TAG, "Init: Started");
         String[] metadata;
 
