@@ -101,17 +101,36 @@ public class Playlists extends AbstractDBHelper {
     }
 
     public void AddToPlaylist(int musicId, int playlistId){
-        ContentValues values = new ContentValues();
+        if(playlistId != -1){
+            ContentValues values = new ContentValues();
 
-        values.put(TableMusicPlaylist.COLUMN_NAME_ID_MUSIC, musicId);
-        values.put(TableMusicPlaylist.COLUMN_NAME_ID_PLAYLIST, playlistId);
+            values.put(TableMusicPlaylist.COLUMN_NAME_ID_MUSIC, musicId);
+            values.put(TableMusicPlaylist.COLUMN_NAME_ID_PLAYLIST, playlistId);
 
-        DB.insert(TableMusicPlaylist.TABLE_NAME, null, values);
+            DB.insert(TableMusicPlaylist.TABLE_NAME, null, values);
+        }
+    }
+
+    public void AddToFavorites(int musicId){
+        String[] columns = { TableMusicPlaylist.COLUMN_NAME_ID_MUSIC };
+        int favoritesId = -1;
+        String where = TablePlaylist.COLUMN_NAME_TYPE + " = ?";
+        String[] whereArgs = {"favoris"};
+        Cursor cursor = DB.query(TableMusicPlaylist.TABLE_NAME, columns , where, whereArgs, null, null, null);
+        while (cursor.moveToNext()){
+            favoritesId =  cursor.getInt(cursor.getColumnIndexOrThrow(TableMusicPlaylist.COLUMN_NAME_ID_MUSIC));
+        }
+
+        cursor.close();
+        AddToPlaylist(musicId, favoritesId);
     }
 
     public ArrayList<Integer> getAllMusicsIdsInPlaylist(int playlistId){
+        //fixed by using playlist Id
         String[] columns = { TableMusicPlaylist.COLUMN_NAME_ID_MUSIC };
-        Cursor cursor = DB.query(TableMusicPlaylist.TABLE_NAME, columns , null, null, null, null, null);
+        String where = TableMusicPlaylist.COLUMN_NAME_ID_PLAYLIST + " = ?";
+        String[] whereArgs = { playlistId + ""};
+        Cursor cursor = DB.query(TableMusicPlaylist.TABLE_NAME, columns , where, whereArgs, null, null, null);
 
         ArrayList<Integer> ids = new ArrayList<>();
 
@@ -163,5 +182,19 @@ public class Playlists extends AbstractDBHelper {
         musics = musicsDBHelper.Select(columns, whereClause, null, null, null, null);
 
         return musics;
+    }
+
+    public static String getPlaylistName(SQLiteDatabase db, int playlistId){
+        String name = null;
+        String selection = TablePlaylist._ID + " = ?";
+        String[] selectionArgs = { playlistId + "" };
+        Cursor cursor = db.query(TABLE_NAME, null, selection, selectionArgs, null, null, null);
+
+        while (cursor.moveToNext()){
+            name = cursor.getString(cursor.getColumnIndexOrThrow(TablePlaylist.COLUMN_NAME_NAME));
+        }
+
+        cursor.close();
+        return name;
     }
 }

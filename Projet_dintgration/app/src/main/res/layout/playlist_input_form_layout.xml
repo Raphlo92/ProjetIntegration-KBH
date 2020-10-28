@@ -13,7 +13,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
-        android:hint="Nom"
+        android:hint="@string/placeholderPlaylistName"
         android:singleLine="true">
         <requestFocus/>
     </EditText>
