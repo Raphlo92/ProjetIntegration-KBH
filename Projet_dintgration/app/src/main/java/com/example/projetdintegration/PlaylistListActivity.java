@@ -25,9 +25,10 @@ public class PlaylistListActivity extends AppCompatActivity {
     NavigationView navigationView;
     Toolbar toolbar;
     Menu menu;
-    DBHelper dbHelper;
-    Playlists DBPlaylistsReader;
-    Playlists DBPlaylistsWriter;
+    static DBHelper dbHelper;
+    static Playlists DBPlaylistsReader;
+    static Playlists DBPlaylistsWriter;
+    static PlaylistListAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,8 +83,21 @@ public class PlaylistListActivity extends AppCompatActivity {
         }
 
 
-        PlaylistListAdapter adapter = new PlaylistListAdapter(this, R.layout.playlist_listitem_layout, playlists);
+        adapter = new PlaylistListAdapter(this, R.layout.playlist_listitem_layout, playlists);
         listView.setAdapter(adapter);
 
+    }
+
+    public static void RefreshView(){
+        ArrayList<IDBClass> dbPlaylists = DBPlaylistsReader.Select(null, null, null, null, null, null);
+        ArrayList<Playlist> playlists = new ArrayList<>();
+
+        for (IDBClass playlist : dbPlaylists) {
+            playlists.add((Playlist) playlist);
+        }
+
+        adapter.clear();
+        adapter.addAll(playlists);
+        adapter.notifyDataSetChanged();
     }
 }
