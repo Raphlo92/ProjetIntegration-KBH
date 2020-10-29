@@ -11,6 +11,7 @@
         android:layout_height="fill_parent"
         android:id="@+id/playlistItem"
         android:orientation="horizontal"
+        android:background="@color/colorPrimary"
         android:weightSum="100">
 
         <RelativeLayout

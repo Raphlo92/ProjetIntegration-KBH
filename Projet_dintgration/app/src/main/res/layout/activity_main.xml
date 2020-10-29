@@ -10,36 +10,35 @@
     android:layout_gravity="start"
     tools:openDrawer="start">
 
-    <!--<include
-        layout="@layout/appbar"
-
-        />-->
-
-    <!--<com.google.android.material.navigation.NavigationView
+    <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:headerLayout="@layout/navigation_drawer_header"
-        app:menu="@menu/main_menu">
+        app:menu="@menu/main_menu"
+        android:background="@color/colorPrimaryDark">
 
-    </com.google.android.material.navigation.NavigationView>-->
+    </com.google.android.material.navigation.NavigationView>
 
     <include
-        android:id="@+id/toolbar"
-        layout="@layout/appbar"></include>
+        android:id="@+id/appbar"
+        layout="@layout/appbar" />
 
-    <RelativeLayout android:layout_height="match_parent"
-        android:layout_width="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/appbar">
 
         <ListView
+            android:id="@+id/listView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/listView1">
+            android:layout_height="wrap_content">
 
         </ListView>
 
-        <androidx.appcompat.widget.Toolbar
+        <!--<androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -48,6 +47,6 @@
             android:layout_marginLeft="19dp"
             android:layout_marginTop="18dp"
             android:minHeight="?attr/actionBarSize"
-            app:navigationIcon="@drawable/ic_hamburger_1" />
+            app:navigationIcon="@drawable/ic_hamburger_1" />-->
     </RelativeLayout>
 </androidx.drawerlayout.widget.DrawerLayout>

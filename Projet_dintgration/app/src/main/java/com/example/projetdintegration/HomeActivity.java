@@ -13,9 +13,11 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.projetdintegration.DBHelpers.Categories;
 import com.example.projetdintegration.DBHelpers.DBHelper;
 import com.example.projetdintegration.DBHelpers.DBInitializer;
 import com.example.projetdintegration.DBHelpers.Musics;
+import com.example.projetdintegration.DBHelpers.Playlists;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -38,7 +40,6 @@ public class HomeActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_home);
         animtionsplashsreen();
-
 
         Intent intent = new Intent(this, DBInitializer.DBInitialisingService.class);
         startService(intent);

@@ -100,6 +100,10 @@ public class Playlists extends AbstractDBHelper {
         nbUpdatedRows = DB.update(TABLE_NAME, values, whereClause, whereArgs);
     }
 
+    public void initFavorites(){
+        Insert(new Playlist(0, "Favoris", "favoris"));
+    }
+
     public void AddToPlaylist(int musicId, int playlistId){
         if(playlistId != -1){
             ContentValues values = new ContentValues();
@@ -112,17 +116,22 @@ public class Playlists extends AbstractDBHelper {
     }
 
     public void AddToFavorites(int musicId){
-        String[] columns = { TableMusicPlaylist.COLUMN_NAME_ID_MUSIC };
+        AddToPlaylist(musicId, getFavoritesId());
+    }
+
+    public int getFavoritesId(){
+        String[] columns = { TablePlaylist._ID };
         int favoritesId = -1;
         String where = TablePlaylist.COLUMN_NAME_TYPE + " = ?";
         String[] whereArgs = {"favoris"};
-        Cursor cursor = DB.query(TableMusicPlaylist.TABLE_NAME, columns , where, whereArgs, null, null, null);
+        Cursor cursor = DB.query(TablePlaylist.TABLE_NAME, columns , where, whereArgs, null, null, null);
         while (cursor.moveToNext()){
-            favoritesId =  cursor.getInt(cursor.getColumnIndexOrThrow(TableMusicPlaylist.COLUMN_NAME_ID_MUSIC));
+            favoritesId =  cursor.getInt(cursor.getColumnIndexOrThrow(TablePlaylist._ID));
         }
 
+        Log.d(TAG, "getFavoritesId: Id = " + favoritesId);
         cursor.close();
-        AddToPlaylist(musicId, favoritesId);
+        return favoritesId;
     }
 
     public ArrayList<Integer> getAllMusicsIdsInPlaylist(int playlistId){

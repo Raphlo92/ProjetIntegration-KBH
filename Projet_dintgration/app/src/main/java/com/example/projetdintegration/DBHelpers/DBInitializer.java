@@ -74,6 +74,9 @@ public class DBInitializer {
         Categories categoriesDBHelper = new Categories(DBWriter);
         categoriesDBHelper.init();
 
+        Playlists playlistsDBHelper = new Playlists(DBWriter);
+        playlistsDBHelper.initFavorites();
+
         Log.d(TAG, "Init: FilesSize() = " + files.size());
         for (File file : files) {
             Log.d(TAG, "Init: File reading");

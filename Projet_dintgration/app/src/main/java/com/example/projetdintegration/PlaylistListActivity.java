@@ -3,6 +3,8 @@ package com.example.projetdintegration;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -52,6 +54,10 @@ public class PlaylistListActivity extends AppCompatActivity {
         for (IDBClass item : list) {
             Log.d(TAG, "onCreate: Categories: cat = " + item.getName());
         }
+
+        final ImageView imageView2 = (ImageView) findViewById(R.id.imageView2);
+        imageView2.setImageResource(R.drawable.ic_add);
+        imageView2.setVisibility(View.VISIBLE);
 
         //region Navigation
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);

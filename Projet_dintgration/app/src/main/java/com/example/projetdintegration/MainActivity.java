@@ -1,5 +1,6 @@
 package com.example.projetdintegration;
 
+import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -71,28 +72,6 @@ public class MainActivity extends AppCompatActivity {
 
         Log.d(TAG, "onCreate: Started.");
 
-
-
-        if (firstRun) {
-            firstRun = false;
-
-            Intent intent = new Intent(this, DBInitializer.DBInitialisingService.class);
-
-            startService(intent);
-
-            /*Thread th = new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    //ArrayList<File> files = MusicFileExplorer.getAllMusicFiles();
-                    ArrayList<File> files = new ArrayList<>();
-                    MusicFileExplorer.getAllChildren(MusicFileExplorer.DIRECTORY_MUSIC, files);
-                    new DBInitializer(context).Init(files);
-                }
-            });
-
-            th.start();*/
-        }
-
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -111,7 +90,11 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        final ListView listView = (ListView) findViewById(R.id.listView1);
+        final ListView listView = (ListView) findViewById(R.id.listView);
+
+        //final ImageView imageView2 = (ImageView) findViewById(R.id.imageView2);
+        //imageView2.setImageResource(R.drawable.ic_add);
+        //imageView2.setVisibility(View.INVISIBLE);
 
         ArrayList<IDBClass> dbMusics = new ArrayList<>();
         ArrayList<Music> musics = new ArrayList<>();
@@ -210,7 +193,12 @@ class NavigationManager implements NavigationView.OnNavigationItemSelectedListen
 
     public void gotoFavoris() {
         Log.d(TAG, "gotoFavoris: Started");
-        //TODO startActivity();
+        DBHelper dbHelper = new DBHelper(context);
+        Playlists playlistsReader = new Playlists(dbHelper.getReadableDatabase());
+
+        Intent intent = new Intent(context, MusicListActivity.class);
+        intent.putExtra(DBHelper.Contract.TablePlaylist._ID, playlistsReader.getFavoritesId());
+        context.startActivity(intent);
     }
 
     public void gotoBibliotheque() {
@@ -220,7 +208,7 @@ class NavigationManager implements NavigationView.OnNavigationItemSelectedListen
 
     public void gotoListeLecture() {
         Log.d(TAG, "gotoListeLecture: Started");
-        // TODO startActivity();
+        startActivity(PlaylistListActivity.class);
     }
 
     public void gotoLierSpotify(){
