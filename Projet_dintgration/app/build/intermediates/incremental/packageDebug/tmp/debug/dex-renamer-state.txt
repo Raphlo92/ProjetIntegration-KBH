@@ -1,4 +1,4 @@
-#Wed Oct 14 21:41:09 EDT 2020
-base.0=C\:\\Users\\raphc\\OneDrive\\Documents\\Ecole\\KBH-ProjetInt\\github\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
+#Wed Oct 28 19:56:03 EDT 2020
+base.0=D\:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
 path.0=classes.dex
 renamed.0=classes.dex

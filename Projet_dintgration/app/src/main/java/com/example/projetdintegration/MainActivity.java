@@ -126,11 +126,10 @@ class NavigationManager implements NavigationView.OnNavigationItemSelectedListen
                 Log.d(TAG, "onNavigationItemSelected: Switched to bibliotheque");
                 gotoBibliotheque();
                 break;
-            /*case R.id.nav_music_page:
+            case R.id.nav_mediaActivity:
                 Log.d(TAG, "onNavigationItemSelected: Switched to bibliotheque");
-                //gotoBibliotheque();
-                startActivity(MediaActivity.class);
-                break;*/
+                gotoMediaActivity();
+                break;
             case R.id.nav_spotify_lier:
                 gotoLierSpotify();
                 break;
@@ -165,6 +164,10 @@ class NavigationManager implements NavigationView.OnNavigationItemSelectedListen
     public void gotoListeLecture() {
         Log.d(TAG, "gotoListeLecture: Started");
         // TODO startActivity();
+    }
+
+    public void gotoMediaActivity() {
+        startActivity(MediaActivity.class);
     }
 
     public void gotoLierSpotify(){

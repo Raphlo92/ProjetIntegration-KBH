@@ -6,103 +6,111 @@
 6
 7    <uses-sdk
 8        android:minSdkVersion="16"
-8-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml
+8-->D:\Cegep\ProjetIntegration\Android\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml
 9        android:targetSdkVersion="29" />
-9-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml
+9-->D:\Cegep\ProjetIntegration\Android\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml
 10
 11    <uses-permission android:name="android.persmission.INTERNET" />
-11-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:5:5-68
-11-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:5:22-65
+11-->D:\Cegep\ProjetIntegration\Android\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:5:5-68
+11-->D:\Cegep\ProjetIntegration\Android\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:5:22-65
 12    <uses-permission android:name="android.permission.WAKE_LOCK" />
-12-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:6:5-68
-12-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:6:22-65
+12-->D:\Cegep\ProjetIntegration\Android\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:6:5-68
+12-->D:\Cegep\ProjetIntegration\Android\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:6:22-65
 13    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-13-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:7:5-80
-13-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:7:22-77
+13-->D:\Cegep\ProjetIntegration\Android\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:7:5-80
+13-->D:\Cegep\ProjetIntegration\Android\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:7:22-77
 14    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-14-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:8:5-81
-14-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:8:22-78
-15    <uses-permission android:name="android.permission.INTERNET" />
-15-->[:spotify-auth-release-1.2.3] C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\spotify-auth-release-1.2.3\build\.transforms\ec462e7d6910e6822ecb937a2099c4b9\jetified-spotify-auth-release-1.2.3\AndroidManifest.xml:31:5-67
-15-->[:spotify-auth-release-1.2.3] C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\spotify-auth-release-1.2.3\build\.transforms\ec462e7d6910e6822ecb937a2099c4b9\jetified-spotify-auth-release-1.2.3\AndroidManifest.xml:31:22-64
-16
-17    <application
-17-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:10:5-42:19
-18        android:allowBackup="true"
-18-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:11:9-35
-19        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-19-->[androidx.core:core:1.3.1] C:\Users\raphc\.gradle\caches\transforms-2\files-2.1\ae3468b444d41a56f261ecbb8448fe17\core-1.3.1\AndroidManifest.xml:24:18-86
-20        android:configChanges="orientation|keyboardHidden|screenSize"
-20-->[gr.pantrif:easy-android-splash-screen:0.0.1] C:\Users\raphc\.gradle\caches\transforms-2\files-2.1\c85e3ac63bc3dae0cd42e41cf11ffd31\jetified-easy-android-splash-screen-0.0.1\AndroidManifest.xml:14:9-70
-21        android:debuggable="true"
-22        android:icon="@mipmap/ic_launcher"
-22-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:12:9-43
-23        android:label="@string/app_name"
-23-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:13:9-41
-24        android:roundIcon="@mipmap/ic_launcher_round"
-24-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:14:9-54
-25        android:supportsRtl="true"
-25-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:15:9-35
-26        android:testOnly="true"
-27        android:theme="@style/AppTheme" >
-27-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:16:9-40
-28        <activity
-28-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:17:9-20:59
-29            android:name="com.example.projetdintegration.MediaActivity"
-29-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:18:13-42
-30            android:label="MediaActivity"
-30-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:19:13-42
-31            android:theme="@style/AppTheme.NoActionBar" />
-31-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:20:13-56
-32        <activity
-32-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:21:9-24:59
-33            android:name="com.example.projetdintegration.MusicListActivity"
-33-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:22:13-46
-34            android:label="MusicListActivity"
-34-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:23:13-46
-35            android:theme="@style/AppTheme.NoActionBar" />
-35-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:24:13-56
-36        <activity android:name="com.example.projetdintegration.splashScreenActivity" >
-36-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:25:9-31:20
-36-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:25:19-55
-37            <intent-filter>
-37-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:26:13-30:29
-38                <action android:name="android.intent.action.MAIN" />
-38-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:27:17-69
-38-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:27:25-66
-39
-40                <category android:name="android.intent.category.LAUNCHER" />
-40-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:29:17-77
-40-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:29:27-74
-41            </intent-filter>
-42        </activity>
-43        <activity
-43-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:33:9-35:58
-44            android:name="com.example.projetdintegration.PlaylistListActivity"
-44-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:33:19-55
-45            android:label="PlaylistListActivity"
-45-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:34:13-49
-46            android:theme="@style/AppTheme.NoActionBar" />
-46-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:35:13-56
-47        <activity android:name="com.example.projetdintegration.LierSpotifyActivity" />
-47-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:37:9-56
-47-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:37:19-54
-48        <activity android:name="com.example.projetdintegration.SpotifyMusicListActivity" />
-48-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:38:9-61
-48-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:38:19-59
-49        <activity android:name="com.example.projetdintegration.SpotifyMusicPlayer" />
-49-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:39:9-55
-49-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:39:19-53
-50        <activity android:name="com.example.projetdintegration.MainActivity" />
-50-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:41:9-50
-50-->C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:41:19-47
-51        <activity
-51-->[:spotify-auth-release-1.2.3] C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\spotify-auth-release-1.2.3\build\.transforms\ec462e7d6910e6822ecb937a2099c4b9\jetified-spotify-auth-release-1.2.3\AndroidManifest.xml:34:9-37:20
-52            android:name="com.spotify.sdk.android.auth.LoginActivity"
-52-->[:spotify-auth-release-1.2.3] C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\spotify-auth-release-1.2.3\build\.transforms\ec462e7d6910e6822ecb937a2099c4b9\jetified-spotify-auth-release-1.2.3\AndroidManifest.xml:35:13-70
-53            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
-53-->[:spotify-auth-release-1.2.3] C:\Users\raphc\OneDrive\Documents\Ecole\KBH-ProjetInt\github\ProjetIntegration-KBH\Projet_dintgration\spotify-auth-release-1.2.3\build\.transforms\ec462e7d6910e6822ecb937a2099c4b9\jetified-spotify-auth-release-1.2.3\AndroidManifest.xml:36:13-72
-54        </activity>
-55    </application>
-56
-57</manifest>
+14-->D:\Cegep\ProjetIntegration\Android\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:8:5-81
+14-->D:\Cegep\ProjetIntegration\Android\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:8:22-78
+15    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+15-->D:\Cegep\ProjetIntegration\Android\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:9:5-76
+15-->D:\Cegep\ProjetIntegration\Android\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:9:22-74
+16    <uses-permission android:name="android.permission.INTERNET" />
+16-->[:spotify-auth-release-1.2.3] D:\Cegep\ProjetIntegration\Android\ProjetIntegration-KBH\Projet_dintgration\spotify-auth-release-1.2.3\build\.transforms\1c11b017b74f910cbfb2d493dc0745ee\jetified-spotify-auth-release-1.2.3\AndroidManifest.xml:31:5-67
+16-->[:spotify-auth-release-1.2.3] D:\Cegep\ProjetIntegration\Android\ProjetIntegration-KBH\Projet_dintgration\spotify-auth-release-1.2.3\build\.transforms\1c11b017b74f910cbfb2d493dc0745ee\jetified-spotify-auth-release-1.2.3\AndroidManifest.xml:31:22-64
+17
+18    <application
+18-->D:\Cegep\ProjetIntegration\Android\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:11:5-44:19
+19        android:allowBackup="true"
+19-->D:\Cegep\ProjetIntegration\Android\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:12:9-35
+20        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+20-->[androidx.core:core:1.3.1] C:\Users\hugob\.gradle\caches\transforms-2\files-2.1\ae3468b444d41a56f261ecbb8448fe17\core-1.3.1\AndroidManifest.xml:24:18-86
+21        android:configChanges="orientation|keyboardHidden|screenSize"
+21-->[gr.pantrif:easy-android-splash-screen:0.0.1] C:\Users\hugob\.gradle\caches\transforms-2\files-2.1\c85e3ac63bc3dae0cd42e41cf11ffd31\jetified-easy-android-splash-screen-0.0.1\AndroidManifest.xml:14:9-70
+22        android:debuggable="true"
+23        android:icon="@mipmap/ic_launcher"
+23-->D:\Cegep\ProjetIntegration\Android\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:13:9-43
+24        android:label="@string/app_name"
+24-->D:\Cegep\ProjetIntegration\Android\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:14:9-41
+25        android:roundIcon="@mipmap/ic_launcher_round"
+25-->D:\Cegep\ProjetIntegration\Android\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:15:9-54
+26        android:supportsRtl="true"
+26-->D:\Cegep\ProjetIntegration\Android\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:16:9-35
+27        android:testOnly="true"
+28        android:theme="@style/AppTheme" >
+28-->D:\Cegep\ProjetIntegration\Android\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:17:9-40
+29        <activity
+29-->D:\Cegep\ProjetIntegration\Android\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:18:9-21:59
+30            android:name="com.example.projetdintegration.MediaActivity"
+30-->D:\Cegep\ProjetIntegration\Android\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:19:13-42
+31            android:label="MediaActivity"
+31-->D:\Cegep\ProjetIntegration\Android\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:20:13-42
+32            android:theme="@style/AppTheme.NoActionBar" />
+32-->D:\Cegep\ProjetIntegration\Android\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:21:13-56
+33        <activity
+33-->D:\Cegep\ProjetIntegration\Android\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:22:9-25:59
+34            android:name="com.example.projetdintegration.MusicListActivity"
+34-->D:\Cegep\ProjetIntegration\Android\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:23:13-46
+35            android:label="MusicListActivity"
+35-->D:\Cegep\ProjetIntegration\Android\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:24:13-46
+36            android:theme="@style/AppTheme.NoActionBar" />
+36-->D:\Cegep\ProjetIntegration\Android\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:25:13-56
+37        <activity android:name="com.example.projetdintegration.splashScreenActivity" >
+37-->D:\Cegep\ProjetIntegration\Android\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:26:9-32:20
+37-->D:\Cegep\ProjetIntegration\Android\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:26:19-55
+38            <intent-filter>
+38-->D:\Cegep\ProjetIntegration\Android\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:27:13-31:29
+39                <action android:name="android.intent.action.MAIN" />
+39-->D:\Cegep\ProjetIntegration\Android\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:28:17-69
+39-->D:\Cegep\ProjetIntegration\Android\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:28:25-66
+40
+41                <category android:name="android.intent.category.LAUNCHER" />
+41-->D:\Cegep\ProjetIntegration\Android\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:30:17-77
+41-->D:\Cegep\ProjetIntegration\Android\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:30:27-74
+42            </intent-filter>
+43        </activity>
+44        <activity
+44-->D:\Cegep\ProjetIntegration\Android\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:34:9-36:58
+45            android:name="com.example.projetdintegration.PlaylistListActivity"
+45-->D:\Cegep\ProjetIntegration\Android\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:34:19-55
+46            android:label="PlaylistListActivity"
+46-->D:\Cegep\ProjetIntegration\Android\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:35:13-49
+47            android:theme="@style/AppTheme.NoActionBar" />
+47-->D:\Cegep\ProjetIntegration\Android\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:36:13-56
+48        <activity android:name="com.example.projetdintegration.LierSpotifyActivity" />
+48-->D:\Cegep\ProjetIntegration\Android\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:38:9-56
+48-->D:\Cegep\ProjetIntegration\Android\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:38:19-54
+49        <activity android:name="com.example.projetdintegration.SpotifyMusicListActivity" />
+49-->D:\Cegep\ProjetIntegration\Android\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:39:9-61
+49-->D:\Cegep\ProjetIntegration\Android\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:39:19-59
+50        <activity android:name="com.example.projetdintegration.SpotifyMusicPlayer" />
+50-->D:\Cegep\ProjetIntegration\Android\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:40:9-55
+50-->D:\Cegep\ProjetIntegration\Android\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:40:19-53
+51        <activity android:name="com.example.projetdintegration.MainActivity" />
+51-->D:\Cegep\ProjetIntegration\Android\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:42:9-50
+51-->D:\Cegep\ProjetIntegration\Android\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:42:19-47
+52
+53        <service android:name="com.example.projetdintegration.MediaPlaybackService" />
+53-->D:\Cegep\ProjetIntegration\Android\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:43:9-57
+53-->D:\Cegep\ProjetIntegration\Android\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:43:18-54
+54
+55        <activity
+55-->[:spotify-auth-release-1.2.3] D:\Cegep\ProjetIntegration\Android\ProjetIntegration-KBH\Projet_dintgration\spotify-auth-release-1.2.3\build\.transforms\1c11b017b74f910cbfb2d493dc0745ee\jetified-spotify-auth-release-1.2.3\AndroidManifest.xml:34:9-37:20
+56            android:name="com.spotify.sdk.android.auth.LoginActivity"
+56-->[:spotify-auth-release-1.2.3] D:\Cegep\ProjetIntegration\Android\ProjetIntegration-KBH\Projet_dintgration\spotify-auth-release-1.2.3\build\.transforms\1c11b017b74f910cbfb2d493dc0745ee\jetified-spotify-auth-release-1.2.3\AndroidManifest.xml:35:13-70
+57            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+57-->[:spotify-auth-release-1.2.3] D:\Cegep\ProjetIntegration\Android\ProjetIntegration-KBH\Projet_dintgration\spotify-auth-release-1.2.3\build\.transforms\1c11b017b74f910cbfb2d493dc0745ee\jetified-spotify-auth-release-1.2.3\AndroidManifest.xml:36:13-72
+58        </activity>
+59    </application>
+60
+61</manifest>

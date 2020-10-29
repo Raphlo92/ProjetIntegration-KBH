@@ -13,6 +13,7 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -49,6 +50,9 @@
         <activity android:name="com.example.projetdintegration.SpotifyMusicListActivity" />
         <activity android:name="com.example.projetdintegration.SpotifyMusicPlayer" />
         <activity android:name="com.example.projetdintegration.MainActivity" />
+
+        <service android:name="com.example.projetdintegration.MediaPlaybackService" />
+
         <activity
             android:name="com.spotify.sdk.android.auth.LoginActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" >

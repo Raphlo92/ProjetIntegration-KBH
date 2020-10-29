@@ -4,10 +4,10 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Lecture.iml" filepath="$PROJECT_DIR$/.idea/modules/Lecture.iml" group="Lecture" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Projet_d'intégration.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Projet_d'intégration.app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Projet_dintgration-Lecture.iml" filepath="$PROJECT_DIR$/.idea/modules/Projet_dintgration-Lecture.iml" group="Lecture" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/app.iml" group="Lecture/app" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/spotify-app-remote-release-0.7.1/spotify-app-remote-release-0.7.1.iml" filepath="$PROJECT_DIR$/.idea/modules/spotify-app-remote-release-0.7.1/spotify-app-remote-release-0.7.1.iml" group="Lecture/spotify-app-remote-release-0.7.1" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/spotify-auth-release-1.2.3/spotify-auth-release-1.2.3.iml" filepath="$PROJECT_DIR$/.idea/modules/spotify-auth-release-1.2.3/spotify-auth-release-1.2.3.iml" group="Lecture/spotify-auth-release-1.2.3" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/app.iml" group="projetdintegration/app" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/projetdintegration.iml" filepath="$PROJECT_DIR$/.idea/modules/projetdintegration.iml" group="projetdintegration" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/spotify-app-remote-release-0.7.1/spotify-app-remote-release-0.7.1.iml" filepath="$PROJECT_DIR$/.idea/modules/spotify-app-remote-release-0.7.1/spotify-app-remote-release-0.7.1.iml" group="projetdintegration/spotify-app-remote-release-0.7.1" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/spotify-auth-release-1.2.3/spotify-auth-release-1.2.3.iml" filepath="$PROJECT_DIR$/.idea/modules/spotify-auth-release-1.2.3/spotify-auth-release-1.2.3.iml" group="projetdintegration/spotify-auth-release-1.2.3" />
     </modules>
   </component>
 </project>
