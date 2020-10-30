@@ -133,7 +133,7 @@ public class DBInitializer {
                     Path musicPath = Paths.get(path.toAbsolutePath() + "/" + firstMusic);
                     metadata = getMetadata(musicPath.toAbsolutePath().toString());
 
-                    Album album = new Album(0, path.getFileName().toString(),metadata[4], path.getName(ARTIST_NAME_COUNT).toString(), metadata[2]);
+                    Album album = new Album(0, path.getFileName().toString(), metadata[4], path.getName(ARTIST_NAME_COUNT).toString(), metadata[2]);
                     Albums albumsDBHelper = new Albums(DBWriter);
                     albumsDBHelper.Insert(album);
                 }
@@ -222,7 +222,7 @@ public class DBInitializer {
         //TODO Strip genre and make sure they are in the DB
         //TODO - Extra: find the closes resembling genre
         MediaMetadataRetriever mmr = new MediaMetadataRetriever();
-        String[] res = {"unknown", "unknown", "unknown", "0"};
+        String[] res = {"unknown", "unknown", "unknown", "0", "unknown"};
         try {
             mmr.setDataSource(path);
 
@@ -230,8 +230,9 @@ public class DBInitializer {
             String album =  mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ALBUM);
             String genre =  mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_GENRE);
             String duration =  mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION);
+            String albumImagePath = null;
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.P) {
-                String albumImagePath = mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_HAS_IMAGE);
+                albumImagePath = mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_HAS_IMAGE);
             }
 
 
@@ -262,6 +263,10 @@ public class DBInitializer {
 
             if (duration != null){
                 res[3] = duration.trim();
+            }
+
+            if (albumImagePath != null){
+                res[4] = albumImagePath;
             }
         }
         catch(Exception e){}

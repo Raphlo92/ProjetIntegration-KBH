@@ -17,6 +17,7 @@ import com.example.projetdintegration.DBHelpers.Classes.IDBClass;
 import com.example.projetdintegration.DBHelpers.Classes.Playlist;
 import com.example.projetdintegration.DBHelpers.DBHelper;
 import com.example.projetdintegration.DBHelpers.Playlists;
+import com.example.projetdintegration.Utilities.PopupHelper;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
@@ -44,6 +45,8 @@ public class PlaylistListActivity extends AppCompatActivity {
         DBPlaylistsWriter = new Playlists(dbHelper.getWritableDatabase());
         //endregion
 
+        PopupHelper popupHelper = new PopupHelper(this);
+
         //testing categories for Kevin ;)
         String[] columns = {
                 DBHelper.Contract.TableCategory._ID,
@@ -55,9 +58,16 @@ public class PlaylistListActivity extends AppCompatActivity {
             Log.d(TAG, "onCreate: Categories: cat = " + item.getName());
         }
 
+        final ImageView imageView = (ImageView) findViewById(R.id.imageView);
+        imageView.setVisibility(View.INVISIBLE);
+
         final ImageView imageView2 = (ImageView) findViewById(R.id.imageView2);
         imageView2.setImageResource(R.drawable.ic_add);
         imageView2.setVisibility(View.VISIBLE);
+        imageView2.setOnClickListener(view -> {
+            Log.d(TAG, "imageView2: onClickListener() ");
+            popupHelper.showCreateForm();
+        });
 
         //region Navigation
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);

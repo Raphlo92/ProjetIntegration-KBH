@@ -25,7 +25,7 @@ import java.util.List;
 public class FileListAdapter extends ArrayAdapter<Music> {
     private static final String Tag = " FileListAdapter";
     private int lastPosition = -1;
-    private Context mcontext;
+    private Context mContext;
     int mResource;
 
     static class ViewHolder {
@@ -35,7 +35,7 @@ public class FileListAdapter extends ArrayAdapter<Music> {
 
     public FileListAdapter(@NonNull Context context, int resource, @NonNull ArrayList<Music> objects) {
         super(context, resource, objects);
-        this.mcontext = mcontext;
+        mContext = context;
         mResource = resource;
     }
 
@@ -57,7 +57,7 @@ public class FileListAdapter extends ArrayAdapter<Music> {
         final View result;
 
         if (convertView == null) {
-            LayoutInflater inflater = LayoutInflater.from(mcontext);
+            LayoutInflater inflater = LayoutInflater.from(mContext);
             convertView = inflater.inflate(mResource, parent, false);
 
             holder = new ViewHolder();

@@ -64,6 +64,7 @@ public class PopupHelper {
                 //TODO save data somewhere
             });
         }
+        builder.show();
     }
 
     public void showEditForm(int playlistId){
@@ -93,6 +94,7 @@ public class PopupHelper {
                 //TODO save data somewhere
             });
         }
+        builder.show();
     }
 
 
@@ -113,6 +115,7 @@ public class PopupHelper {
         builder.setNegativeButton(negButtonTitle, (dialog, i) -> {
             dialog.dismiss();
         });
+        builder.show();
     }
 
     //TODO finish the back-end options
