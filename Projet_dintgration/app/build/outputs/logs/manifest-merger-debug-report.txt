@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\Kevin\OneDrive\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:2:1-44:12
-INJECTED from C:\Users\Kevin\OneDrive\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:2:1-44:12
-INJECTED from C:\Users\Kevin\OneDrive\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:2:1-44:12
-INJECTED from C:\Users\Kevin\OneDrive\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:2:1-44:12
+ADDED from C:\Users\Kevin\OneDrive\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:2:1-45:12
+INJECTED from C:\Users\Kevin\OneDrive\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:2:1-45:12
+INJECTED from C:\Users\Kevin\OneDrive\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:2:1-45:12
+INJECTED from C:\Users\Kevin\OneDrive\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:2:1-45:12
 MERGED from [pl.droidsonroids.gif:android-gif-drawable:1.2.3] C:\Users\Kevin\.gradle\caches\transforms-2\files-2.1\f1ce8d4a606a15f81f7ce851aad0c42e\jetified-android-gif-drawable-1.2.3\AndroidManifest.xml:2:1-11:12
 MERGED from [androidx.constraintlayout:constraintlayout:2.0.2] C:\Users\Kevin\.gradle\caches\transforms-2\files-2.1\d6f2d911e6420eddbe1a6bafc49b6353\constraintlayout-2.0.2\AndroidManifest.xml:2:1-11:12
 MERGED from [androidx.navigation:navigation-ui:2.3.0] C:\Users\Kevin\.gradle\caches\transforms-2\files-2.1\d0f92c0b26fabb47a28488bab3cc8456\navigation-ui-2.3.0\AndroidManifest.xml:17:1-24:12
@@ -41,20 +41,20 @@ MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\Kevin\.gradle
 MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.2.0] C:\Users\Kevin\.gradle\caches\transforms-2\files-2.1\336e4d7f5d818582899034e03216341f\lifecycle-livedata-core-2.2.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.arch.core:core-runtime:2.1.0] C:\Users\Kevin\.gradle\caches\transforms-2\files-2.1\e737982ea91fdf7ea321d344c75db0be\core-runtime-2.1.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.annotation:annotation-experimental:1.0.0] C:\Users\Kevin\.gradle\caches\transforms-2\files-2.1\1e0614212b25f4ae67724a3587ed8129\jetified-annotation-experimental-1.0.0\AndroidManifest.xml:17:1-24:12
-INJECTED from C:\Users\Kevin\OneDrive\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:2:1-44:12
-INJECTED from C:\Users\Kevin\OneDrive\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:2:1-44:12
-INJECTED from C:\Users\Kevin\OneDrive\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:2:1-44:12
+INJECTED from C:\Users\Kevin\OneDrive\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:2:1-45:12
+INJECTED from C:\Users\Kevin\OneDrive\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:2:1-45:12
+INJECTED from C:\Users\Kevin\OneDrive\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:2:1-45:12
 	package
 		ADDED from C:\Users\Kevin\OneDrive\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:3:5-45
 		INJECTED from C:\Users\Kevin\OneDrive\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml
 		INJECTED from C:\Users\Kevin\OneDrive\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml
 	android:versionName
 		INJECTED from C:\Users\Kevin\OneDrive\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\Kevin\OneDrive\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:2:1-44:12
+		ADDED from C:\Users\Kevin\OneDrive\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:2:1-45:12
 		INJECTED from C:\Users\Kevin\OneDrive\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml
 	android:versionCode
 		INJECTED from C:\Users\Kevin\OneDrive\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\Kevin\OneDrive\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:2:1-44:12
+		ADDED from C:\Users\Kevin\OneDrive\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:2:1-45:12
 		INJECTED from C:\Users\Kevin\OneDrive\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml
 	xmlns:android
 		ADDED from C:\Users\Kevin\OneDrive\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:2:11-69
@@ -75,7 +75,7 @@ ADDED from C:\Users\Kevin\OneDrive\Documents\GitHub\ProjetIntegration-KBH\Projet
 	android:name
 		ADDED from C:\Users\Kevin\OneDrive\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:8:22-78
 application
-ADDED from C:\Users\Kevin\OneDrive\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:10:5-42:19
+ADDED from C:\Users\Kevin\OneDrive\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:10:5-43:19
 MERGED from [androidx.constraintlayout:constraintlayout:2.0.2] C:\Users\Kevin\.gradle\caches\transforms-2\files-2.1\d6f2d911e6420eddbe1a6bafc49b6353\constraintlayout-2.0.2\AndroidManifest.xml:9:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.0.2] C:\Users\Kevin\.gradle\caches\transforms-2\files-2.1\d6f2d911e6420eddbe1a6bafc49b6353\constraintlayout-2.0.2\AndroidManifest.xml:9:5-20
 MERGED from [com.google.android.material:material:1.2.1] C:\Users\Kevin\.gradle\caches\transforms-2\files-2.1\fee048776b4040c0a73e83e4303a6cff\material-1.2.1\AndroidManifest.xml:22:5-20
@@ -160,6 +160,10 @@ activity#com.example.projetdintegration.MainActivity
 ADDED from C:\Users\Kevin\OneDrive\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:41:9-50
 	android:name
 		ADDED from C:\Users\Kevin\OneDrive\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:41:19-47
+service#com.example.projetdintegration.DBHelpers.DBInitializer$DBInitialisingService
+ADDED from C:\Users\Kevin\OneDrive\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:42:9-81
+	android:name
+		ADDED from C:\Users\Kevin\OneDrive\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:42:18-79
 uses-sdk
 INJECTED from C:\Users\Kevin\OneDrive\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\Kevin\OneDrive\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml

@@ -15,7 +15,7 @@
             android:layout_above="@+id/slideshow"
             android:layout_marginLeft="18dp"
             android:layout_marginBottom="-100dp"
-            android:text="@string/homescreen_favoris" />
+            android:text="Vos favorie" />
 
         <HorizontalScrollView
             android:id="@+id/slideshow"
@@ -28,26 +28,6 @@
             android:layout_marginTop="100dp"
             android:layout_marginEnd="12dp"
             android:layout_marginRight="12dp">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-
-                <ImageButton
-                    android:id="@+id/mediaActivityButton1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
-                    android:adjustViewBounds="true"
-                    android:maxWidth="150dp"
-                    android:maxHeight="150dp"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/ic_file" />
-
-
-            </LinearLayout>
         </HorizontalScrollView>
 
     </RelativeLayout>
