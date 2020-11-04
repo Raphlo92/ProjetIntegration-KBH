@@ -82,7 +82,7 @@ public class SpotifyRecentlyListenedActivity extends AppCompatActivity {
             public void gotoRecentlyListenedSpotify() {
             }
         });
-        navigationView.setCheckedItem(R.id.nav_spotify_liste_lecture);
+        navigationView.setCheckedItem(R.id.nav_spotify_recently_listened);
         NavigationManager.determinerOptionsAfficher(navigationView.getMenu());
     }
     private void initializeListeners() {
@@ -121,6 +121,7 @@ public class SpotifyRecentlyListenedActivity extends AppCompatActivity {
             public void onResult(ListItems listItems) {
                 for(ListItem item : listItems.items)
                     if(item.id.equals(SPOTIFY_ID_RECENTLY_PLAYED)) {
+                        selectedItem = new SpotifyNavigationItem(item);
                         getElementChildren(item, displayListItemsCallBack);
                     }
             }

@@ -46,7 +46,6 @@ public class NavigationManager implements NavigationView.OnNavigationItemSelecte
                 break;
             case R.id.nav_mediaActivity:
                 Log.d(TAG, "onNavigationItemSelected: Switched to bibliotheque");
-                //gotoBibliotheque();
                 startActivity(MediaActivity.class);
                 break;
             case R.id.nav_spotify_lier:
@@ -107,9 +106,7 @@ public class NavigationManager implements NavigationView.OnNavigationItemSelecte
     public void gotoLierSpotify(){
         startActivity(LierSpotifyActivity.class);
     }
-    public void gotoBibliothequeSpotify(){
-
-    }
+    public void gotoBibliothequeSpotify(){ startActivity(SpotifyMusicListActivity.class);}
     protected void gotoLikedSongsSpotify(){startActivity(SpotifyLikedSongsActivity.class);}
     protected void gotoLogoutSpotify(){startActivity(SpotifyDeconnectionActivity.class);}
     protected void gotoListeLectureSpotify(){startActivity(SpotifyPlaylistActivity.class);}
@@ -118,7 +115,7 @@ public class NavigationManager implements NavigationView.OnNavigationItemSelecte
         Log.d(TAG, "afficherOptionConnecteSpotify: Started");
         menu.findItem(R.id.nav_spotify_lier).setVisible(false);
         modifierVisibiliteMenu(true, menu, R.id.nav_spotify_liste_lecture, R.id.nav_spotify_chanson_aimee,
-                R.id.nav_spotify_bibliotheque, R.id.nav_spotify_logout);
+                R.id.nav_spotify_bibliotheque, R.id.nav_spotify_logout,R.id.nav_spotify_recently_listened);
     }
 
 
@@ -126,7 +123,7 @@ public class NavigationManager implements NavigationView.OnNavigationItemSelecte
         Log.d(TAG, "afficherOptionDeconnecteSpotify: Started");
         menu.findItem(R.id.nav_spotify_lier).setVisible(true);
         modifierVisibiliteMenu(false, menu, R.id.nav_spotify_liste_lecture, R.id.nav_spotify_chanson_aimee,
-                R.id.nav_spotify_bibliotheque, R.id.nav_spotify_logout);
+                R.id.nav_spotify_bibliotheque, R.id.nav_spotify_logout,R.id.nav_spotify_recently_listened);
     }
 
     static private void modifierVisibiliteMenu(boolean estVisible, Menu menu, int... options) {

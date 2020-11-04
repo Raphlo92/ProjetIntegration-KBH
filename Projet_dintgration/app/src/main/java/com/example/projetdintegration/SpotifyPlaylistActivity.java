@@ -120,6 +120,7 @@ public class SpotifyPlaylistActivity extends AppCompatActivity {
             public void onResult(ListItems listItems) {
                 for(ListItem item : listItems.items)
                     if(item.id.equals(SpotifyMusicListActivity.SPOTIFY_ID_PLAYLIST)) {
+                        selectedPlaylist = new SpotifyNavigationItem(item);
                         getElementChildren(item, displayListItemsCallBack);
                     }else if (item.id.equals(SpotifyMusicListActivity.SPOTIFY_ID_LIBRARY))
                         getElementChildren(item, fetchChildrenCallback);

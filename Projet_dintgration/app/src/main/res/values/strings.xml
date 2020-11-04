@@ -24,6 +24,7 @@
     <string name="nav_spotify_bibliotheque">Bibliothèque Spotify</string>
     <string name="nav_spotify_logout">Déconnecter son compte Spotify</string>
     <string name="nav_spotify_recently_listened">Écoutées récemment</string>
+    <string name="nav_mediaActivity">En écoute</string>
     <string name="navigation_open_drawer_description">Ouvrir le menu</string>
     <string name="navigation_close_drawer_description">Fermer le menu</string>
     <string name="loadmore">Veuillez patienter, en recherche de plus de contenu</string>
