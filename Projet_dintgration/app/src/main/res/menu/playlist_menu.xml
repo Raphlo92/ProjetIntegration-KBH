@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group>
+        <!-- TODO: Make desirable list of options -->
+        <item
+            android:id="@+id/editPlaylistName"
+            android:title="@string/editPlaylistName"/>
+        <item
+            android:id="@+id/deletePlaylist"
+            android:title="@string/deletePlaylist"/>
+        <item
+            android:id="@+id/makeRelative"
+            android:title="@string/makeRelative"
+            android:checkable="true"/>
+    </group>
+
+</menu>

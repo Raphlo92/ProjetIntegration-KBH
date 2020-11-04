@@ -28,6 +28,7 @@ public class DBHelper extends SQLiteOpenHelper {
         public static class TableAlbum implements BaseColumns {
             public static final String TABLE_NAME = "album";
             public static final String COLUMN_NAME_TITLE = "title";
+            public static final String COLUMN_NAME_IMAGE = "image";
             public static final String COLUMN_NAME_ID_ARTIST = "idartist";
             public static final String COLUMN_NAME_ID_CATEGORY = "idcategory";
         }
@@ -63,16 +64,13 @@ public class DBHelper extends SQLiteOpenHelper {
                     Contract.TableMusic.COLUMN_NAME_ID_CATEGORY + " TEXT NOT NULL," +
                     "FOREIGN KEY (" + Contract.TableMusic.COLUMN_NAME_ID_ARTIST + ")" +
                     "REFERENCES " + Contract.TableArtist.TABLE_NAME + "(" + Contract.TableArtist._ID + ")" +
-                    "ON DELETE CASCADE " +
-                    "ON UPDATE NO ACTION," +
+                    "ON DELETE CASCADE, " +
                     "FOREIGN KEY (" + Contract.TableMusic.COLUMN_NAME_ID_ALBUM + ")" +
                     "REFERENCES " + Contract.TableAlbum.TABLE_NAME + "(" + Contract.TableAlbum._ID + ")" +
-                    "ON DELETE CASCADE " +
-                    "ON UPDATE NO ACTION," +
+                    "ON DELETE CASCADE, " +
                     "FOREIGN KEY (" + Contract.TableMusic.COLUMN_NAME_ID_CATEGORY + ")" +
                     "REFERENCES " + Contract.TableCategory.TABLE_NAME + "(" + Contract.TableCategory._ID + ")" +
-                    "ON DELETE CASCADE " +
-                    "ON UPDATE NO ACTION)";
+                    "ON DELETE CASCADE)";
 
     public static final String SQL_CREATE_TABLE_ARTIST =
             "CREATE TABLE IF NOT EXISTS " + Contract.TableArtist.TABLE_NAME + " (" +
@@ -85,14 +83,13 @@ public class DBHelper extends SQLiteOpenHelper {
                     Contract.TableAlbum.COLUMN_NAME_ID_ARTIST + " INTEGER NOT NULL," +
                     Contract.TableAlbum.COLUMN_NAME_ID_CATEGORY + " INTEGER NOT NULL," +
                     Contract.TableAlbum.COLUMN_NAME_TITLE + " TEXT NOT NULL," +
+                    Contract.TableAlbum.COLUMN_NAME_IMAGE + " TEXT NOT NULL," +
                     "FOREIGN KEY (" + Contract.TableAlbum.COLUMN_NAME_ID_ARTIST + ")" +
                     "REFERENCES " + Contract.TableArtist.TABLE_NAME + "(" + Contract.TableArtist._ID + ")" +
-                    "ON DELETE CASCADE " +
-                    "ON UPDATE NO ACTION," +
+                    "ON DELETE CASCADE, " +
                     "FOREIGN KEY (" + Contract.TableAlbum.COLUMN_NAME_ID_CATEGORY + ")" +
                     "REFERENCES " + Contract.TableCategory.TABLE_NAME + "(" + Contract.TableCategory._ID + ")" +
-                    "ON DELETE CASCADE " +
-                    "ON UPDATE NO ACTION)";
+                    "ON DELETE CASCADE)";
 
     public static final String SQL_CREATE_TABLE_CATEGORY =
             "CREATE TABLE IF NOT EXISTS " + Contract.TableCategory.TABLE_NAME + " (" +
@@ -112,12 +109,10 @@ public class DBHelper extends SQLiteOpenHelper {
                     "PRIMARY KEY (" + Contract.TableMusicPlaylist.COLUMN_NAME_ID_MUSIC + ", " + Contract.TableMusicPlaylist.COLUMN_NAME_ID_PLAYLIST + ")," +
                     "FOREIGN KEY (" + Contract.TableMusicPlaylist.COLUMN_NAME_ID_MUSIC + ")" +
                     "REFERENCES " + Contract.TableMusic.TABLE_NAME + "(" + Contract.TableMusic._ID + ")" +
-                    "ON DELETE CASCADE " +
-                    "ON UPDATE NO ACTION," +
+                    "ON DELETE CASCADE, " +
                     "FOREIGN KEY (" + Contract.TableMusicPlaylist.COLUMN_NAME_ID_PLAYLIST + ")" +
                     "REFERENCES " + Contract.TablePlaylist.TABLE_NAME + "(" + Contract.TablePlaylist._ID + ")" +
-                    "ON DELETE CASCADE " +
-                    "ON UPDATE NO ACTION)";
+                    "ON DELETE CASCADE)";
 
     public static final String SQL_DELETE_TABLE_MUSIC =
             "DROP TABLE IF EXISTS " + Contract.TableMusic.TABLE_NAME;
@@ -138,7 +133,7 @@ public class DBHelper extends SQLiteOpenHelper {
             "DROP TABLE IF EXISTS " + Contract.TableMusicPlaylist.TABLE_NAME;
     //endregion
 
-    public static final int DB_VERSION = 1;
+    public static final int DB_VERSION = 2;
     public static final String DB_NAME = "AndroidMusique.db";
 
     public DBHelper(Context context) {
@@ -164,6 +159,11 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL(SQL_DELETE_TABLE_ARTIST);
         db.execSQL(SQL_DELETE_TABLE_CATEGORY);
         db.execSQL(SQL_DELETE_TABLE_PLAYLIST);
+
+        /*switch (newVersion){
+            case 2:
+                db.execSQL("ALTER TABLE " + Contract.TableAlbum.TABLE_NAME + " ADD COLUMN " + Contract.TableAlbum.COLUMN_NAME_IMAGE);
+        }*/
 
         onCreate(db);
     }

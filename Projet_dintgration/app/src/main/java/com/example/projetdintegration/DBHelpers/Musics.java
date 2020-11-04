@@ -3,15 +3,18 @@ package com.example.projetdintegration.DBHelpers;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.example.projetdintegration.DBHelpers.Classes.IDBClass;
 import com.example.projetdintegration.DBHelpers.Classes.Music;
 import com.example.projetdintegration.DBHelpers.DBHelper.Contract.TableMusic;
+import com.example.projetdintegration.Utilities.StringUtil;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Musics extends AbstractDBHelper {
+    private static final String TAG = "Musics";
     //region BD values
     public static final String TABLE_NAME = TableMusic.TABLE_NAME;
     public long createdRowId;
@@ -130,10 +133,10 @@ public class Musics extends AbstractDBHelper {
             String artist = Artists.getNameById(DB, cursor.getInt(cursor.getColumnIndexOrThrow(TableMusic.COLUMN_NAME_ID_ARTIST)));
             String category = Categories.getNameById(DB, cursor.getInt(cursor.getColumnIndexOrThrow(TableMusic.COLUMN_NAME_ID_CATEGORY)));
             String album = Albums.getNameById(DB, cursor.getInt(cursor.getColumnIndexOrThrow(TableMusic.COLUMN_NAME_ID_ALBUM)));
+            boolean favorite = new Playlists(DB).isInFavorites(id);
             //endregion
 
-            //TODO find if favorite or not
-            newMusics.add(new Music(id, title, length, type, path, category, artist, album, false));
+            newMusics.add(new Music(id, title, length, type, path, category, artist, album, favorite));
         }
         musics = newMusics;
         cursor.close();
@@ -149,5 +152,41 @@ public class Musics extends AbstractDBHelper {
     @Override
     public void Update(ContentValues values, String whereClause, String[] whereArgs) {
         nbUpdatedRows = DB.update(TABLE_NAME, values, whereClause, whereArgs);
+    }
+
+    public ArrayList<Integer> getAllUsedCategoriesIds(){
+        //fixed by using playlist Id
+        String[] columns = {TableMusic.COLUMN_NAME_ID_CATEGORY };
+        String groupBy = TableMusic.COLUMN_NAME_ID_CATEGORY;
+        Cursor cursor = DB.query(TableMusic.TABLE_NAME, columns , null, null, groupBy, null, null);
+
+        ArrayList<Integer> ids = new ArrayList<>();
+        while (cursor.moveToNext()){
+            //region set values
+            int id =  cursor.getInt(cursor.getColumnIndexOrThrow(TableMusic.COLUMN_NAME_ID_CATEGORY));
+            //endregion
+            ids.add(id);
+        }
+        cursor.close();
+        return ids;
+    }
+
+    public ArrayList<IDBClass> getAllUsedCategories(){
+        ArrayList<IDBClass> musics;
+        String CSIds = StringUtil.toCommaSeparatedString(getAllUsedCategoriesIds());
+
+        Log.d(TAG, "getAllUsedCategories: CSIds = " + CSIds);
+        Categories categoriesDBHelper = new Categories(DB);
+        String[] columns = {
+                DBHelper.Contract.TableCategory._ID,
+                DBHelper.Contract.TableCategory.COLUMN_NAME_NAME
+        };
+
+        String whereClause = DBHelper.Contract.TableCategory._ID + " IN (" + CSIds + ")";
+
+
+        musics = categoriesDBHelper.Select(columns, whereClause, null, null, null, null);
+
+        return musics;
     }
 }

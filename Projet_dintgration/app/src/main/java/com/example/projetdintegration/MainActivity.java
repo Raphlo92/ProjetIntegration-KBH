@@ -1,13 +1,6 @@
 package com.example.projetdintegration;
 
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
-
+import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,13 +8,48 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import com.example.projetdintegration.DBHelpers.DBInitializer;
+import android.app.IntentService;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+
+import android.view.View;
+import android.widget.ScrollView;
+import android.widget.TextView;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.projetdintegration.DBHelpers.Categories;
+import com.example.projetdintegration.DBHelpers.Classes.Category;
+import com.example.projetdintegration.DBHelpers.Classes.Playlist;
 import com.google.android.material.navigation.NavigationView;
-import com.spotify.android.appremote.api.SpotifyAppRemote;
+
+import com.example.projetdintegration.DBHelpers.Classes.IDBClass;
+import com.example.projetdintegration.DBHelpers.Classes.Music;
+import com.example.projetdintegration.DBHelpers.DBHelper;
+import com.example.projetdintegration.DBHelpers.DBInitializer;
+import com.example.projetdintegration.DBHelpers.Musics;
+import com.example.projetdintegration.DBHelpers.Playlists;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.BitSet;
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -37,33 +65,25 @@ public class MainActivity extends AppCompatActivity {
     NavigationView navigationView;
     Toolbar toolbar;
     Menu menu;
+    DBHelper dbHelper;
+    Musics DBMusicsReader;
+    Musics DBMusicsWriter;
+    Categories DBCategoriesReader;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        int playlistId = getIntent().getIntExtra(DBHelper.Contract.TablePlaylist._ID, -1);
+
+        dbHelper = new DBHelper(getApplicationContext());
+        DBMusicsReader = new Musics(dbHelper.getReadableDatabase());
+        DBCategoriesReader = new Categories(dbHelper.getReadableDatabase());
+        DBMusicsWriter = new Musics(dbHelper.getWritableDatabase());
+
         Log.d(TAG, "onCreate: Started.");
 
-        if (firstRun) {
-            firstRun = false;
-            Thread th = new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    //ArrayList<File> files = MusicFileExplorer.getAllMusicFiles();
-                    ArrayList<File> files = new ArrayList<>();
-                    MusicFileExplorer.getAllChildren(MusicFileExplorer.DIRECTORY_MUSIC, files);
-                    new DBInitializer(context).Init(files);
-                }
-            });
-
-            th.start();
-        }
-
-        SharedPreferences options = getPreferences(MODE_PRIVATE);
-        Log.i(TAG,"GEtSharedPreferencesOPtionVAlue: " + options.getBoolean(OPTIONS_DEJA_CONNECTE_SPOTIFY,false));
-        if(options.getBoolean(OPTIONS_DEJA_CONNECTE_SPOTIFY,false) && LierSpotifyActivity.appRemote == null){
-            LierSpotifyActivity.connexionSpotify(this,LierSpotifyActivity.getDefaultConnectionListener(this,this,this::connectedToSpotify));
-        }
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -79,13 +99,37 @@ public class MainActivity extends AppCompatActivity {
         });
         navigationView.setCheckedItem(R.id.nav_home);
         NavigationManager.determinerOptionsAfficher(navigationView.getMenu());
-    }
 
-    private void connectedToSpotify(SpotifyAppRemote appRemote){
-        LierSpotifyActivity.appRemote = appRemote;
-        NavigationManager.determinerOptionsAfficher(navigationView.getMenu());
-    }
+        try {
+            scrollView_UI();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
+
+        final ListView listView = (ListView) findViewById(R.id.listView);
+        final TextView pageTitle = (TextView) findViewById(R.id.PageTitle);
+        pageTitle.setText(R.string.nav_home);
+
+        //final ImageView imageView2 = (ImageView) findViewById(R.id.imageView2);
+        //imageView2.setImageResource(R.drawable.ic_add);
+        //imageView2.setVisibility(View.INVISIBLE);
+
+        ArrayList<IDBClass> dbMusics = new ArrayList<>();
+        ArrayList<Music> musics = new ArrayList<>();
+
+        if (playlistId > -1) {
+            Playlists DBPlaylistsReader = new Playlists(dbHelper.getReadableDatabase());
+            dbMusics = DBPlaylistsReader.getAllMusicsInPlaylist(playlistId);
+        } else {
+            dbMusics = DBMusicsReader.Select(null, null, null, null, null, null);
+        }
+
+        for (IDBClass music : dbMusics) {
+            musics.add((Music) music);
+        }
+
+    }
     @Override
     public void onBackPressed() {
         Log.d(TAG, "onBackPressed: Started");
@@ -95,124 +139,91 @@ public class MainActivity extends AppCompatActivity {
             super.onBackPressed();
     }
 
-    public void openMusicPage() {
-        Log.d(TAG, "openMusicPage: Started");
+    public void scrollView_UI() throws InterruptedException {
+
+        final RecyclerView[] scrollviews = {
+                (RecyclerView) findViewById(R.id.slideshow1),
+                (RecyclerView) findViewById(R.id.slideshow2),
+                (RecyclerView) findViewById(R.id.slideshow3),
+                (RecyclerView) findViewById(R.id.slideshow4),
+                (RecyclerView) findViewById(R.id.slideshow5),
+                (RecyclerView) findViewById(R.id.slideshow6),
+                (RecyclerView) findViewById(R.id.slideshow7),
+                (RecyclerView) findViewById(R.id.slideshow8),
+                (RecyclerView) findViewById(R.id.slideshow9),
+                (RecyclerView) findViewById(R.id.slideshow10),
+        };
+
+        final TextView[] scrollviewTitles = {
+                (TextView) findViewById(R.id.slideshow1Title),
+                (TextView) findViewById(R.id.slideshow2Title),
+                (TextView) findViewById(R.id.slideshow3Title),
+                (TextView) findViewById(R.id.slideshow4Title),
+                (TextView) findViewById(R.id.slideshow5Title),
+                (TextView) findViewById(R.id.slideshow6Title),
+                (TextView) findViewById(R.id.slideshow7Title),
+                (TextView) findViewById(R.id.slideshow8Title),
+                (TextView) findViewById(R.id.slideshow9Title),
+                (TextView) findViewById(R.id.slideshow10Title)
+        };
+
+        //final ListView listView2 = (ListView) findViewById(R.id.listView2);
+
+        //final ImageView imageView2 = (ImageView) findViewById(R.id.imageView2);
+        //imageView2.setImageResource(R.drawable.ic_add);
+        //imageView2.setVisibility(View.INVISIBLE);
+
+        ArrayList<IDBClass> list = DBCategoriesReader.Select(null, null, null, null, null, null);
+
+
+
+        ArrayList<IDBClass> categoriesUsed = DBMusicsReader.getAllUsedCategories();
+        ArrayList<Category> categories = new ArrayList<>();
+        Random rand = new Random();
+
+        //Determiner 10 categories random
+        //Pour chaques categories ajouter dynamiquement les musiques
+        //En utilisant des adapters
+        ArrayList<IDBClass> dbMusics;
+        ArrayList<Music> musics;
+
+        int max = Math.min(categoriesUsed.size(), 10);
+
+        for (int i = 0; i < max; i++) {
+            dbMusics = new ArrayList<>();
+            musics = new ArrayList<>();
+            int randomIndex = rand.nextInt(categoriesUsed.size());
+            IDBClass randomElement = categoriesUsed.get(randomIndex);
+            Category RandCat = (Category) randomElement;
+            categories.add(RandCat);
+            categoriesUsed.remove(randomIndex);
+
+            String whereClause = DBHelper.Contract.TableMusic.COLUMN_NAME_ID_CATEGORY + " = ?";
+            String[] whereArgs = {RandCat.getId() + ""};
+
+
+            dbMusics = DBMusicsReader.Select(null, whereClause, whereArgs, null, null, null);
+            musics = new ArrayList<>();
+
+            for (IDBClass music : dbMusics) {
+                //music = dbMusics.get(rand.nextInt(dbMusics.size()));
+                musics.add((Music) music);
+            }
+
+            FileListAdapter adapter = new FileListAdapter(this, R.layout.mainactivity_imagebutton_adapter, musics);
+            scrollviewTitles[i].setText(RandCat.getName());
+            scrollviews[i].setAdapter(adapter);
+            LinearLayoutManager layout = new LinearLayoutManager(this);
+            layout.setOrientation(RecyclerView.HORIZONTAL);
+            scrollviews[i].setLayoutManager(layout);
+
+        }
+
+    }
+
+    public void openMediaActivity(View v) {
+        Log.d(TAG, "openMediaActivity: Started");
         Intent intent = new Intent(this, MediaActivity.class);
         startActivity(intent);
     }
-}
-
-class NavigationManager implements NavigationView.OnNavigationItemSelectedListener {
-
-    private static final String TAG = "NavigationManager";
-
-    AppCompatActivity currentActivity;
-    Context context;
-
-    public NavigationManager(AppCompatActivity current, Context packageContext) {
-        Log.d(TAG, "NavigationManager: Created");
-        currentActivity = current;
-        context = packageContext;
-    }
-
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-        Log.d(TAG, "onNavigationItemSelected: Started");
-        switch (menuItem.getItemId()) {
-            case R.id.nav_home:
-                Log.d(TAG, "onNavigationItemSelected: Switched to home");
-                gotoHome();
-                break;
-            case R.id.nav_favoris:
-                Log.d(TAG, "onNavigationItemSelected: Switched to favoris");
-                gotoFavoris();
-                break;
-            case R.id.nav_liste_lecture:
-                Log.d(TAG, "onNavigationItemSelected: Switched to liste de lecture");
-                gotoListeLecture();
-                break;
-            case R.id.nav_bibliotheque:
-                Log.d(TAG, "onNavigationItemSelected: Switched to bibliotheque");
-                gotoBibliotheque();
-                break;
-            case R.id.nav_mediaActivity:
-                Log.d(TAG, "onNavigationItemSelected: Switched to bibliotheque");
-                startActivity(MediaActivity.class);
-                break;
-            case R.id.nav_spotify_lier:
-                gotoLierSpotify();
-                break;
-            case R.id.nav_spotify_bibliotheque:
-                gotoBibliothequeSpotify();
-                break;
-            case R.id.nav_spotify_chanson_aimee:
-                gotoLikedSongsSpotify();
-                break;
-            case R.id.nav_spotify_liste_lecture:
-                gotoListeLectureSpotify();
-                break;
-            case R.id.nav_spotify_logout:
-                gotoDeconnectionSpotify();
-                break;
-            case R.id.nav_spotify_recently_listened:
-                gotoRecentlyListened();
-                break;
-        }
-        return true;
-    }
-    private void startActivity(Class<?> cls) {
-        Log.d(TAG, "startActivity: Started");
-        currentActivity.startActivity(new Intent(context, cls));
-    }
-    protected void gotoHome() {
-        Log.d(TAG, "gotoHome: Started");
-        startActivity(MainActivity.class);
-    }
-    protected void gotoFavoris() {
-        Log.d(TAG, "gotoFavoris: Started");
-        //TODO startActivity();
-    }
-    protected void gotoBibliotheque() {
-        Log.d(TAG, "gotoBibliotheque: Started");
-        startActivity(MusicListActivity.class);
-    }
-    protected void gotoListeLecture() {
-        Log.d(TAG, "gotoListeLecture: Started");
-        // TODO startActivity();
-    }
-    private void gotoRecentlyListened() { startActivity(SpotifyRecentlyListenedActivity.class);}
-    protected void gotoLierSpotify(){
-        startActivity(LierSpotifyActivity.class);
-    }
-    protected void gotoBibliothequeSpotify(){
-        startActivity(SpotifyMusicListActivity.class);
-    }
-    protected void gotoLikedSongsSpotify(){startActivity(SpotifyLikedSongsActivity.class);}
-    protected void gotoListeLectureSpotify() { startActivity(SpotifyPlaylistActivity.class);}
-    protected void gotoDeconnectionSpotify(){startActivity(SpotifyDeconnectionActivity.class);}
-    static private void afficherOptionConnecteSpotify(Menu menu) {
-        Log.d(TAG, "afficherOptionConnecteSpotify: Started");
-        menu.findItem(R.id.nav_spotify_lier).setVisible(false);
-        modifierVisibiliteMenu(true, menu, R.id.nav_spotify_liste_lecture, R.id.nav_spotify_chanson_aimee,
-                R.id.nav_spotify_bibliotheque, R.id.nav_spotify_logout, R.id.nav_spotify_recently_listened);
-    }
-    static private void afficherOptionDeconnecteSpotify(Menu menu) {
-        Log.d(TAG, "afficherOptionDeconnecteSpotify: Started");
-        menu.findItem(R.id.nav_spotify_lier).setVisible(true);
-        modifierVisibiliteMenu(false, menu, R.id.nav_spotify_liste_lecture, R.id.nav_spotify_chanson_aimee,
-                R.id.nav_spotify_bibliotheque, R.id.nav_spotify_logout, R.id.nav_spotify_recently_listened);
-    }
-    static private void modifierVisibiliteMenu(boolean estVisible, Menu menu, int... options) {
-        for (int option : options) {
-            menu.findItem(option).setVisible(estVisible);
-        }
-    }
-    static public void determinerOptionsAfficher(Menu menu){
-        if(LierSpotifyActivity.appRemote != null && LierSpotifyActivity.appRemote.isConnected()){
-            afficherOptionConnecteSpotify(menu);
-        }else{
-            afficherOptionDeconnecteSpotify(menu);
-        }
-    }
-
 }

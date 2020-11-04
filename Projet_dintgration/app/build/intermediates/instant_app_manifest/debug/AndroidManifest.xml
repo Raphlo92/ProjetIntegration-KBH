@@ -38,7 +38,7 @@
             android:name="com.example.projetdintegration.MusicListActivity"
             android:label="MusicListActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name="com.example.projetdintegration.splashScreenActivity" >
+        <activity android:name="com.example.projetdintegration.HomeActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -53,6 +53,9 @@
         <activity android:name="com.example.projetdintegration.SpotifyMusicListActivity" />
         <activity android:name="com.example.projetdintegration.SpotifyMusicPlayer" />
         <activity android:name="com.example.projetdintegration.MainActivity" />
+
+        <service android:name="com.example.projetdintegration.DBHelpers.DBInitializer$DBInitialisingService" />
+
         <activity
             android:name="com.spotify.sdk.android.auth.LoginActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" >

@@ -9,263 +9,316 @@
     android:id="@+id/drawer_layout"
     android:layout_gravity="start"
     tools:openDrawer="start">
+
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:headerLayout="@layout/navigation_drawer_header"
-        app:menu="@menu/main_menu">
-
+        app:menu="@menu/main_menu"
+        android:background="@color/colorPrimaryDark">
 
     </com.google.android.material.navigation.NavigationView>
 
-    <RelativeLayout
+    <include
+        android:id="@+id/appbar"
+        layout="@layout/appbar" />
+
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="86dp"
+        android:translationZ="-1dp"
+        app:layout_constraintTop_toBottomOf="@id/appbar"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <HorizontalScrollView
-            android:id="@+id/slideshow"
-            android:layout_width="400dp"
-            android:layout_height="200dp"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginStart="12dp"
-            android:layout_marginLeft="12dp"
-            android:layout_marginTop="100dp"
-            android:layout_marginEnd="12dp"
-            android:layout_marginRight="12dp">
+                <TextView
+                    android:id="@+id/slideshow1Title"
+                    style="@style/basic_title_text"
+                    android:layout_width="250dp"
+                    android:layout_height="30dp"
+                    android:layout_above="@+id/slideshow1"
+                    android:layout_marginLeft="18dp"
+                    android:layout_marginBottom="-100dp"
+                    android:text="Vos favoris"
+                    android:layout_marginStart="18dp" />
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/slideshow1"
+                    android:orientation="horizontal"
+                    android:layout_width="400dp"
+                    android:layout_height="200dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginTop="100dp"
+                    android:layout_marginEnd="12dp"
+                    android:layout_marginRight="12dp"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
+                <TextView
+                    android:id="@+id/slideshow2Title"
+                    style="@style/basic_title_text"
+                    android:layout_width="250dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="18dp"
+                    android:layout_marginBottom="-100dp"
+                    android:text="Vos favoris"
+                    android:layout_marginStart="18dp" />
 
-                <ImageButton
-                    android:id="@+id/mediaActivityButton1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
-                    android:adjustViewBounds="true"
-                    android:maxWidth="150dp"
-                    android:maxHeight="150dp"
-                    android:onClick="openMediaActivity"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/ic_file" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/slideshow2"
+                    android:orientation="horizontal"
+                    android:layout_width="400dp"
+                    android:layout_height="200dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginTop="100dp"
+                    android:layout_marginEnd="12dp"
+                    android:layout_marginRight="12dp"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-                <ImageButton
-                    android:id="@+id/mediaActivityButton2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
-                    android:adjustViewBounds="true"
-                    android:maxWidth="150dp"
-                    android:maxHeight="150dp"
-                    android:onClick="openMediaActivity"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/ic_file" />
+                <TextView
+                    android:id="@+id/slideshow3Title"
+                    style="@style/basic_title_text"
+                    android:layout_width="250dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="18dp"
+                    android:layout_marginBottom="-100dp"
+                    android:text="Vos favoris"
+                    android:layout_marginStart="18dp" />
 
-                <ImageButton
-                    android:id="@+id/mediaActivityButton3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
-                    android:adjustViewBounds="true"
-                    android:maxWidth="150dp"
-                    android:maxHeight="150dp"
-                    android:onClick="openMediaActivity"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/ic_file" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/slideshow3"
+                    android:orientation="horizontal"
+                    android:layout_width="400dp"
+                    android:layout_height="200dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginTop="100dp"
+                    android:layout_marginEnd="12dp"
+                    android:layout_marginRight="12dp"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-                <ImageButton
-                    android:id="@+id/mediaActivityButton4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
-                    android:adjustViewBounds="true"
-                    android:maxWidth="150dp"
-                    android:maxHeight="150dp"
-                    android:onClick="openMediaActivity"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/ic_file" />
+                <TextView
+                    android:id="@+id/slideshow4Title"
+                    style="@style/basic_title_text"
+                    android:layout_width="250dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="18dp"
+                    android:layout_marginBottom="-100dp"
+                    android:text="Vos favoris"
+                    android:layout_marginStart="18dp" />
 
-                <ImageButton
-                    android:id="@+id/mediaActivityButton5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
-                    android:adjustViewBounds="true"
-                    android:maxWidth="150dp"
-                    android:maxHeight="150dp"
-                    android:onClick="openMediaActivity"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/ic_file" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/slideshow4"
+                    android:orientation="horizontal"
+                    android:layout_width="400dp"
+                    android:layout_height="200dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginTop="100dp"
+                    android:layout_marginEnd="12dp"
+                    android:layout_marginRight="12dp"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-                <ImageButton
-                    android:id="@+id/mediaActivityButton6"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
-                    android:adjustViewBounds="true"
-                    android:maxWidth="150dp"
-                    android:maxHeight="150dp"
-                    android:onClick="openMediaActivity"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/ic_file" />
+                <TextView
+                    android:id="@+id/slideshow5Title"
+                    style="@style/basic_title_text"
+                    android:layout_width="250dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="18dp"
+                    android:layout_marginBottom="-100dp"
+                    android:text="Vos favoris"
+                    android:layout_marginStart="18dp" />
 
-                <ImageButton
-                    android:id="@+id/mediaActivityButton7"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
-                    android:adjustViewBounds="true"
-                    android:maxWidth="150dp"
-                    android:maxHeight="150dp"
-                    android:onClick="openMediaActivity"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/ic_file" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/slideshow5"
+                    android:orientation="horizontal"
+                    android:layout_width="400dp"
+                    android:layout_height="200dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginTop="100dp"
+                    android:layout_marginEnd="12dp"
+                    android:layout_marginRight="12dp"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-            </LinearLayout>
-        </HorizontalScrollView>
+                <TextView
+                    android:id="@+id/slideshow6Title"
+                    style="@style/basic_title_text"
+                    android:layout_width="250dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="18dp"
+                    android:layout_marginBottom="-100dp"
+                    android:text="Vos favoris"
+                    android:layout_marginStart="18dp" />
 
-        <HorizontalScrollView
-            android:id="@+id/slideshow2"
-            android:layout_width="400dp"
-            android:layout_height="200dp"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginStart="12dp"
-            android:layout_marginLeft="12dp"
-            android:layout_marginTop="350dp"
-            android:layout_marginEnd="12dp"
-            android:layout_marginRight="12dp">
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/slideshow6"
+                    android:orientation="horizontal"
+                    android:layout_width="400dp"
+                    android:layout_height="200dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginTop="100dp"
+                    android:layout_marginEnd="12dp"
+                    android:layout_marginRight="12dp"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/slideshow7Title"
+                    style="@style/basic_title_text"
+                    android:layout_width="250dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="18dp"
+                    android:layout_marginBottom="-100dp"
+                    android:text="Vos favoris"
+                    android:layout_marginStart="18dp" />
 
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/slideshow7"
+                    android:orientation="horizontal"
+                    android:layout_width="400dp"
+                    android:layout_height="200dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginTop="100dp"
+                    android:layout_marginEnd="12dp"
+                    android:layout_marginRight="12dp"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-                <ImageButton
-                    android:id="@+id/mediaActivityButton8"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
-                    android:adjustViewBounds="true"
-                    android:maxWidth="150dp"
-                    android:maxHeight="150dp"
-                    android:onClick="openMediaActivity"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/ic_file" />
+                <TextView
+                    android:id="@+id/slideshow8Title"
+                    style="@style/basic_title_text"
+                    android:layout_width="250dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="18dp"
+                    android:layout_marginBottom="-100dp"
+                    android:text="Vos favoris"
+                    android:layout_marginStart="18dp" />
 
-                <ImageButton
-                    android:id="@+id/mediaActivityButton9"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
-                    android:adjustViewBounds="true"
-                    android:maxWidth="150dp"
-                    android:maxHeight="150dp"
-                    android:onClick="openMediaActivity"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/ic_file" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/slideshow8"
+                    android:orientation="horizontal"
+                    android:layout_width="400dp"
+                    android:layout_height="200dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginTop="100dp"
+                    android:layout_marginEnd="12dp"
+                    android:layout_marginRight="12dp"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-                <ImageButton
-                    android:id="@+id/mediaActivityButton10"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
-                    android:adjustViewBounds="true"
-                    android:maxWidth="150dp"
-                    android:maxHeight="150dp"
-                    android:onClick="openMediaActivity"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/ic_file" />
+                <TextView
+                    android:id="@+id/slideshow9Title"
+                    style="@style/basic_title_text"
+                    android:layout_width="250dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="18dp"
+                    android:layout_marginBottom="-100dp"
+                    android:text="Vos favoris"
+                    android:layout_marginStart="18dp" />
 
-                <ImageButton
-                    android:id="@+id/mediaActivityButton11"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
-                    android:adjustViewBounds="true"
-                    android:maxWidth="150dp"
-                    android:maxHeight="150dp"
-                    android:onClick="openMediaActivity"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/ic_file" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/slideshow9"
+                    android:orientation="horizontal"
+                    android:layout_width="400dp"
+                    android:layout_height="200dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginTop="100dp"
+                    android:layout_marginEnd="12dp"
+                    android:layout_marginRight="12dp"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-                <ImageButton
-                    android:id="@+id/mediaActivityButton12"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
-                    android:adjustViewBounds="true"
-                    android:maxWidth="150dp"
-                    android:maxHeight="150dp"
-                    android:onClick="openMediaActivity"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/ic_file" />
+                <TextView
+                    android:id="@+id/slideshow10Title"
+                    style="@style/basic_title_text"
+                    android:layout_width="250dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="18dp"
+                    android:layout_marginBottom="-100dp"
+                    android:text="Vos favoris"
+                    android:layout_marginStart="18dp" />
 
-                <ImageButton
-                    android:id="@+id/mediaActivityButton13"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
-                    android:adjustViewBounds="true"
-                    android:maxWidth="150dp"
-                    android:maxHeight="150dp"
-                    android:onClick="openMediaActivity"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/ic_file" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/slideshow10"
+                    android:orientation="horizontal"
+                    android:layout_width="400dp"
+                    android:layout_height="200dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginTop="100dp"
+                    android:layout_marginEnd="12dp"
+                    android:layout_marginRight="12dp"/>
+            </RelativeLayout>
 
-                <ImageButton
-                    android:id="@+id/mediaActivityButton14"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
-                    android:adjustViewBounds="true"
-                    android:maxWidth="150dp"
-                    android:maxHeight="150dp"
-                    android:onClick="openMediaActivity"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/ic_file" />
-
-            </LinearLayout>
-        </HorizontalScrollView>
-
-        <TextView
-            android:id="@+id/favoris"
-            style="@style/basic_title_text"
-            android:layout_width="250dp"
-            android:layout_height="30dp"
-            android:layout_above="@+id/slideshow2"
-            android:layout_marginLeft="18dp"
-            android:layout_marginBottom="-100dp"
-            android:text="@string/homescreen_favoris" />
-
-        <TextView
-            android:id="@+id/liste_de_lecture"
-            style="@style/basic_title_text"
-            android:layout_width="250dp"
-            android:layout_height="30dp"
-            android:layout_above="@+id/slideshow2"
-            android:layout_marginLeft="18dp"
-            android:layout_marginBottom="-350dp"
-            android:text="@string/homescreen_listes_lecture" />
-
-        <androidx.appcompat.widget.Toolbar
+        <!--<androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="wrap_content"
-            android:layout_height="?attr/actionBarSize"
+            android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:layout_marginLeft="19dp"
             android:layout_marginTop="18dp"
-            app:navigationIcon="@drawable/ic_hamburger_1"
-            android:theme="@style/ThemeOverlay.AppCompat.Light"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Dark"
-            android:elevation="4dp"/>
-
-    </RelativeLayout>
+            android:minHeight="?attr/actionBarSize"
+            app:navigationIcon="@drawable/ic_hamburger_1" />-->
+        </LinearLayout>
+    </ScrollView>
 </androidx.drawerlayout.widget.DrawerLayout>
