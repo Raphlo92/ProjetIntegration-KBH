@@ -1589,6 +1589,8 @@ drawable ic_arrow_right
 drawable ic_baseline_dehaze_24
 drawable ic_baseline_fast_forward_24
 drawable ic_baseline_fast_rewind_24
+drawable ic_baseline_fullscreen_24
+drawable ic_baseline_fullscreen_exit_24
 drawable ic_baseline_home_24
 drawable ic_baseline_more_vert_24
 drawable ic_baseline_pause_24
