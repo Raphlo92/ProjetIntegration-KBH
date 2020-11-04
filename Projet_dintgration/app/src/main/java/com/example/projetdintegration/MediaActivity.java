@@ -1,6 +1,5 @@
 package com.example.projetdintegration;
 
-import android.media.AudioManager;
 import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Context;
@@ -26,20 +25,13 @@ import android.widget.ImageButton;
 import android.widget.MediaController;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.Toast;
-import android.widget.Button;
-import android.widget.SeekBar;
 import android.widget.VideoView;
-
-
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.projetdintegration.DBHelpers.DBInitializer;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
-
-import java.io.IOException;
 
 public class MediaActivity extends AppCompatActivity{
 
@@ -51,7 +43,11 @@ public class MediaActivity extends AppCompatActivity{
     TextView currentTime;
     TextView maxTime;
     TextView mediaName;
-    private static final String VIDEO_SAMPLE = "sea";
+    Boolean playing = true;
+    ImageButton playButton;
+    int playingId = 0;
+    static String[] mediaList = {"bladee", "boku", "sea", "tacoma_narrows"};
+    String VIDEO_SAMPLE = mediaList[0];
     private static final String TAG = "MediaActivity";
     private MediaController mediaController;
     private ViewGroup.LayoutParams lp;
@@ -63,15 +59,17 @@ public class MediaActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_media_activity);
 
-        ImageButton playButton = findViewById(R.id.playButton);
+        playButton = findViewById(R.id.playButton);
         ImageButton stopButton = findViewById(R.id.stopButton);
+        ImageButton rewindButton = findViewById(R.id.rewindButton);
+        ImageButton forwardButton = findViewById(R.id.forwardButton);
         seekBar = findViewById(R.id.seekBar);
         currentTime = findViewById(R.id.currentTime);
         maxTime = findViewById(R.id.maxTime);
         mediaName = findViewById(R.id.mediaName);
         videoView = findViewById(R.id.videoView);
 
-        playButton.setOnClickListener(new GestionnairePlay());
+        playButton.setOnClickListener(new GestionnairePlayPause());
         stopButton.setOnClickListener(new GestionnaireStop());
         rewindButton.setOnClickListener(new GestionnaireRewind());
         forwardButton.setOnClickListener(new GestionnaireForward());
@@ -85,9 +83,6 @@ public class MediaActivity extends AppCompatActivity{
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                if(videoView != null && fromUser){
-                    videoView.seekTo(progress*1000);
-                    String time = String.valueOf(progress/60) + ":" + String.format("%02d", progress);
                 if (fromUser) {
                     MediaPlaybackService.mediaPlayer.seekTo(progress * 1000);
                     videoView.seekTo(progress * 1000);
@@ -130,11 +125,6 @@ public class MediaActivity extends AppCompatActivity{
         videoView.setMediaController(mediaController);
     }
 
-    public class GestionnairePlay implements View.OnClickListener {
-            public void onClick(View v) {
-                Log.d(TAG, "onClick: playing");
-                Play(v);
-            }
     public class GestionnairePlayPause implements View.OnClickListener {
         public void onClick(View v) {
             if(!mPService.playing) {
@@ -155,7 +145,7 @@ public class MediaActivity extends AppCompatActivity{
             else{
                 Log.d(TAG, "onClick: paused");
                 if(MediaPlaybackService.mediaPlayer.isPlaying())
-                mPService.Pause();
+                    mPService.Pause();
                 videoView.pause();
                 playButton.setImageResource(R.drawable.ic_baseline_play_arrow_24);
                 mPService.playing = false;
@@ -183,10 +173,8 @@ public class MediaActivity extends AppCompatActivity{
         }
     }
 
-    public class GestionnairePause implements View.OnClickListener {
+    public class GestionnaireRewind implements View.OnClickListener{
         public void onClick(View v){
-            Log.d(TAG, "onClick: paused");
-            Pause(v);
             try {
                 mPService.PlayPrevious(v);
                 initializePlayer();
@@ -197,18 +185,8 @@ public class MediaActivity extends AppCompatActivity{
         }
     }
 
-    public class GestionnaireStop implements View.OnClickListener{
+    public class GestionnaireForward implements View.OnClickListener{
         public void onClick(View v){
-            Log.d(TAG, "onClick: stopped");
-            Stop(v);
-        }
-    }
-
-    public void initializePlayer(){
-        if(videoView == null) {
-            videoView = findViewById(R.id.videoView);
-        }
-        Uri videoUri = getMedia(VIDEO_SAMPLE);
             try {
                 mPService.PlayNext();
                 initializePlayer();
@@ -232,26 +210,15 @@ public class MediaActivity extends AppCompatActivity{
     }
 
     @Override
-    protected void onStart(){
+    protected void onStart() {
         super.onStart();
-        initializePlayer();
-        videoView.start();
-        videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-            @Override
-            public void onPrepared(MediaPlayer mediaPlayer) {
-                String time = String.valueOf(videoView.getDuration()/1000/60) + ":" + String.format("%02d", videoView.getDuration()/1000);
-                maxTime.setText(time);
-                seekBar.setMax(videoView.getDuration()/1000);
-                mediaName.setText(VIDEO_SAMPLE);
-            }
-        });
         Intent intent = new Intent(this, MediaPlaybackService.class);
         bindService(intent, connection, Context.BIND_AUTO_CREATE);
         playButton.setImageResource(R.drawable.ic_baseline_pause_24);
     }
 
     @Override
-    protected void onStop(){
+    protected void onStop() {
         super.onStop();
     }
 
@@ -290,20 +257,10 @@ public class MediaActivity extends AppCompatActivity{
         }
     };
 
-    /*private Uri getMedia(String mediaName) {
-        return Uri.parse("android.resource://" + getPackageName() +
-                "/raw/" + mediaName);
-    }*/
-
-    public void SeekBarUpdater(){
     public void SeekBarUpdater() {
         MediaActivity.this.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                if(videoView != null){
-                    int currentPosition = videoView.getCurrentPosition() / 1000;
-                    seekBar.setProgress(currentPosition);
-                    String time = String.valueOf(currentPosition/60) + ":" + String.format("%02d", currentPosition);
                 if (MediaPlaybackService.mediaPlayer != null) {
                     int currentPosition = MediaPlaybackService.mediaPlayer.getCurrentPosition();
                     seekBar.setProgress(currentPosition / 1000);
@@ -314,50 +271,6 @@ public class MediaActivity extends AppCompatActivity{
             }
         });
     }
-
-    public void Play(View v) {
-        if(videoView == null) {
-            initializePlayer();
-            videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                @Override
-                public void onCompletion(MediaPlayer mp) {
-                    StopPlayer();
-            }
-            });
-        }
-        videoView.start();
-    }
-
-    public void Pause(View v) {
-        if(videoView != null){
-            videoView.pause();
-        }
-    }
-
-    public void StopPlayer(){
-        if(videoView != null) {
-            videoView.stopPlayback();
-            videoView = null;
-            Toast.makeText(this, "mediaPlayer released", Toast.LENGTH_LONG).show();
-        }
-    }
-
-    public void Stop(View v){
-        StopPlayer();
-    /*public void Play(View v) {
-        playButton.setImageResource(R.drawable.ic_baseline_pause_24);
-        if (videoView == null) {
-            mPService.initializePlayer();
-            mPService.videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                @Override
-                public void onCompletion(MediaPlayer mp) {
-                    mPService.StopPlayer();
-                }
-            });
-        }
-        mPService.videoView.start();
-        playButton.setImageResource(R.drawable.ic_baseline_pause_24);
-    }*/
 
     public void Pause() {
         mPService.Pause();
