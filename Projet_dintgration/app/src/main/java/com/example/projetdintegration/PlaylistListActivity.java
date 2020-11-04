@@ -12,6 +12,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.projetdintegration.DBHelpers.Categories;
@@ -112,6 +113,14 @@ public class PlaylistListActivity extends AppCompatActivity {
         adapter = new PlaylistListAdapter(this, R.layout.playlist_listitem_layout, playlists);
         listView.setAdapter(adapter);
 
+    }
+    @Override
+    public void onBackPressed() {
+        Log.d(TAG, "onBackPressed: Started");
+        if (drawerLayout.isDrawerOpen(GravityCompat.START))
+            drawerLayout.closeDrawer(GravityCompat.START);
+        else
+            super.onBackPressed();
     }
 
     public static void RefreshView(Context context){

@@ -15,11 +15,7 @@ tools:openDrawer="start">
     android:layout_height="match_parent"
     android:layout_gravity="start"
     app:headerLayout="@layout/navigation_drawer_header"
-    app:menu="@menu/main_menu"
-    style="@style/AppDarkTheme">
-
-
-</com.google.android.material.navigation.NavigationView>
+    app:menu="@menu/main_menu"/>
 
 <RelativeLayout
     android:layout_width="match_parent"
@@ -38,5 +34,13 @@ tools:openDrawer="start">
         android:elevation="4dp"
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="19dp" />
+    <include
+        android:id="@+id/loadItemsLierSpotifyView"
+        layout="@layout/progress_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true" />
 </RelativeLayout>
 </androidx.drawerlayout.widget.DrawerLayout>

@@ -11,6 +11,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.app.IntentService;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -54,9 +55,10 @@ public class MainActivity extends AppCompatActivity {
 
     public static final String CLIENT_ID = "40353253f030456297bcab99af268e6c";
     public static final String REDIRECT_URI = "com.example.projetdintegration://callback";
-
+    public static final String OPTIONS_DEJA_CONNECTE_SPOTIFY = "CONNECTE_A_SPOTIFY";
     //just a simple comment
     private static boolean firstRun = true;
+
     private static final String TAG = "MainActivity";
     Context context = this;
     DrawerLayout drawerLayout;
@@ -93,8 +95,7 @@ public class MainActivity extends AppCompatActivity {
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(new NavigationManager(this, this) {
             @Override
-            public void gotoHome() {
-            }
+            public void gotoHome() {}
         });
         navigationView.setCheckedItem(R.id.nav_home);
         NavigationManager.determinerOptionsAfficher(navigationView.getMenu());

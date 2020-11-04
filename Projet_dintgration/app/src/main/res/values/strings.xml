@@ -23,9 +23,17 @@
     <string name="nav_spotify_aimee">Chansons aimées</string>
     <string name="nav_spotify_bibliotheque">Bibliothèque Spotify</string>
     <string name="nav_spotify_logout">Déconnecter son compte Spotify</string>
+    <string name="nav_spotify_recently_listened">Écoutées récemment</string>
     <string name="navigation_open_drawer_description">Ouvrir le menu</string>
     <string name="navigation_close_drawer_description">Fermer le menu</string>
-    <string name="nav_mediaActivity">En écoute</string>
+    <string name="loadmore">Veuillez patienter, en recherche de plus de contenu</string>
+    <string name="spotify_bibliotheque_default_categorie">Votre bibliothèque</string>
+    <string name="spotify_playlist_view_base_text">Vos listes de lectures</string>
+    <string name="spotify_not_found">Spotify n\'a pas été trouvé, voulez-vous télécharger l\'application du Google Play Store ?</string>
+    <string name="alertbox_positive_button_text">OUI</string>
+    <string name="alertbox_negative_button_text">NON</string>
+    <string name="spotify_deconnexion_prompt">Voulez-vous vraiment vous déconnecter de Spotify ?</string>
+    <string name="spotify_recently_played_base_text">Écoutées récemment</string>
 
     <string name="favorites">Aimer</string>
     <string name="play_next">Écouter après</string>

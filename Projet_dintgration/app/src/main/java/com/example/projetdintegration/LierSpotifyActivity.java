@@ -1,17 +1,22 @@
 package com.example.projetdintegration;
 
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.navigation.NavigationView;
@@ -22,6 +27,8 @@ import com.spotify.android.appremote.api.error.CouldNotFindSpotifyApp;
 import com.spotify.android.appremote.api.error.NotLoggedInException;
 import com.spotify.android.appremote.api.error.UserNotAuthorizedException;
 
+import java.util.function.Consumer;
+
 public class LierSpotifyActivity extends AppCompatActivity {
 
     private static final String TAG = "LierSpotifyActivity";
@@ -30,11 +37,15 @@ public class LierSpotifyActivity extends AppCompatActivity {
     Toolbar toolbar;
     Menu menu;
     public static SpotifyAppRemote appRemote;
+    public static final String CONTENT_API_RECOMMENDED_CALL = "default-cars";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lier_spotify);
+        initializeNavigationElements();
+    }
 
+    private void initializeNavigationElements(){
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -56,40 +67,7 @@ public class LierSpotifyActivity extends AppCompatActivity {
     @Override
     protected void onStart(){
         super.onStart();
-        connexionSpotify(this, new Connector.ConnectionListener() {
-            @Override
-            public void onConnected(SpotifyAppRemote spotifyAppRemote) {
-                connected(spotifyAppRemote);
-            }
-
-            @Override
-            public void onFailure(Throwable throwable) {
-                Log.d(TAG, throwable.getMessage(), throwable);
-                if(throwable instanceof NotLoggedInException || throwable instanceof UserNotAuthorizedException){
-
-                }else if (throwable instanceof CouldNotFindSpotifyApp) {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(LierSpotifyActivity.this);
-                    builder.setMessage("Spotify n'a pas été trouvé, voulez-vous télécharger l'application du Google Play Store ?")
-                            .setPositiveButton("OUI", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    try{
-                                        startActivity(new Intent(Intent.ACTION_VIEW,Uri.parse("market://details?id=com.spotify.music")));
-                                    }catch (android.content.ActivityNotFoundException anfe){
-                                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.spotify.music")));
-                                    }
-                                }
-                            }).setNegativeButton("NON", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-
-                        }
-                    }).show();
-                }
-
-                Log.d("SpotifyConnectionError",throwable.getMessage(), throwable);
-            }
-        });
+        connexionSpotify(this, getDefaultConnectionListener(this,this,this::connected));
     }
 
     public static void connexionSpotify(Context context,Connector.ConnectionListener listener){
@@ -97,9 +75,69 @@ public class LierSpotifyActivity extends AppCompatActivity {
                 .setRedirectUri(MainActivity.REDIRECT_URI).showAuthView(true).build();
         SpotifyAppRemote.connect(context, connectionParams,listener);
     }
-
+    @Override
+    public void onBackPressed() {
+        if (drawerLayout.isDrawerOpen(GravityCompat.START))
+            drawerLayout.closeDrawer(GravityCompat.START);
+        else
+            super.onBackPressed();
+    }
     private void connected(SpotifyAppRemote spotifyAppRemote) {
         appRemote = spotifyAppRemote;
+        Log.i(TAG, "set SharedPreferences Value");
+        SharedPreferences.Editor editor = getPreferences(MODE_PRIVATE).edit();
+        editor.putBoolean(MainActivity.OPTIONS_DEJA_CONNECTE_SPOTIFY,true);
+        editor.apply();
         startActivity(new Intent(this, SpotifyMusicListActivity.class));
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        SharedPreferences.Editor editor = getPreferences(MODE_PRIVATE).edit();
+        editor.putBoolean(MainActivity.OPTIONS_DEJA_CONNECTE_SPOTIFY,true);
+        editor.apply();
+    }
+
+    public static Connector.ConnectionListener getDefaultConnectionListener(Context context, AppCompatActivity currentActivity, Consumer<SpotifyAppRemote> fonctionToCallOnConnection){
+        return new Connector.ConnectionListener() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
+            @Override
+            public void onConnected(SpotifyAppRemote spotifyAppRemote) {
+                fonctionToCallOnConnection.accept(spotifyAppRemote);
+            }
+            @Override
+            public void onFailure(Throwable throwable) {
+                Log.d(TAG, throwable.getMessage(), throwable);
+                if(throwable instanceof NotLoggedInException || throwable instanceof UserNotAuthorizedException){
+
+                }else if (throwable instanceof CouldNotFindSpotifyApp) {
+                    createAlertBox(context,R.string.spotify_not_found,
+                            R.string.alertbox_positive_button_text, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    try{
+                                        currentActivity.startActivity(new Intent(Intent.ACTION_VIEW,Uri.parse("market://details?id=com.spotify.music")));
+                                    }catch (ActivityNotFoundException anfe){
+                                        currentActivity.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.spotify.music")));
+                                    }
+                                }
+                            },R.string.alertbox_negative_button_text, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) { }
+                    }).show();
+                }
+                Log.d("SpotifyConnectionError",throwable.getMessage(), throwable);
+            }
+        };
+    }
+    public static AlertDialog.Builder createAlertBox(Context context, int message, int positiveButtonText,
+                                              DialogInterface.OnClickListener positiveResponseAction,
+                                              int negativeButtonText,
+                                              DialogInterface.OnClickListener negativeResponseAction){
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setMessage(context.getResources().getString(message)).setPositiveButton(context.getResources().getString(positiveButtonText),positiveResponseAction)
+                .setNegativeButton(context.getResources().getString(negativeButtonText),negativeResponseAction);
+        return builder;
     }
 }

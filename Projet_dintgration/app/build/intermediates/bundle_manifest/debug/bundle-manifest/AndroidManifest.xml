@@ -25,6 +25,10 @@
         android:supportsRtl="true"
         android:testOnly="true"
         android:theme="@style/AppTheme" >
+        <activity android:name="com.example.projetdintegration.SpotifyRecentlyListenedActivity" />
+        <activity android:name="com.example.projetdintegration.SpotifyDeconnectionActivity" />
+        <activity android:name="com.example.projetdintegration.SpotifyPlaylistActivity" />
+        <activity android:name="com.example.projetdintegration.SpotifyLikedSongsActivity" />
         <activity
             android:name="com.example.projetdintegration.MediaActivity"
             android:label="MediaActivity"

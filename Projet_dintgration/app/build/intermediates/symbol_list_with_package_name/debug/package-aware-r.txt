@@ -11,7 +11,6 @@ anim abc_slide_out_bottom
 anim abc_slide_out_top
 anim abc_tooltip_enter
 anim abc_tooltip_exit
-anim bottom_animation
 anim btn_checkbox_to_checked_box_inner_merged_animation
 anim btn_checkbox_to_checked_box_outer_merged_animation
 anim btn_checkbox_to_checked_icon_null_animation
@@ -44,7 +43,6 @@ anim nav_default_enter_anim
 anim nav_default_exit_anim
 anim nav_default_pop_enter_anim
 anim nav_default_pop_exit_anim
-anim top_animation
 animator design_appbar_state_list_animator
 animator design_fab_hide_motion_spec
 animator design_fab_show_motion_spec
@@ -426,10 +424,8 @@ attr fontVariationSettings
 attr fontWeight
 attr foregroundInsidePadding
 attr framePosition
-attr freezesAnimation
 attr gapBetweenBars
 attr gestureInsetBottomIgnored
-attr gifSource
 attr goIcon
 attr graph
 attr haloColor
@@ -466,7 +462,6 @@ attr initialActivityCount
 attr insetForeground
 attr isLightTheme
 attr isMaterialTheme
-attr isOpaque
 attr itemBackground
 attr itemFillColor
 attr itemHorizontalPadding
@@ -1133,7 +1128,6 @@ color test_mtrl_calendar_day
 color test_mtrl_calendar_day_selected
 color tooltip_background_dark
 color tooltip_background_light
-color white
 dimen abc_action_bar_content_inset_material
 dimen abc_action_bar_content_inset_with_nav
 dimen abc_action_bar_default_height_material
@@ -1566,7 +1560,6 @@ drawable abc_textfield_search_activated_mtrl_alpha
 drawable abc_textfield_search_default_mtrl_alpha
 drawable abc_textfield_search_material
 drawable abc_vector_test
-drawable androidlogo
 drawable avd_hide_password
 drawable avd_show_password
 drawable btn_checkbox_checked_mtrl
@@ -1583,19 +1576,14 @@ drawable design_ic_visibility
 drawable design_ic_visibility_off
 drawable design_password_eye
 drawable design_snackbar_background
-drawable header_designe
-drawable ic_add
 drawable ic_arrow_right
-drawable ic_baseline_dehaze_24
 drawable ic_baseline_fast_forward_24
 drawable ic_baseline_fast_rewind_24
 drawable ic_baseline_fullscreen_24
 drawable ic_baseline_fullscreen_exit_24
 drawable ic_baseline_home_24
-drawable ic_baseline_more_vert_24
 drawable ic_baseline_pause_24
 drawable ic_baseline_play_arrow_24
-drawable ic_baseline_search_24
 drawable ic_baseline_stop_24
 drawable ic_delete
 drawable ic_favoris
@@ -1633,8 +1621,6 @@ drawable mtrl_ic_error
 drawable mtrl_popupmenu_background
 drawable mtrl_popupmenu_background_dark
 drawable mtrl_tabs_default_indicator
-drawable musicnotedroit
-drawable musicnotegauche
 drawable navigation_empty_icon
 drawable notification_action_background
 drawable notification_bg
@@ -1660,7 +1646,6 @@ id FUNCTION
 id FirstFragment
 id META
 id NO_DEBUG
-id PageTitle
 id SHIFT
 id SHOW_ALL
 id SHOW_PATH
@@ -1669,7 +1654,6 @@ id SYM
 id SecondFragment
 id TOP_END
 id TOP_START
-id TextView
 id accelerate
 id accessibility_action_clickable_span
 id accessibility_custom_action_0
@@ -1726,17 +1710,14 @@ id action_text
 id actions
 id activity_chooser_view_content
 id add
-id addToFav
-id addToPlaylist
-id addToQueue
 id after_logo_tv
+id album_view_image
 id alertTitle
 id aligned
 id all
 id always
 id animateToEnd
 id animateToStart
-id appbar
 id artist
 id artistContainer
 id asConfigured
@@ -1825,6 +1806,7 @@ id exitUntilCollapsed
 id expand_activities_button
 id expanded_menu
 id fade
+id favoris
 id fill
 id fill_horizontal
 id fill_vertical
@@ -1858,8 +1840,6 @@ id ignore
 id ignoreRequest
 id image
 id imageContainer
-id imageView
-id imageView2
 id info
 id invisible
 id italic
@@ -1877,13 +1857,28 @@ id line3
 id linear
 id listMode
 id listView
-id listView1
-id listView2
 id list_item
+id list_spotify_bibliotheque_start
+id liste_de_lecture
+id loadItemsLierSpotifyView
+id loadItemsListView
 id logo
 id masked
 id maxTime
 id mediaActivityButton1
+id mediaActivityButton10
+id mediaActivityButton11
+id mediaActivityButton12
+id mediaActivityButton13
+id mediaActivityButton14
+id mediaActivityButton2
+id mediaActivityButton3
+id mediaActivityButton4
+id mediaActivityButton5
+id mediaActivityButton6
+id mediaActivityButton7
+id mediaActivityButton8
+id mediaActivityButton9
 id mediaName
 id message
 id middle
@@ -1894,8 +1889,7 @@ id month_navigation_fragment_toggle
 id month_navigation_next
 id month_navigation_previous
 id month_title
-id moreOptions
-id moreOptionsContainer
+id more_progress
 id motion_base
 id mtrl_calendar_day_selector_frame
 id mtrl_calendar_days_of_week
@@ -1919,10 +1913,6 @@ id mtrl_picker_text_input_range_end
 id mtrl_picker_text_input_range_start
 id mtrl_picker_title_text
 id multiply
-id musicInAlbum
-id musicOfArtist
-id musicdroite
-id musicgauche
 id name
 id nameContainer
 id nav_bibliotheque
@@ -1938,6 +1928,7 @@ id nav_spotify_chanson_aimee
 id nav_spotify_lier
 id nav_spotify_liste_lecture
 id nav_spotify_logout
+id nav_spotify_recently_listened
 id nav_view
 id navigation_header_container
 id never
@@ -1963,10 +1954,7 @@ id peekHeight
 id percent
 id pin
 id playButton
-id playNext
-id playNow
 id playlistImage
-id playlistInputName
 id playlistItem
 id position
 id postLayout
@@ -2013,6 +2001,7 @@ id sin
 id skipCollapsed
 id slide
 id slideshow
+id slideshow2
 id smallLabel
 id snackbar_action
 id snackbar_text
@@ -2059,6 +2048,7 @@ id textSpacerNoButtons
 id textSpacerNoTitle
 id textStart
 id textView2
+id textView_categorie_name
 id text_input_end_icon
 id text_input_start_icon
 id textinput_counter
@@ -2167,7 +2157,8 @@ layout activity_main
 layout activity_media_activity
 layout activity_music_page
 layout activity_playlist
-layout appbar
+layout activity_spotify_deconnection
+layout album_view_layout
 layout com_spotify_sdk_login_activity
 layout com_spotify_sdk_login_dialog
 layout custom_dialog
@@ -2186,8 +2177,6 @@ layout design_navigation_menu
 layout design_navigation_menu_item
 layout design_text_input_end_icon
 layout design_text_input_start_icon
-layout mainactivity_adapter_layout
-layout mainactivity_imagebutton_adapter
 layout mtrl_alert_dialog
 layout mtrl_alert_dialog_actions
 layout mtrl_alert_dialog_title
@@ -2224,12 +2213,13 @@ layout notification_template_custom_big
 layout notification_template_icon_group
 layout notification_template_part_chronometer
 layout notification_template_part_time
-layout playlist_input_form_layout
 layout playlist_listitem_layout
+layout progress_layout
 layout select_dialog_item_material
 layout select_dialog_multichoice_material
 layout select_dialog_singlechoice_material
 layout splash
+layout spotify_bibliotheque_start
 layout support_simple_spinner_dropdown_item
 layout test_action_chip
 layout test_chip_zero_corner_radius
@@ -2246,7 +2236,6 @@ layout text_view_with_line_height_from_style
 layout text_view_with_theme_line_height
 layout text_view_without_line_height
 menu main_menu
-menu music_menu
 mipmap ic_launcher
 mipmap ic_launcher_round
 navigation nav_graph
@@ -2282,9 +2271,8 @@ string abc_searchview_description_voice
 string abc_shareactionprovider_share_with
 string abc_shareactionprovider_share_with_application
 string abc_toolbar_collapse_description
-string add_to_playlist
-string add_to_queue
-string add_to_spotify_list
+string alertbox_negative_button_text
+string alertbox_positive_button_text
 string app_name
 string appbar_scrolling_view_behavior
 string bottom_sheet_behavior
@@ -2298,7 +2286,6 @@ string error_icon_content_description
 string exposed_dropdown_menu_content_description
 string fab_transformation_scrim_behavior
 string fab_transformation_sheet_behavior
-string favorites
 string first_fragment_label
 string hello_first_fragment
 string hello_second_fragment
@@ -2309,7 +2296,7 @@ string homescreen_favoris
 string homescreen_listes_lecture
 string icon_content_description
 string item_view_role_description
-string like_on_spotify
+string loadmore
 string material_slider_range_end
 string material_slider_range_start
 string mtrl_badge_numberless_content_description
@@ -2347,8 +2334,6 @@ string mtrl_picker_toggle_to_calendar_input_mode
 string mtrl_picker_toggle_to_day_selection
 string mtrl_picker_toggle_to_text_input_mode
 string mtrl_picker_toggle_to_year_selection
-string music_in_album
-string music_of_artist
 string nav_app_bar_navigate_up_description
 string nav_app_bar_open_drawer_description
 string nav_bibliotheque
@@ -2361,6 +2346,7 @@ string nav_spotify_bibliotheque
 string nav_spotify_liercompte
 string nav_spotify_liste_lecture
 string nav_spotify_logout
+string nav_spotify_recently_listened
 string nav_spotify_section
 string navigation_close_drawer_description
 string navigation_open_drawer_description
@@ -2370,12 +2356,14 @@ string path_password_eye
 string path_password_eye_mask_strike_through
 string path_password_eye_mask_visible
 string path_password_strike_through
-string placeholderPlaylistName
-string play_next
-string play_now
 string previous
 string search_menu_title
 string second_fragment_label
+string spotify_bibliotheque_default_categorie
+string spotify_deconnexion_prompt
+string spotify_not_found
+string spotify_playlist_view_base_text
+string spotify_recently_played_base_text
 string status_bar_notification_info_overflow
 string title_activity_music__page
 style AlertDialog_AppCompat
@@ -2386,7 +2374,6 @@ style Animation_AppCompat_DropDownUp
 style Animation_AppCompat_Tooltip
 style Animation_Design_BottomSheetDialog
 style Animation_MaterialComponents_BottomSheetDialog
-style AppDarkTheme
 style AppTheme
 style AppTheme_AppBarOverlay
 style AppTheme_AppStyled
@@ -3129,8 +3116,6 @@ styleable ForegroundLinearLayout android_foreground android_foregroundGravity fo
 styleable Fragment android_name android_id android_tag
 styleable FragmentContainerView android_name android_tag
 styleable FragmentNavigator android_name
-styleable GifTextureView gifSource isOpaque
-styleable GifView freezesAnimation
 styleable GradientColor android_startColor android_endColor android_type android_centerX android_centerY android_gradientRadius android_tileMode android_centerColor android_startX android_startY android_endX android_endY
 styleable GradientColorItem android_color android_offset
 styleable ImageFilterView altSrc brightness contrast crossfade overlay round roundPercent saturation warmth
