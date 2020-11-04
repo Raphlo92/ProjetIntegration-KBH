@@ -48,7 +48,7 @@ public class SpotifyDeconnectionActivity extends AppCompatActivity {
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(new NavigationManager(this, this) {
             @Override
-            public void gotoLikedSongsSpotify() {
+            public void gotoLogoutSpotify() {
             }
         });
         navigationView.setCheckedItem(R.id.nav_spotify_logout);

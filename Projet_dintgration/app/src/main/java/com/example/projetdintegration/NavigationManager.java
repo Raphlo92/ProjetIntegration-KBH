@@ -55,6 +55,18 @@ public class NavigationManager implements NavigationView.OnNavigationItemSelecte
             case R.id.nav_spotify_bibliotheque:
                 gotoBibliothequeSpotify();
                 break;
+            case R.id.nav_spotify_logout:
+                gotoLogoutSpotify();
+                break;
+            case R.id.nav_spotify_chanson_aimee:
+                gotoLikedSongsSpotify();
+                break;
+            case R.id.nav_spotify_liste_lecture:
+                gotoListeLectureSpotify();
+                break;
+            case R.id.nav_spotify_recently_listened:
+                gotoRecentlyListenedSpotify();
+                break;
             // TODO terminer toutes les options du switch case
         }
         return true;
@@ -98,6 +110,10 @@ public class NavigationManager implements NavigationView.OnNavigationItemSelecte
     public void gotoBibliothequeSpotify(){
 
     }
+    protected void gotoLikedSongsSpotify(){startActivity(SpotifyLikedSongsActivity.class);}
+    protected void gotoLogoutSpotify(){startActivity(SpotifyDeconnectionActivity.class);}
+    protected void gotoListeLectureSpotify(){startActivity(SpotifyPlaylistActivity.class);}
+    protected void gotoRecentlyListenedSpotify(){startActivity(SpotifyRecentlyListenedActivity.class);}
     static public void afficherOptionConnecteSpotify(Menu menu) {
         Log.d(TAG, "afficherOptionConnecteSpotify: Started");
         menu.findItem(R.id.nav_spotify_lier).setVisible(false);

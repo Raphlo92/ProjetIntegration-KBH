@@ -79,7 +79,7 @@ public class SpotifyRecentlyListenedActivity extends AppCompatActivity {
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(new NavigationManager(this, this) {
             @Override
-            public void gotoListeLectureSpotify() {
+            public void gotoRecentlyListenedSpotify() {
             }
         });
         navigationView.setCheckedItem(R.id.nav_spotify_liste_lecture);
