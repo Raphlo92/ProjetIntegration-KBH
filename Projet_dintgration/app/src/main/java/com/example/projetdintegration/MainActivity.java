@@ -18,9 +18,11 @@ import android.view.MenuItem;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import android.view.View;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -29,6 +31,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.projetdintegration.DBHelpers.Categories;
 import com.example.projetdintegration.DBHelpers.Classes.Category;
@@ -62,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
     DBHelper dbHelper;
     Musics DBMusicsReader;
     Musics DBMusicsWriter;
-    Categories categories;
+    Categories DBCategoriesReader;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
 
         dbHelper = new DBHelper(getApplicationContext());
         DBMusicsReader = new Musics(dbHelper.getReadableDatabase());
-        categories = new Categories(dbHelper.getReadableDatabase());
+        DBCategoriesReader = new Categories(dbHelper.getReadableDatabase());
         DBMusicsWriter = new Musics(dbHelper.getWritableDatabase());
 
         Log.d(TAG, "onCreate: Started.");
@@ -95,7 +99,11 @@ public class MainActivity extends AppCompatActivity {
         navigationView.setCheckedItem(R.id.nav_home);
         NavigationManager.determinerOptionsAfficher(navigationView.getMenu());
 
-        scrollView_UI();
+        try {
+            scrollView_UI();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
 
         final ListView listView = (ListView) findViewById(R.id.listView);
@@ -109,19 +117,18 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<IDBClass> dbMusics = new ArrayList<>();
         ArrayList<Music> musics = new ArrayList<>();
 
-        if(playlistId > -1){
+        if (playlistId > -1) {
             Playlists DBPlaylistsReader = new Playlists(dbHelper.getReadableDatabase());
             dbMusics = DBPlaylistsReader.getAllMusicsInPlaylist(playlistId);
-        }
-        else{
+        } else {
             dbMusics = DBMusicsReader.Select(null, null, null, null, null, null);
         }
 
-        for (IDBClass music: dbMusics) {
+        for (IDBClass music : dbMusics) {
             musics.add((Music) music);
         }
 
-
+    }
     @Override
     public void onBackPressed() {
         Log.d(TAG, "onBackPressed: Started");
@@ -131,45 +138,86 @@ public class MainActivity extends AppCompatActivity {
             super.onBackPressed();
     }
 
-    public void scrollView_UI() {
+    public void scrollView_UI() throws InterruptedException {
 
-        final ListView listView1 = (ListView) findViewById(R.id.listView1);
-        final ListView listView2 = (ListView) findViewById(R.id.listView2);
+        final RecyclerView[] scrollviews = {
+                (RecyclerView) findViewById(R.id.slideshow1),
+                (RecyclerView) findViewById(R.id.slideshow2),
+                (RecyclerView) findViewById(R.id.slideshow3),
+                (RecyclerView) findViewById(R.id.slideshow4),
+                (RecyclerView) findViewById(R.id.slideshow5),
+                (RecyclerView) findViewById(R.id.slideshow6),
+                (RecyclerView) findViewById(R.id.slideshow7),
+                (RecyclerView) findViewById(R.id.slideshow8),
+                (RecyclerView) findViewById(R.id.slideshow9),
+                (RecyclerView) findViewById(R.id.slideshow10),
+        };
+
+        final TextView[] scrollviewTitles = {
+                (TextView) findViewById(R.id.slideshow1Title),
+                (TextView) findViewById(R.id.slideshow2Title),
+                (TextView) findViewById(R.id.slideshow3Title),
+                (TextView) findViewById(R.id.slideshow4Title),
+                (TextView) findViewById(R.id.slideshow5Title),
+                (TextView) findViewById(R.id.slideshow6Title),
+                (TextView) findViewById(R.id.slideshow7Title),
+                (TextView) findViewById(R.id.slideshow8Title),
+                (TextView) findViewById(R.id.slideshow9Title),
+                (TextView) findViewById(R.id.slideshow10Title)
+        };
+
+        //final ListView listView2 = (ListView) findViewById(R.id.listView2);
 
         //final ImageView imageView2 = (ImageView) findViewById(R.id.imageView2);
         //imageView2.setImageResource(R.drawable.ic_add);
         //imageView2.setVisibility(View.INVISIBLE);
 
-        ArrayList<IDBClass> list = categories.Select(null, null, null, null, null, null);
-        ArrayList<Category> categorie = new ArrayList<>();
+        ArrayList<IDBClass> list = DBCategoriesReader.Select(null, null, null, null, null, null);
+
+
+
+        ArrayList<IDBClass> categoriesUsed = DBMusicsReader.getAllUsedCategories();
+        ArrayList<Category> categories = new ArrayList<>();
         Random rand = new Random();
 
-        for (int i = 0; i < 0; i++) {
+        //Determiner 10 categories random
+        //Pour chaques categories ajouter dynamiquement les musiques
+        //En utilisant des adapters
+        ArrayList<IDBClass> dbMusics;
+        ArrayList<Music> musics;
 
-            ArrayList<IDBClass> dbMusics = new ArrayList<>();
-            ArrayList<Music> musics = new ArrayList<>();
+        int max = Math.min(categoriesUsed.size(), 10);
 
-            int randomIndex = rand.nextInt(list.size());
-            IDBClass randomElement = list.get(randomIndex);
+        for (int i = 0; i < max; i++) {
+            dbMusics = new ArrayList<>();
+            musics = new ArrayList<>();
+            int randomIndex = rand.nextInt(categoriesUsed.size());
+            IDBClass randomElement = categoriesUsed.get(randomIndex);
             Category RandCat = (Category) randomElement;
-            categorie.add(RandCat);
+            categories.add(RandCat);
+            categoriesUsed.remove(randomIndex);
+
             String whereClause = DBHelper.Contract.TableMusic.COLUMN_NAME_ID_CATEGORY + " = ?";
             String[] whereArgs = {RandCat.getId() + ""};
-            dbMusics = DBMusicsReader.Select(null, whereClause, whereArgs, null, null, null);
 
-            int count = dbMusics.size();
+
+            dbMusics = DBMusicsReader.Select(null, whereClause, whereArgs, null, null, null);
+            musics = new ArrayList<>();
 
             for (IDBClass music : dbMusics) {
-                music = dbMusics.get(rand.nextInt(list.size()));
+                //music = dbMusics.get(rand.nextInt(dbMusics.size()));
                 musics.add((Music) music);
-                dbMusics.remove(music);
             }
 
-            CategorieListAdapter adapter1 = new CategorieListAdapter(this, R.layout.mainactivity_adapter_layout, categorie);
-            FileListAdapter adapter2 = new FileListAdapter(this, R.layout.mainactivity_imagebutton_adapter, musics);
-            listView1.setAdapter(adapter1);
-            listView2.setAdapter(adapter2);
+            FileListAdapter adapter = new FileListAdapter(this, R.layout.mainactivity_imagebutton_adapter, musics);
+            scrollviewTitles[i].setText(RandCat.getName());
+            scrollviews[i].setAdapter(adapter);
+            LinearLayoutManager layout = new LinearLayoutManager(this);
+            layout.setOrientation(RecyclerView.HORIZONTAL);
+            scrollviews[i].setLayoutManager(layout);
+
         }
+
     }
 
     public void openMediaActivity(View v) {

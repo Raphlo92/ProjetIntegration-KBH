@@ -17,8 +17,9 @@
             android:layout_marginBottom="-100dp"
             android:text="Vos favorie" />
 
-        <HorizontalScrollView
+        <ListView
             android:id="@+id/slideshow"
+            android:orientation="horizontal"
             android:layout_width="400dp"
             android:layout_height="200dp"
             android:layout_alignParentTop="true"
@@ -28,7 +29,7 @@
             android:layout_marginTop="100dp"
             android:layout_marginEnd="12dp"
             android:layout_marginRight="12dp">
-        </HorizontalScrollView>
+        </ListView>
 
     </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,6 +10,7 @@ import com.example.projetdintegration.DBHelpers.Classes.Playlist;
 import com.example.projetdintegration.DBHelpers.DBHelper.Contract.TablePlaylist;
 import com.example.projetdintegration.DBHelpers.DBHelper.Contract.TableMusicPlaylist;
 import com.example.projetdintegration.DBHelpers.DBHelper.Contract.TableMusic;
+import com.example.projetdintegration.Utilities.StringUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -176,23 +177,10 @@ public class Playlists extends AbstractDBHelper {
         return ids;
     }
 
-    private String toCommaSeparatedString(ArrayList<Integer> list) {
-        if (list.size() > 0) {
-            StringBuilder nameBuilder = new StringBuilder();
-            for (Integer item : list) {
-                nameBuilder.append(item).append(", ");
-            }
-            nameBuilder.deleteCharAt(nameBuilder.length() - 1);
-            nameBuilder.deleteCharAt(nameBuilder.length() - 1);
-            return nameBuilder.toString();
-        } else {
-            return "";
-        }
-    }
 
     public ArrayList<IDBClass> getAllMusicsInPlaylist(int playlistId){
         ArrayList<IDBClass> musics;
-        String CSIds = toCommaSeparatedString(getAllMusicsIdsInPlaylist(playlistId));
+        String CSIds = StringUtil.toCommaSeparatedString(getAllMusicsIdsInPlaylist(playlistId)) ;
         Log.d(TAG, "getAllMusicsInPlaylist: CSIds = " + CSIds);
         Musics musicsDBHelper = new Musics(DB);
 
