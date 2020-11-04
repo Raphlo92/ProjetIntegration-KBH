@@ -17,6 +17,11 @@
             android:id="@+id/nav_bibliotheque"
             android:icon="@drawable/ic_file"
             android:title="@string/nav_bibliotheque" />
+
+        <item
+            android:id="@+id/nav_mediaActivity"
+            android:icon="@drawable/ic_baseline_play_arrow_24"
+            android:title="@string/nav_mediaActivity" />
     </group>
 
 

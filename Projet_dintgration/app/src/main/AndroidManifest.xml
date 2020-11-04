@@ -22,7 +22,7 @@
             android:name=".MusicListActivity"
             android:label="MusicListActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".splashScreenActivity">
+        <activity android:name=".HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -39,6 +39,7 @@
         <activity android:name=".SpotifyMusicPlayer"/>
 
         <activity android:name=".MainActivity" />
+        <service android:name=".DBHelpers.DBInitializer$DBInitialisingService"/>
     </application>
 
 </manifest>

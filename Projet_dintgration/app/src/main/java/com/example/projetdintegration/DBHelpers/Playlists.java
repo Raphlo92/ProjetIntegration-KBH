@@ -10,6 +10,7 @@ import com.example.projetdintegration.DBHelpers.Classes.Playlist;
 import com.example.projetdintegration.DBHelpers.DBHelper.Contract.TablePlaylist;
 import com.example.projetdintegration.DBHelpers.DBHelper.Contract.TableMusicPlaylist;
 import com.example.projetdintegration.DBHelpers.DBHelper.Contract.TableMusic;
+import com.example.projetdintegration.Utilities.StringUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -100,18 +101,67 @@ public class Playlists extends AbstractDBHelper {
         nbUpdatedRows = DB.update(TABLE_NAME, values, whereClause, whereArgs);
     }
 
+    public void initFavorites(){
+        Insert(new Playlist(0, "Favoris", "favoris"));
+    }
+
     public void AddToPlaylist(int musicId, int playlistId){
-        ContentValues values = new ContentValues();
+        if(playlistId != -1){
+            ContentValues values = new ContentValues();
 
-        values.put(TableMusicPlaylist.COLUMN_NAME_ID_MUSIC, musicId);
-        values.put(TableMusicPlaylist.COLUMN_NAME_ID_PLAYLIST, playlistId);
+            values.put(TableMusicPlaylist.COLUMN_NAME_ID_MUSIC, musicId);
+            values.put(TableMusicPlaylist.COLUMN_NAME_ID_PLAYLIST, playlistId);
 
-        DB.insert(TableMusicPlaylist.TABLE_NAME, null, values);
+            DB.insert(TableMusicPlaylist.TABLE_NAME, null, values);
+        }
+    }
+
+    public void RemoveFromPlaylist(int musicId, int playlistId){
+        String whereClause = TableMusicPlaylist.COLUMN_NAME_ID_MUSIC + " = ? AND " + TableMusicPlaylist.COLUMN_NAME_ID_PLAYLIST + " = ?";
+        String[] whereArgs = {musicId + "", playlistId + ""};
+        DB.delete(TableMusicPlaylist.TABLE_NAME, whereClause, whereArgs);
+    }
+
+    public void RemoveFromFavorites(int musicId){
+        RemoveFromPlaylist(musicId, getFavoritesId());
+    }
+
+    public void AddToFavorites(int musicId){
+        AddToPlaylist(musicId, getFavoritesId());
+    }
+
+    public boolean isInFavorites(int musicId){
+        String[] columns = { TableMusicPlaylist.COLUMN_NAME_ID_MUSIC };
+        boolean favorite = false;
+        String where = TableMusicPlaylist.COLUMN_NAME_ID_MUSIC + " = ? AND " + TableMusicPlaylist.COLUMN_NAME_ID_PLAYLIST + " = ?";
+        String[] whereArgs = {musicId + "", getFavoritesId() + ""};
+        Cursor cursor = DB.query(TableMusicPlaylist.TABLE_NAME, columns , where, whereArgs, null, null, null);
+        favorite = cursor.moveToNext();
+        cursor.close();
+        return favorite;
+    }
+
+    public int getFavoritesId(){
+        String[] columns = { TablePlaylist._ID };
+        int favoritesId = -1;
+        String where = TablePlaylist.COLUMN_NAME_TYPE + " = ?";
+        String[] whereArgs = {"favoris"};
+        Cursor cursor = DB.query(TablePlaylist.TABLE_NAME, columns , where, whereArgs, null, null, null);
+        while (cursor.moveToNext()){
+            favoritesId =  cursor.getInt(cursor.getColumnIndexOrThrow(TablePlaylist._ID));
+        }
+
+        Log.d(TAG, "getFavoritesId: Id = " + favoritesId);
+        cursor.close();
+        return favoritesId;
     }
 
     public ArrayList<Integer> getAllMusicsIdsInPlaylist(int playlistId){
+        //fixed by using playlist Id
         String[] columns = { TableMusicPlaylist.COLUMN_NAME_ID_MUSIC };
-        Cursor cursor = DB.query(TableMusicPlaylist.TABLE_NAME, columns , null, null, null, null, null);
+        String where = TableMusicPlaylist.COLUMN_NAME_ID_PLAYLIST + " = ?";
+        String[] whereArgs = { playlistId + ""};
+        Cursor cursor = DB.query(TableMusicPlaylist.TABLE_NAME, columns , where, whereArgs, null, null, null);
 
         ArrayList<Integer> ids = new ArrayList<>();
 
@@ -127,23 +177,10 @@ public class Playlists extends AbstractDBHelper {
         return ids;
     }
 
-    private String toCommaSeparatedString(ArrayList<Integer> list) {
-        if (list.size() > 0) {
-            StringBuilder nameBuilder = new StringBuilder();
-            for (Integer item : list) {
-                nameBuilder.append(item).append(", ");
-            }
-            nameBuilder.deleteCharAt(nameBuilder.length() - 1);
-            nameBuilder.deleteCharAt(nameBuilder.length() - 1);
-            return nameBuilder.toString();
-        } else {
-            return "";
-        }
-    }
 
     public ArrayList<IDBClass> getAllMusicsInPlaylist(int playlistId){
         ArrayList<IDBClass> musics;
-        String CSIds = toCommaSeparatedString(getAllMusicsIdsInPlaylist(playlistId));
+        String CSIds = StringUtil.toCommaSeparatedString(getAllMusicsIdsInPlaylist(playlistId)) ;
         Log.d(TAG, "getAllMusicsInPlaylist: CSIds = " + CSIds);
         Musics musicsDBHelper = new Musics(DB);
 
@@ -163,5 +200,34 @@ public class Playlists extends AbstractDBHelper {
         musics = musicsDBHelper.Select(columns, whereClause, null, null, null, null);
 
         return musics;
+    }
+
+    public static String getPlaylistName(SQLiteDatabase db, int playlistId){
+        String name = null;
+        String selection = TablePlaylist._ID + " = ?";
+        String[] selectionArgs = { playlistId + "" };
+        Cursor cursor = db.query(TABLE_NAME, null, selection, selectionArgs, null, null, null);
+
+        while (cursor.moveToNext()){
+            name = cursor.getString(cursor.getColumnIndexOrThrow(TablePlaylist.COLUMN_NAME_NAME));
+        }
+
+        cursor.close();
+        return name;
+    }
+
+    public static Playlist getPlaylistById(SQLiteDatabase db, int playlistId){
+        Playlist playlist = new Playlist(playlistId, "", "");
+        String selection = TablePlaylist._ID + " = ?";
+        String[] selectionArgs = { playlistId + "" };
+        Cursor cursor = db.query(TABLE_NAME, null, selection, selectionArgs, null, null, null);
+
+        while (cursor.moveToNext()){
+            playlist.setName(cursor.getString(cursor.getColumnIndexOrThrow(TablePlaylist.COLUMN_NAME_NAME)));
+            playlist.setType(cursor.getString(cursor.getColumnIndexOrThrow(TablePlaylist.COLUMN_NAME_NAME)));
+        }
+
+        cursor.close();
+        return playlist;
     }
 }

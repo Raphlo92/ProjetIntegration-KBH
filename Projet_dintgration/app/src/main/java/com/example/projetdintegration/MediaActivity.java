@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Button;
@@ -38,9 +39,8 @@ public class MediaActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_media_activity);
 
-        Button playButton = findViewById(R.id.playButton);
-        Button pauseButton = findViewById(R.id.pauseButton);
-        Button stopButton = findViewById(R.id.stopButton);
+        ImageButton playButton = findViewById(R.id.playButton);
+        ImageButton stopButton = findViewById(R.id.stopButton);
         seekBar = findViewById(R.id.seekBar);
         videoView = findViewById(R.id.videoView);
         currentTime = findViewById(R.id.currentTime);
@@ -48,7 +48,6 @@ public class MediaActivity extends AppCompatActivity{
         mediaName = findViewById(R.id.mediaName);
 
         playButton.setOnClickListener(new GestionnairePlay());
-        pauseButton.setOnClickListener(new GestionnairePause());
         stopButton.setOnClickListener(new GestionnaireStop());
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override

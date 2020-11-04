@@ -9,80 +9,307 @@
     android:id="@+id/drawer_layout"
     android:layout_gravity="start"
     tools:openDrawer="start">
+
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:headerLayout="@layout/navigation_drawer_header"
-        app:menu="@menu/main_menu">
+        app:menu="@menu/main_menu"
+        android:background="@color/colorPrimaryDark">
 
     </com.google.android.material.navigation.NavigationView>
-    <RelativeLayout android:layout_height="match_parent"
-        android:layout_width="match_parent">
 
-        <Button
-            android:id="@+id/mediaActivityButton"
+    <include
+        android:id="@+id/appbar"
+        layout="@layout/appbar" />
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="86dp"
+        android:translationZ="-1dp"
+        app:layout_constraintTop_toBottomOf="@id/appbar"
+        android:orientation="vertical">
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="700dp"
-            android:text="Musique"
-            android:onClick="openMediaActivity"
-            />
+            android:orientation="vertical">
+            <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/textView_homescreen_favoris"
-            style="@style/basic_title_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="40dp"
-            android:layout_marginLeft="40dp"
-            android:layout_marginTop="111dp"
-            android:text="@string/homescreen_favoris" />
+                <TextView
+                    android:id="@+id/slideshow1Title"
+                    style="@style/basic_title_text"
+                    android:layout_width="250dp"
+                    android:layout_height="30dp"
+                    android:layout_above="@+id/slideshow1"
+                    android:layout_marginLeft="18dp"
+                    android:layout_marginBottom="-100dp"
+                    android:text="Vos favoris"
+                    android:layout_marginStart="18dp" />
 
-        <TextView
-            android:id="@+id/textView_homescreen_liste_lecture"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/textView_homescreen_favoris"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
-            android:layout_marginStart="42dp"
-            android:layout_marginLeft="42dp"
-            android:layout_marginTop="24dp"
-            android:text="@string/homescreen_listes_lecture"
-            style="@style/basic_title_text"/>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/slideshow1"
+                    android:orientation="horizontal"
+                    android:layout_width="400dp"
+                    android:layout_height="200dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginTop="100dp"
+                    android:layout_marginEnd="12dp"
+                    android:layout_marginRight="12dp"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/textView_homescreen_albums"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/textView_homescreen_liste_lecture"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
-            android:layout_marginStart="42dp"
-            android:layout_marginLeft="42dp"
-            android:layout_marginTop="26dp"
-            android:text="@string/homescreen_albums"
-            style="@style/basic_title_text"/>
+                <TextView
+                    android:id="@+id/slideshow2Title"
+                    style="@style/basic_title_text"
+                    android:layout_width="250dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="18dp"
+                    android:layout_marginBottom="-100dp"
+                    android:text="Vos favoris"
+                    android:layout_marginStart="18dp" />
 
-        <TextView
-            android:id="@+id/textView_homescreen_artiste"
-            style="@style/basic_title_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/textView_homescreen_albums"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
-            android:layout_marginStart="44dp"
-            android:layout_marginLeft="44dp"
-            android:layout_marginTop="29dp"
-            android:text="@string/homescreen_artiste" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/slideshow2"
+                    android:orientation="horizontal"
+                    android:layout_width="400dp"
+                    android:layout_height="200dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginTop="100dp"
+                    android:layout_marginEnd="12dp"
+                    android:layout_marginRight="12dp"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-        <androidx.appcompat.widget.Toolbar
+                <TextView
+                    android:id="@+id/slideshow3Title"
+                    style="@style/basic_title_text"
+                    android:layout_width="250dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="18dp"
+                    android:layout_marginBottom="-100dp"
+                    android:text="Vos favoris"
+                    android:layout_marginStart="18dp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/slideshow3"
+                    android:orientation="horizontal"
+                    android:layout_width="400dp"
+                    android:layout_height="200dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginTop="100dp"
+                    android:layout_marginEnd="12dp"
+                    android:layout_marginRight="12dp"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/slideshow4Title"
+                    style="@style/basic_title_text"
+                    android:layout_width="250dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="18dp"
+                    android:layout_marginBottom="-100dp"
+                    android:text="Vos favoris"
+                    android:layout_marginStart="18dp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/slideshow4"
+                    android:orientation="horizontal"
+                    android:layout_width="400dp"
+                    android:layout_height="200dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginTop="100dp"
+                    android:layout_marginEnd="12dp"
+                    android:layout_marginRight="12dp"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/slideshow5Title"
+                    style="@style/basic_title_text"
+                    android:layout_width="250dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="18dp"
+                    android:layout_marginBottom="-100dp"
+                    android:text="Vos favoris"
+                    android:layout_marginStart="18dp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/slideshow5"
+                    android:orientation="horizontal"
+                    android:layout_width="400dp"
+                    android:layout_height="200dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginTop="100dp"
+                    android:layout_marginEnd="12dp"
+                    android:layout_marginRight="12dp"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/slideshow6Title"
+                    style="@style/basic_title_text"
+                    android:layout_width="250dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="18dp"
+                    android:layout_marginBottom="-100dp"
+                    android:text="Vos favoris"
+                    android:layout_marginStart="18dp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/slideshow6"
+                    android:orientation="horizontal"
+                    android:layout_width="400dp"
+                    android:layout_height="200dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginTop="100dp"
+                    android:layout_marginEnd="12dp"
+                    android:layout_marginRight="12dp"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/slideshow7Title"
+                    style="@style/basic_title_text"
+                    android:layout_width="250dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="18dp"
+                    android:layout_marginBottom="-100dp"
+                    android:text="Vos favoris"
+                    android:layout_marginStart="18dp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/slideshow7"
+                    android:orientation="horizontal"
+                    android:layout_width="400dp"
+                    android:layout_height="200dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginTop="100dp"
+                    android:layout_marginEnd="12dp"
+                    android:layout_marginRight="12dp"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/slideshow8Title"
+                    style="@style/basic_title_text"
+                    android:layout_width="250dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="18dp"
+                    android:layout_marginBottom="-100dp"
+                    android:text="Vos favoris"
+                    android:layout_marginStart="18dp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/slideshow8"
+                    android:orientation="horizontal"
+                    android:layout_width="400dp"
+                    android:layout_height="200dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginTop="100dp"
+                    android:layout_marginEnd="12dp"
+                    android:layout_marginRight="12dp"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/slideshow9Title"
+                    style="@style/basic_title_text"
+                    android:layout_width="250dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="18dp"
+                    android:layout_marginBottom="-100dp"
+                    android:text="Vos favoris"
+                    android:layout_marginStart="18dp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/slideshow9"
+                    android:orientation="horizontal"
+                    android:layout_width="400dp"
+                    android:layout_height="200dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginTop="100dp"
+                    android:layout_marginEnd="12dp"
+                    android:layout_marginRight="12dp"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/slideshow10Title"
+                    style="@style/basic_title_text"
+                    android:layout_width="250dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="18dp"
+                    android:layout_marginBottom="-100dp"
+                    android:text="Vos favoris"
+                    android:layout_marginStart="18dp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/slideshow10"
+                    android:orientation="horizontal"
+                    android:layout_width="400dp"
+                    android:layout_height="200dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginTop="100dp"
+                    android:layout_marginEnd="12dp"
+                    android:layout_marginRight="12dp"/>
+            </RelativeLayout>
+
+        <!--<androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -91,6 +318,7 @@
             android:layout_marginLeft="19dp"
             android:layout_marginTop="18dp"
             android:minHeight="?attr/actionBarSize"
-            app:navigationIcon="@drawable/ic_hamburger_1" />
-    </RelativeLayout>
+            app:navigationIcon="@drawable/ic_hamburger_1" />-->
+        </LinearLayout>
+    </ScrollView>
 </androidx.drawerlayout.widget.DrawerLayout>

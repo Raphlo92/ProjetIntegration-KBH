@@ -1,9 +1,13 @@
 package com.example.projetdintegration;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,7 +18,9 @@ import com.example.projetdintegration.DBHelpers.Categories;
 import com.example.projetdintegration.DBHelpers.Classes.IDBClass;
 import com.example.projetdintegration.DBHelpers.Classes.Playlist;
 import com.example.projetdintegration.DBHelpers.DBHelper;
+import com.example.projetdintegration.DBHelpers.Musics;
 import com.example.projetdintegration.DBHelpers.Playlists;
+import com.example.projetdintegration.Utilities.PopupHelper;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
@@ -25,9 +31,11 @@ public class PlaylistListActivity extends AppCompatActivity {
     NavigationView navigationView;
     Toolbar toolbar;
     Menu menu;
-    DBHelper dbHelper;
+    static DBHelper dbHelper;
     Playlists DBPlaylistsReader;
     Playlists DBPlaylistsWriter;
+    PlaylistListAdapter adapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +49,10 @@ public class PlaylistListActivity extends AppCompatActivity {
         DBPlaylistsWriter = new Playlists(dbHelper.getWritableDatabase());
         //endregion
 
+
+
+        PopupHelper popupHelper = new PopupHelper(this);
+
         //testing categories for Kevin ;)
         String[] columns = {
                 DBHelper.Contract.TableCategory._ID,
@@ -51,6 +63,21 @@ public class PlaylistListActivity extends AppCompatActivity {
         for (IDBClass item : list) {
             Log.d(TAG, "onCreate: Categories: cat = " + item.getName());
         }
+
+
+        final TextView pageTitle = (TextView) findViewById(R.id.PageTitle);
+        pageTitle.setText(R.string.nav_liste_lecture);
+
+        final ImageView imageView1 = (ImageView) findViewById(R.id.imageView1);
+        imageView1.setVisibility(View.INVISIBLE);
+
+        final ImageView imageView2 = (ImageView) findViewById(R.id.imageView2);
+        imageView2.setImageResource(R.drawable.ic_add);
+        imageView2.setVisibility(View.VISIBLE);
+        imageView2.setOnClickListener(view -> {
+            Log.d(TAG, "imageView2: onClickListener() ");
+            popupHelper.showCreateForm();
+        });
 
         //region Navigation
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -69,11 +96,7 @@ public class PlaylistListActivity extends AppCompatActivity {
             }
         });
         navigationView.setCheckedItem(R.id.nav_liste_lecture);
-<<<<<<< HEAD
-        NavigationManager.afficherOptionDeconnecteSpotify(navigationView.getMenu());
-=======
         NavigationManager.determinerOptionsAfficher(navigationView.getMenu());
->>>>>>> MergedProject
         //endregion
 
         final ListView listView = (ListView) findViewById(R.id.listView);
@@ -86,8 +109,23 @@ public class PlaylistListActivity extends AppCompatActivity {
         }
 
 
-        PlaylistListAdapter adapter = new PlaylistListAdapter(this, R.layout.playlist_listitem_layout, playlists);
+        adapter = new PlaylistListAdapter(this, R.layout.playlist_listitem_layout, playlists);
         listView.setAdapter(adapter);
+
+    }
+
+    public static void RefreshView(Context context){
+        Playlists DBPlaylistsReader = new Playlists(new DBHelper(context).getReadableDatabase());
+        ArrayList<IDBClass> dbPlaylists = DBPlaylistsReader.Select(null, null, null, null, null, null);
+        ArrayList<Playlist> playlists = new ArrayList<>();
+
+        for (IDBClass playlist : dbPlaylists) {
+            playlists.add((Playlist) playlist);
+        }
+
+        //adapter.clear();
+        //adapter.addAll(playlists);
+        //adapter.notifyDataSetChanged();
 
     }
 }

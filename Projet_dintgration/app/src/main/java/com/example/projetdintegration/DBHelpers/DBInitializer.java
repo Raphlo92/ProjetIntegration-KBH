@@ -1,14 +1,19 @@
 package com.example.projetdintegration.DBHelpers;
 
+import android.app.IntentService;
+import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.media.MediaMetadataRetriever;
 import android.util.Log;
 
+import androidx.annotation.Nullable;
+
 import com.example.projetdintegration.DBHelpers.Classes.Album;
 import com.example.projetdintegration.DBHelpers.Classes.Artist;
 import com.example.projetdintegration.DBHelpers.Classes.Music;
-import com.example.projetdintegration.MusicFileExplorer;
+import com.example.projetdintegration.Utilities.MusicFileExplorer;
 import com.example.projetdintegration.Utilities.NumberUtil;
 import com.example.projetdintegration.Utilities.StringUtil;
 
@@ -26,18 +31,36 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
+
+
 public class DBInitializer {
     private static final String TAG = "DBInitializer";
     private static final int ARTIST_NAME_COUNT = 5;
     private static final int ALBUM_NAME_COUNT = 6;
-    private static final int MUSIC_NAME_COUNT = 7;
+    Context mContext;
     DBHelper dbHelper;
     SQLiteDatabase DBWriter;
     SQLiteDatabase DBReader;
     public DBInitializer(Context context) {
+        mContext = context;
         dbHelper = new DBHelper(context);
         DBWriter = dbHelper.getWritableDatabase();
         DBReader = dbHelper.getReadableDatabase();
+    }
+
+    public static class DBInitialisingService extends IntentService{
+
+        public DBInitialisingService() {
+            super("DBInitialisingService");
+        }
+
+        @Override
+        protected void onHandleIntent(@Nullable Intent intent) {
+            Log.d(TAG, "onHandleIntent: Started");
+            ArrayList<File> files = new ArrayList<>();
+            MusicFileExplorer.getAllChildren(MusicFileExplorer.DIRECTORY_MUSIC, files);
+            new DBInitializer(this).Init(files);
+        }
     }
 
     public void Init(ArrayList<File> files){
@@ -49,11 +72,11 @@ public class DBInitializer {
         Categories categoriesDBHelper = new Categories(DBWriter);
         categoriesDBHelper.init();
 
+        Playlists playlistsDBHelper = new Playlists(DBWriter);
+        playlistsDBHelper.initFavorites();
+
         Log.d(TAG, "Init: FilesSize() = " + files.size());
         for (File file : files) {
-
-
-
             Log.d(TAG, "Init: File reading");
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
                 Path path = Paths.get(file.toURI());
@@ -75,6 +98,24 @@ public class DBInitializer {
                         Musics musicsDBHelper = new Musics(DBWriter);
                         musicsDBHelper.Insert(music);
                     }
+                    else if(mimeType.equals("image")){
+                        //TODO update image in Album DB Table
+
+                        //get Album Id by Name => name being the name of folder where the image is (ALBUM_NAME_COUNT = 6)
+                        //  PATH TO ALBUM PROPS : /storage/emulated/0/Music/{Artist}/{Album}/*/{PropFile}
+                        //                            1        2    3   4       5       6
+                        String albumName = path.getName(ALBUM_NAME_COUNT).toString();
+                        //update Album using know data (ID)
+                        //  update image = "imagePath" where Id = (ID)
+                        Albums albumsDBHelper = new Albums(DBWriter);
+
+                        ContentValues values = new ContentValues();
+                        values.put(DBHelper.Contract.TableAlbum.COLUMN_NAME_IMAGE, path.toAbsolutePath().toString());
+                        String whereClause = DBHelper.Contract.TableAlbum.COLUMN_NAME_TITLE + " = ?";
+                        String[] whereArgs = { albumName };
+
+                        albumsDBHelper.Update(values, whereClause, whereArgs);
+                    }
                 }
                 else if(path.getNameCount() == ARTIST_NAME_COUNT){
                     Log.d(TAG, "Init: artistName = " + path.getFileName());
@@ -90,7 +131,7 @@ public class DBInitializer {
                     Path musicPath = Paths.get(path.toAbsolutePath() + "/" + firstMusic);
                     metadata = getMetadata(musicPath.toAbsolutePath().toString());
 
-                    Album album = new Album(0, path.getFileName().toString(), path.getName(ARTIST_NAME_COUNT).toString(), metadata[2]);
+                    Album album = new Album(0, path.getFileName().toString(), metadata[4], path.getName(ARTIST_NAME_COUNT).toString(), metadata[2]);
                     Albums albumsDBHelper = new Albums(DBWriter);
                     albumsDBHelper.Insert(album);
                 }
@@ -179,7 +220,7 @@ public class DBInitializer {
         //TODO Strip genre and make sure they are in the DB
         //TODO - Extra: find the closes resembling genre
         MediaMetadataRetriever mmr = new MediaMetadataRetriever();
-        String[] res = {"unknown", "unknown", "unknown", "0"};
+        String[] res = {"unknown", "unknown", "unknown", "0", "unknown"};
         try {
             mmr.setDataSource(path);
 
@@ -187,6 +228,10 @@ public class DBInitializer {
             String album =  mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ALBUM);
             String genre =  mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_GENRE);
             String duration =  mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION);
+            String albumImagePath = null;
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.P) {
+                albumImagePath = mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_HAS_IMAGE);
+            }
 
 
             Log.d(TAG, "metadata: artist = " + artist);
@@ -216,6 +261,10 @@ public class DBInitializer {
 
             if (duration != null){
                 res[3] = duration.trim();
+            }
+
+            if (albumImagePath != null){
+                res[4] = albumImagePath;
             }
         }
         catch(Exception e){}

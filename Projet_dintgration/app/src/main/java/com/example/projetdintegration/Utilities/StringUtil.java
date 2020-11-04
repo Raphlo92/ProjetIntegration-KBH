@@ -1,5 +1,6 @@
 package com.example.projetdintegration.Utilities;
 
+import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -20,5 +21,19 @@ public class StringUtil {
         input = input.replaceAll("Alt.", "Alternative");
 
         return input;
+    }
+
+    public static String toCommaSeparatedString(ArrayList<Integer> list) {
+        if (list.size() > 0) {
+            StringBuilder nameBuilder = new StringBuilder();
+            for (Integer item : list) {
+                nameBuilder.append(item).append(", ");
+            }
+            nameBuilder.deleteCharAt(nameBuilder.length() - 1);
+            nameBuilder.deleteCharAt(nameBuilder.length() - 1);
+            return nameBuilder.toString();
+        } else {
+            return "";
+        }
     }
 }
