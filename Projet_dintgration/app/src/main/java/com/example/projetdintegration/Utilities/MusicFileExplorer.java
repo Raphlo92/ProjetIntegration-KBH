@@ -1,4 +1,4 @@
-package com.example.projetdintegration;
+package com.example.projetdintegration.Utilities;
 
 import android.util.Log;
 import android.webkit.MimeTypeMap;

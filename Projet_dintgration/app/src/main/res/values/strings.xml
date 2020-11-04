@@ -32,10 +32,15 @@
     <string name="play_now">Écouter maintenant</string>
     <string name="add_to_queue">Ajouter à la file</string>
     <string name="add_to_playlist">Ajouter à une liste</string>
+    <string name="remove_from_list">Enlever de la liste</string>
     <string name="music_of_artist">Autres musiques par l\'artist</string>
     <string name="music_in_album">Autres musiques de l\'album</string>
     <string name="like_on_spotify">Ajouter au favoris Spotify</string>
     <string name="add_to_spotify_list">Ajouter à un liste Spotify</string>
+
+    <string name="editPlaylistName">Changer de nom</string>
+    <string name="deletePlaylist">Supprimer</string>
+    <string name="makeRelative">Relative</string>
 
     <string name="placeholderPlaylistName">Nom</string>
 

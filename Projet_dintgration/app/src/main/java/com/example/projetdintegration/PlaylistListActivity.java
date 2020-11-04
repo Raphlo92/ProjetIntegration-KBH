@@ -1,11 +1,13 @@
 package com.example.projetdintegration;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,6 +18,7 @@ import com.example.projetdintegration.DBHelpers.Categories;
 import com.example.projetdintegration.DBHelpers.Classes.IDBClass;
 import com.example.projetdintegration.DBHelpers.Classes.Playlist;
 import com.example.projetdintegration.DBHelpers.DBHelper;
+import com.example.projetdintegration.DBHelpers.Musics;
 import com.example.projetdintegration.DBHelpers.Playlists;
 import com.example.projetdintegration.Utilities.PopupHelper;
 import com.google.android.material.navigation.NavigationView;
@@ -29,9 +32,10 @@ public class PlaylistListActivity extends AppCompatActivity {
     Toolbar toolbar;
     Menu menu;
     static DBHelper dbHelper;
-    static Playlists DBPlaylistsReader;
-    static Playlists DBPlaylistsWriter;
-    static PlaylistListAdapter adapter;
+    Playlists DBPlaylistsReader;
+    Playlists DBPlaylistsWriter;
+    PlaylistListAdapter adapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +48,8 @@ public class PlaylistListActivity extends AppCompatActivity {
         DBPlaylistsReader = new Playlists(dbHelper.getReadableDatabase());
         DBPlaylistsWriter = new Playlists(dbHelper.getWritableDatabase());
         //endregion
+
+
 
         PopupHelper popupHelper = new PopupHelper(this);
 
@@ -58,8 +64,12 @@ public class PlaylistListActivity extends AppCompatActivity {
             Log.d(TAG, "onCreate: Categories: cat = " + item.getName());
         }
 
-        final ImageView imageView = (ImageView) findViewById(R.id.imageView);
-        imageView.setVisibility(View.INVISIBLE);
+
+        final TextView pageTitle = (TextView) findViewById(R.id.PageTitle);
+        pageTitle.setText(R.string.nav_liste_lecture);
+
+        final ImageView imageView1 = (ImageView) findViewById(R.id.imageView1);
+        imageView1.setVisibility(View.INVISIBLE);
 
         final ImageView imageView2 = (ImageView) findViewById(R.id.imageView2);
         imageView2.setImageResource(R.drawable.ic_add);
@@ -104,7 +114,8 @@ public class PlaylistListActivity extends AppCompatActivity {
 
     }
 
-    public static void RefreshView(){
+    public static void RefreshView(Context context){
+        Playlists DBPlaylistsReader = new Playlists(new DBHelper(context).getReadableDatabase());
         ArrayList<IDBClass> dbPlaylists = DBPlaylistsReader.Select(null, null, null, null, null, null);
         ArrayList<Playlist> playlists = new ArrayList<>();
 
@@ -112,8 +123,9 @@ public class PlaylistListActivity extends AppCompatActivity {
             playlists.add((Playlist) playlist);
         }
 
-        adapter.clear();
-        adapter.addAll(playlists);
-        adapter.notifyDataSetChanged();
+        //adapter.clear();
+        //adapter.addAll(playlists);
+        //adapter.notifyDataSetChanged();
+
     }
 }

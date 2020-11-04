@@ -1,10 +1,12 @@
 package com.example.projetdintegration.Utilities;
 
+import android.app.ActivityManager;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
@@ -12,11 +14,15 @@ import android.view.View;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.EditText;
 import android.widget.PopupMenu;
+import android.widget.TextView;
 
 
 import com.example.projetdintegration.DBHelpers.Classes.Playlist;
 import com.example.projetdintegration.DBHelpers.DBHelper;
 import com.example.projetdintegration.DBHelpers.Playlists;
+import com.example.projetdintegration.MainActivity;
+import com.example.projetdintegration.MusicListActivity;
+import com.example.projetdintegration.NavigationManager;
 import com.example.projetdintegration.PlaylistListActivity;
 import com.example.projetdintegration.R;
 import com.example.projetdintegration.DBHelpers.DBHelper.Contract.TablePlaylist;
@@ -57,7 +63,7 @@ public class PopupHelper {
             Playlists playlistsWriter = new Playlists(dbHelper.getWritableDatabase());
             playlistsWriter.Insert(playlist);
             dialog.dismiss();
-            PlaylistListActivity.RefreshView();
+            //PlaylistListActivity.RefreshView();
         });
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             builder.setOnDismissListener(dialog -> {
@@ -67,14 +73,14 @@ public class PopupHelper {
         builder.show();
     }
 
-    public void showEditForm(int playlistId){
+    public void showEditForm(Playlist playlist){
         String title = "Modifier la liste de lectures";
-        String buttonTitle = "Edit";
+        String buttonTitle = "Modifier";
 
         LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         final View formElementsView = inflater.inflate(R.layout.playlist_input_form_layout, null, false);
         final EditText editPlaylistName = formElementsView.findViewById(R.id.playlistInputName);
-        editPlaylistName.setText(Playlists.getPlaylistName(dbHelper.getReadableDatabase(), playlistId));
+        editPlaylistName.setText(playlist.getName());
 
         Builder builder = new Builder(mContext);
         builder.setView(formElementsView);
@@ -84,10 +90,14 @@ public class PopupHelper {
             ContentValues values = new ContentValues();
             values.put(TablePlaylist.COLUMN_NAME_NAME, playlistName);
             String whereClause = TablePlaylist._ID + " = ?";
-            String[] whereArgs = { playlistId + "" };
+            String[] whereArgs = { playlist.getId() + "" };
             playlistsWriter.Update(values, whereClause, whereArgs);
             dialog.dismiss();
-            PlaylistListActivity.RefreshView();
+            if (mContext.getClass() == MusicListActivity.class){
+                final TextView pageTitle = (TextView) ((MusicListActivity) mContext).findViewById(R.id.PageTitle);
+                pageTitle.setText(playlistName);
+            }
+            //PlaylistListActivity.RefreshView();
         });
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             builder.setOnDismissListener(dialog -> {
@@ -106,10 +116,11 @@ public class PopupHelper {
         Builder builder = new Builder(mContext);
         builder.setTitle(title);
         builder.setPositiveButton(posButtonTitle, (dialog, i) -> {
-            //TODO Edit a playlist
             String whereClause = TablePlaylist._ID + " = ?";
             String[] whereArgs = { playlistId + "" };
             playlistsWriter.Delete(whereClause, whereArgs);
+            //PlaylistListActivity.RefreshView();
+            mContext.startActivity(new Intent(mContext, PlaylistListActivity.class));
             dialog.dismiss();
         });
         builder.setNegativeButton(negButtonTitle, (dialog, i) -> {
@@ -120,9 +131,12 @@ public class PopupHelper {
 
     //TODO finish the back-end options
     public void showMusicOptions(View v, Music music){
+
         PopupMenu popup = new PopupMenu(mContext, v);
         MenuInflater inflater = popup.getMenuInflater();
         inflater.inflate(R.menu.music_menu, popup.getMenu());
+
+
 
         popup.setOnMenuItemClickListener(item -> {
             AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
@@ -152,6 +166,34 @@ public class PopupHelper {
                     return true;
                 case R.id.addToSpotifyPlaylist:
                     return true;*/
+                default:
+                    return false;
+            }
+
+        });
+
+        popup.show();
+    }
+
+    public void showPlaylistOptions(View v, Playlist playlist){
+        PopupMenu popup = new PopupMenu(mContext, v);
+        MenuInflater inflater = popup.getMenuInflater();
+        inflater.inflate(R.menu.playlist_menu, popup.getMenu());
+
+        popup.setOnMenuItemClickListener(item -> {
+            AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
+            switch (item.getItemId()) {
+                case R.id.editPlaylistName:
+                    //TODO edit the name of the playlist
+                    showEditForm(playlist);
+                    return true;
+                case R.id.deletePlaylist:
+                    //TODO override the queue and play this music now
+                    showDeleteForm(playlist.getId());
+                    return true;
+                case R.id.makeRelative:
+                    //TODO add to queue as the next music
+                    return true;
                 default:
                     return false;
             }

@@ -8,10 +8,25 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:id="@+id/fullscreen"
+        android:id="@+id/musicItem"
         android:orientation="horizontal"
         android:background="@color/colorPrimary"
         android:weightSum="100">
+
+        <RelativeLayout
+            android:id="@+id/favoritesContainer"
+            android:layout_width="0dp"
+            android:layout_weight="10"
+            android:layout_height="fill_parent"
+            android:gravity="center">
+
+        <ImageView
+            android:id="@+id/favitesButton"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_baseline_favorite_border_24"
+            />
+        </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/titleContainer"
@@ -82,7 +97,7 @@
         <RelativeLayout
             android:id="@+id/moreOptionsContainer"
             android:layout_width="0dp"
-            android:layout_weight="15"
+            android:layout_weight="5"
             android:layout_height="fill_parent"
             android:gravity="center">
 

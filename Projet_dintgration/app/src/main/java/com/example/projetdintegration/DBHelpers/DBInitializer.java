@@ -5,17 +5,15 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
-import android.media.MediaMetadata;
 import android.media.MediaMetadataRetriever;
 import android.util.Log;
-import android.view.contentcapture.ContentCaptureCondition;
 
 import androidx.annotation.Nullable;
 
 import com.example.projetdintegration.DBHelpers.Classes.Album;
 import com.example.projetdintegration.DBHelpers.Classes.Artist;
 import com.example.projetdintegration.DBHelpers.Classes.Music;
-import com.example.projetdintegration.MusicFileExplorer;
+import com.example.projetdintegration.Utilities.MusicFileExplorer;
 import com.example.projetdintegration.Utilities.NumberUtil;
 import com.example.projetdintegration.Utilities.StringUtil;
 

@@ -130,10 +130,10 @@ public class Musics extends AbstractDBHelper {
             String artist = Artists.getNameById(DB, cursor.getInt(cursor.getColumnIndexOrThrow(TableMusic.COLUMN_NAME_ID_ARTIST)));
             String category = Categories.getNameById(DB, cursor.getInt(cursor.getColumnIndexOrThrow(TableMusic.COLUMN_NAME_ID_CATEGORY)));
             String album = Albums.getNameById(DB, cursor.getInt(cursor.getColumnIndexOrThrow(TableMusic.COLUMN_NAME_ID_ALBUM)));
+            boolean favorite = new Playlists(DB).isInFavorites(id);
             //endregion
 
-            //TODO find if favorite or not
-            newMusics.add(new Music(id, title, length, type, path, category, artist, album, false));
+            newMusics.add(new Music(id, title, length, type, path, category, artist, album, favorite));
         }
         musics = newMusics;
         cursor.close();

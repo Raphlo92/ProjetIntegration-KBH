@@ -115,8 +115,29 @@ public class Playlists extends AbstractDBHelper {
         }
     }
 
+    public void RemoveFromPlaylist(int musicId, int playlistId){
+        String whereClause = TableMusicPlaylist.COLUMN_NAME_ID_MUSIC + " = ? AND " + TableMusicPlaylist.COLUMN_NAME_ID_PLAYLIST + " = ?";
+        String[] whereArgs = {musicId + "", playlistId + ""};
+        DB.delete(TableMusicPlaylist.TABLE_NAME, whereClause, whereArgs);
+    }
+
+    public void RemoveFromFavorites(int musicId){
+        RemoveFromPlaylist(musicId, getFavoritesId());
+    }
+
     public void AddToFavorites(int musicId){
         AddToPlaylist(musicId, getFavoritesId());
+    }
+
+    public boolean isInFavorites(int musicId){
+        String[] columns = { TableMusicPlaylist.COLUMN_NAME_ID_MUSIC };
+        boolean favorite = false;
+        String where = TableMusicPlaylist.COLUMN_NAME_ID_MUSIC + " = ? AND " + TableMusicPlaylist.COLUMN_NAME_ID_PLAYLIST + " = ?";
+        String[] whereArgs = {musicId + "", getFavoritesId() + ""};
+        Cursor cursor = DB.query(TableMusicPlaylist.TABLE_NAME, columns , where, whereArgs, null, null, null);
+        favorite = cursor.moveToNext();
+        cursor.close();
+        return favorite;
     }
 
     public int getFavoritesId(){
@@ -205,5 +226,20 @@ public class Playlists extends AbstractDBHelper {
 
         cursor.close();
         return name;
+    }
+
+    public static Playlist getPlaylistById(SQLiteDatabase db, int playlistId){
+        Playlist playlist = new Playlist(playlistId, "", "");
+        String selection = TablePlaylist._ID + " = ?";
+        String[] selectionArgs = { playlistId + "" };
+        Cursor cursor = db.query(TABLE_NAME, null, selection, selectionArgs, null, null, null);
+
+        while (cursor.moveToNext()){
+            playlist.setName(cursor.getString(cursor.getColumnIndexOrThrow(TablePlaylist.COLUMN_NAME_NAME)));
+            playlist.setType(cursor.getString(cursor.getColumnIndexOrThrow(TablePlaylist.COLUMN_NAME_NAME)));
+        }
+
+        cursor.close();
+        return playlist;
     }
 }
