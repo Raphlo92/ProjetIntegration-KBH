@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
 
     <application
         android:allowBackup="true"
@@ -40,6 +41,7 @@
 
         <activity android:name=".MainActivity" />
         <service android:name=".DBHelpers.DBInitializer$DBInitialisingService"/>
+        <service android:name=".MediaPlaybackService" />
     </application>
 
 </manifest>

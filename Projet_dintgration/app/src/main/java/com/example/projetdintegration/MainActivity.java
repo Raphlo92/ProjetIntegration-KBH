@@ -173,6 +173,40 @@ public class MainActivity extends AppCompatActivity {
         //imageView2.setVisibility(View.INVISIBLE);
 
         ArrayList<IDBClass> list = DBCategoriesReader.Select(null, null, null, null, null, null);
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        Log.d(TAG, "onNavigationItemSelected: Started");
+        switch (menuItem.getItemId()) {
+            case R.id.nav_home:
+                Log.d(TAG, "onNavigationItemSelected: Switched to home");
+                gotoHome();
+                break;
+            case R.id.nav_favoris:
+                Log.d(TAG, "onNavigationItemSelected: Switched to favoris");
+                gotoFavoris();
+                break;
+            case R.id.nav_liste_lecture:
+                Log.d(TAG, "onNavigationItemSelected: Switched to liste de lecture");
+                gotoListeLecture();
+                break;
+            case R.id.nav_bibliotheque:
+                Log.d(TAG, "onNavigationItemSelected: Switched to bibliotheque");
+                gotoBibliotheque();
+                break;
+            case R.id.nav_mediaActivity:
+                Log.d(TAG, "onNavigationItemSelected: Switched to bibliotheque");
+                gotoMediaActivity();
+                break;
+            case R.id.nav_spotify_lier:
+                gotoLierSpotify();
+                break;
+            case R.id.nav_spotify_bibliotheque:
+                gotoBibliothequeSpotify();
+                break;
+            // TODO terminer toutes les options du switch case
+        }
+        return true;
+    }
 
 
 
@@ -196,6 +230,14 @@ public class MainActivity extends AppCompatActivity {
             Category RandCat = (Category) randomElement;
             categories.add(RandCat);
             categoriesUsed.remove(randomIndex);
+    public void gotoMediaActivity() {
+        startActivity(MediaActivity.class);
+    }
+
+    public void gotoLierSpotify(){
+        startActivity(LierSpotifyActivity.class);
+    }
+    public void gotoBibliothequeSpotify(){
 
             String whereClause = DBHelper.Contract.TableMusic.COLUMN_NAME_ID_CATEGORY + " = ?";
             String[] whereArgs = {RandCat.getId() + ""};
