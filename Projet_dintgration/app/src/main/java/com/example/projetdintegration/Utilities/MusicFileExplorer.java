@@ -14,8 +14,8 @@ public class MusicFileExplorer {
     //FileInputStream
     //File
     static ArrayList<File> files = new ArrayList<>();
-    //public static final String DIRECTORY_MUSIC = "C:\\Users\\Kevin\\OneDrive\\Documents\\GitHub\\ProjetIntegration-KBH\\Projet_dintgration\\app\\src\\main\\res\\raw";//"C:/Users/Kevin/Music";//"/storage/emulated/0/Music";
-    public static final String DIRECTORY_MUSIC = "/storage/emulated/0/Music";
+    public static final String DIRECTORY_MUSIC = "src/main/res/raw";//"C:/Users/Kevin/Music";//"/storage/emulated/0/Music";
+    //public static final String DIRECTORY_MUSIC = "/storage/emulated/0/Music";
     private static final String TAG = "MusicFileExplorer";
     private MusicFileExplorer() { }
 
