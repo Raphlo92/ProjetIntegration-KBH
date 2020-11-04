@@ -14,10 +14,15 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.renderscript.ScriptGroup;
 import android.util.Log;
+import android.view.Display;
+import android.view.Surface;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ImageButton;
+import android.widget.MediaController;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.VideoView;
@@ -26,6 +31,7 @@ import com.example.projetdintegration.DBHelpers.DBInitializer;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class MediaActivity extends AppCompatActivity{
 
@@ -43,6 +49,9 @@ public class MediaActivity extends AppCompatActivity{
     static String[] mediaList = {"bladee", "boku", "sea", "tacoma_narrows"};
     String VIDEO_SAMPLE = mediaList[0];
     private static final String TAG = "MediaActivity";
+    private MediaController mediaController;
+    private ViewGroup.LayoutParams lp;
+    private ViewGroup.MarginLayoutParams mp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +73,13 @@ public class MediaActivity extends AppCompatActivity{
         stopButton.setOnClickListener(new GestionnaireStop());
         rewindButton.setOnClickListener(new GestionnaireRewind());
         forwardButton.setOnClickListener(new GestionnaireForward());
+
+        String fullscreen = getIntent().getStringExtra("fullScreenInd");
+        if("y".equals(fullscreen)){
+            getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                    WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        }
+
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -85,7 +101,28 @@ public class MediaActivity extends AppCompatActivity{
 
             }
         });
+
         SeekBarUpdater();
+        lp  = videoView.getLayoutParams();
+        mp = (ViewGroup.MarginLayoutParams)videoView.getLayoutParams();
+
+        if(isLandScape()){
+            mediaController = new FullScreenMediaController(this);
+            mediaController.setVisibility(View.VISIBLE);
+            lp.height = getResources().getDisplayMetrics().heightPixels;
+            lp.width = getResources().getDisplayMetrics().widthPixels;
+            mp.setMargins(0, 0, 0,0);
+        }else {
+            mediaController = new MediaController(this);
+            mediaController.setVisibility(View.GONE);
+            lp.height = 0;
+            lp.width = 0;
+            mp.setMargins(8, 8, 8,8);
+        }
+        videoView.setLayoutParams(lp);
+        videoView.setLayoutParams(mp);
+        mediaController.setAnchorView(videoView);
+        videoView.setMediaController(mediaController);
     }
 
     public class GestionnairePlayPause implements View.OnClickListener {
@@ -114,6 +151,18 @@ public class MediaActivity extends AppCompatActivity{
                 mPService.playing = false;
             }
         }
+    }
+
+    private boolean isLandScape(){
+        Display display = ((WindowManager) getSystemService(WINDOW_SERVICE))
+                .getDefaultDisplay();
+        int rotation = display.getRotation();
+
+        if (rotation == Surface.ROTATION_90
+                || rotation == Surface.ROTATION_270) {
+            return true;
+        }
+        return false;
     }
 
     public class GestionnaireStop implements View.OnClickListener {
@@ -171,16 +220,11 @@ public class MediaActivity extends AppCompatActivity{
     @Override
     protected void onStop() {
         super.onStop();
-        //mPService.StopPlayer();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
-            //mPService.StopPlayer();
-        }
     }
 
     private ServiceConnection connection = new ServiceConnection() {
@@ -213,11 +257,6 @@ public class MediaActivity extends AppCompatActivity{
         }
     };
 
-    /*private Uri getMedia(String mediaName) {
-        return Uri.parse("android.resource://" + getPackageName() +
-                "/raw/" + mediaName);
-    }*/
-
     public void SeekBarUpdater() {
         MediaActivity.this.runOnUiThread(new Runnable() {
             @Override
@@ -232,21 +271,6 @@ public class MediaActivity extends AppCompatActivity{
             }
         });
     }
-
-    /*public void Play(View v) {
-        playButton.setImageResource(R.drawable.ic_baseline_pause_24);
-        if (videoView == null) {
-            mPService.initializePlayer();
-            mPService.videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                @Override
-                public void onCompletion(MediaPlayer mp) {
-                    mPService.StopPlayer();
-                }
-            });
-        }
-        mPService.videoView.start();
-        playButton.setImageResource(R.drawable.ic_baseline_pause_24);
-    }*/
 
     public void Pause() {
         mPService.Pause();
@@ -293,7 +317,6 @@ public class MediaActivity extends AppCompatActivity{
         String time = MediaPlaybackService.mediaPlayer.getDuration() % (1000*60*60) / (1000*60) + ":" + (MediaPlaybackService.mediaPlayer.getDuration() % (1000 * 60 * 60) % (1000 * 60) / 1000);
         maxTime.setText(time);
         seekBar.setMax(MediaPlaybackService.mediaPlayer.getDuration() / 1000);
-        //mediaName.setText(mPService.VIDEO_SAMPLE);
         mediaName.setText(MediaPlaybackService.VIDEO_SAMPLE);
     }
 
@@ -302,8 +325,5 @@ public class MediaActivity extends AppCompatActivity{
                 "/raw/" + mediaName);
     }
 
-    /*public void Stop(View v) {
-        StopPlayer();
-    }*/
 
 }

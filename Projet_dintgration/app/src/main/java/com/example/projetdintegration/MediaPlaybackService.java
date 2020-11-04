@@ -67,7 +67,6 @@ public class MediaPlaybackService extends Service {
 
     private void updateNotification(){
 
-        //NotificationManager manager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
         mediaPlayingNotification = new Notification.Builder(this, "MAC")
                 .setContentTitle("Media playing")
                 .setContentText(VIDEO_SAMPLE)
