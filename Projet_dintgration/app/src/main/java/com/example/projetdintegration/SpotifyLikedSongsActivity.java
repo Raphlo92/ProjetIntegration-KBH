@@ -88,7 +88,11 @@ public class SpotifyLikedSongsActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 SpotifyNavigationItem selectedItem = (SpotifyNavigationItem) parent.getItemAtPosition(position);
                 Log.i("SpotifyLikedSongs",selectedItem.baseNavigationItem.toString());
-                sendPlayableToMusicPlayer(selectedItem.getURI());
+                if (SpotifyMusicListActivity.determineIfHasChildren(selectedItem, new SpotifyNavigationItem(likedSongsItem)))
+                    sendPlayableToMusicPlayer(selectedItem.getURI());
+                else
+                    getElementChildren(selectedItem.getBaseListItem(), displayListItemsCallBack);
+
             }
         };
         onScrollListener = new AbsListView.OnScrollListener() {

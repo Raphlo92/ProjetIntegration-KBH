@@ -33,6 +33,7 @@ import java.util.ArrayList;
 import static com.example.projetdintegration.SpotifyMusicListActivity.SPOTIFY_COLLECTION_LINK;
 import static com.example.projetdintegration.SpotifyMusicListActivity.SPOTIFY_ID_PLAYLIST;
 import static com.example.projetdintegration.SpotifyMusicListActivity.SPOTIFY_PLAYLIST_LINK;
+import static com.example.projetdintegration.SpotifyMusicListActivity.lastSelected;
 
 public class SpotifyPlaylistActivity extends AppCompatActivity {
     static final String TAG = "SpotifyPlaylist";
@@ -58,6 +59,8 @@ public class SpotifyPlaylistActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if(!getIntent().getBooleanExtra(EXTRA_PLAYLIST_ITEM_SELECTED, false))
+            selectedPlaylist = null;
         determineContentViewToSet();
         listView = findViewById(R.id.list_spotify_bibliotheque_start);
         progressBar = findViewById(R.id.loadItemsListView);
@@ -89,7 +92,7 @@ public class SpotifyPlaylistActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 SpotifyNavigationItem selectedItem = (SpotifyNavigationItem) parent.getItemAtPosition(position);
-                if(SpotifyMusicListActivity.determineIfHasChildren(selectedItem))
+                if(SpotifyMusicListActivity.determineIfHasChildren(selectedItem, new SpotifyNavigationItem(lastSelected)))
                     sendPlayableToMusicPlayer(selectedItem.getURI());
                 else{
                     selectedPlaylist = selectedItem;

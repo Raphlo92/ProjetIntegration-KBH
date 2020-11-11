@@ -46,7 +46,7 @@ public class NavigationManager implements NavigationView.OnNavigationItemSelecte
                 break;
             case R.id.nav_mediaActivity:
                 Log.d(TAG, "onNavigationItemSelected: Switched to bibliotheque");
-                startActivity(MediaActivity.class);
+                gotoMedia();
                 break;
             case R.id.nav_spotify_lier:
                 gotoLierSpotify();
@@ -81,6 +81,11 @@ public class NavigationManager implements NavigationView.OnNavigationItemSelecte
     public void gotoHome() {
         Log.d(TAG, "gotoHome: Started");
         startActivity(MainActivity.class);
+    }
+
+    public void gotoMedia() {
+        Log.d(TAG, "gotoMedia: Started");
+        startActivity(MediaActivity.class);
     }
 
     public void gotoFavoris() {

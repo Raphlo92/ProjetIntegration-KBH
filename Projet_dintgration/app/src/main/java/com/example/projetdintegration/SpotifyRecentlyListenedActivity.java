@@ -32,6 +32,7 @@ import java.util.ArrayList;
 
 import static com.example.projetdintegration.SpotifyMusicListActivity.SPOTIFY_ID_PLAYLIST;
 
+
 public class SpotifyRecentlyListenedActivity extends AppCompatActivity {
 
     private static final String TAG = "SpotifyRecentlyListened";
@@ -89,11 +90,11 @@ public class SpotifyRecentlyListenedActivity extends AppCompatActivity {
         playableListener = new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                SpotifyNavigationItem selectedItem = (SpotifyNavigationItem) parent.getItemAtPosition(position);
-                if(SpotifyMusicListActivity.determineIfHasChildren(selectedItem))
+                SpotifyNavigationItem currentSelectedItem = (SpotifyNavigationItem) parent.getItemAtPosition(position);
+                if(SpotifyMusicListActivity.determineIfHasChildren(currentSelectedItem, selectedItem))
                     sendPlayableToMusicPlayer(selectedItem.getURI());
                 else{
-                    selectedItem = selectedItem;
+                    selectedItem = currentSelectedItem;
                     reloadActivity(true);
                 }
             }
@@ -213,7 +214,7 @@ public class SpotifyRecentlyListenedActivity extends AppCompatActivity {
         contenu.getChildrenOfItem(item,SpotifyMusicListActivity.NUMBER_OF_ELEMENTS_TO_LOAD,startIndexOfDataFetch).setResultCallback(callback);
     }
     private void reloadActivity(Boolean extraLastSelected){
-        Intent intent = new Intent(this,SpotifyPlaylistActivity.class);
+        Intent intent = new Intent(this, SpotifyRecentlyListenedActivity.class);
         intent.putExtra(EXTRA_ITEM_SELECTED,extraLastSelected);
         startActivity(intent);
     }

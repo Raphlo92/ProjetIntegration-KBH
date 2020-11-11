@@ -33,6 +33,8 @@ import com.spotify.android.appremote.api.ImagesApi;
 import com.spotify.android.appremote.api.UserApi;
 import com.spotify.android.appremote.internal.ImagesApiImpl;
 import com.spotify.protocol.client.CallResult;
+import com.spotify.protocol.types.Image;
+import com.spotify.protocol.types.ImageIdentifier;
 import com.spotify.protocol.types.ImageUri;
 import com.spotify.protocol.types.LibraryState;
 import com.spotify.protocol.types.ListItem;
@@ -64,6 +66,7 @@ public class SpotifyMusicListActivity extends AppCompatActivity {
     public static final String SPOTIFY_ARTIST_LINK = "artist";
     public static final String SPOTIFY_ALBUM_LINK = "album";
     public static final String SPOTIFY_PLAYLIST_LINK = "playlist";
+    public static final String SPOTIFY_SHUFFLE_IMAGE_NAME = "ic_eis_shuffle";
     boolean userScrolled;
     public static final int NUMBER_OF_ELEMENTS_TO_LOAD = 15;
     public static final String EXTRA_LIST_ITEM_SELECTED = "EXTRA_LIST_ITEM_SELECTED";
@@ -71,6 +74,8 @@ public class SpotifyMusicListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if(!getIntent().getBooleanExtra(EXTRA_LIST_ITEM_SELECTED, false))
+            lastSelected = null;
         determineContentViewToSet();
         progressBar = findViewById(R.id.loadItemsListView);
         initializeNavigationElements();
@@ -168,7 +173,7 @@ public class SpotifyMusicListActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 SpotifyNavigationItem selectedItem = (SpotifyNavigationItem) parent.getItemAtPosition(position);
-                if(determineIfHasChildren(selectedItem))
+                if(determineIfHasChildren(selectedItem, new SpotifyNavigationItem(lastSelected)))
                     sendPlayableToMusicPlayer(selectedItem.getURI());
                 else{
                     lastSelected = selectedItem.getBaseListItem();
@@ -177,11 +182,13 @@ public class SpotifyMusicListActivity extends AppCompatActivity {
             }
         };
     }
-    public static boolean determineIfHasChildren(SpotifyNavigationItem selectedItem){
-        return !selectedItem.hasChildren() && (!selectedItem.getID().contains(SPOTIFY_ALBUM_LINK) || selectedItem.getID().equals(lastSelected.id)) &&
+    public static boolean determineIfHasChildren(SpotifyNavigationItem selectedItem, SpotifyNavigationItem lastSelected){
+        //Returns true for playable
+        return !selectedItem.hasChildren() && (!selectedItem.getID().contains(SPOTIFY_ALBUM_LINK) || selectedItem.getID().equals(lastSelected.getID())) &&
                 (!selectedItem.getID().contains(SPOTIFY_ARTIST_LINK) ||
-                 getSpotifyIdUniqueKeyPart(selectedItem.getID()).equals(getSpotifyIdUniqueKeyPart(lastSelected.id))) &&
-                !selectedItem.getID().contains(SPOTIFY_PLAYLIST_LINK) && !selectedItem.getID().contains(SPOTIFY_COLLECTION_LINK);
+                 getSpotifyIdUniqueKeyPart(selectedItem.getID()).equals(getSpotifyIdUniqueKeyPart(lastSelected.getID()))) &&
+                !selectedItem.getID().contains(SPOTIFY_PLAYLIST_LINK) &&
+                (!selectedItem.getID().contains(SPOTIFY_COLLECTION_LINK) || selectedItem.getImageURI().toString().contains(SPOTIFY_SHUFFLE_IMAGE_NAME));
     }
     public static String getSpotifyIdUniqueKeyPart(String spotifyId){
         return spotifyId.substring(spotifyId.lastIndexOf(':') + 1);
@@ -263,7 +270,10 @@ public class SpotifyMusicListActivity extends AppCompatActivity {
 class SpotifyNavigationItem{
     ListItem baseNavigationItem;
     public SpotifyNavigationItem(ListItem baseItemWithChildren){
-        baseNavigationItem = baseItemWithChildren;
+        if(!(baseItemWithChildren == null))
+            baseNavigationItem = baseItemWithChildren;
+        else
+            baseNavigationItem = new ListItem("", "", null , "", "", false, false);
     }
     public String getURI(){
         return baseNavigationItem.uri;

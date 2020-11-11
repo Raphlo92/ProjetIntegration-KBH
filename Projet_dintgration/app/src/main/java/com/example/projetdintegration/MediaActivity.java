@@ -26,8 +26,15 @@ import android.widget.MediaController;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.VideoView;
+
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
+
 import com.example.projetdintegration.DBHelpers.DBInitializer;
+import com.google.android.material.navigation.NavigationView;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -45,6 +52,9 @@ public class MediaActivity extends AppCompatActivity{
     TextView mediaName;
     Boolean playing = true;
     ImageButton playButton;
+    DrawerLayout drawerLayout;
+    NavigationView navigationView;
+    Toolbar toolbar;
     int playingId = 0;
     static String[] mediaList = {"bladee", "boku", "sea", "tacoma_narrows"};
     String VIDEO_SAMPLE = mediaList[0];
@@ -68,6 +78,22 @@ public class MediaActivity extends AppCompatActivity{
         maxTime = findViewById(R.id.maxTime);
         mediaName = findViewById(R.id.mediaName);
         videoView = findViewById(R.id.videoView);
+
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        navigationView.bringToFront();
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_open_drawer_description,
+                R.string.navigation_close_drawer_description);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+        navigationView.setNavigationItemSelectedListener(new NavigationManager(this, this) {
+            @Override
+            public void gotoMedia() {}
+        });
+        navigationView.setCheckedItem(R.id.nav_mediaActivity);
+        NavigationManager.determinerOptionsAfficher(navigationView.getMenu());
 
         playButton.setOnClickListener(new GestionnairePlayPause());
         stopButton.setOnClickListener(new GestionnaireStop());

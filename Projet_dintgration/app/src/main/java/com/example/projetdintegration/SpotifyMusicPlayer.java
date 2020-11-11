@@ -9,8 +9,12 @@ import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.google.android.material.navigation.NavigationView;
 import com.spotify.android.appremote.api.PlayerApi;
 import com.spotify.protocol.types.PlayerState;
 import com.spotify.protocol.types.Track;
@@ -34,6 +38,9 @@ public class SpotifyMusicPlayer extends AppCompatActivity {
     TextView trackPosition;
     SeekBar playerSeekBar;
     PlayerApi player;
+    DrawerLayout drawerLayout;
+    NavigationView navigationView;
+    Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +51,22 @@ public class SpotifyMusicPlayer extends AppCompatActivity {
         initializeButtonsClickListeners();
         handler = new Handler();
         initializeSeekBar();
+
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        navigationView.bringToFront();
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_open_drawer_description,
+                R.string.navigation_close_drawer_description);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+        navigationView.setNavigationItemSelectedListener(new NavigationManager(this, this) {
+            @Override
+            public void gotoMedia() {}
+        });
+        navigationView.setCheckedItem(R.id.nav_mediaActivity);
+        NavigationManager.determinerOptionsAfficher(navigationView.getMenu());
 
     }
     private void initializeSeekBar(){

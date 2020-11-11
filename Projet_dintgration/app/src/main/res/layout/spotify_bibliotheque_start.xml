@@ -9,6 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
+        android:background="@color/colorPrimaryDark"
         app:headerLayout="@layout/navigation_drawer_header"
         app:menu="@menu/main_menu"/>
 
@@ -16,20 +17,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="wrap_content"
-            android:layout_height="?attr/actionBarSize"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="19dp"
-            android:layout_marginLeft="19dp"
-            android:layout_marginTop="18dp"
-            android:elevation="4dp"
-            android:theme="@style/ThemeOverlay.AppCompat.Light"
-            app:navigationIcon="@drawable/ic_hamburger_1"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Dark" />
+        <include
+            android:id="@+id/appbar"
+            layout="@layout/appbar" />
 
         <ListView
             android:id="@+id/list_spotify_bibliotheque_start"
@@ -52,7 +42,7 @@
             android:layout_below="@+id/toolbar"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="86dp"
             android:layout_marginEnd="0dp"
             android:layout_marginRight="0dp"
             android:text="@string/spotify_bibliotheque_default_categorie" />

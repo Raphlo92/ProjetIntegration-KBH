@@ -37,6 +37,7 @@ public class MusicListActivity extends AppCompatActivity {
     DBHelper dbHelper;
     Musics DBMusicsReader;
     Musics DBMusicsWriter;
+    Playlists DBPlaylistsReader;
     MusicListAdapter adapter;
 
     @Override
@@ -44,7 +45,6 @@ public class MusicListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         int playlistId = getIntent().getIntExtra(DBHelper.Contract.TablePlaylist._ID, -1);
-
         setContentView(R.layout.activity_list);
 
         Log.d(TAG, "onCreate: Started.");
@@ -54,6 +54,7 @@ public class MusicListActivity extends AppCompatActivity {
         dbHelper = new DBHelper(getApplicationContext());
         DBMusicsReader = new Musics(dbHelper.getReadableDatabase());
         DBMusicsWriter = new Musics(dbHelper.getWritableDatabase());
+        DBPlaylistsReader = new Playlists(dbHelper.getReadableDatabase());
         //
 
         Categories.exists(dbHelper.getReadableDatabase(), "Ro");
@@ -70,14 +71,21 @@ public class MusicListActivity extends AppCompatActivity {
         toggle.syncState();
         if (playlistId > -1){
             navigationView.setNavigationItemSelectedListener(new NavigationManager(this,this));
+            if (playlistId == DBPlaylistsReader.getFavoritesId()){
+                navigationView.setCheckedItem(R.id.nav_favoris);
+            }
+            else{
+                navigationView.setCheckedItem(R.id.nav_liste_lecture);
+            }
         }
         else{
             navigationView.setNavigationItemSelectedListener(new NavigationManager(this,this) {
                 @Override
                 public void gotoBibliotheque(){ }
             });
+            navigationView.setCheckedItem(R.id.nav_bibliotheque);
         }
-        navigationView.setCheckedItem(R.id.nav_bibliotheque);
+
 
         NavigationManager.determinerOptionsAfficher(navigationView.getMenu());
         //endregion
@@ -96,7 +104,7 @@ public class MusicListActivity extends AppCompatActivity {
         imageView1.setVisibility(View.INVISIBLE);
         imageView2.setVisibility(View.INVISIBLE);
         if(playlistId > -1){
-            Playlists DBPlaylistsReader = new Playlists(dbHelper.getReadableDatabase());
+
             dbMusics = DBPlaylistsReader.getAllMusicsInPlaylist(playlistId);
             if(playlistId != DBPlaylistsReader.getFavoritesId()){
                 Playlist playlist = Playlists.getPlaylistById(dbHelper.getReadableDatabase(), playlistId);

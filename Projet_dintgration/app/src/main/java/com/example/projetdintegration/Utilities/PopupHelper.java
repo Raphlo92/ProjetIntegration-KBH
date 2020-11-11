@@ -141,9 +141,6 @@ public class PopupHelper {
         popup.setOnMenuItemClickListener(item -> {
             AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
             switch (item.getItemId()) {
-                case R.id.addToFav:
-                    playlistsWriter.AddToFavorites(music.getId());
-                    return true;
                 case R.id.playNow:
                     //TODO override the queue and play this music now
                     return true;

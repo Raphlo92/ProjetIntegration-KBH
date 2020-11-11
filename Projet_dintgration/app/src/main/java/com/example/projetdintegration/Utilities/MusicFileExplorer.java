@@ -5,6 +5,7 @@ import android.webkit.MimeTypeMap;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class MusicFileExplorer {
     //PATH TO MUSICS : /storage/emulated/0/Music/{Artist}/{Album}/{Music}
@@ -55,6 +56,27 @@ public class MusicFileExplorer {
         }
 
         return files;
+    }
+
+    public static void getAllNewestChildren(String path, ArrayList<File> files, Date lastSearch){
+        Log.d(TAG, "getAllChildren: Started");
+        File file = new File(path);
+        String[] children = file.list();
+        //ArrayList<File> files = new ArrayList<>();
+
+        if(children != null){
+            for (String child: children) {
+                File childFile = new File(file.getAbsolutePath() + "/" + child);
+                Log.d(TAG, "getAllChildren: childPath = " + file.getAbsolutePath() + "/" + child);
+
+                if(lastSearch.before(new Date(file.lastModified()))){
+                    files.add(childFile);
+                    if(childFile.list() != null)
+                        getAllNewestChildren(file.getAbsolutePath() + "/" + child, files, lastSearch);
+                }
+            }
+        }
+
     }
 
     public static void getAllChildren(String path, ArrayList<File> files){

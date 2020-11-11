@@ -24,7 +24,9 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
 
 import org.json.JSONException;
@@ -37,6 +39,7 @@ public class DBInitializer {
     private static final String TAG = "DBInitializer";
     private static final int ARTIST_NAME_COUNT = 5;
     private static final int ALBUM_NAME_COUNT = 6;
+    private Date lastModified;
     Context mContext;
     DBHelper dbHelper;
     SQLiteDatabase DBWriter;
@@ -50,20 +53,26 @@ public class DBInitializer {
 
     public static class DBInitialisingService extends IntentService{
 
+        Date lastInit;
         public DBInitialisingService() {
             super("DBInitialisingService");
+            this.lastInit = Date.from(Instant.now());
         }
 
         @Override
         protected void onHandleIntent(@Nullable Intent intent) {
             Log.d(TAG, "onHandleIntent: Started");
             ArrayList<File> files = new ArrayList<>();
+            //MusicFileExplorer.getAllNewestChildren(MusicFileExplorer.DIRECTORY_MUSIC, files, lastInit);
             MusicFileExplorer.getAllChildren(MusicFileExplorer.DIRECTORY_MUSIC, files);
+
             new DBInitializer(this).Init(files);
+            lastInit = Date.from(Instant.now());
         }
     }
 
     public void Init(ArrayList<File> files){
+        lastModified = Date.from(Instant.now());
         Log.d(TAG, "Init: Started");
         String[] metadata;
 
@@ -77,8 +86,10 @@ public class DBInitializer {
 
         Log.d(TAG, "Init: FilesSize() = " + files.size());
         for (File file : files) {
+            if(lastModified.before(new Date(file.lastModified())))
+
             Log.d(TAG, "Init: File reading");
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            //if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
                 Path path = Paths.get(file.toURI());
 
                 Log.d(TAG, "Init: " + path.getFileName() + ": type = " + MusicFileExplorer.getMimeType(file));
@@ -172,7 +183,7 @@ public class DBInitializer {
                 }*/
             }
         }
-    }
+    //}
 
     public String getCategory(Album album){
         String category = "";
