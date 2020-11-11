@@ -9,7 +9,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.EditText;
@@ -17,6 +19,7 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 
 
+import com.example.projetdintegration.DBHelpers.Classes.IDBClass;
 import com.example.projetdintegration.DBHelpers.Classes.Playlist;
 import com.example.projetdintegration.DBHelpers.DBHelper;
 import com.example.projetdintegration.DBHelpers.Playlists;
@@ -28,15 +31,19 @@ import com.example.projetdintegration.R;
 import com.example.projetdintegration.DBHelpers.DBHelper.Contract.TablePlaylist;
 import com.example.projetdintegration.DBHelpers.Classes.Music;
 
+import java.util.ArrayList;
+
 public class PopupHelper {
     private Context mContext;
     private DBHelper dbHelper;
     private Playlists playlistsWriter;
+    private Playlists playlistsReader;
 
     public PopupHelper(Context context){
         mContext = context;
         dbHelper = new DBHelper(context);
         playlistsWriter = new Playlists(dbHelper.getWritableDatabase());
+        playlistsReader = new Playlists(dbHelper.getReadableDatabase());
     }
 
     public void showOptionsPopup(View v, int menuRes){
@@ -63,7 +70,7 @@ public class PopupHelper {
             Playlists playlistsWriter = new Playlists(dbHelper.getWritableDatabase());
             playlistsWriter.Insert(playlist);
             dialog.dismiss();
-            //PlaylistListActivity.RefreshView();
+            PlaylistListActivity.RefreshView(mContext);
         });
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             builder.setOnDismissListener(dialog -> {
@@ -152,6 +159,7 @@ public class PopupHelper {
                     return true;
                 case R.id.addToPlaylist:
                     //TODO find a way to get the playlist ID and had the music to it
+                    showAddToPlaylists(v, music);
                     return true;
                 case R.id.musicOfArtist:
                     //TODO go to a view of all the music of the same artist (find artist ID)
@@ -173,6 +181,7 @@ public class PopupHelper {
     }
 
     public void showPlaylistOptions(View v, Playlist playlist){
+
         PopupMenu popup = new PopupMenu(mContext, v);
         MenuInflater inflater = popup.getMenuInflater();
         inflater.inflate(R.menu.playlist_menu, popup.getMenu());
@@ -195,6 +204,51 @@ public class PopupHelper {
                     return false;
             }
 
+        });
+
+        popup.show();
+    }
+
+    public void showAddToPlaylists(View v, Music musicToAdd){
+        int orderCount = Menu.FIRST;
+        PopupMenu popup = new PopupMenu(mContext, v);
+        Menu menu = popup.getMenu();
+        MenuInflater inflater = popup.getMenuInflater();
+
+        /*TODO:
+           - Get all playlists
+           - Create a checkable menu option for each playlist
+           - Set onClick of a Playlist to add or remove the music from selected Playlist
+        *  */
+        ArrayList<IDBClass> dbPlaylists = playlistsReader.Select(new String[]{TablePlaylist._ID, TablePlaylist.COLUMN_NAME_NAME, TablePlaylist.COLUMN_NAME_TYPE}, null, null, null, null, null);
+        for (IDBClass playlist : dbPlaylists) {
+            MenuItem item = menu.add(R.id.checkablePlaylistsGroup, playlist.getId(), orderCount++, playlist.getName());
+            item.setCheckable(true);
+            item.setChecked(playlistsReader.isInPlaylist(musicToAdd.getId(), playlist.getId()));
+        }
+        inflater.inflate(R.menu.add_to_playlist_menu, menu);
+
+        popup.setOnMenuItemClickListener(item -> {
+            if(item.isChecked())
+                playlistsWriter.RemoveFromPlaylist(musicToAdd.getId(), item.getItemId());
+            else
+                playlistsWriter.AddToPlaylist(musicToAdd.getId(), item.getItemId());
+            item.setChecked(!item.isChecked());
+            item.setShowAsAction(MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW);
+            item.setActionView(new View(mContext));
+            item.setOnActionExpandListener(new MenuItem.OnActionExpandListener() {
+                @Override
+                public boolean onMenuItemActionExpand(MenuItem item) {
+                    return false;
+                }
+
+                @Override
+                public boolean onMenuItemActionCollapse(MenuItem item) {
+                    return false;
+                }
+            });
+            MusicListActivity.RefreshView(mContext);
+            return false;
         });
 
         popup.show();

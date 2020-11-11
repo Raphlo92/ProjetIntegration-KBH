@@ -38,13 +38,14 @@ public class MusicListActivity extends AppCompatActivity {
     Musics DBMusicsReader;
     Musics DBMusicsWriter;
     Playlists DBPlaylistsReader;
-    MusicListAdapter adapter;
+    static MusicListAdapter adapter;
+    static int playlistId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        int playlistId = getIntent().getIntExtra(DBHelper.Contract.TablePlaylist._ID, -1);
+        playlistId = getIntent().getIntExtra(DBHelper.Contract.TablePlaylist._ID, -1);
         setContentView(R.layout.activity_list);
 
         Log.d(TAG, "onCreate: Started.");
@@ -148,5 +149,29 @@ public class MusicListActivity extends AppCompatActivity {
             drawerLayout.closeDrawer(GravityCompat.START);
         else
             super.onBackPressed();
+    }
+
+    public static void RefreshView(Context context){
+        ArrayList<IDBClass> dbMusics = new ArrayList<>();
+        ArrayList<Music> musics = new ArrayList<>();
+        DBHelper dbHelper = new DBHelper(context);
+        Musics DBMusicsReader = new Musics(dbHelper.getReadableDatabase());
+        Musics DBMusicsWriter = new Musics(dbHelper.getWritableDatabase());
+        Playlists DBPlaylistsReader = new Playlists(dbHelper.getReadableDatabase());
+        if(playlistId > -1){
+            dbMusics = DBPlaylistsReader.getAllMusicsInPlaylist(playlistId);
+        }
+        else{
+            dbMusics = DBMusicsReader.Select(null, null, null, null, null, null);
+        }
+
+        for (IDBClass music: dbMusics) {
+            musics.add((Music) music);
+        }
+
+        adapter.clear();
+        adapter.addAll(musics);
+        adapter.notifyDataSetChanged();
+
     }
 }
