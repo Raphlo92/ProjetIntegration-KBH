@@ -76,7 +76,7 @@
                 android:layout_height="46dp"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                app:srcCompat="@drawable/androidlogo" />
+                app:srcCompat="@drawable/transparent_android_musique_logo512x512" />
             </RelativeLayout>
         </RelativeLayout>
 
