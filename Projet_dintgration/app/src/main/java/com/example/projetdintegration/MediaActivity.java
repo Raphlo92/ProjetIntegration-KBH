@@ -49,9 +49,6 @@ public class MediaActivity extends AppCompatActivity{
     static String[] mediaList = {"bladee", "boku", "sea", "tacoma_narrows"};
     String VIDEO_SAMPLE = mediaList[0];
     private static final String TAG = "MediaActivity";
-    private MediaController mediaController;
-    private ViewGroup.LayoutParams lp;
-    private ViewGroup.MarginLayoutParams mp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +61,7 @@ public class MediaActivity extends AppCompatActivity{
         ImageButton rewindButton = findViewById(R.id.rewindButton);
         ImageButton forwardButton = findViewById(R.id.forwardButton);
         seekBar = findViewById(R.id.seekBar);
+
         currentTime = findViewById(R.id.currentTime);
         maxTime = findViewById(R.id.maxTime);
         mediaName = findViewById(R.id.mediaName);
@@ -73,12 +71,6 @@ public class MediaActivity extends AppCompatActivity{
         stopButton.setOnClickListener(new GestionnaireStop());
         rewindButton.setOnClickListener(new GestionnaireRewind());
         forwardButton.setOnClickListener(new GestionnaireForward());
-
-        String fullscreen = getIntent().getStringExtra("fullScreenInd");
-        if("y".equals(fullscreen)){
-            getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                    WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        }
 
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -101,28 +93,7 @@ public class MediaActivity extends AppCompatActivity{
 
             }
         });
-
         SeekBarUpdater();
-        lp  = videoView.getLayoutParams();
-        mp = (ViewGroup.MarginLayoutParams)videoView.getLayoutParams();
-
-        if(isLandScape()){
-            mediaController = new FullScreenMediaController(this);
-            mediaController.setVisibility(View.VISIBLE);
-            lp.height = getResources().getDisplayMetrics().heightPixels;
-            lp.width = getResources().getDisplayMetrics().widthPixels;
-            mp.setMargins(0, 0, 0,0);
-        }else {
-            mediaController = new MediaController(this);
-            mediaController.setVisibility(View.GONE);
-            lp.height = 0;
-            lp.width = 0;
-            mp.setMargins(8, 8, 8,8);
-        }
-        videoView.setLayoutParams(lp);
-        videoView.setLayoutParams(mp);
-        mediaController.setAnchorView(videoView);
-        videoView.setMediaController(mediaController);
     }
 
     public class GestionnairePlayPause implements View.OnClickListener {
@@ -152,19 +123,6 @@ public class MediaActivity extends AppCompatActivity{
             }
         }
     }
-
-    private boolean isLandScape(){
-        Display display = ((WindowManager) getSystemService(WINDOW_SERVICE))
-                .getDefaultDisplay();
-        int rotation = display.getRotation();
-
-        if (rotation == Surface.ROTATION_90
-                || rotation == Surface.ROTATION_270) {
-            return true;
-        }
-        return false;
-    }
-
     public class GestionnaireStop implements View.OnClickListener {
         public void onClick(View v) {
             Log.d(TAG, "onClick: stopped");
@@ -272,17 +230,18 @@ public class MediaActivity extends AppCompatActivity{
         });
     }
 
+
     public void Pause() {
         mPService.Pause();
     }
 
     public void StopPlayer() {
         if (videoView != null) {
-            videoView.pause();
-            videoView = null;
-            playing = false;
-            playButton.setImageResource(R.drawable.ic_baseline_play_arrow_24);
-        }
+                videoView.pause();
+                videoView = null;
+                playing = false;
+                playButton.setImageResource(R.drawable.ic_baseline_play_arrow_24);
+            }
     }
 
     public void PlayNext(View v) throws IOException {
