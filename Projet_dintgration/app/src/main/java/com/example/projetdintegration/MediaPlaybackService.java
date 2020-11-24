@@ -32,17 +32,21 @@ import android.widget.TextView;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.projetdintegration.DBHelpers.Classes.Music;
+
 import java.io.IOException;
+import java.util.ArrayList;
 
 @RequiresApi(api = Build.VERSION_CODES.O)
 public class MediaPlaybackService extends Service {
-
+    private static final String TAG = "MediaPlaybackService";
     public static boolean running = false;
     public static MediaPlayer mediaPlayer;
+    private static MediaPlaybackService instance = null;
     static Boolean playing = true;
     static int playingId = 0;
-    static String[] mediaList = {"bladee", "boku", "sea", "tacoma_narrows"};
-    static String VIDEO_SAMPLE = mediaList[playingId];
+    //static String[] mediaList = {"bladee", "boku", "sea", "tacoma_narrows"};
+    static ArrayList<Music> musicArrayList = new ArrayList<>();
     static Notification mediaPlayingNotification;
 
     private final IBinder binder = new LocalBinder();
@@ -69,7 +73,7 @@ public class MediaPlaybackService extends Service {
 
         mediaPlayingNotification = new Notification.Builder(this, "MAC")
                 .setContentTitle("Media playing")
-                .setContentText(VIDEO_SAMPLE)
+                .setContentText(musicArrayList.get(playingId).getName())
                 .setSmallIcon(R.drawable.ic_music_note_24)
                 .setTicker("ok?")
                 .build();
@@ -79,33 +83,59 @@ public class MediaPlaybackService extends Service {
 
     @Override
     public IBinder onBind(Intent intent){
-        mediaPlayingNotification =
+        /*mediaPlayingNotification =
                 new Notification.Builder(this, "MAC")
                         .setContentTitle("Media playing")
-                        .setContentText(VIDEO_SAMPLE)
+                        .setContentText(musicArrayList.get(playingId).getName())
                         .setSmallIcon(R.drawable.ic_music_note_24)
                         .setTicker("ok?")
-                        .build();
+                        .build();*/
 
         createNotificationChannel();
-        startForeground(1, mediaPlayingNotification);
+        //startForeground(1, mediaPlayingNotification);
 
         return binder;
     }
 
+    public void updateMusicList(ArrayList<Music> playlist, int songId){
+        Log.d(TAG, "updateMusicList: playingId = " + songId);
+        musicArrayList = playlist;
+        playingId = songId;
+        try{
+            RestartPlayer();
+            PlayFromPause();
+        }catch (IOException e){}
+    }
+
+
+
     public void Play() throws IOException {
-        if (mediaPlayer == null) {
-            initializePlayer();
-            mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                @Override
-                public void onCompletion(MediaPlayer mp) {
-                    StopPlayer();
-                }
-            });
-        }
-        if(!running) {
-            mediaPlayer.start();
-            running = true;
+        if(musicArrayList.size() != 0){
+            mediaPlayingNotification =
+                    new Notification.Builder(this, "MAC")
+                            .setContentTitle("Media playing")
+                            .setContentText(musicArrayList.get(playingId).getName())
+                            .setSmallIcon(R.drawable.ic_music_note_24)
+                            .setTicker("ok?")
+                            .build();
+            if (mediaPlayer == null) {
+                initializePlayer();
+                mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                    @Override
+                    public void onCompletion(MediaPlayer mp) {
+                        try {
+                            PlayNext();
+                        } catch (IOException e) {
+                            StopPlayer();
+                        }
+                    }
+                });
+            }
+            if(!running) {
+                mediaPlayer.start();
+                running = true;
+            }
+            startForeground(1, mediaPlayingNotification);
         }
     }
 
@@ -133,45 +163,45 @@ public class MediaPlaybackService extends Service {
 
     public void initializePlayer() throws IOException {
         if(mediaPlayer == null) {
-            Uri file = getMedia(VIDEO_SAMPLE);
+            Uri file = getMedia();
             mediaPlayer = MediaPlayer.create(this, file);
         }
     }
 
-    public void PlayNext() throws IOException {
-        if(playingId < mediaList.length - 1){
+    public void PlayNext() throws IOException, NullPointerException {
+        if(playingId < musicArrayList.size() - 1){
             playingId++;
-            VIDEO_SAMPLE = mediaList[playingId];
             RestartPlayer();
         }
-        else if(playingId == mediaList.length - 1){
+        else if(playingId == musicArrayList.size() - 1){
             playingId = 0;
-            VIDEO_SAMPLE = mediaList[playingId];
             RestartPlayer();
         }
     }
 
     public void PlayPrevious(View v) throws IOException {
-        if(playingId == 0 || mediaPlayer.getCurrentPosition()/1000 > 5){
-            RestartPlayer();
-        }
-        else {
-            playingId--;
-            VIDEO_SAMPLE = mediaList[playingId];
-            RestartPlayer();
-            PlayFromPause();
+        if (mediaPlayer != null) {
+            if (playingId == 0 || mediaPlayer.getCurrentPosition() / 1000 > 5) {
+                RestartPlayer();
+            } else {
+                playingId--;
+                RestartPlayer();
+                PlayFromPause();
+            }
         }
     }
 
-    public void RestartPlayer() throws IOException {
-        mediaPlayer.stop();
-        mediaPlayer = null;
-        initializePlayer();
-        updateNotification();
-        playing = false;
-        PlayFromPause();
-        playing = true;
-        running = true;
+    public void RestartPlayer() throws IOException, NullPointerException {
+        if (mediaPlayer != null) {
+            mediaPlayer.stop();
+            mediaPlayer = null;
+            initializePlayer();
+            updateNotification();
+            playing = false;
+            PlayFromPause();
+            playing = true;
+            running = true;
+        }
     }
 
     public void Stop(View v) {
@@ -184,9 +214,10 @@ public class MediaPlaybackService extends Service {
         }
     }
 
-    private Uri getMedia(String mediaName) {
-        return Uri.parse( "android.resource://" + getPackageName() +
-                "/raw/" + mediaName);
+    static Uri getMedia() {
+        if (musicArrayList.size() != 0)
+            return Uri.parse(musicArrayList.get(playingId).getPath());
+        return null;
     }
 
 }

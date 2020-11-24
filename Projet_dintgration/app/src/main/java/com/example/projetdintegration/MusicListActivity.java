@@ -1,7 +1,12 @@
 package com.example.projetdintegration;
 
+import android.app.Service;
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
+import android.content.ServiceConnection;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Menu;
@@ -26,6 +31,7 @@ import com.example.projetdintegration.DBHelpers.Playlists;
 import com.example.projetdintegration.Utilities.PopupHelper;
 import com.google.android.material.navigation.NavigationView;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class MusicListActivity extends AppCompatActivity {
@@ -40,10 +46,31 @@ public class MusicListActivity extends AppCompatActivity {
     Playlists DBPlaylistsReader;
     static MusicListAdapter adapter;
     static int playlistId;
+    MediaPlaybackService.LocalBinder binder;
+    Service mPService;
+    boolean mPBound = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        ServiceConnection connection = new ServiceConnection() {
+
+            @Override
+            public void onServiceConnected(ComponentName className, IBinder service){
+                Log.d(TAG, "onServiceConnected: binder Created");
+                binder = (MediaPlaybackService.LocalBinder) service;
+                mPService = binder.getService();
+                mPBound = true;
+                generateListView(playlistId);
+            }
+            @Override
+            public void onServiceDisconnected(ComponentName arg0){
+                mPBound = false;
+            }
+        };
+        Intent intent = new Intent(this, MediaPlaybackService.class);
+        bindService(intent, connection, Context.BIND_AUTO_CREATE);
 
         playlistId = getIntent().getIntExtra(DBHelper.Contract.TablePlaylist._ID, -1);
         setContentView(R.layout.activity_list);
@@ -90,8 +117,6 @@ public class MusicListActivity extends AppCompatActivity {
 
         NavigationManager.determinerOptionsAfficher(navigationView.getMenu());
         //endregion
-
-        generateListView(playlistId);
     }
 
     void generateListView(int playlistId){
@@ -138,7 +163,7 @@ public class MusicListActivity extends AppCompatActivity {
         }
 
         final ListView listView = (ListView) findViewById(R.id.listView);
-        adapter = new MusicListAdapter(this, R.layout.music_listitem_layout, musics, playlistId);
+        adapter = new MusicListAdapter(this, R.layout.music_listitem_layout, musics, playlistId, binder);
         listView.setAdapter(adapter);
 
     }
@@ -173,5 +198,11 @@ public class MusicListActivity extends AppCompatActivity {
         adapter.addAll(musics);
         adapter.notifyDataSetChanged();
 
+    }
+
+    public static void RefreshViewFromList(Context context, ArrayList<Music> musics){
+        adapter.clear();
+        adapter.addAll(musics);
+        adapter.notifyDataSetChanged();
     }
 }

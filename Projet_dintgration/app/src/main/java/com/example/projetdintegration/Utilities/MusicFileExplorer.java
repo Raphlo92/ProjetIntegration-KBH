@@ -84,7 +84,8 @@ public class MusicFileExplorer {
     public static void getAllChildren(String path, ArrayList<File> files){
         Log.d(TAG, "getAllChildren: Started");
         File file = new File(path);
-        String[] children = file.list();
+
+        String[] children = file.list(); //null
         //ArrayList<File> files = new ArrayList<>();
 
         if(children != null){

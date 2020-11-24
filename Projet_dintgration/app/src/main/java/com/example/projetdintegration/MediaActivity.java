@@ -153,28 +153,29 @@ public class MediaActivity extends AppCompatActivity{
 
     public class GestionnairePlayPause implements View.OnClickListener {
         public void onClick(View v) {
-            if(!mPService.playing) {
-                Log.d(TAG, "onClick: playing");
-                try {
-                    mPService.PlayFromPause();
-                    if (videoView == null) {
-                        initializePlayer();
+            if (MediaPlaybackService.mediaPlayer != null) {
+                if (!mPService.playing) {
+                    Log.d(TAG, "onClick: playing");
+                    try {
+                        mPService.PlayFromPause();
+                        if (videoView == null) {
+                            initializePlayer();
+                        }
+                        videoView.start();
+                        videoView.seekTo(MediaPlaybackService.mediaPlayer.getCurrentPosition());
+                    } catch (IOException e) {
+                        e.printStackTrace();
                     }
-                    videoView.start();
-                    videoView.seekTo(MediaPlaybackService.mediaPlayer.getCurrentPosition());
-                } catch (IOException e) {
-                    e.printStackTrace();
+                    playButton.setImageResource(R.drawable.ic_baseline_pause_24);
+                    mPService.playing = true;
+                } else {
+                    Log.d(TAG, "onClick: paused");
+                    if (MediaPlaybackService.mediaPlayer.isPlaying())
+                        mPService.Pause();
+                    videoView.pause();
+                    playButton.setImageResource(R.drawable.ic_baseline_play_arrow_24);
+                    mPService.playing = false;
                 }
-                playButton.setImageResource(R.drawable.ic_baseline_pause_24);
-                mPService.playing = true;
-            }
-            else{
-                Log.d(TAG, "onClick: paused");
-                if(MediaPlaybackService.mediaPlayer.isPlaying())
-                    mPService.Pause();
-                videoView.pause();
-                playButton.setImageResource(R.drawable.ic_baseline_play_arrow_24);
-                mPService.playing = false;
             }
         }
     }
@@ -225,7 +226,7 @@ public class MediaActivity extends AppCompatActivity{
 
     public void initializePlayer() {
         videoView = findViewById(R.id.videoView);
-        Uri videoUri = getMedia(MediaPlaybackService.VIDEO_SAMPLE);
+        Uri videoUri = MediaPlaybackService.getMedia();
         videoView.setVideoURI(videoUri);
         videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
@@ -340,10 +341,12 @@ public class MediaActivity extends AppCompatActivity{
     }
 
     public void SetInfos(){
-        String time = MediaPlaybackService.mediaPlayer.getDuration() % (1000*60*60) / (1000*60) + ":" + (MediaPlaybackService.mediaPlayer.getDuration() % (1000 * 60 * 60) % (1000 * 60) / 1000);
-        maxTime.setText(time);
-        seekBar.setMax(MediaPlaybackService.mediaPlayer.getDuration() / 1000);
-        mediaName.setText(MediaPlaybackService.VIDEO_SAMPLE);
+        if (MediaPlaybackService.mediaPlayer != null){
+            String time = MediaPlaybackService.mediaPlayer.getDuration() % (1000*60*60) / (1000*60) + ":" + (MediaPlaybackService.mediaPlayer.getDuration() % (1000 * 60 * 60) % (1000 * 60) / 1000);
+            maxTime.setText(time);
+            seekBar.setMax(MediaPlaybackService.mediaPlayer.getDuration() / 1000);
+            mediaName.setText(MediaPlaybackService.musicArrayList.get(playingId).getName());
+        }
     }
 
     private Uri getMedia(String mediaName) {
