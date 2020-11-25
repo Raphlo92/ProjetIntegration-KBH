@@ -238,11 +238,11 @@ public class MediaActivity extends AppCompatActivity{
 
     public void StopPlayer() {
         if (videoView != null) {
-            videoView.pause();
-            videoView = null;
-            playing = false;
-            playButton.setImageResource(R.drawable.ic_baseline_play_arrow_24);
-        }
+                videoView.pause();
+                videoView = null;
+                playing = false;
+                playButton.setImageResource(R.drawable.ic_baseline_play_arrow_24);
+            }
     }
 
     public void PlayNext(View v) throws IOException {
