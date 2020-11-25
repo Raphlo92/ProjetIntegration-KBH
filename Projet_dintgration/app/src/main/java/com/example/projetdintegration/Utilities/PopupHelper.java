@@ -17,8 +17,12 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 
 
+import com.example.projetdintegration.DBHelpers.Albums;
+import com.example.projetdintegration.DBHelpers.Artists;
+import com.example.projetdintegration.DBHelpers.Classes.IDBClass;
 import com.example.projetdintegration.DBHelpers.Classes.Playlist;
 import com.example.projetdintegration.DBHelpers.DBHelper;
+import com.example.projetdintegration.DBHelpers.Musics;
 import com.example.projetdintegration.DBHelpers.Playlists;
 import com.example.projetdintegration.MainActivity;
 import com.example.projetdintegration.MusicListActivity;
@@ -28,10 +32,14 @@ import com.example.projetdintegration.R;
 import com.example.projetdintegration.DBHelpers.DBHelper.Contract.TablePlaylist;
 import com.example.projetdintegration.DBHelpers.Classes.Music;
 
+import java.util.ArrayList;
+
 public class PopupHelper {
     private Context mContext;
     private DBHelper dbHelper;
     private Playlists playlistsWriter;
+    private Musics researchmusic;
+    private String researchContainer;
 
     public PopupHelper(Context context){
         mContext = context;
@@ -152,12 +160,15 @@ public class PopupHelper {
                     return true;
                 case R.id.addToPlaylist:
                     //TODO find a way to get the playlist ID and had the music to it
+
                     return true;
                 case R.id.musicOfArtist:
                     //TODO go to a view of all the music of the same artist (find artist ID)
+                    ShowMusicOfArtiste(music);
                     return true;
                 case R.id.musicInAlbum:
                     //TODO go to a view of all the music in the same album (find playlist ID)
+                    ShowmusicInAlbum(music);
                     return true;
                 /*case R.id.addToSpotifyFav:
                     return true;
@@ -196,10 +207,116 @@ public class PopupHelper {
             }
 
         });
-
         popup.show();
     }
 
-    //TODO
-    public void showSearchForm(){}
+    //TODO : Take the user input to after give it to the musiclistActivity
+    public void showSearchForm(){
+        String title = "rechercher de vos chanson";
+        String buttonTitle = "Rechercher";
+
+
+        LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        final View formElementsView = inflater.inflate(R.layout.playlist_input_form_layout, null, false);
+        final EditText editSearchMusic = formElementsView.findViewById(R.id.playlistInputName);
+        editSearchMusic.setText(researchContainer);
+
+        Musics DBMusicsReader = new Musics(new DBHelper(mContext).getReadableDatabase());
+
+        Builder builder = new Builder(mContext);
+        builder.setView(formElementsView);
+        builder.setTitle(title);
+        builder.setPositiveButton(buttonTitle, (dialog, i) -> {
+            String MusicsName = editSearchMusic.getText().toString();
+            researchContainer = MusicsName;
+
+            String[] whereArgs = {"%" + MusicsName + "%" };
+            ArrayList<IDBClass> DBMusics = DBMusicsReader.Select(null, DBHelper.Contract.TableMusic.COLUMN_NAME_TITLE + " LIKE ?", whereArgs, null, null, null);
+
+            ArrayList<Music> musics = new ArrayList<>();
+            for(IDBClass music:DBMusics) { musics.add((Music)music); }
+            MusicListActivity.RefreshViewFromList(mContext, musics);
+            dialog.dismiss();
+        });
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            builder.setOnDismissListener(dialog -> {
+                //TODO save data somewhere
+            });
+        }
+        builder.show();
+
+    }
+
+    public void ShowMusicOfArtiste(Music music)
+    {
+        String title = "rechercher de vos Artiste";
+        String buttonTitle = "Rechercher";
+
+
+        LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        final View formElementsView = inflater.inflate(R.layout.playlist_input_form_layout, null, false);
+        final EditText editSearchMusic = formElementsView.findViewById(R.id.playlistInputName);
+        editSearchMusic.setText(music.getArtist());
+
+        Musics DBMusicsReader = new Musics(new DBHelper(mContext).getReadableDatabase());
+
+        Builder builder = new Builder(mContext);
+        builder.setView(formElementsView);
+        builder.setTitle(title);
+        builder.setPositiveButton(buttonTitle, (dialog, i) -> {
+            String ArtistsName = editSearchMusic.getText().toString();
+
+            String[] whereArgs = {"%" + ArtistsName + "%" };
+            ArrayList<IDBClass> DBMusics = DBMusicsReader.Select(null, DBHelper.Contract.TableMusic.COLUMN_NAME_ID_ARTIST + " LIKE ?", whereArgs, null, null, null);
+
+            ArrayList<Music> musics = new ArrayList<>();
+            for(IDBClass artist:DBMusics) { musics.add((Music)artist); }
+            MusicListActivity.RefreshViewFromList(mContext, musics);
+            dialog.dismiss();
+        });
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            builder.setOnDismissListener(dialog -> {
+                //TODO save data somewhere
+            });
+        }
+        builder.show();
+
+    }
+
+    public void ShowmusicInAlbum(Music music)
+    {
+        String title = "rechercher de vos Album";
+        String buttonTitle = "Rechercher";
+
+
+        LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        final View formElementsView = inflater.inflate(R.layout.playlist_input_form_layout, null, false);
+        final EditText editSearchMusic = formElementsView.findViewById(R.id.playlistInputName);
+        editSearchMusic.setText(music.getAlbum());
+
+        Musics DBMusicsReader = new Musics(new DBHelper(mContext).getReadableDatabase());
+
+        Builder builder = new Builder(mContext);
+        builder.setView(formElementsView);
+        builder.setTitle(title);
+        builder.setPositiveButton(buttonTitle, (dialog, i) -> {
+            String AlbumsName = editSearchMusic.getText().toString();
+
+            String[] whereArgs = {"%" + AlbumsName + "%" };
+            ArrayList<IDBClass> DBMusics = DBMusicsReader.Select(null, DBHelper.Contract.TableMusic.COLUMN_NAME_ID_ALBUM + " LIKE ?", whereArgs, null, null, null);
+
+            ArrayList<Music> musics = new ArrayList<>();
+            for(IDBClass album:DBMusics) { musics.add((Music)album); }
+            MusicListActivity.RefreshViewFromList(mContext, musics);
+            dialog.dismiss();
+        });
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            builder.setOnDismissListener(dialog -> {
+                //TODO save data somewhere
+            });
+        }
+        builder.show();
+
+    }
+
 }

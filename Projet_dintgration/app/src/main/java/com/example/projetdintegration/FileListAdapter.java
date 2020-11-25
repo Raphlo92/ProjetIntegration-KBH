@@ -108,7 +108,10 @@ public class FileListAdapter extends RecyclerView.Adapter<FileListAdapter.ViewHo
 
         Music music = new Music(id, title, length, type, path, category, artist, album, favorite);
 
+        if(path == null)
         holder.album.setImageResource(R.drawable.ic_file);
+        else
+            holder.album.setImageResource(Integer.parseInt(path));
         lastPosition = position;
     }
 

@@ -38,7 +38,7 @@ public class MusicListActivity extends AppCompatActivity {
     Musics DBMusicsReader;
     Musics DBMusicsWriter;
     Playlists DBPlaylistsReader;
-    MusicListAdapter adapter;
+    static MusicListAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +46,16 @@ public class MusicListActivity extends AppCompatActivity {
 
         int playlistId = getIntent().getIntExtra(DBHelper.Contract.TablePlaylist._ID, -1);
         setContentView(R.layout.activity_list);
+
+        PopupHelper popupHelper = new PopupHelper(this);
+
+        final ImageView imageView1 = (ImageView) findViewById(R.id.imageView1);
+        imageView1.setImageResource(R.drawable.ic_add);
+        imageView1.setVisibility(View.VISIBLE);
+        imageView1.setOnClickListener(view -> {
+            Log.d(TAG, "imageView1: onClickListener() ");
+            popupHelper.showSearchForm();
+        });
 
         Log.d(TAG, "onCreate: Started.");
         Log.d(TAG, "onCreate: playlistId: " + playlistId);
@@ -125,21 +135,23 @@ public class MusicListActivity extends AppCompatActivity {
             }
         }
         else{
+
             dbMusics = DBMusicsReader.Select(null, null, null, null, null, null);
             imageView1.setImageResource(R.drawable.ic_baseline_search_24);
             imageView2.setImageResource(R.drawable.androidlogo);
             imageView1.setVisibility(View.VISIBLE);
             imageView2.setVisibility(View.VISIBLE);
+
+
+            for (IDBClass music: dbMusics) {
+                musics.add((Music) music);
+            }
+
+            final ListView listView = (ListView) findViewById(R.id.listView);
+            adapter = new MusicListAdapter(this, R.layout.music_listitem_layout, musics, playlistId);
+            listView.setAdapter(adapter);
+
         }
-
-        for (IDBClass music: dbMusics) {
-            musics.add((Music) music);
-        }
-
-        final ListView listView = (ListView) findViewById(R.id.listView);
-        adapter = new MusicListAdapter(this, R.layout.music_listitem_layout, musics, playlistId);
-        listView.setAdapter(adapter);
-
     }
     @Override
     public void onBackPressed() {
@@ -148,5 +160,11 @@ public class MusicListActivity extends AppCompatActivity {
             drawerLayout.closeDrawer(GravityCompat.START);
         else
             super.onBackPressed();
+    }
+
+    public static void RefreshViewFromList(Context context, ArrayList<Music> musics){
+        adapter.clear();
+        adapter.addAll(musics);
+        adapter.notifyDataSetChanged();
     }
 }
