@@ -2,6 +2,7 @@ package com.example.projetdintegration;
 
 import android.app.Person;
 import android.content.Context;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.icu.text.Transliterator;
 import android.view.LayoutInflater;
@@ -108,10 +109,11 @@ public class FileListAdapter extends RecyclerView.Adapter<FileListAdapter.ViewHo
 
         Music music = new Music(id, title, length, type, path, category, artist, album, favorite);
 
-        if(path == null)
+        //if(path == null)
         holder.album.setImageResource(R.drawable.ic_file);
-        else
-            holder.album.setImageResource(Integer.parseInt(path));
+        //else {
+        //    holder.album.setImageBitmap(BitmapFactory.decodeFile(path));
+        //}
         lastPosition = position;
     }
 
