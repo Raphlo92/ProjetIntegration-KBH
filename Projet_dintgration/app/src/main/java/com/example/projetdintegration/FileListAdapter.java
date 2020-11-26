@@ -78,9 +78,7 @@ public class FileListAdapter extends RecyclerView.Adapter<FileListAdapter.ViewHo
         }
 
         holder.title.setText(title);
-        lastPosition = position;
     }
-
     @Override
     public int getItemCount() {
         return musics.size();

@@ -18,6 +18,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -38,6 +39,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.projetdintegration.DBHelpers.Categories;
 import com.example.projetdintegration.DBHelpers.Classes.Category;
 import com.example.projetdintegration.DBHelpers.Classes.Playlist;
+import com.example.projetdintegration.Utilities.PopupHelper;
 import com.google.android.material.navigation.NavigationView;
 
 import com.example.projetdintegration.DBHelpers.Classes.IDBClass;
@@ -75,6 +77,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        PopupHelper popupHelper = new PopupHelper(this);
+
+        ImageView imageView1 = (ImageView) findViewById(R.id.imageView1);
+        imageView1.setVisibility(View.INVISIBLE);
+
         int playlistId = getIntent().getIntExtra(DBHelper.Contract.TablePlaylist._ID, -1);
 
         dbHelper = new DBHelper(getApplicationContext());
@@ -110,11 +117,6 @@ public class MainActivity extends AppCompatActivity {
         final ListView listView = (ListView) findViewById(R.id.listView);
         final TextView pageTitle = (TextView) findViewById(R.id.PageTitle);
         pageTitle.setText(R.string.nav_home);
-
-        final ImageView imageView1 = (ImageView) findViewById(R.id.imageView1);
-        final ImageView imageView2 = (ImageView) findViewById(R.id.imageView2);
-        imageView1.setVisibility(View.INVISIBLE);
-        imageView2.setVisibility(View.INVISIBLE);
 
         ArrayList<IDBClass> dbMusics = new ArrayList<>();
         ArrayList<Music> musics = new ArrayList<>();

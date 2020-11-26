@@ -67,6 +67,7 @@
                 android:layout_height="46dp"
                 android:layout_toStartOf="@+id/imageView2"
                 android:layout_toLeftOf="@+id/imageView2"
+                android:onClick="showSearchForm"
 
                 app:srcCompat="@drawable/ic_baseline_search_24"
                 tools:ignore="VectorDrawableCompat" />
