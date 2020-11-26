@@ -44,7 +44,7 @@ public class MediaPlaybackService extends Service {
     public static MediaPlayer mediaPlayer;
     private static MediaPlaybackService instance = null;
     static Boolean playing = true;
-    static int playingId = 0;
+    public static int playingId = 0;
     //static String[] mediaList = {"bladee", "boku", "sea", "tacoma_narrows"};
     static ArrayList<Music> musicArrayList = new ArrayList<>();
     static Notification mediaPlayingNotification;
@@ -104,10 +104,10 @@ public class MediaPlaybackService extends Service {
         try{
             RestartPlayer();
             PlayFromPause();
-        }catch (IOException e){}
+        }catch (IOException e){
+            Log.e(TAG, "updateMusicList: error " + e );
+        }
     }
-
-
 
     public void Play() throws IOException {
         if(musicArrayList.size() != 0){
@@ -120,14 +120,11 @@ public class MediaPlaybackService extends Service {
                             .build();
             if (mediaPlayer == null) {
                 initializePlayer();
-                mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                    @Override
-                    public void onCompletion(MediaPlayer mp) {
-                        try {
-                            PlayNext();
-                        } catch (IOException e) {
-                            StopPlayer();
-                        }
+                mediaPlayer.setOnCompletionListener(mp -> {
+                    try {
+                        PlayNext();
+                    } catch (IOException e) {
+                        e.printStackTrace();
                     }
                 });
             }
@@ -164,7 +161,15 @@ public class MediaPlaybackService extends Service {
     public void initializePlayer() throws IOException {
         if(mediaPlayer == null) {
             Uri file = getMedia();
+            Log.e(TAG, "initializePlayer: file = " + file);
             mediaPlayer = MediaPlayer.create(this, file);
+            mediaPlayer.setOnCompletionListener(mp -> {
+                try {
+                    PlayNext();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
         }
     }
 

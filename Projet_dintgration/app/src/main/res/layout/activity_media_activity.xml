@@ -41,29 +41,59 @@
             >
 
             <ImageButton
+                android:id="@+id/repeatButton"
+                android:layout_width="49dp"
+                android:layout_height="52dp"
+                android:layout_below="@+id/playButton"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="231dp"
+                android:layout_marginLeft="231dp"
+                android:layout_marginTop="18dp"
+                android:layout_marginEnd="131dp"
+                android:layout_marginRight="131dp"
+                android:layout_marginBottom="30dp"
+                android:background="@drawable/roundedbutton"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_baseline_norepeat"
+                app:layout_constraintBottom_toBottomOf="@id/playButton"
+                app:layout_constraintStart_toStartOf="@id/playButton" />
+
+            <ImageButton
+                android:id="@+id/shuffleButton"
+                android:layout_width="49dp"
+                android:layout_height="52dp"
+                android:layout_below="@+id/playButton"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="130dp"
+                android:layout_marginLeft="130dp"
+                android:layout_marginTop="18dp"
+                android:layout_marginEnd="232dp"
+                android:layout_marginRight="232dp"
+                android:layout_marginBottom="30dp"
+                android:background="@drawable/roundedbutton"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_baseline_trending_flat_24"
+                app:layout_constraintBottom_toBottomOf="@id/playButton"
+                app:layout_constraintStart_toStartOf="@id/playButton" />
+
+            <ImageButton
                 android:id="@+id/playButton"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
+                android:layout_centerInParent="true"
                 android:layout_marginTop="100dp"
                 android:background="@drawable/roundedbutton"
                 android:scaleType="fitCenter"
                 android:src="@drawable/ic_baseline_play_arrow_24"
-                app:layout_constraintBottom_toTopOf="@+id/stopButton"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <ImageButton
-                android:id="@+id/stopButton"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_below="@+id/playButton"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="30dp"
-                android:background="@drawable/roundedbutton"
-                android:scaleType="fitCenter"
-                android:src="@drawable/ic_baseline_stop_24"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <SeekBar
@@ -156,6 +186,20 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.241" />
+
+        <ImageView
+            android:id="@+id/coverArt"
+            android:layout_width="336dp"
+            android:layout_height="296dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="116dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/appbar"
+            tools:srcCompat="@tools:sample/avatars" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.drawerlayout.widget.DrawerLayout>

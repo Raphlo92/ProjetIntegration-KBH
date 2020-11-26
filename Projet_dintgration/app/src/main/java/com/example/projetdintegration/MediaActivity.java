@@ -5,7 +5,10 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.PixelFormat;
+import android.media.MediaMetadataRetriever;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Build;
@@ -22,19 +25,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.MediaController;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.VideoView;
-
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.projetdintegration.DBHelpers.DBInitializer;
-import com.google.android.material.navigation.NavigationView;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -52,16 +52,11 @@ public class MediaActivity extends AppCompatActivity{
     TextView mediaName;
     Boolean playing = true;
     ImageButton playButton;
-    DrawerLayout drawerLayout;
-    NavigationView navigationView;
-    Toolbar toolbar;
+    ImageView coverArt;
     int playingId = 0;
-    static String[] mediaList = {"bladee", "boku", "sea", "tacoma_narrows"};
-    String VIDEO_SAMPLE = mediaList[0];
+    //static String[] mediaList = {"bladee", "boku", "sea", "tacoma_narrows"};
+    //String VIDEO_SAMPLE = mediaList[0];
     private static final String TAG = "MediaActivity";
-    private MediaController mediaController;
-    private ViewGroup.LayoutParams lp;
-    private ViewGroup.MarginLayoutParams mp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,41 +65,19 @@ public class MediaActivity extends AppCompatActivity{
         setContentView(R.layout.activity_media_activity);
 
         playButton = findViewById(R.id.playButton);
-        ImageButton stopButton = findViewById(R.id.stopButton);
         ImageButton rewindButton = findViewById(R.id.rewindButton);
         ImageButton forwardButton = findViewById(R.id.forwardButton);
         seekBar = findViewById(R.id.seekBar);
+
         currentTime = findViewById(R.id.currentTime);
         maxTime = findViewById(R.id.maxTime);
         mediaName = findViewById(R.id.mediaName);
         videoView = findViewById(R.id.videoView);
-
-        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        navigationView = (NavigationView) findViewById(R.id.nav_view);
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        navigationView.bringToFront();
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_open_drawer_description,
-                R.string.navigation_close_drawer_description);
-        drawerLayout.addDrawerListener(toggle);
-        toggle.syncState();
-        navigationView.setNavigationItemSelectedListener(new NavigationManager(this, this) {
-            @Override
-            public void gotoMedia() {}
-        });
-        navigationView.setCheckedItem(R.id.nav_mediaActivity);
-        NavigationManager.determinerOptionsAfficher(navigationView.getMenu());
+        coverArt = findViewById(R.id.coverArt);
 
         playButton.setOnClickListener(new GestionnairePlayPause());
-        stopButton.setOnClickListener(new GestionnaireStop());
         rewindButton.setOnClickListener(new GestionnaireRewind());
         forwardButton.setOnClickListener(new GestionnaireForward());
-
-        String fullscreen = getIntent().getStringExtra("fullScreenInd");
-        if("y".equals(fullscreen)){
-            getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                    WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        }
 
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -127,28 +100,8 @@ public class MediaActivity extends AppCompatActivity{
 
             }
         });
-
         SeekBarUpdater();
-        lp  = videoView.getLayoutParams();
-        mp = (ViewGroup.MarginLayoutParams)videoView.getLayoutParams();
-
-        if(isLandScape()){
-            mediaController = new FullScreenMediaController(this);
-            mediaController.setVisibility(View.VISIBLE);
-            lp.height = getResources().getDisplayMetrics().heightPixels;
-            lp.width = getResources().getDisplayMetrics().widthPixels;
-            mp.setMargins(0, 0, 0,0);
-        }else {
-            mediaController = new MediaController(this);
-            mediaController.setVisibility(View.GONE);
-            lp.height = 0;
-            lp.width = 0;
-            mp.setMargins(8, 8, 8,8);
-        }
-        videoView.setLayoutParams(lp);
-        videoView.setLayoutParams(mp);
-        mediaController.setAnchorView(videoView);
-        videoView.setMediaController(mediaController);
+        InfoUpdater();
     }
 
     public class GestionnairePlayPause implements View.OnClickListener {
@@ -180,25 +133,6 @@ public class MediaActivity extends AppCompatActivity{
         }
     }
 
-    private boolean isLandScape(){
-        Display display = ((WindowManager) getSystemService(WINDOW_SERVICE))
-                .getDefaultDisplay();
-        int rotation = display.getRotation();
-
-        if (rotation == Surface.ROTATION_90
-                || rotation == Surface.ROTATION_270) {
-            return true;
-        }
-        return false;
-    }
-
-    public class GestionnaireStop implements View.OnClickListener {
-        public void onClick(View v) {
-            Log.d(TAG, "onClick: stopped");
-            mPService.Stop(v);
-            StopPlayer();
-        }
-    }
 
     public class GestionnaireRewind implements View.OnClickListener{
         public void onClick(View v){
@@ -269,8 +203,8 @@ public class MediaActivity extends AppCompatActivity{
                     SetInfos();
                 }else
                 {
-                    SetInfos();
                     initializePlayer();
+                    SetInfos();
                     videoView.seekTo(MediaPlaybackService.mediaPlayer.getCurrentPosition());
                     videoView.start();
                 }
@@ -291,7 +225,9 @@ public class MediaActivity extends AppCompatActivity{
                 if (MediaPlaybackService.mediaPlayer != null) {
                     int currentPosition = MediaPlaybackService.mediaPlayer.getCurrentPosition();
                     seekBar.setProgress(currentPosition / 1000);
-                    String time = currentPosition % (1000*60*60) / (1000*60) + ":" + (currentPosition % (1000 * 60 * 60) % (1000 * 60) / 1000);
+                    int minutes = currentPosition / (60 * 1000);
+                    int seconds = (currentPosition / 1000) % 60;
+                    String time = String.format("%d:%02d", minutes, seconds);
                     currentTime.setText(time);
                 }
                 handler.postDelayed(this, 100);
@@ -299,20 +235,23 @@ public class MediaActivity extends AppCompatActivity{
         });
     }
 
-    public void Pause() {
+    public void InfoUpdater(){
+        MediaActivity.this.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                SetInfos();
+                handler.postDelayed(this, 1000);
+            }
+
+        });
+    }
+
+
+    /*public void Pause() {
         mPService.Pause();
-    }
+    }*/
 
-    public void StopPlayer() {
-        if (videoView != null) {
-            videoView.pause();
-            videoView = null;
-            playing = false;
-            playButton.setImageResource(R.drawable.ic_baseline_play_arrow_24);
-        }
-    }
-
-    public void PlayNext(View v) throws IOException {
+    /*public void PlayNext(View v) throws IOException {
         if(playingId < mediaList.length - 1){
             playingId++;
             VIDEO_SAMPLE = mediaList[playingId];
@@ -323,9 +262,9 @@ public class MediaActivity extends AppCompatActivity{
             VIDEO_SAMPLE = mediaList[playingId];
             RestartPlayer(v);
         }
-    }
+    }*/
 
-    public void PlayPrevious(View v) throws IOException {
+    /*public void PlayPrevious(View v) throws IOException {
         if(playingId == 0 || videoView.getCurrentPosition()/1000 > 5){
             RestartPlayer(v);
         }
@@ -334,18 +273,47 @@ public class MediaActivity extends AppCompatActivity{
             VIDEO_SAMPLE = mediaList[playingId];
             RestartPlayer(v);
         }
-    }
+    }*/
 
-    public void RestartPlayer(View v) throws IOException {
+    /*public void RestartPlayer(View v) throws IOException {
         mPService.RestartPlayer();
-    }
+    }*/
 
     public void SetInfos(){
         if (MediaPlaybackService.mediaPlayer != null){
-            String time = MediaPlaybackService.mediaPlayer.getDuration() % (1000*60*60) / (1000*60) + ":" + (MediaPlaybackService.mediaPlayer.getDuration() % (1000 * 60 * 60) % (1000 * 60) / 1000);
+            playingId = MediaPlaybackService.playingId;
+            int minutes = MediaPlaybackService.mediaPlayer.getDuration() / (60 * 1000);
+            int seconds = (MediaPlaybackService.mediaPlayer.getDuration() / 1000) % 60;
+            String time = String.format("%d:%02d", minutes, seconds);
             maxTime.setText(time);
             seekBar.setMax(MediaPlaybackService.mediaPlayer.getDuration() / 1000);
             mediaName.setText(MediaPlaybackService.musicArrayList.get(playingId).getName());
+            if(MediaPlaybackService.musicArrayList.get(playingId).getType().equals("audio")){
+                videoView.setVisibility(View.INVISIBLE);
+                coverArt.setVisibility(View.VISIBLE);
+                android.media.MediaMetadataRetriever mmr = new MediaMetadataRetriever();
+                mmr.setDataSource(MediaPlaybackService.musicArrayList.get(playingId).getPath());
+                byte[] data = mmr.getEmbeddedPicture();
+                Log.i(TAG, "SetInfos: data = " + data );
+
+                if(data != null){
+                    Bitmap bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
+                    coverArt.setImageBitmap(bitmap);
+                }
+                else{
+                    coverArt.setImageResource(R.drawable.ic_music_note_24);
+                }
+                coverArt.setAdjustViewBounds(true);
+            }
+            else {
+                videoView.setVisibility(View.VISIBLE);
+                coverArt.setVisibility(View.INVISIBLE);
+                if (videoView == null) {
+                    initializePlayer();
+                }
+                videoView.start();
+                videoView.seekTo(MediaPlaybackService.mediaPlayer.getCurrentPosition());
+            }
         }
     }
 
