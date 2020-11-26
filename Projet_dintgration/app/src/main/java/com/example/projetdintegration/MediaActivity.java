@@ -18,6 +18,7 @@ import android.os.IBinder;
 import android.renderscript.ScriptGroup;
 import android.util.Log;
 import android.view.Display;
+import android.view.Menu;
 import android.view.Surface;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -31,10 +32,19 @@ import android.widget.MediaController;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.VideoView;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.drawerlayout.widget.DrawerLayout;
+
+import com.example.projetdintegration.DBHelpers.Categories;
+import com.example.projetdintegration.DBHelpers.DBHelper;
 import com.example.projetdintegration.DBHelpers.DBInitializer;
+import com.example.projetdintegration.DBHelpers.Musics;
+import com.google.android.material.navigation.NavigationView;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -54,6 +64,9 @@ public class MediaActivity extends AppCompatActivity{
     ImageButton playButton;
     ImageView coverArt;
     int playingId = 0;
+    DrawerLayout drawerLayout;
+    NavigationView navigationView;
+    Toolbar toolbar;
     //static String[] mediaList = {"bladee", "boku", "sea", "tacoma_narrows"};
     //String VIDEO_SAMPLE = mediaList[0];
     private static final String TAG = "MediaActivity";
@@ -63,6 +76,30 @@ public class MediaActivity extends AppCompatActivity{
         Log.d(TAG, "onCreate: started");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_media_activity);
+
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        navigationView.bringToFront();
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_open_drawer_description,
+                R.string.navigation_close_drawer_description);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+        navigationView.setNavigationItemSelectedListener(new NavigationManager(this, this) {
+            @Override
+            public void gotoMedia() {}
+        });
+        navigationView.setCheckedItem(R.id.nav_mediaActivity);
+        NavigationManager.determinerOptionsAfficher(navigationView.getMenu());
+
+        final TextView pageTitle = (TextView) findViewById(R.id.PageTitle);
+        pageTitle.setText(R.string.nav_mediaActivity);
+
+        final ImageView imageView1 = (ImageView) findViewById(R.id.imageView1);
+        final ImageView imageView2 = (ImageView) findViewById(R.id.imageView2);
+        imageView1.setVisibility(View.INVISIBLE);
+        imageView2.setVisibility(View.INVISIBLE);
 
         playButton = findViewById(R.id.playButton);
         ImageButton rewindButton = findViewById(R.id.rewindButton);

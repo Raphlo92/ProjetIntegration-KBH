@@ -111,9 +111,10 @@ public class MainActivity extends AppCompatActivity {
         final TextView pageTitle = (TextView) findViewById(R.id.PageTitle);
         pageTitle.setText(R.string.nav_home);
 
-        //final ImageView imageView2 = (ImageView) findViewById(R.id.imageView2);
-        //imageView2.setImageResource(R.drawable.ic_add);
-        //imageView2.setVisibility(View.INVISIBLE);
+        final ImageView imageView1 = (ImageView) findViewById(R.id.imageView1);
+        final ImageView imageView2 = (ImageView) findViewById(R.id.imageView2);
+        imageView1.setVisibility(View.INVISIBLE);
+        imageView2.setVisibility(View.INVISIBLE);
 
         ArrayList<IDBClass> dbMusics = new ArrayList<>();
         ArrayList<Music> musics = new ArrayList<>();
