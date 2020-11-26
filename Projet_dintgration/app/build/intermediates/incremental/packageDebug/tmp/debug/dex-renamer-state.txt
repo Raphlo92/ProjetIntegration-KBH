@@ -1,4 +1,4 @@
-#Wed Nov 18 13:23:37 EST 2020
+#Wed Nov 25 19:20:08 EST 2020
 base.0=D\:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
 path.0=classes.dex
 renamed.0=classes.dex

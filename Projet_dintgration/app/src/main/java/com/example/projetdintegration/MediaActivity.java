@@ -5,7 +5,10 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.PixelFormat;
+import android.media.MediaMetadataRetriever;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Build;
@@ -22,11 +25,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.MediaController;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.VideoView;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+
 import com.example.projetdintegration.DBHelpers.DBInitializer;
 import java.io.File;
 import java.io.IOException;
@@ -45,9 +52,10 @@ public class MediaActivity extends AppCompatActivity{
     TextView mediaName;
     Boolean playing = true;
     ImageButton playButton;
+    ImageView coverArt;
     int playingId = 0;
-    static String[] mediaList = {"bladee", "boku", "sea", "tacoma_narrows"};
-    String VIDEO_SAMPLE = mediaList[0];
+    //static String[] mediaList = {"bladee", "boku", "sea", "tacoma_narrows"};
+    //String VIDEO_SAMPLE = mediaList[0];
     private static final String TAG = "MediaActivity";
 
     @Override
@@ -66,6 +74,7 @@ public class MediaActivity extends AppCompatActivity{
         maxTime = findViewById(R.id.maxTime);
         mediaName = findViewById(R.id.mediaName);
         videoView = findViewById(R.id.videoView);
+        coverArt = findViewById(R.id.coverArt);
 
         playButton.setOnClickListener(new GestionnairePlayPause());
         stopButton.setOnClickListener(new GestionnaireStop());
@@ -94,6 +103,7 @@ public class MediaActivity extends AppCompatActivity{
             }
         });
         SeekBarUpdater();
+        InfoUpdater();
     }
 
     public class GestionnairePlayPause implements View.OnClickListener {
@@ -201,8 +211,8 @@ public class MediaActivity extends AppCompatActivity{
                     SetInfos();
                 }else
                 {
-                    SetInfos();
                     initializePlayer();
+                    SetInfos();
                     videoView.seekTo(MediaPlaybackService.mediaPlayer.getCurrentPosition());
                     videoView.start();
                 }
@@ -223,7 +233,9 @@ public class MediaActivity extends AppCompatActivity{
                 if (MediaPlaybackService.mediaPlayer != null) {
                     int currentPosition = MediaPlaybackService.mediaPlayer.getCurrentPosition();
                     seekBar.setProgress(currentPosition / 1000);
-                    String time = currentPosition % (1000*60*60) / (1000*60) + ":" + (currentPosition % (1000 * 60 * 60) % (1000 * 60) / 1000);
+                    int minutes = currentPosition / (60 * 1000);
+                    int seconds = (currentPosition / 1000) % 60;
+                    String time = String.format("%d:%02d", minutes, seconds);
                     currentTime.setText(time);
                 }
                 handler.postDelayed(this, 100);
@@ -231,10 +243,21 @@ public class MediaActivity extends AppCompatActivity{
         });
     }
 
+    public void InfoUpdater(){
+        MediaActivity.this.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                SetInfos();
+                handler.postDelayed(this, 1000);
+            }
 
-    public void Pause() {
-        mPService.Pause();
+        });
     }
+
+
+    /*public void Pause() {
+        mPService.Pause();
+    }*/
 
     public void StopPlayer() {
         if (videoView != null) {
@@ -245,7 +268,7 @@ public class MediaActivity extends AppCompatActivity{
             }
     }
 
-    public void PlayNext(View v) throws IOException {
+    /*public void PlayNext(View v) throws IOException {
         if(playingId < mediaList.length - 1){
             playingId++;
             VIDEO_SAMPLE = mediaList[playingId];
@@ -256,9 +279,9 @@ public class MediaActivity extends AppCompatActivity{
             VIDEO_SAMPLE = mediaList[playingId];
             RestartPlayer(v);
         }
-    }
+    }*/
 
-    public void PlayPrevious(View v) throws IOException {
+    /*public void PlayPrevious(View v) throws IOException {
         if(playingId == 0 || videoView.getCurrentPosition()/1000 > 5){
             RestartPlayer(v);
         }
@@ -267,18 +290,47 @@ public class MediaActivity extends AppCompatActivity{
             VIDEO_SAMPLE = mediaList[playingId];
             RestartPlayer(v);
         }
-    }
+    }*/
 
-    public void RestartPlayer(View v) throws IOException {
+    /*public void RestartPlayer(View v) throws IOException {
         mPService.RestartPlayer();
-    }
+    }*/
 
     public void SetInfos(){
         if (MediaPlaybackService.mediaPlayer != null){
-            String time = MediaPlaybackService.mediaPlayer.getDuration() % (1000*60*60) / (1000*60) + ":" + (MediaPlaybackService.mediaPlayer.getDuration() % (1000 * 60 * 60) % (1000 * 60) / 1000);
+            playingId = MediaPlaybackService.playingId;
+            int minutes = MediaPlaybackService.mediaPlayer.getDuration() / (60 * 1000);
+            int seconds = (MediaPlaybackService.mediaPlayer.getDuration() / 1000) % 60;
+            String time = String.format("%d:%02d", minutes, seconds);
             maxTime.setText(time);
             seekBar.setMax(MediaPlaybackService.mediaPlayer.getDuration() / 1000);
             mediaName.setText(MediaPlaybackService.musicArrayList.get(playingId).getName());
+            if(MediaPlaybackService.musicArrayList.get(playingId).getType().equals("audio")){
+                videoView.setVisibility(View.INVISIBLE);
+                coverArt.setVisibility(View.VISIBLE);
+                android.media.MediaMetadataRetriever mmr = new MediaMetadataRetriever();
+                mmr.setDataSource(MediaPlaybackService.musicArrayList.get(playingId).getPath());
+                byte[] data = mmr.getEmbeddedPicture();
+                Log.i(TAG, "SetInfos: data = " + data );
+
+                if(data != null){
+                    Bitmap bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
+                    coverArt.setImageBitmap(bitmap);
+                }
+                else{
+                    coverArt.setImageResource(R.drawable.ic_music_note_24);
+                }
+                coverArt.setAdjustViewBounds(true);
+            }
+            else {
+                videoView.setVisibility(View.VISIBLE);
+                coverArt.setVisibility(View.INVISIBLE);
+                if (videoView == null) {
+                    initializePlayer();
+                }
+                videoView.start();
+                videoView.seekTo(MediaPlaybackService.mediaPlayer.getCurrentPosition());
+            }
         }
     }
 

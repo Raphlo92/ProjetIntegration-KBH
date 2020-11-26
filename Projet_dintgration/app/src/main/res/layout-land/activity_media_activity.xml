@@ -92,9 +92,9 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginEnd="361dp"
-            android:layout_marginRight="361dp"
-            android:layout_marginBottom="28dp"
+            android:layout_marginEnd="305dp"
+            android:layout_marginRight="305dp"
+            android:layout_marginBottom="29dp"
             app:layout_constraintBottom_toTopOf="@+id/seekBar"
             app:layout_constraintStart_toStartOf="parent" />
 
@@ -140,6 +140,22 @@
             android:layout_marginStart="0dp"
             android:layout_marginLeft="0dp"
             android:layout_marginTop="0dp" />
+
+        <ImageView
+            android:id="@+id/coverArt"
+            android:layout_width="474dp"
+            android:layout_height="291dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginStart="129dp"
+            android:layout_marginLeft="129dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="127dp"
+            android:layout_marginRight="127dp"
+            tools:srcCompat="@tools:sample/avatars" />
 
 
     </RelativeLayout>
