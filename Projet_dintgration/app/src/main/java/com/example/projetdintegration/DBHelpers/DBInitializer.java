@@ -66,9 +66,9 @@ public class DBInitializer {
         @Override
         protected void onHandleIntent(@Nullable Intent intent) {
             Log.d(TAG, "onHandleIntent: Started");
-            ArrayList<File> files = new ArrayList<>();
+            ArrayList<File> files = getFilesFromMediaStore(this);
             //MusicFileExplorer.getAllNewestChildren(MusicFileExplorer.DIRECTORY_MUSIC, files, lastInit);
-            MusicFileExplorer.getAllChildren(MusicFileExplorer.DIRECTORY_MUSIC, files);
+            //MusicFileExplorer.getAllChildren(MusicFileExplorer.DIRECTORY_MUSIC, files);
 
             new DBInitializer(this).Init(files);
             lastInit = Date.from(Instant.now());
@@ -93,9 +93,9 @@ public class DBInitializer {
 
         Log.d(TAG, "Init: FilesSize() = " + files.size());
 
-        if(files.size() == 0){
+        /*if(files.size() == 0){
             files.addAll(getFilesFromMediaStore());
-        }
+        }*/
 
         for (File file : files) {
             //if(lastModified.before(new Date(file.lastModified())))
@@ -112,30 +112,30 @@ public class DBInitializer {
                 mimeType = mimeType.split("/")[0];
                 if(mimeType.equals("video") || mimeType.equals("audio")){
                     metadata = getMetadata(path.toAbsolutePath().toString());
-                    Log.d(TAG, "Init: \nmusicName = " + path.getFileName() +
-                            "\nmusicArtist = " + metadata[0] +
-                            "\nmusicAlbum = " + metadata[1] +
-                            "\nmusicGenre = " + metadata[2] +
-                            "\nmusicDuration = " + metadata[3]+
-                            "\nmusicImage = " + metadata[4]);
+                    Log.d(TAG, "Init: \nmusicTitle = " + metadata[0] +
+                            "\nmusicArtist = " + metadata[1] +
+                            "\nmusicAlbum = " + metadata[2] +
+                            "\nmusicGenre = " + metadata[3] +
+                            "\nmusicDuration = " + metadata[4]+
+                            "\nmusicImage = " + metadata[5]);
                     Artists artistsDBHelper = new Artists(DBWriter);
                     Albums albumsDBHelper = new Albums(DBWriter);
                     Musics musicsDBHelper = new Musics(DBWriter);
 
-                    if(!currentAlbum.equals(metadata[1])){
-                        if(!currentArtist.equals(metadata[0])){
-                            currentArtist = metadata[0];
+                    if(!currentAlbum.equals(metadata[2])){
+                        if(!currentArtist.equals(metadata[1])){
+                            currentArtist = metadata[1];
                             Artist artist = new Artist(0, currentArtist);
                             artistsDBHelper.Insert(artist);
                         }
-                        currentAlbum = metadata[1];
-                        currentImagePath = metadata[4];
+                        currentAlbum = metadata[2];
+                        currentImagePath = metadata[5];
 
-                        Album album = new Album(0, currentAlbum, currentImagePath, currentArtist, metadata[2]);
+                        Album album = new Album(0, currentAlbum, currentImagePath, currentArtist, metadata[3]);
                         albumsDBHelper.Insert(album);
                     }
 
-                    Music music = new Music(0, path.getFileName().toString(), Double.parseDouble(metadata[3]) / 1000, mimeType,  path.toAbsolutePath().toString(), metadata[2], currentArtist, currentAlbum, false);
+                    Music music = new Music(0, metadata[0], Double.parseDouble(metadata[4]) / 1000, mimeType,  path.toAbsolutePath().toString(), metadata[3], currentArtist, currentAlbum, false);
                     musicsDBHelper.Insert(music);
                 }
 
@@ -143,10 +143,10 @@ public class DBInitializer {
         }
     }
 
-    public ArrayList<File> getFilesFromMediaStore(){
+    public static ArrayList<File> getFilesFromMediaStore(Context context){
         ArrayList<File> files = new ArrayList<>();
 
-        Cursor cursor = mContext.getContentResolver().query(
+        Cursor cursor = context.getContentResolver().query(
                 MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, null, null, null,
                 MediaStore.Audio.Media.DEFAULT_SORT_ORDER);
         if(cursor == null){
@@ -210,10 +210,11 @@ public class DBInitializer {
         //TODO Strip genre and make sure they are in the DB
         //TODO - Extra: find the closes resembling genre
         MediaMetadataRetriever mmr = new MediaMetadataRetriever();
-        String[] res = {"unknown", "unknown", "unknown", "0", "unknown"};
+        String[] res = {"unknown", "unknown", "unknown", "unknown", "0", "unknown"};
         try {
             mmr.setDataSource(path);
 
+            String title = mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_TITLE);
             String artist =  mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ARTIST);
             String album =  mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ALBUM);
             String genre =  mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_GENRE);
@@ -224,18 +225,23 @@ public class DBInitializer {
             }
 
 
+            Log.d(TAG, "getMetadata: title = " + title);
             Log.d(TAG, "metadata: artist = " + artist);
             Log.d(TAG, "metadata: album = " + album);
             Log.d(TAG, "metadata: genre = " + genre);
             Log.d(TAG, "metadata: duration = " + duration);
 
+            if(title != null){
+                res[0] = title.trim();
+            }
+
             if (artist != null){
-                res[0] = artist.trim();
+                res[1] = artist.trim();
             }
 
 
             if (album != null){
-                res[1] = album.trim();
+                res[2] = album.trim();
             }
 
             if (genre != null){
@@ -246,15 +252,15 @@ public class DBInitializer {
                     genre = Categories.getNameById(DBReader, Integer.parseInt(genre));
                 }
 
-                res[2] = genre;
+                res[3] = genre;
             }
 
             if (duration != null){
-                res[3] = duration.trim();
+                res[4] = duration.trim();
             }
 
             if (albumImagePath != null){
-                res[4] = albumImagePath;
+                res[5] = albumImagePath;
             }
         }
         catch(Exception e){}

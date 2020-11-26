@@ -4,26 +4,34 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
+    android:layout_margin="10dp"
     android:id="@+id/main_parent_layout">
 
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:gravity="center"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         tools:ignore="MissingConstraints">
 
 
-        <ImageButton
-            android:id="@+id/mediaActivityButton1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <ImageView
+            android:id="@+id/mainFileImage"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
             android:adjustViewBounds="true"
-            android:maxWidth="150dp"
-            android:maxHeight="150dp"
+            android:layout_marginBottom="5dp"
             android:scaleType="fitCenter"
             android:src="@drawable/ic_file" />
+
+        <TextView
+            android:id="@+id/mainFileName"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:text="testing"/>
 
     </LinearLayout>
 
