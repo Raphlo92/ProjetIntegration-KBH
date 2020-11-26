@@ -65,7 +65,6 @@ public class MediaActivity extends AppCompatActivity{
         setContentView(R.layout.activity_media_activity);
 
         playButton = findViewById(R.id.playButton);
-        ImageButton stopButton = findViewById(R.id.stopButton);
         ImageButton rewindButton = findViewById(R.id.rewindButton);
         ImageButton forwardButton = findViewById(R.id.forwardButton);
         seekBar = findViewById(R.id.seekBar);
@@ -77,7 +76,6 @@ public class MediaActivity extends AppCompatActivity{
         coverArt = findViewById(R.id.coverArt);
 
         playButton.setOnClickListener(new GestionnairePlayPause());
-        stopButton.setOnClickListener(new GestionnaireStop());
         rewindButton.setOnClickListener(new GestionnaireRewind());
         forwardButton.setOnClickListener(new GestionnaireForward());
 
@@ -134,13 +132,7 @@ public class MediaActivity extends AppCompatActivity{
             }
         }
     }
-    public class GestionnaireStop implements View.OnClickListener {
-        public void onClick(View v) {
-            Log.d(TAG, "onClick: stopped");
-            mPService.Stop(v);
-            StopPlayer();
-        }
-    }
+
 
     public class GestionnaireRewind implements View.OnClickListener{
         public void onClick(View v){
@@ -258,15 +250,6 @@ public class MediaActivity extends AppCompatActivity{
     /*public void Pause() {
         mPService.Pause();
     }*/
-
-    public void StopPlayer() {
-        if (videoView != null) {
-                videoView.pause();
-                videoView = null;
-                playing = false;
-                playButton.setImageResource(R.drawable.ic_baseline_play_arrow_24);
-            }
-    }
 
     /*public void PlayNext(View v) throws IOException {
         if(playingId < mediaList.length - 1){

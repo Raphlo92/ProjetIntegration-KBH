@@ -15,6 +15,38 @@
 
 
         <ImageButton
+            android:id="@+id/repeatButton"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="684dp"
+            android:layout_marginLeft="684dp"
+            android:layout_marginBottom="6dp"
+            android:background="@drawable/roundedbutton"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_baseline_norepeat"
+            app:layout_constraintBottom_toBottomOf="@id/playButton"
+            app:layout_constraintStart_toStartOf="@id/playButton" />
+
+        <ImageButton
+            android:id="@+id/shuffleButton"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="637dp"
+            android:layout_marginLeft="637dp"
+            android:layout_marginBottom="6dp"
+            android:background="@drawable/roundedbutton"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_baseline_trending_flat_24"
+            app:layout_constraintBottom_toBottomOf="@id/playButton"
+            app:layout_constraintStart_toStartOf="@id/playButton" />
+
+        <ImageButton
             android:id="@+id/playButton"
             android:layout_width="wrap_content"
             android:layout_height="24dp"
@@ -27,22 +59,6 @@
             android:background="@drawable/roundedbutton"
             android:scaleType="fitCenter"
             android:src="@drawable/ic_baseline_play_arrow_24" />
-
-        <ImageButton
-            android:id="@+id/stopButton"
-            android:layout_width="52dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="663dp"
-            android:layout_marginLeft="663dp"
-            android:layout_marginBottom="4dp"
-            android:background="@drawable/roundedbutton"
-            android:scaleType="fitCenter"
-            android:src="@drawable/ic_baseline_stop_24"
-            app:layout_constraintBottom_toBottomOf="@id/playButton"
-            app:layout_constraintStart_toStartOf="@id/seekBar" />
 
         <SeekBar
             android:id="@+id/seekBar"
