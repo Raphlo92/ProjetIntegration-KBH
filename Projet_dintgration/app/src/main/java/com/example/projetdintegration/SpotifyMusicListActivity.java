@@ -56,6 +56,8 @@ public class SpotifyMusicListActivity extends AppCompatActivity {
     RelativeLayout progressBar;
     Boolean noMoreDataToFetch;
     int startIndexOfDataFetch;
+    MusicListAdapter adapter;
+    MediaPlaybackService.LocalBinder binder;
     public static final String SPOTIFY_ID_LIBRARY = "com.spotify.your-library";
     public static final String SPOTIFY_COLLECTION_LINK = "collection";
     public static final String SPOTIFY_ID_PLAYLIST = "com.spotify.your-playlists";
@@ -84,6 +86,9 @@ public class SpotifyMusicListActivity extends AppCompatActivity {
         initializeListViewContent();
     }
 
+    private void initializeAdapter(){
+        adapter = new MusicListAdapter(this,R.layout.music_listitem_layout,musics,playlistId, binder);
+    }
     private void TestAddFonctionOfLibraryManager() {
         SpotifyLibraryManager libraryManager = new SpotifyLibraryManager(LierSpotifyActivity.appRemote.getUserApi());
         libraryManager.addToLibrary("spotify:album:5i7MWkomxEzODJS6ZNJO2l");
