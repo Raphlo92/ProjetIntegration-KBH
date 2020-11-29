@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
-import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
@@ -21,7 +20,6 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import com.example.projetdintegration.DBHelpers.Categories;
 import com.example.projetdintegration.DBHelpers.Classes.IDBClass;
 import com.example.projetdintegration.DBHelpers.Classes.Music;
 import com.example.projetdintegration.DBHelpers.Classes.Playlist;
@@ -31,7 +29,6 @@ import com.example.projetdintegration.DBHelpers.Playlists;
 import com.example.projetdintegration.Utilities.PopupHelper;
 import com.google.android.material.navigation.NavigationView;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class MusicListActivity extends AppCompatActivity {
@@ -90,9 +87,9 @@ public class MusicListActivity extends AppCompatActivity {
 
         //region DB
         dbHelper = new DBHelper(getApplicationContext());
-        DBMusicsReader = new Musics(dbHelper.getReadableDatabase());
-        DBMusicsWriter = new Musics(dbHelper.getWritableDatabase());
-        DBPlaylistsReader = new Playlists(dbHelper.getReadableDatabase());
+        DBMusicsReader = new Musics(this);
+        DBMusicsWriter = new Musics(this);
+        DBPlaylistsReader = new Playlists(dbHelper.getReadableDatabase(), this);
         //
 
         //Categories.exists(dbHelper.getReadableDatabase(), "Ro");
@@ -163,7 +160,7 @@ public class MusicListActivity extends AppCompatActivity {
         }
         else{
 
-            dbMusics = DBMusicsReader.Select(null, null, null, null, null, null);
+            dbMusics = DBMusicsReader.Select(null, null, null);
             imageView1.setImageResource(R.drawable.ic_baseline_search_24);
             imageView2.setImageResource(R.drawable.transparent_android_musique_logo512x512);
             imageView1.setVisibility(View.VISIBLE);
@@ -192,14 +189,14 @@ public class MusicListActivity extends AppCompatActivity {
         ArrayList<IDBClass> dbMusics = new ArrayList<>();
         ArrayList<Music> musics = new ArrayList<>();
         DBHelper dbHelper = new DBHelper(context);
-        Musics DBMusicsReader = new Musics(dbHelper.getReadableDatabase());
-        Musics DBMusicsWriter = new Musics(dbHelper.getWritableDatabase());
-        Playlists DBPlaylistsReader = new Playlists(dbHelper.getReadableDatabase());
+        Musics DBMusicsReader = new Musics(context);
+        Musics DBMusicsWriter = new Musics(context);
+        Playlists DBPlaylistsReader = new Playlists(dbHelper.getReadableDatabase(), context);
         if(playlistId > -1){
             dbMusics = DBPlaylistsReader.getAllMusicsInPlaylist(playlistId);
         }
         else{
-            dbMusics = DBMusicsReader.Select(null, null, null, null, null, null);
+            dbMusics = DBMusicsReader.Select(null, null, null);
         }
 
         for (IDBClass music: dbMusics) {

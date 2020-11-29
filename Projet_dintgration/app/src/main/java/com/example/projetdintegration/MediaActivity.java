@@ -1,6 +1,5 @@
 package com.example.projetdintegration;
 
-import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -8,28 +7,16 @@ import android.content.ServiceConnection;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.PixelFormat;
 import android.media.MediaMetadataRetriever;
 import android.media.MediaPlayer;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
-import android.renderscript.ScriptGroup;
 import android.util.Log;
-import android.view.Display;
-import android.view.Menu;
-import android.view.Surface;
-import android.view.SurfaceHolder;
-import android.view.SurfaceView;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.MediaController;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.VideoView;
@@ -37,19 +24,11 @@ import android.widget.VideoView;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import com.example.projetdintegration.DBHelpers.Categories;
-import com.example.projetdintegration.DBHelpers.DBHelper;
-import com.example.projetdintegration.DBHelpers.DBInitializer;
-import com.example.projetdintegration.DBHelpers.Musics;
 import com.google.android.material.navigation.NavigationView;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Objects;
 
 public class MediaActivity extends AppCompatActivity{
 

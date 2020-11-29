@@ -1,17 +1,23 @@
 package com.example.projetdintegration.DBHelpers;
 
 import android.content.ContentValues;
+import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.media.MediaMetadataRetriever;
+import android.provider.MediaStore;
 import android.util.Log;
 
 import com.example.projetdintegration.DBHelpers.Classes.IDBClass;
+import com.example.projetdintegration.DBHelpers.Classes.Music;
 import com.example.projetdintegration.DBHelpers.Classes.Playlist;
 import com.example.projetdintegration.DBHelpers.DBHelper.Contract.TablePlaylist;
 import com.example.projetdintegration.DBHelpers.DBHelper.Contract.TableMusicPlaylist;
-import com.example.projetdintegration.DBHelpers.DBHelper.Contract.TableMusic;
+//import com.example.projetdintegration.DBHelpers.DBHelper.Contract.TableMusic;
+import com.example.projetdintegration.Utilities.NumberUtil;
 import com.example.projetdintegration.Utilities.StringUtil;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +29,8 @@ public class Playlists extends AbstractDBHelper {
     public int deletedRows;
     public int nbUpdatedRows;
     //endregion
+
+    Context mContext;
 
     //region loaded values
     public ArrayList<IDBClass> playlists;
@@ -47,8 +55,9 @@ public class Playlists extends AbstractDBHelper {
         return values;
     }
 
-    public Playlists(SQLiteDatabase db){
+    public Playlists(SQLiteDatabase db, Context context){
         super(db);
+        mContext = context;
     }
 
     @Override
@@ -102,7 +111,7 @@ public class Playlists extends AbstractDBHelper {
     }
 
     public void initFavorites(){
-        Insert(new Playlist(0, "Favoris", "favoris"));
+        Insert(new Playlist(0, "Favoris", TablePlaylist.FAVORITES));
     }
 
     public void AddToPlaylist(int musicId, int playlistId){
@@ -127,6 +136,7 @@ public class Playlists extends AbstractDBHelper {
     }
 
     public void AddToFavorites(int musicId){
+        Log.d(TAG, "AddToFavorites: musicLikedId = " + musicId);
         AddToPlaylist(musicId, getFavoritesId());
     }
 
@@ -148,7 +158,7 @@ public class Playlists extends AbstractDBHelper {
         String[] columns = { TablePlaylist._ID };
         int favoritesId = -1;
         String where = TablePlaylist.COLUMN_NAME_TYPE + " = ?";
-        String[] whereArgs = {"favoris"};
+        String[] whereArgs = {TablePlaylist.FAVORITES};
         Cursor cursor = DB.query(TablePlaylist.TABLE_NAME, columns , where, whereArgs, null, null, null);
         while (cursor.moveToNext()){
             favoritesId =  cursor.getInt(cursor.getColumnIndexOrThrow(TablePlaylist._ID));
@@ -180,28 +190,50 @@ public class Playlists extends AbstractDBHelper {
         return ids;
     }
 
-
     public ArrayList<IDBClass> getAllMusicsInPlaylist(int playlistId){
-        ArrayList<IDBClass> musics;
+        MediaMetadataRetriever mmr = new MediaMetadataRetriever();
+        ArrayList<IDBClass> musics = new ArrayList<>();
         String CSIds = StringUtil.toCommaSeparatedString(getAllMusicsIdsInPlaylist(playlistId)) ;
-        Log.d(TAG, "getAllMusicsInPlaylist: CSIds = " + CSIds);
-        Musics musicsDBHelper = new Musics(DB);
+        String whereClause = MediaStore.Audio.Media._ID + " IN (" + CSIds + ")";
 
-        String[] columns = {
-                TableMusic._ID,
-                TableMusic.COLUMN_NAME_TITLE,
-                TableMusic.COLUMN_NAME_LENGTH,
-                TableMusic.COLUMN_NAME_FILE,
-                TableMusic.COLUMN_NAME_TYPE,
-                TableMusic.COLUMN_NAME_ID_ALBUM,
-                TableMusic.COLUMN_NAME_ID_ARTIST,
-                TableMusic.COLUMN_NAME_ID_CATEGORY
-        };
 
-        String whereClause = TableMusic._ID + " IN (" + CSIds + ")";
 
-        musics = musicsDBHelper.Select(columns, whereClause, null, null, null, null);
+        Cursor cursor = mContext.getContentResolver().query(
+                MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, null, whereClause, null,
+                MediaStore.Audio.Media.DEFAULT_SORT_ORDER);
+        if(cursor == null){
+            return null;
+        }
 
+        while(cursor.moveToNext()){
+            String path = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.DATA));
+            mmr.setDataSource(path);
+            int id = cursor.getInt(cursor.getColumnIndex(MediaStore.Audio.Media._ID));
+            String title = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.TITLE)).trim();
+            String type = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.MIME_TYPE));
+            String artist =  cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.ARTIST)).trim();
+            String album =  cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.ALBUM)).trim();
+            /*String genre =  mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_GENRE);
+            String duration =  mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION);
+
+            if (genre != null){
+                genre = StringUtil.Strip(genre.trim());
+                genre = StringUtil.ReplaceAbbreviations(genre);
+
+                if (NumberUtil.tryParseInt(genre)){
+                    genre = Musics.getCategoryNameById(mContext, Integer.parseInt(genre));
+                }
+            }
+
+            if (duration != null){
+                duration = duration.trim();
+            }
+            else
+                duration = "0";*/
+
+            musics.add(new Music(id, title, 0, type, path, null, artist, album, isInFavorites(id)));
+        }
+        cursor.close();
         return musics;
     }
 

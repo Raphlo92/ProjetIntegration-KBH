@@ -1,6 +1,7 @@
 package com.example.projetdintegration;
 
 import android.content.Context;
+import android.media.MediaMetadataRetriever;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,18 +46,16 @@ public class CategorieListAdapter extends RecyclerView.Adapter<CategorieListAdap
         lastPosition = position;
         holder.title.setText(category.getName());
 
-        String whereClause = DBHelper.Contract.TableMusic.COLUMN_NAME_ID_CATEGORY + " = ?";
-        String[] whereArgs = {id + ""};
-
-        DBHelper dbHelper = new DBHelper(mContext);
-        Musics DBMusicsReader = new Musics(dbHelper.getReadableDatabase());
-        ArrayList<IDBClass> dbMusics = DBMusicsReader.Select(null, whereClause, whereArgs, null, null, null);
+        Musics DBMusicsReader = new Musics(mContext);
+        ArrayList<IDBClass> dbMusics = DBMusicsReader.Select(null, null, null);
         ArrayList<Music> musics = new ArrayList<>();
 
         Random rand = new Random();
         for (IDBClass music : dbMusics) {
-            music = dbMusics.get(rand.nextInt(dbMusics.size()));
-            musics.add((Music) music);
+            if(((Music)music).getCategory().equals(title)){
+                //music = dbMusics.get(rand.nextInt(dbMusics.size()));
+                musics.add((Music) music);
+            }
         }
 
         FileListAdapter adapter = new FileListAdapter(mContext, R.layout.mainactivity_imagebutton_adapter, musics);

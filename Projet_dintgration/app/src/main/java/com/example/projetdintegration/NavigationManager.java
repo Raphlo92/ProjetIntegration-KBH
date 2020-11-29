@@ -91,7 +91,7 @@ public class NavigationManager implements NavigationView.OnNavigationItemSelecte
     public void gotoFavoris() {
         Log.d(TAG, "gotoFavoris: Started");
         DBHelper dbHelper = new DBHelper(context);
-        Playlists playlistsReader = new Playlists(dbHelper.getReadableDatabase());
+        Playlists playlistsReader = new Playlists(dbHelper.getReadableDatabase(), context);
 
         Intent intent = new Intent(context, MusicListActivity.class);
         intent.putExtra(DBHelper.Contract.TablePlaylist._ID, playlistsReader.getFavoritesId());

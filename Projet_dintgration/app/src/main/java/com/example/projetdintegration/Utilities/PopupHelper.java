@@ -1,13 +1,11 @@
 package com.example.projetdintegration.Utilities;
 
-import android.app.ActivityManager;
-import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -19,16 +17,12 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 
 
-import com.example.projetdintegration.DBHelpers.Albums;
-import com.example.projetdintegration.DBHelpers.Artists;
 import com.example.projetdintegration.DBHelpers.Classes.IDBClass;
 import com.example.projetdintegration.DBHelpers.Classes.Playlist;
 import com.example.projetdintegration.DBHelpers.DBHelper;
 import com.example.projetdintegration.DBHelpers.Musics;
 import com.example.projetdintegration.DBHelpers.Playlists;
-import com.example.projetdintegration.MainActivity;
 import com.example.projetdintegration.MusicListActivity;
-import com.example.projetdintegration.NavigationManager;
 import com.example.projetdintegration.PlaylistListActivity;
 import com.example.projetdintegration.R;
 import com.example.projetdintegration.DBHelpers.DBHelper.Contract.TablePlaylist;
@@ -47,8 +41,8 @@ public class PopupHelper {
     public PopupHelper(Context context){
         mContext = context;
         dbHelper = new DBHelper(context);
-        playlistsWriter = new Playlists(dbHelper.getWritableDatabase());
-        playlistsReader = new Playlists(dbHelper.getReadableDatabase());
+        playlistsWriter = new Playlists(dbHelper.getWritableDatabase(), context);
+        playlistsReader = new Playlists(dbHelper.getReadableDatabase(), context);
     }
 
     public void showOptionsPopup(View v, int menuRes){
@@ -72,7 +66,7 @@ public class PopupHelper {
         builder.setPositiveButton(buttonTitle, (dialog, i) -> {
             String playlistName = editPlaylistName.getText().toString();
             Playlist playlist = new Playlist(0, playlistName, "normal");
-            Playlists playlistsWriter = new Playlists(dbHelper.getWritableDatabase());
+            Playlists playlistsWriter = new Playlists(dbHelper.getWritableDatabase(), mContext);
             playlistsWriter.Insert(playlist);
             dialog.dismiss();
             PlaylistListActivity.RefreshView(mContext);
@@ -272,7 +266,7 @@ public class PopupHelper {
         final EditText editSearchMusic = formElementsView.findViewById(R.id.playlistInputName);
         editSearchMusic.setText(researchContainer);
 
-        Musics DBMusicsReader = new Musics(new DBHelper(mContext).getReadableDatabase());
+        Musics DBMusicsReader = new Musics(mContext);
 
         Builder builder = new Builder(mContext);
         builder.setView(formElementsView);
@@ -282,7 +276,7 @@ public class PopupHelper {
             researchContainer = MusicsName;
 
             String[] whereArgs = {"%" + MusicsName + "%" };
-            ArrayList<IDBClass> DBMusics = DBMusicsReader.Select(null, DBHelper.Contract.TableMusic.COLUMN_NAME_TITLE + " LIKE ?", whereArgs, null, null, null);
+            ArrayList<IDBClass> DBMusics = DBMusicsReader.Select(null, MediaStore.Audio.Media.TITLE + " LIKE ?", whereArgs);
 
             ArrayList<Music> musics = new ArrayList<>();
             for(IDBClass music:DBMusics) { musics.add((Music)music); }
@@ -309,7 +303,7 @@ public class PopupHelper {
         final EditText editSearchMusic = formElementsView.findViewById(R.id.playlistInputName);
         editSearchMusic.setText(music.getArtist());
 
-        Musics DBMusicsReader = new Musics(new DBHelper(mContext).getReadableDatabase());
+        Musics DBMusicsReader = new Musics(mContext);
 
         Builder builder = new Builder(mContext);
         builder.setView(formElementsView);
@@ -318,7 +312,7 @@ public class PopupHelper {
             String ArtistsName = editSearchMusic.getText().toString();
 
             String[] whereArgs = {"%" + ArtistsName + "%" };
-            ArrayList<IDBClass> DBMusics = DBMusicsReader.Select(null, DBHelper.Contract.TableMusic.COLUMN_NAME_ID_ARTIST + " LIKE ?", whereArgs, null, null, null);
+            ArrayList<IDBClass> DBMusics = DBMusicsReader.Select(null, MediaStore.Audio.Media.ARTIST + " LIKE ?", whereArgs);
 
             ArrayList<Music> musics = new ArrayList<>();
             for(IDBClass artist:DBMusics) { musics.add((Music)artist); }
@@ -345,7 +339,7 @@ public class PopupHelper {
         final EditText editSearchMusic = formElementsView.findViewById(R.id.playlistInputName);
         editSearchMusic.setText(music.getAlbum());
 
-        Musics DBMusicsReader = new Musics(new DBHelper(mContext).getReadableDatabase());
+        Musics DBMusicsReader = new Musics(mContext);
 
         Builder builder = new Builder(mContext);
         builder.setView(formElementsView);
@@ -354,7 +348,7 @@ public class PopupHelper {
             String AlbumsName = editSearchMusic.getText().toString();
 
             String[] whereArgs = {"%" + AlbumsName + "%" };
-            ArrayList<IDBClass> DBMusics = DBMusicsReader.Select(null, DBHelper.Contract.TableMusic.COLUMN_NAME_ID_ALBUM + " LIKE ?", whereArgs, null, null, null);
+            ArrayList<IDBClass> DBMusics = DBMusicsReader.Select(null, MediaStore.Audio.Media.ALBUM + " LIKE ?", whereArgs);
 
             ArrayList<Music> musics = new ArrayList<>();
             for(IDBClass album:DBMusics) { musics.add((Music)album); }

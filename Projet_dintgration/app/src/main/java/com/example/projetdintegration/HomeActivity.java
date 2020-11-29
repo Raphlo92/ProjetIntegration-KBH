@@ -7,26 +7,20 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
 import android.util.Log;
-import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.projetdintegration.DBHelpers.Categories;
 import com.example.projetdintegration.DBHelpers.DBHelper;
-import com.example.projetdintegration.DBHelpers.DBInitializer;
 import com.example.projetdintegration.DBHelpers.Musics;
 import com.example.projetdintegration.DBHelpers.Playlists;
-
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -35,7 +29,8 @@ public class HomeActivity extends AppCompatActivity {
     private final int SPLASH_SREEN = 4000;
     Musics DBMusicsReader;
     Musics DBMusicsWriter;
-    DBHelper dbHelper;
+    int dbVersion = 1;
+    DBHelper dbHelper = new DBHelper(this);
     Context context = this;
     Animation topAnim, BottomAnim;
     ImageView image1, image2, logo;
@@ -51,8 +46,9 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         animtionsplashsreen();
 
-        Intent intent = new Intent(this, DBInitializer.DBInitialisingService.class);
-        startService(intent);
+        //Intent intent = new Intent(this, DBInitializer.DBInitialisingService.class);
+        //startService(intent);
+        dbHelper.onUpgrade(dbHelper.getWritableDatabase(), dbVersion, DBHelper.DB_VERSION);
 
         ServiceConnection connection = new ServiceConnection() {
 
@@ -70,7 +66,7 @@ public class HomeActivity extends AppCompatActivity {
         };
 
         Intent MediaIntent = new Intent(this, MediaPlaybackService.class);
-        bindService(intent, connection, Context.BIND_AUTO_CREATE);
+        bindService(MediaIntent, connection, Context.BIND_AUTO_CREATE);
     }
 
     public void animtionsplashsreen() {

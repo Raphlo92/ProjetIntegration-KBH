@@ -44,7 +44,6 @@
         <activity android:name=".SpotifyMusicListActivity" />
         <activity android:name=".SpotifyMusicPlayer" />
         <activity android:name=".MainActivity" />
-        <service android:name=".DBHelpers.DBInitializer$DBInitialisingService"/>
         <service android:name=".MediaPlaybackService" />
     </application>
 

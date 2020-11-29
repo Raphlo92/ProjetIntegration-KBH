@@ -1,55 +1,34 @@
 package com.example.projetdintegration;
 
-import androidx.annotation.DrawableRes;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import android.app.IntentService;
 import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
-import android.view.MenuItem;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import android.view.View;
-import android.widget.ScrollView;
 import android.widget.TextView;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
+
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.projetdintegration.DBHelpers.Categories;
 import com.example.projetdintegration.DBHelpers.Classes.Category;
-import com.example.projetdintegration.DBHelpers.Classes.Playlist;
 import com.example.projetdintegration.Utilities.PopupHelper;
 import com.google.android.material.navigation.NavigationView;
 
 import com.example.projetdintegration.DBHelpers.Classes.IDBClass;
 import com.example.projetdintegration.DBHelpers.Classes.Music;
 import com.example.projetdintegration.DBHelpers.DBHelper;
-import com.example.projetdintegration.DBHelpers.DBInitializer;
 import com.example.projetdintegration.DBHelpers.Musics;
 import com.example.projetdintegration.DBHelpers.Playlists;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -70,7 +49,6 @@ public class MainActivity extends AppCompatActivity {
     DBHelper dbHelper;
     Musics DBMusicsReader;
     Musics DBMusicsWriter;
-    Categories DBCategoriesReader;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,9 +63,8 @@ public class MainActivity extends AppCompatActivity {
         int playlistId = getIntent().getIntExtra(DBHelper.Contract.TablePlaylist._ID, -1);
 
         dbHelper = new DBHelper(getApplicationContext());
-        DBMusicsReader = new Musics(dbHelper.getReadableDatabase());
-        DBCategoriesReader = new Categories(dbHelper.getReadableDatabase());
-        DBMusicsWriter = new Musics(dbHelper.getWritableDatabase());
+        DBMusicsReader = new Musics(context);
+        DBMusicsWriter = new Musics(context);
 
         Log.d(TAG, "onCreate: Started.");
 
@@ -122,10 +99,10 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<Music> musics = new ArrayList<>();
 
         if (playlistId > -1) {
-            Playlists DBPlaylistsReader = new Playlists(dbHelper.getReadableDatabase());
+            Playlists DBPlaylistsReader = new Playlists(dbHelper.getReadableDatabase(), context);
             dbMusics = DBPlaylistsReader.getAllMusicsInPlaylist(playlistId);
         } else {
-            dbMusics = DBMusicsReader.Select(null, null, null, null, null, null);
+            dbMusics = DBMusicsReader.Select(null, null, null);
         }
 
         for (IDBClass music : dbMusics) {
@@ -176,7 +153,6 @@ public class MainActivity extends AppCompatActivity {
         //imageView2.setImageResource(R.drawable.ic_add);
         //imageView2.setVisibility(View.INVISIBLE);
 
-        ArrayList<IDBClass> list = DBCategoriesReader.Select(null, null, null, null, null, null);
         ArrayList<IDBClass> categoriesUsed = DBMusicsReader.getAllUsedCategories();
         ArrayList<Category> categories = new ArrayList<>();
         Random rand = new Random();

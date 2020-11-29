@@ -15,11 +15,9 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import com.example.projetdintegration.DBHelpers.Categories;
 import com.example.projetdintegration.DBHelpers.Classes.IDBClass;
 import com.example.projetdintegration.DBHelpers.Classes.Playlist;
 import com.example.projetdintegration.DBHelpers.DBHelper;
-import com.example.projetdintegration.DBHelpers.Musics;
 import com.example.projetdintegration.DBHelpers.Playlists;
 import com.example.projetdintegration.Utilities.PopupHelper;
 import com.google.android.material.navigation.NavigationView;
@@ -46,25 +44,11 @@ public class PlaylistListActivity extends AppCompatActivity {
 
         //region DB
         dbHelper = new DBHelper(getApplicationContext());
-        DBPlaylistsReader = new Playlists(dbHelper.getReadableDatabase());
-        DBPlaylistsWriter = new Playlists(dbHelper.getWritableDatabase());
+        DBPlaylistsReader = new Playlists(dbHelper.getReadableDatabase(), this);
+        DBPlaylistsWriter = new Playlists(dbHelper.getWritableDatabase(), this);
         //endregion
 
-
-
         PopupHelper popupHelper = new PopupHelper(this);
-
-        //testing categories for Kevin ;)
-        String[] columns = {
-                DBHelper.Contract.TableCategory._ID,
-                DBHelper.Contract.TableCategory.COLUMN_NAME_NAME
-        };
-        ArrayList<IDBClass> list = new Categories(dbHelper.getReadableDatabase()).Select(columns, null, null, null, null, null);
-        Log.d(TAG, "onCreate: listSize = " + list.size());
-        for (IDBClass item : list) {
-            Log.d(TAG, "onCreate: Categories: cat = " + item.getName());
-        }
-
 
         final TextView pageTitle = (TextView) findViewById(R.id.PageTitle);
         pageTitle.setText(R.string.nav_liste_lecture);
@@ -124,7 +108,7 @@ public class PlaylistListActivity extends AppCompatActivity {
     }
 
     public static void RefreshView(Context context){
-        Playlists DBPlaylistsReader = new Playlists(new DBHelper(context).getReadableDatabase());
+        Playlists DBPlaylistsReader = new Playlists(new DBHelper(context).getReadableDatabase(), context);
         ArrayList<IDBClass> dbPlaylists = DBPlaylistsReader.Select(null, null, null, null, null, null);
         ArrayList<Playlist> playlists = new ArrayList<>();
 

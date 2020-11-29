@@ -69,7 +69,7 @@ public class MusicListAdapter extends ArrayAdapter<Music> {
         String album = getItem(position).getAlbum();
         boolean favorite = getItem(position).isFavorite();
 
-        Playlists playlistsWriter = new Playlists(new DBHelper(mContext).getWritableDatabase());
+        Playlists playlistsWriter = new Playlists(new DBHelper(mContext).getWritableDatabase(), mContext);
         Music music = new Music(id, title, length, type, path, category, artist, album, favorite);
 
         final View result;
@@ -123,6 +123,7 @@ public class MusicListAdapter extends ArrayAdapter<Music> {
             holder.favorite.setImageResource(R.drawable.ic_baseline_favorite_border_24);
         }
 
+        Log.d(TAG, "getView: musicId = " + music.getId());
         holder.favorite.setOnClickListener(view -> {
             if (music.isFavorite()){
                 playlistsWriter.RemoveFromFavorites(music.getId());
@@ -145,15 +146,15 @@ public class MusicListAdapter extends ArrayAdapter<Music> {
 
     public void refresh(int playlistId){
         DBHelper dbHelper = new DBHelper(mContext);
-        Musics DBMusicsReader = new Musics(dbHelper.getReadableDatabase());
+        Musics DBMusicsReader = new Musics(mContext);
         ArrayList<IDBClass> dbMusics = new ArrayList<>();
         ArrayList<Music> musics = new ArrayList<>();
         if(playlistId > -1){
-            Playlists DBPlaylistsReader = new Playlists(dbHelper.getReadableDatabase());
+            Playlists DBPlaylistsReader = new Playlists(dbHelper.getReadableDatabase(), mContext);
             dbMusics = DBPlaylistsReader.getAllMusicsInPlaylist(playlistId);
         }
         else{
-            dbMusics = DBMusicsReader.Select(null, null, null, null, null, null);
+            dbMusics = DBMusicsReader.Select(null, null, null);
         }
 
         for (IDBClass music : dbMusics) {
