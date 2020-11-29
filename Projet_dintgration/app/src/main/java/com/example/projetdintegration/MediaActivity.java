@@ -5,6 +5,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.PixelFormat;
@@ -77,6 +78,9 @@ public class MediaActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_media_activity);
 
+
+        //region header
+        if(getResources().getConfiguration().orientation != Configuration.ORIENTATION_LANDSCAPE){
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -100,6 +104,9 @@ public class MediaActivity extends AppCompatActivity{
         final ImageView imageView2 = (ImageView) findViewById(R.id.imageView2);
         imageView1.setVisibility(View.INVISIBLE);
         imageView2.setVisibility(View.INVISIBLE);
+        }
+        //endregion
+
 
         playButton = findViewById(R.id.playButton);
         ImageButton rewindButton = findViewById(R.id.rewindButton);

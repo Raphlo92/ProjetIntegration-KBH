@@ -78,7 +78,7 @@ public class MusicListActivity extends AppCompatActivity {
         PopupHelper popupHelper = new PopupHelper(this);
 
         final ImageView imageView1 = (ImageView) findViewById(R.id.imageView1);
-        imageView1.setImageResource(R.drawable.ic_add);
+        imageView1.setImageResource(R.drawable.ic_baseline_search_24);
         imageView1.setVisibility(View.VISIBLE);
         imageView1.setOnClickListener(view -> {
             Log.d(TAG, "imageView1: onClickListener() ");
@@ -95,7 +95,7 @@ public class MusicListActivity extends AppCompatActivity {
         DBPlaylistsReader = new Playlists(dbHelper.getReadableDatabase());
         //
 
-        Categories.exists(dbHelper.getReadableDatabase(), "Ro");
+        //Categories.exists(dbHelper.getReadableDatabase(), "Ro");
 
         //region Navigation
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -130,6 +130,7 @@ public class MusicListActivity extends AppCompatActivity {
     }
 
     void generateListView(int playlistId){
+        Log.d(TAG, "generateListView: Started");
         ArrayList<IDBClass> dbMusics = new ArrayList<>();
         ArrayList<Music> musics = new ArrayList<>();
         final ImageView imageView1 = (ImageView) findViewById(R.id.imageView1);
@@ -164,17 +165,20 @@ public class MusicListActivity extends AppCompatActivity {
 
             dbMusics = DBMusicsReader.Select(null, null, null, null, null, null);
             imageView1.setImageResource(R.drawable.ic_baseline_search_24);
-            imageView2.setImageResource(R.drawable.androidlogo);
+            imageView2.setImageResource(R.drawable.transparent_android_musique_logo512x512);
             imageView1.setVisibility(View.VISIBLE);
             imageView2.setVisibility(View.VISIBLE);
+        }
 
+        for (IDBClass music: dbMusics) {
+            musics.add((Music) music);
+        }
 
         final ListView listView = (ListView) findViewById(R.id.listView);
         adapter = new MusicListAdapter(this, R.layout.music_listitem_layout, musics, playlistId, binder);
         listView.setAdapter(adapter);
 
         }
-    }
     @Override
     public void onBackPressed() {
         Log.d(TAG, "onBackPressed: Started");
