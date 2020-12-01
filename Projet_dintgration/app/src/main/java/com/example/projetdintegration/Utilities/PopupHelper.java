@@ -276,11 +276,8 @@ public class PopupHelper {
             researchContainer = MusicsName;
 
             String[] whereArgs = {"%" + MusicsName + "%" };
-            ArrayList<IDBClass> DBMusics = DBMusicsReader.Select(null, MediaStore.Audio.Media.TITLE + " LIKE ?", whereArgs, null, null, null);
-
-            ArrayList<Music> musics = new ArrayList<>();
-            for(IDBClass music:DBMusics) { musics.add((Music)music); }
-            MusicListActivity.RefreshViewFromList(mContext, musics);
+            DBMusicsReader.Select(null, DBHelper.Contract.TableMusic.COLUMN_NAME_TITLE + " LIKE ?", whereArgs, null, null, null);
+            MusicListActivity.RefreshView(mContext);
             dialog.dismiss();
         });
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
@@ -348,7 +345,7 @@ public class PopupHelper {
             String AlbumsName = editSearchMusic.getText().toString();
 
             String[] whereArgs = {AlbumsName};
-            ArrayList<IDBClass> DBMusics = DBMusicsReader.Select(null, MediaStore.Audio.Media.ALBUM + " LIKE %?%", whereArgs, null, null, null);
+            ArrayList<IDBClass> DBMusics = DBMusicsReader.Select(null, MediaStore.Audio.Media.ALBUM + " LIKE ?", whereArgs, null, null, null);
 
             ArrayList<Music> musics = new ArrayList<>();
             for(IDBClass album:DBMusics) { musics.add((Music)album); }

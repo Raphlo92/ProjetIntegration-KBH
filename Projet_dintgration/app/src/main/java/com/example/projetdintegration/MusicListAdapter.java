@@ -147,19 +147,8 @@ public class MusicListAdapter extends ArrayAdapter<Music> {
     public void refresh(int playlistId){
         DBHelper dbHelper = new DBHelper(mContext);
         Musics DBMusicsReader = new Musics(dbHelper.getReadableDatabase(), mContext);
-        ArrayList<IDBClass> dbMusics = new ArrayList<>();
-        ArrayList<Music> musics = new ArrayList<>();
-        if(playlistId > -1){
-            Playlists DBPlaylistsReader = new Playlists(dbHelper.getReadableDatabase(), mContext);
-            dbMusics = DBPlaylistsReader.getAllMusicsInPlaylist(playlistId);
-        }
-        else{
-            dbMusics = DBMusicsReader.Select(null, null, null, null, null, null);
-        }
+        musics = DBMusicsReader.LastSelect();
 
-        for (IDBClass music : dbMusics) {
-            musics.add((Music) music);
-        }
         this.clear();
         this.addAll(musics);
         this.notifyDataSetChanged();

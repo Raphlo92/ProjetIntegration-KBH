@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.drm.DrmStore;
 import android.media.MediaMetadataRetriever;
 import android.provider.MediaStore;
 import android.util.Log;
@@ -28,7 +29,12 @@ public class Musics extends AbstractDBHelper {
     //endregion
 
     //region loaded values
-    public ArrayList<IDBClass> musics;
+    public static ArrayList<IDBClass> musics;
+    public static String lastWhereClause;
+    public static String[] lastWhereArgs;
+    public static String lastGroupBy;
+    public static String lastHaving;
+    public static String lastOrderBy;
     Context mContext;
     //endregion
 
@@ -76,6 +82,7 @@ public class Musics extends AbstractDBHelper {
 
     @Override
     public ArrayList<IDBClass> Select(String[] columns, String whereClause, String[] whereArgs, String groupBy, String having, String orderBy) {
+        lastWhereClause = whereClause; lastWhereArgs = whereArgs; lastOrderBy = orderBy; lastHaving = having; lastOrderBy = orderBy;
         //TODO check integrity of parameters
         Cursor cursor = DB.query(TABLE_NAME, columns, whereClause, whereArgs, groupBy, having, orderBy);
         ArrayList<IDBClass> newMusics = new ArrayList<>();
@@ -98,6 +105,15 @@ public class Musics extends AbstractDBHelper {
         musics = newMusics;
         cursor.close();
         return newMusics;
+    }
+
+    public ArrayList<Music> LastSelect(){
+        ArrayList<IDBClass> lastMusics = Select(null, lastWhereClause, lastWhereArgs, lastGroupBy, lastHaving, lastOrderBy);
+        ArrayList<Music> musics = new ArrayList<>();
+        for(IDBClass music : lastMusics){
+            musics.add((Music)music);
+        }
+        return musics;
     }
 
 

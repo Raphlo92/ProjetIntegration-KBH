@@ -194,46 +194,12 @@ public class Playlists extends AbstractDBHelper {
         MediaMetadataRetriever mmr = new MediaMetadataRetriever();
         ArrayList<IDBClass> musics = new ArrayList<>();
         String CSIds = StringUtil.toCommaSeparatedString(getAllMusicsIdsInPlaylist(playlistId)) ;
-        String whereClause = MediaStore.Audio.Media._ID + " IN (" + CSIds + ")";
+        String whereClause = DBHelper.Contract.TableMusic._ID + " IN (" + CSIds + ")";
 
+        Musics DBMusicReader = new Musics(new DBHelper(mContext).getReadableDatabase(), mContext);
 
+        musics = DBMusicReader.Select(null, whereClause, null, null, null, null);
 
-        Cursor cursor = mContext.getContentResolver().query(
-                MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, null, whereClause, null,
-                MediaStore.Audio.Media.DEFAULT_SORT_ORDER);
-        if(cursor == null){
-            return null;
-        }
-
-        while(cursor.moveToNext()){
-            String path = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.DATA));
-            mmr.setDataSource(path);
-            int id = cursor.getInt(cursor.getColumnIndex(MediaStore.Audio.Media._ID));
-            String title = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.TITLE)).trim();
-            String type = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.MIME_TYPE));
-            String artist =  cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.ARTIST)).trim();
-            String album =  cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.ALBUM)).trim();
-            /*String genre =  mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_GENRE);
-            String duration =  mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION);
-
-            if (genre != null){
-                genre = StringUtil.Strip(genre.trim());
-                genre = StringUtil.ReplaceAbbreviations(genre);
-
-                if (NumberUtil.tryParseInt(genre)){
-                    genre = Musics.getCategoryNameById(mContext, Integer.parseInt(genre));
-                }
-            }
-
-            if (duration != null){
-                duration = duration.trim();
-            }
-            else
-                duration = "0";*/
-
-            musics.add(new Music(id, title, 0, type, path, null, artist, album, isInFavorites(id)));
-        }
-        cursor.close();
         return musics;
     }
 

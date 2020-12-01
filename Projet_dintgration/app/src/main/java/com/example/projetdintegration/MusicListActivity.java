@@ -46,6 +46,7 @@ public class MusicListActivity extends AppCompatActivity {
     MediaPlaybackService.LocalBinder binder;
     Service mPService;
     boolean mPBound = false;
+    static ArrayList<Music> currentMusics = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -187,21 +188,12 @@ public class MusicListActivity extends AppCompatActivity {
 
     public static void RefreshView(Context context){
         ArrayList<IDBClass> dbMusics = new ArrayList<>();
+
         ArrayList<Music> musics = new ArrayList<>();
         DBHelper dbHelper = new DBHelper(context);
         Musics DBMusicsReader = new Musics(dbHelper.getReadableDatabase(), context);
-        Musics DBMusicsWriter = new Musics(dbHelper.getWritableDatabase(), context);
-        Playlists DBPlaylistsReader = new Playlists(dbHelper.getReadableDatabase(), context);
-        if(playlistId > -1){
-            dbMusics = DBPlaylistsReader.getAllMusicsInPlaylist(playlistId);
-        }
-        else{
-            dbMusics = DBMusicsReader.Select(null, null, null, null, null, null);
-        }
 
-        for (IDBClass music: dbMusics) {
-            musics.add((Music) music);
-        }
+        musics = DBMusicsReader.LastSelect();
 
         adapter.clear();
         adapter.addAll(musics);

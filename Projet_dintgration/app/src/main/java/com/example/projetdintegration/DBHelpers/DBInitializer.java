@@ -140,6 +140,7 @@ public class DBInitializer {
                 String path = cursorV.getString(cursorV.getColumnIndexOrThrow(MediaStore.Video.Media.DATA));
                 mmr.setDataSource(path);
                 int id = cursorV.getInt(cursorV.getColumnIndex(MediaStore.Video.Media._ID));
+                Log.d(TAG, "getAllMusicsInMediaStore: id = " + id);
                 String title = cursorV.getString(cursorV.getColumnIndexOrThrow(MediaStore.Video.Media.TITLE)).trim();
                 String type = cursorV.getString(cursorV.getColumnIndexOrThrow(MediaStore.Video.Media.MIME_TYPE));
                 String artist =  cursorV.getString(cursorV.getColumnIndexOrThrow(MediaStore.Video.Media.ARTIST)).trim();
