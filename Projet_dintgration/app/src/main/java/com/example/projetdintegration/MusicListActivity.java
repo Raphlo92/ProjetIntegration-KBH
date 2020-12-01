@@ -87,8 +87,8 @@ public class MusicListActivity extends AppCompatActivity {
 
         //region DB
         dbHelper = new DBHelper(getApplicationContext());
-        DBMusicsReader = new Musics(this);
-        DBMusicsWriter = new Musics(this);
+        DBMusicsReader = new Musics(dbHelper.getReadableDatabase(),this);
+        DBMusicsWriter = new Musics(dbHelper.getWritableDatabase(),this);
         DBPlaylistsReader = new Playlists(dbHelper.getReadableDatabase(), this);
         //
 
@@ -160,7 +160,7 @@ public class MusicListActivity extends AppCompatActivity {
         }
         else{
 
-            dbMusics = DBMusicsReader.Select(null, null, null);
+            dbMusics = DBMusicsReader.Select(null, null, null, null, null, null);
             imageView1.setImageResource(R.drawable.ic_baseline_search_24);
             imageView2.setImageResource(R.drawable.transparent_android_musique_logo512x512);
             imageView1.setVisibility(View.VISIBLE);
@@ -189,14 +189,14 @@ public class MusicListActivity extends AppCompatActivity {
         ArrayList<IDBClass> dbMusics = new ArrayList<>();
         ArrayList<Music> musics = new ArrayList<>();
         DBHelper dbHelper = new DBHelper(context);
-        Musics DBMusicsReader = new Musics(context);
-        Musics DBMusicsWriter = new Musics(context);
+        Musics DBMusicsReader = new Musics(dbHelper.getReadableDatabase(), context);
+        Musics DBMusicsWriter = new Musics(dbHelper.getWritableDatabase(), context);
         Playlists DBPlaylistsReader = new Playlists(dbHelper.getReadableDatabase(), context);
         if(playlistId > -1){
             dbMusics = DBPlaylistsReader.getAllMusicsInPlaylist(playlistId);
         }
         else{
-            dbMusics = DBMusicsReader.Select(null, null, null);
+            dbMusics = DBMusicsReader.Select(null, null, null, null, null, null);
         }
 
         for (IDBClass music: dbMusics) {

@@ -11,20 +11,20 @@ import android.util.Log;
 import com.example.projetdintegration.DBHelpers.Classes.Category;
 import com.example.projetdintegration.DBHelpers.Classes.IDBClass;
 import com.example.projetdintegration.DBHelpers.Classes.Music;
-//import com.example.projetdintegration.DBHelpers.DBHelper.Contract.TableMusic;
+import com.example.projetdintegration.DBHelpers.DBHelper.Contract.TableMusic;
 import com.example.projetdintegration.Utilities.NumberUtil;
 import com.example.projetdintegration.Utilities.StringUtil;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Musics {
+public class Musics extends AbstractDBHelper {
     private static final String TAG = "Musics";
     //region BD values
-    //public static final String TABLE_NAME = TableMusic.TABLE_NAME;
-    //public long createdRowId;
-    //public int deletedRows;
-    //public int nbUpdatedRows;
+    public static final String TABLE_NAME = TableMusic.TABLE_NAME;
+    public long createdRowId;
+    public int deletedRows;
+    public int nbUpdatedRows;
     //endregion
 
     //region loaded values
@@ -32,68 +32,76 @@ public class Musics {
     Context mContext;
     //endregion
 
-    /*public static ContentValues getTestValues1(){
-        ContentValues values = new ContentValues();
-
-        values.put(TableMusic._ID, 0);
-        values.put(TableMusic.COLUMN_NAME_TITLE, "Music1");
-        values.put(TableMusic.COLUMN_NAME_LENGTH, 120);
-        values.put(TableMusic.COLUMN_NAME_TYPE, "audio");
-        values.put(TableMusic.COLUMN_NAME_FILE, "path");
-        values.put(TableMusic.COLUMN_NAME_ID_ALBUM, 0);
-        values.put(TableMusic.COLUMN_NAME_ID_ARTIST, 0);
-        values.put(TableMusic.COLUMN_NAME_ID_CATEGORY, 1);
-
-        return values;
-    }
-    public static ContentValues getTestValues2(){
-        ContentValues values = new ContentValues();
-
-        values.put(TableMusic._ID, 1);
-        values.put(TableMusic.COLUMN_NAME_TITLE, "Music2");
-        values.put(TableMusic.COLUMN_NAME_LENGTH, 120);
-        values.put(TableMusic.COLUMN_NAME_TYPE, "audio");
-        values.put(TableMusic.COLUMN_NAME_FILE, "path");
-        values.put(TableMusic.COLUMN_NAME_ID_ALBUM, 1);
-        values.put(TableMusic.COLUMN_NAME_ID_ARTIST, 1);
-        values.put(TableMusic.COLUMN_NAME_ID_CATEGORY, 0);
-
-        return values;
-    }
-    public static ContentValues getTestValues3(){
-        ContentValues values = new ContentValues();
-
-        values.put(TableMusic._ID, 2);
-        values.put(TableMusic.COLUMN_NAME_TITLE, "Music3");
-        values.put(TableMusic.COLUMN_NAME_LENGTH, 120);
-        values.put(TableMusic.COLUMN_NAME_TYPE, "audio");
-        values.put(TableMusic.COLUMN_NAME_FILE, "path");
-        values.put(TableMusic.COLUMN_NAME_ID_ALBUM, 0);
-        values.put(TableMusic.COLUMN_NAME_ID_ARTIST, 0);
-        values.put(TableMusic.COLUMN_NAME_ID_CATEGORY, 1);
-
-        return values;
-    }
-    public static ContentValues getTestValues4(){
-        ContentValues values = new ContentValues();
-
-        values.put(TableMusic._ID, 3);
-        values.put(TableMusic.COLUMN_NAME_TITLE, "Music4");
-        values.put(TableMusic.COLUMN_NAME_LENGTH, 120);
-        values.put(TableMusic.COLUMN_NAME_TYPE, "audio");
-        values.put(TableMusic.COLUMN_NAME_FILE, "path");
-        values.put(TableMusic.COLUMN_NAME_ID_ALBUM, 1);
-        values.put(TableMusic.COLUMN_NAME_ID_ARTIST, 1);
-        values.put(TableMusic.COLUMN_NAME_ID_CATEGORY, 0);
-
-        return values;
-    }*/
-
-    public Musics(Context context){
+    public Musics(SQLiteDatabase db, Context context){
+        super(db);
         mContext = context;
     }
 
-    public ArrayList<IDBClass> Select(String[] columns, String whereClause, String[] whereArgs) {
+    @Override
+    public void Insert(ContentValues values) {
+        //TODO check integrity of values
+        createdRowId = DB.insert(TABLE_NAME, null, values);
+    }
+
+    public void Insert(Music music){
+        ContentValues values = new ContentValues();
+
+        values.put(TableMusic._ID, music.getId());
+        values.put(TableMusic.COLUMN_NAME_TITLE, music.getName());
+        values.put(TableMusic.COLUMN_NAME_LENGTH, music.getLength());
+        values.put(TableMusic.COLUMN_NAME_TYPE, music.getType());
+        values.put(TableMusic.COLUMN_NAME_FILE, music.getPath());
+        values.put(TableMusic.COLUMN_NAME_ALBUM, music.getAlbum());
+        values.put(TableMusic.COLUMN_NAME_ARTIST, music.getArtist());
+        values.put(TableMusic.COLUMN_NAME_CATEGORY, music.getCategory());
+
+        Insert(values);
+    }
+
+    public void Insert(List<Music> musics){
+        for (Music music : musics) {
+            Insert(music);
+        }
+    }
+
+    @Override
+    public void Delete(String whereClause, String[] whereArgs) {
+        deletedRows = DB.delete(TABLE_NAME, whereClause, whereArgs);
+    }
+
+    @Override
+    public void Update(ContentValues values, String whereClause, String[] whereArgs) {
+        nbUpdatedRows = DB.update(TABLE_NAME, values, whereClause, whereArgs);
+    }
+
+    @Override
+    public ArrayList<IDBClass> Select(String[] columns, String whereClause, String[] whereArgs, String groupBy, String having, String orderBy) {
+        //TODO check integrity of parameters
+        Cursor cursor = DB.query(TABLE_NAME, columns, whereClause, whereArgs, groupBy, having, orderBy);
+        ArrayList<IDBClass> newMusics = new ArrayList<>();
+        while (cursor.moveToNext()){
+            //region set values
+            int id =  cursor.getInt(cursor.getColumnIndexOrThrow(TableMusic._ID));
+            String title = cursor.getString(cursor.getColumnIndexOrThrow(TableMusic.COLUMN_NAME_TITLE));
+            int length = cursor.getInt(cursor.getColumnIndexOrThrow(TableMusic.COLUMN_NAME_LENGTH));
+            String type = cursor.getString(cursor.getColumnIndexOrThrow(TableMusic.COLUMN_NAME_TYPE));
+            String path = cursor.getString(cursor.getColumnIndexOrThrow(TableMusic.COLUMN_NAME_FILE));
+            String artist = cursor.getString(cursor.getColumnIndexOrThrow(TableMusic.COLUMN_NAME_ARTIST));
+            String category = cursor.getString(cursor.getColumnIndexOrThrow(TableMusic.COLUMN_NAME_CATEGORY));
+            String album = cursor.getString(cursor.getColumnIndexOrThrow(TableMusic.COLUMN_NAME_ALBUM));
+            boolean favorite = new Playlists(DB, mContext).isInFavorites(id);
+            //endregion
+
+            Log.d(TAG, "Select: "+ title +" category = " + category);
+            newMusics.add(new Music(id, title, length, type, path, category, artist, album, favorite));
+        }
+        musics = newMusics;
+        cursor.close();
+        return newMusics;
+    }
+
+
+    /*public ArrayList<IDBClass> Select(String[] columns, String whereClause, String[] whereArgs) {
         MediaMetadataRetriever mmr = new MediaMetadataRetriever();
         ArrayList<IDBClass> musics = new ArrayList<>();
         DBHelper dbHelper = new DBHelper(mContext);
@@ -114,7 +122,7 @@ public class Musics {
             String type = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.MIME_TYPE));
             String artist =  cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.ARTIST)).trim();
             String album =  cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.ALBUM)).trim();
-            /*String genre =  mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_GENRE);
+            String genre =  mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_GENRE);
             String duration =  mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION);
 
             if (genre != null){
@@ -125,18 +133,22 @@ public class Musics {
                     genre = getCategoryNameById(mContext, Integer.parseInt(genre));
                 }
             }
+            else{
+                genre = "";
+            }
 
             if (duration != null){
                 duration = duration.trim();
             }
             else
-                duration = "0";*/
+                duration = "0";
 
-            musics.add(new Music(id, title, 0, type, path, null, artist, album, playlistsDBHelper.isInFavorites(id)));
+            Log.d(TAG, "Select: genre = " + genre);
+            musics.add(new Music(id, title, Long.parseLong(duration), type, path, genre, artist, album, playlistsDBHelper.isInFavorites(id)));
         }
         cursor.close();
         return musics;
-    }
+    }*/
 
     public ArrayList<Integer> getAllUsedCategoriesIds(){
         ArrayList<Integer> ids = new ArrayList<>();
@@ -151,10 +163,15 @@ public class Musics {
         }
 
         while(cursor.moveToNext()){
-            int id = cursor.getColumnIndex(MediaStore.Audio.Genres._ID);
+            int id = cursor.getInt(cursor.getColumnIndex(MediaStore.Audio.Genres._ID));
             Cursor cursor2 = mContext.getContentResolver().query(MediaStore.Audio.Genres.Members.getContentUri("external", id), null, null, null, null);
+            Log.d(TAG, "getAllUsedCategoriesIds: " + cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Audio.Genres.NAME)) + ": " + cursor2);
             if (cursor2 != null){
-                if(cursor2.moveToNext()){
+                Log.d(TAG, "getAllUsedCategoriesIds: count = " + cursor2.getCount());
+                if(cursor2.getCount() > 0){
+                    cursor2.moveToFirst();
+                    Log.d(TAG, "getAllUsedCategoriesIds: count = " + cursor2.getCount());
+                    Log.d(TAG, "getAllUsedCategoriesIds: " + cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Audio.Genres.NAME)) + " firstFile = " + cursor2.getString(cursor2.getColumnIndexOrThrow(MediaStore.Audio.Genres.Members.TITLE)));
                     ids.add(id);
                     cursor2.close();
                 }
@@ -178,9 +195,9 @@ public class Musics {
         }
 
         while(cursor.moveToNext()){
-            int id = cursor.getColumnIndex(MediaStore.Audio.Genres._ID);
+            int id = cursor.getInt(cursor.getColumnIndex(MediaStore.Audio.Genres._ID));
             String name = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Audio.Genres.NAME)).trim();
-
+            Log.d(TAG, "getAllUsedCategories: name = " + name);
             categories.add(new Category(id, name));
         }
 
@@ -188,8 +205,34 @@ public class Musics {
         return categories;
     }
 
+    public ArrayList<Music> getAllMusicInCategory(int catId){
+        ArrayList<Music> catMusics = new ArrayList<>();
+
+        Cursor cursor = mContext.getContentResolver().query(MediaStore.Audio.Genres.Members.getContentUri("external", catId), null, null, null, null);
+
+        if(cursor == null){
+            return null;
+        }
+
+        while(cursor.moveToNext()){
+            //region set values
+            int id =  cursor.getInt(cursor.getColumnIndexOrThrow(MediaStore.Audio.Genres.Members._ID));
+            String title = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Audio.Genres.Members.TITLE));
+            String type = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Audio.Genres.Members.MIME_TYPE));
+            String path = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Audio.Genres.Members.DATA));
+            String artist = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Audio.Genres.Members.ARTIST));
+            String album = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Audio.Genres.Members.ALBUM));
+            boolean favorite = new Playlists(DB, mContext).isInFavorites(id);
+            //endregion
+
+            catMusics.add(new Music(id, title, 0, type, path, null, artist, album, favorite));
+        }
+
+        return catMusics;
+    }
+
     static public String getCategoryNameById(Context context, int id) {
-        String name = null;
+        String name = "unknown";
         String selection = MediaStore.Audio.Genres._ID + " = ?";
         String[] selectionArgs = { id + "" };
         Cursor cursor = context.getContentResolver().query(

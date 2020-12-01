@@ -63,8 +63,8 @@ public class MainActivity extends AppCompatActivity {
         int playlistId = getIntent().getIntExtra(DBHelper.Contract.TablePlaylist._ID, -1);
 
         dbHelper = new DBHelper(getApplicationContext());
-        DBMusicsReader = new Musics(context);
-        DBMusicsWriter = new Musics(context);
+        DBMusicsReader = new Musics(dbHelper.getWritableDatabase(), context);
+        DBMusicsWriter = new Musics(dbHelper.getReadableDatabase(), context);
 
         Log.d(TAG, "onCreate: Started.");
 
@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
             Playlists DBPlaylistsReader = new Playlists(dbHelper.getReadableDatabase(), context);
             dbMusics = DBPlaylistsReader.getAllMusicsInPlaylist(playlistId);
         } else {
-            dbMusics = DBMusicsReader.Select(null, null, null);
+            dbMusics = DBMusicsReader.Select(null, null, null, null, null, null);
         }
 
         for (IDBClass music : dbMusics) {
@@ -157,6 +157,8 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<Category> categories = new ArrayList<>();
         Random rand = new Random();
 
+        Log.d(TAG, "scrollView_UI: categoriesUsed.size() = " + categoriesUsed.size());
+
         //Determiner 10 categories random
         //Pour chaques categories ajouter dynamiquement les musiques
         //En utilisant des adapters
@@ -167,6 +169,8 @@ public class MainActivity extends AppCompatActivity {
             int randomIndex = rand.nextInt(categoriesUsed.size());
             IDBClass randomElement = categoriesUsed.get(randomIndex);
             Category RandCat = (Category) randomElement;
+            Log.d(TAG, "scrollView_UI: RandCat: \n" +
+                    "name = " + RandCat.getName());
             categories.add(RandCat);
             categoriesUsed.remove(randomIndex);
 

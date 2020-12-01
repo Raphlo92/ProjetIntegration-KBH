@@ -12,18 +12,18 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final class Contract{
         private Contract(){}
 
-        /*public static class TableMusic implements BaseColumns {
+        public static class TableMusic implements BaseColumns {
             public static final String TABLE_NAME = "music";
             public static final String COLUMN_NAME_TITLE = "title";
             public static final String COLUMN_NAME_LENGTH = "length";
             public static final String COLUMN_NAME_TYPE = "type";
             public static final String COLUMN_NAME_FILE = "file";
-            public static final String COLUMN_NAME_ID_ARTIST = "idartist";
-            public static final String COLUMN_NAME_ID_ALBUM = "idalbum";
-            public static final String COLUMN_NAME_ID_CATEGORY = "idcategory";
+            public static final String COLUMN_NAME_ARTIST = "artist";
+            public static final String COLUMN_NAME_ALBUM = "album";
+            public static final String COLUMN_NAME_CATEGORY = "category";
         }
 
-        public static class TableArtist implements BaseColumns {
+        /*public static class TableArtist implements BaseColumns {
             public static final String TABLE_NAME = "artist";
             public static final String COLUMN_NAME_NAME = "name";
         }
@@ -58,27 +58,18 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     //region SQL
-    /*public static final String SQL_CREATE_TABLE_MUSIC =
+    public static final String SQL_CREATE_TABLE_MUSIC =
             "CREATE TABLE IF NOT EXISTS " + Contract.TableMusic.TABLE_NAME + " (" +
-                    Contract.TableMusic._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                    Contract.TableMusic._ID + " INTEGER PRIMARY KEY UNIQUE," +
                     Contract.TableMusic.COLUMN_NAME_TITLE + " TEXT NOT NULL," +
                     Contract.TableMusic.COLUMN_NAME_LENGTH + " INTEGER NOT NULL," +
-                    Contract.TableMusic.COLUMN_NAME_TYPE + " INTEGER NOT NULL," +
-                    Contract.TableMusic.COLUMN_NAME_FILE + " INTEGER NOT NULL," +
-                    Contract.TableMusic.COLUMN_NAME_ID_ARTIST + " INTEGER NOT NULL," +
-                    Contract.TableMusic.COLUMN_NAME_ID_ALBUM + " INTEGER NOT NULL," +
-                    Contract.TableMusic.COLUMN_NAME_ID_CATEGORY + " TEXT NOT NULL," +
-                    "FOREIGN KEY (" + Contract.TableMusic.COLUMN_NAME_ID_ARTIST + ")" +
-                    "REFERENCES " + Contract.TableArtist.TABLE_NAME + "(" + Contract.TableArtist._ID + ")" +
-                    "ON DELETE CASCADE, " +
-                    "FOREIGN KEY (" + Contract.TableMusic.COLUMN_NAME_ID_ALBUM + ")" +
-                    "REFERENCES " + Contract.TableAlbum.TABLE_NAME + "(" + Contract.TableAlbum._ID + ")" +
-                    "ON DELETE CASCADE, " +
-                    "FOREIGN KEY (" + Contract.TableMusic.COLUMN_NAME_ID_CATEGORY + ")" +
-                    "REFERENCES " + Contract.TableCategory.TABLE_NAME + "(" + Contract.TableCategory._ID + ")" +
-                    "ON DELETE CASCADE)";
+                    Contract.TableMusic.COLUMN_NAME_TYPE + " TEXT NOT NULL," +
+                    Contract.TableMusic.COLUMN_NAME_FILE + " TEXT NOT NULL," +
+                    Contract.TableMusic.COLUMN_NAME_ARTIST + " TEXT NOT NULL," +
+                    Contract.TableMusic.COLUMN_NAME_ALBUM + " TEXT NOT NULL," +
+                    Contract.TableMusic.COLUMN_NAME_CATEGORY + " TEXT)" ;
 
-    public static final String SQL_CREATE_TABLE_ARTIST =
+    /*public static final String SQL_CREATE_TABLE_ARTIST =
             "CREATE TABLE IF NOT EXISTS " + Contract.TableArtist.TABLE_NAME + " (" +
                     Contract.TableArtist._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                     Contract.TableArtist.COLUMN_NAME_NAME + " TEXT NOT NULL)";
@@ -114,10 +105,10 @@ public class DBHelper extends SQLiteOpenHelper {
                     Contract.TableMusicPlaylist.COLUMN_NAME_ID_PLAYLIST + " INTEGER," +
                     "PRIMARY KEY (" + Contract.TableMusicPlaylist.COLUMN_NAME_ID_MUSIC + ", " + Contract.TableMusicPlaylist.COLUMN_NAME_ID_PLAYLIST + "))";
 
-    /*public static final String SQL_DELETE_TABLE_MUSIC =
+    public static final String SQL_DELETE_TABLE_MUSIC =
             "DROP TABLE IF EXISTS " + Contract.TableMusic.TABLE_NAME;
 
-    public static final String SQL_DELETE_TABLE_ARTIST =
+    /*public static final String SQL_DELETE_TABLE_ARTIST =
             "DROP TABLE IF EXISTS " + Contract.TableArtist.TABLE_NAME;
 
     public static final String SQL_DELETE_TABLE_ALBUM =
@@ -133,7 +124,7 @@ public class DBHelper extends SQLiteOpenHelper {
             "DROP TABLE IF EXISTS " + Contract.TableMusicPlaylist.TABLE_NAME;
     //endregion
 
-    public static final int DB_VERSION = 1;
+    public static final int DB_VERSION = 2;
     public static final String DB_NAME = "AndroidMusique.db";
 
     public DBHelper(Context context) {
@@ -142,8 +133,8 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     public void onCreate(SQLiteDatabase db) {
-        /*db.execSQL(SQL_CREATE_TABLE_MUSIC);
-        db.execSQL(SQL_CREATE_TABLE_ARTIST);
+        db.execSQL(SQL_CREATE_TABLE_MUSIC);
+        /*db.execSQL(SQL_CREATE_TABLE_ARTIST);
         db.execSQL(SQL_CREATE_TABLE_ALBUM);
         db.execSQL(SQL_CREATE_TABLE_CATEGORY);*/
         db.execSQL(SQL_CREATE_TABLE_PLAYLIST);

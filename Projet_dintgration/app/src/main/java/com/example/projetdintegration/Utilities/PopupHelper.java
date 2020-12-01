@@ -266,7 +266,7 @@ public class PopupHelper {
         final EditText editSearchMusic = formElementsView.findViewById(R.id.playlistInputName);
         editSearchMusic.setText(researchContainer);
 
-        Musics DBMusicsReader = new Musics(mContext);
+        Musics DBMusicsReader = new Musics(dbHelper.getReadableDatabase(), mContext);
 
         Builder builder = new Builder(mContext);
         builder.setView(formElementsView);
@@ -276,7 +276,7 @@ public class PopupHelper {
             researchContainer = MusicsName;
 
             String[] whereArgs = {"%" + MusicsName + "%" };
-            ArrayList<IDBClass> DBMusics = DBMusicsReader.Select(null, MediaStore.Audio.Media.TITLE + " LIKE ?", whereArgs);
+            ArrayList<IDBClass> DBMusics = DBMusicsReader.Select(null, MediaStore.Audio.Media.TITLE + " LIKE ?", whereArgs, null, null, null);
 
             ArrayList<Music> musics = new ArrayList<>();
             for(IDBClass music:DBMusics) { musics.add((Music)music); }
@@ -303,7 +303,7 @@ public class PopupHelper {
         final EditText editSearchMusic = formElementsView.findViewById(R.id.playlistInputName);
         editSearchMusic.setText(music.getArtist());
 
-        Musics DBMusicsReader = new Musics(mContext);
+        Musics DBMusicsReader = new Musics(dbHelper.getReadableDatabase(),mContext);
 
         Builder builder = new Builder(mContext);
         builder.setView(formElementsView);
@@ -312,7 +312,7 @@ public class PopupHelper {
             String ArtistsName = editSearchMusic.getText().toString();
 
             String[] whereArgs = {"%" + ArtistsName + "%" };
-            ArrayList<IDBClass> DBMusics = DBMusicsReader.Select(null, MediaStore.Audio.Media.ARTIST + " LIKE ?", whereArgs);
+            ArrayList<IDBClass> DBMusics = DBMusicsReader.Select(null, MediaStore.Audio.Media.ARTIST + " LIKE ?", whereArgs, null, null, null);
 
             ArrayList<Music> musics = new ArrayList<>();
             for(IDBClass artist:DBMusics) { musics.add((Music)artist); }
@@ -339,7 +339,7 @@ public class PopupHelper {
         final EditText editSearchMusic = formElementsView.findViewById(R.id.playlistInputName);
         editSearchMusic.setText(music.getAlbum());
 
-        Musics DBMusicsReader = new Musics(mContext);
+        Musics DBMusicsReader = new Musics(dbHelper.getReadableDatabase(),mContext);
 
         Builder builder = new Builder(mContext);
         builder.setView(formElementsView);
@@ -347,8 +347,8 @@ public class PopupHelper {
         builder.setPositiveButton(buttonTitle, (dialog, i) -> {
             String AlbumsName = editSearchMusic.getText().toString();
 
-            String[] whereArgs = {"%" + AlbumsName + "%" };
-            ArrayList<IDBClass> DBMusics = DBMusicsReader.Select(null, MediaStore.Audio.Media.ALBUM + " LIKE ?", whereArgs);
+            String[] whereArgs = {AlbumsName};
+            ArrayList<IDBClass> DBMusics = DBMusicsReader.Select(null, MediaStore.Audio.Media.ALBUM + " LIKE %?%", whereArgs, null, null, null);
 
             ArrayList<Music> musics = new ArrayList<>();
             for(IDBClass album:DBMusics) { musics.add((Music)album); }

@@ -46,17 +46,8 @@ public class CategorieListAdapter extends RecyclerView.Adapter<CategorieListAdap
         lastPosition = position;
         holder.title.setText(category.getName());
 
-        Musics DBMusicsReader = new Musics(mContext);
-        ArrayList<IDBClass> dbMusics = DBMusicsReader.Select(null, null, null);
-        ArrayList<Music> musics = new ArrayList<>();
-
-        Random rand = new Random();
-        for (IDBClass music : dbMusics) {
-            if(((Music)music).getCategory().equals(title)){
-                //music = dbMusics.get(rand.nextInt(dbMusics.size()));
-                musics.add((Music) music);
-            }
-        }
+        Musics DBMusicsReader = new Musics(new DBHelper(mContext).getReadableDatabase(),  mContext);
+        ArrayList<Music> musics = DBMusicsReader.getAllMusicInCategory(category.getId());
 
         FileListAdapter adapter = new FileListAdapter(mContext, R.layout.mainactivity_imagebutton_adapter, musics);
         holder.musics.setAdapter(adapter);

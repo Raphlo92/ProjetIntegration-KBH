@@ -19,8 +19,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.projetdintegration.DBHelpers.DBHelper;
+import com.example.projetdintegration.DBHelpers.DBInitializer;
 import com.example.projetdintegration.DBHelpers.Musics;
 import com.example.projetdintegration.DBHelpers.Playlists;
+
+import static com.example.projetdintegration.DBHelpers.DBInitializer.getAllMusicsInMediaStore;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -46,9 +49,9 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         animtionsplashsreen();
 
-        //Intent intent = new Intent(this, DBInitializer.DBInitialisingService.class);
-        //startService(intent);
-        dbHelper.onUpgrade(dbHelper.getWritableDatabase(), dbVersion, DBHelper.DB_VERSION);
+        Intent intent = new Intent(this, DBInitializer.DBInitialisingService.class);
+        startService(intent);
+        //dbHelper.onUpgrade(dbHelper.getWritableDatabase(), dbVersion, DBHelper.DB_VERSION);
 
         ServiceConnection connection = new ServiceConnection() {
 
