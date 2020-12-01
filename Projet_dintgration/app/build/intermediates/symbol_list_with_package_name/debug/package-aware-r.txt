@@ -1598,10 +1598,15 @@ drawable ic_baseline_fullscreen_24
 drawable ic_baseline_fullscreen_exit_24
 drawable ic_baseline_home_24
 drawable ic_baseline_more_vert_24
+drawable ic_baseline_norepeat
+drawable ic_baseline_noshufle
 drawable ic_baseline_pause_24
 drawable ic_baseline_play_arrow_24
+drawable ic_baseline_repeat_24
 drawable ic_baseline_search_24
+drawable ic_baseline_shuffle_24
 drawable ic_baseline_stop_24
+drawable ic_baseline_trending_flat_24
 drawable ic_delete
 drawable ic_favoris
 drawable ic_favorite_24
@@ -1991,6 +1996,7 @@ id progress_horizontal
 id radio
 id ratio
 id rectangles
+id repeatButton
 id reverseSawtooth
 id rewindButton
 id right
@@ -2025,6 +2031,7 @@ id shortcut
 id showCustom
 id showHome
 id showTitle
+id shuffleButton
 id sin
 id skipCollapsed
 id slide
@@ -2071,7 +2078,6 @@ id startVertical
 id staticLayout
 id staticPostLayout
 id stop
-id stopButton
 id stretch
 id submenuarrow
 id submit_area

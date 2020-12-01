@@ -44,6 +44,7 @@ public class MediaActivity extends AppCompatActivity{
 
     MediaPlaybackService mPService;
     boolean mPBound = false;
+    boolean shuffle = false;
     SeekBar seekBar;
     Handler handler = new Handler();
     VideoView videoView;
@@ -52,6 +53,8 @@ public class MediaActivity extends AppCompatActivity{
     TextView mediaName;
     Boolean playing = true;
     ImageButton playButton;
+    ImageButton shuffleButton;
+    ImageButton repeatButton;
     ImageView coverArt;
     int playingId = 0;
     //static String[] mediaList = {"bladee", "boku", "sea", "tacoma_narrows"};
@@ -65,6 +68,8 @@ public class MediaActivity extends AppCompatActivity{
         setContentView(R.layout.activity_media_activity);
 
         playButton = findViewById(R.id.playButton);
+        shuffleButton = findViewById(R.id.shuffleButton);
+        repeatButton = findViewById(R.id.repeatButton);
         ImageButton rewindButton = findViewById(R.id.rewindButton);
         ImageButton forwardButton = findViewById(R.id.forwardButton);
         seekBar = findViewById(R.id.seekBar);
@@ -78,6 +83,8 @@ public class MediaActivity extends AppCompatActivity{
         playButton.setOnClickListener(new GestionnairePlayPause());
         rewindButton.setOnClickListener(new GestionnaireRewind());
         forwardButton.setOnClickListener(new GestionnaireForward());
+        shuffleButton.setOnClickListener(new GestionnaireShuffle());
+        repeatButton.setOnClickListener(new GestionnaireRepeat());
 
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -154,6 +161,34 @@ public class MediaActivity extends AppCompatActivity{
                 SetInfos();
             } catch (IOException e) {
                 e.printStackTrace();
+            }
+        }
+    }
+
+    public class GestionnaireShuffle implements View.OnClickListener{
+        public void onClick(View v){
+            if(!shuffle){
+                shuffleButton.setImageResource(R.drawable.ic_baseline_shuffle_24);
+                mPService.shuffleMusicList();
+                shuffle = true;
+            }
+            else{
+                shuffleButton.setImageResource(R.drawable.ic_baseline_trending_flat_24);
+                mPService.resetMusicList();
+                shuffle = false;
+            }
+        }
+    }
+
+    public class GestionnaireRepeat implements View.OnClickListener{
+        public void onClick(View v){
+            if(!mPService.repeat){
+                repeatButton.setImageResource(R.drawable.ic_baseline_repeat_24);
+                mPService.repeat = true;
+            }
+            else{
+                repeatButton.setImageResource(R.drawable.ic_baseline_norepeat);
+                mPService.repeat = false;
             }
         }
     }

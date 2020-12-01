@@ -24,12 +24,12 @@
         "source": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-ldpi\\ic_loudspeaker_1.png"
     },
     {
-        "merged": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_home.png.flat",
-        "source": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-xhdpi\\ic_home.png"
-    },
-    {
         "merged": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi_ic_baseline_fullscreen_exit_24.png.flat",
         "source": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-ldpi\\ic_baseline_fullscreen_exit_24.png"
+    },
+    {
+        "merged": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_home.png.flat",
+        "source": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-xhdpi\\ic_home.png"
     },
     {
         "merged": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\layout_mainactivity_adapter_layout.xml.flat",
@@ -40,8 +40,20 @@
         "source": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxxhdpi\\ic_favoris.png"
     },
     {
+        "merged": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_baseline_trending_flat_24.png.flat",
+        "source": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxhdpi\\ic_baseline_trending_flat_24.png"
+    },
+    {
         "merged": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi_ic_launcher_android_musique_round.png.flat",
         "source": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher_android_musique_round.png"
+    },
+    {
+        "merged": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_baseline_repeat_24.png.flat",
+        "source": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-mdpi\\ic_baseline_repeat_24.png"
+    },
+    {
+        "merged": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21_ic_baseline_trending_flat_24.xml.flat",
+        "source": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-anydpi-v21\\ic_baseline_trending_flat_24.xml"
     },
     {
         "merged": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi_ic_launcher_android_musique_foreground.png.flat",
@@ -84,12 +96,36 @@
         "source": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxxhdpi\\ic_hamburger_1_small.png"
     },
     {
+        "merged": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_baseline_noshufle.png.flat",
+        "source": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-mdpi\\ic_baseline_noshufle.png"
+    },
+    {
         "merged": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_baseline_favorite_border_24.png.flat",
         "source": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-hdpi\\ic_baseline_favorite_border_24.png"
     },
     {
         "merged": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_hamburger.png.flat",
         "source": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxhdpi\\ic_hamburger.png"
+    },
+    {
+        "merged": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi_ic_baseline_repeat_24.png.flat",
+        "source": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-ldpi\\ic_baseline_repeat_24.png"
+    },
+    {
+        "merged": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_baseline_repeat_24.png.flat",
+        "source": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxhdpi\\ic_baseline_repeat_24.png"
+    },
+    {
+        "merged": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi_ic_baseline_noshufle.png.flat",
+        "source": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxxhdpi\\ic_baseline_noshufle.png"
+    },
+    {
+        "merged": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21_ic_baseline_norepeat.xml.flat",
+        "source": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-anydpi-v21\\ic_baseline_norepeat.xml"
+    },
+    {
+        "merged": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_baseline_shuffle_24.png.flat",
+        "source": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-xhdpi\\ic_baseline_shuffle_24.png"
     },
     {
         "merged": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-anydpi-v26_ic_launcher_android_musique.xml.flat",
@@ -124,6 +160,10 @@
         "source": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\src\\main\\res\\drawable-v24\\ic_baseline_pause_24.xml"
     },
     {
+        "merged": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi_ic_baseline_shuffle_24.png.flat",
+        "source": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-ldpi\\ic_baseline_shuffle_24.png"
+    },
+    {
         "merged": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_stat_name.png.flat",
         "source": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\src\\main\\res\\drawable-mdpi\\ic_stat_name.png"
     },
@@ -150,6 +190,10 @@
     {
         "merged": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi_ic_launcher_android_musique_round.png.flat",
         "source": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher_android_musique_round.png"
+    },
+    {
+        "merged": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi_ic_baseline_norepeat.png.flat",
+        "source": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-ldpi\\ic_baseline_norepeat.png"
     },
     {
         "merged": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi_ic_speaker.png.flat",
@@ -204,20 +248,20 @@
         "source": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-anydpi-v21\\ic_launcher_background.xml"
     },
     {
-        "merged": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_ic_baseline_fast_forward_24.xml.flat",
-        "source": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\src\\main\\res\\drawable-v24\\ic_baseline_fast_forward_24.xml"
-    },
-    {
         "merged": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi_ic_file.png.flat",
         "source": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-ldpi\\ic_file.png"
     },
     {
-        "merged": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_home.png.flat",
-        "source": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxhdpi\\ic_home.png"
+        "merged": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_ic_baseline_fast_forward_24.xml.flat",
+        "source": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\src\\main\\res\\drawable-v24\\ic_baseline_fast_forward_24.xml"
     },
     {
         "merged": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_baseline_fullscreen_exit_24.png.flat",
         "source": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-mdpi\\ic_baseline_fullscreen_exit_24.png"
+    },
+    {
+        "merged": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_home.png.flat",
+        "source": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxhdpi\\ic_home.png"
     },
     {
         "merged": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_delete.png.flat",
@@ -248,6 +292,14 @@
         "source": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxxhdpi\\ic_muted.png"
     },
     {
+        "merged": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21_ic_baseline_shuffle_24.xml.flat",
+        "source": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-anydpi-v21\\ic_baseline_shuffle_24.xml"
+    },
+    {
+        "merged": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_baseline_noshufle.png.flat",
+        "source": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxhdpi\\ic_baseline_noshufle.png"
+    },
+    {
         "merged": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi_ic_baseline_more_vert_24.png.flat",
         "source": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxxhdpi\\ic_baseline_more_vert_24.png"
     },
@@ -266,6 +318,10 @@
     {
         "merged": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_baseline_favorite_24.png.flat",
         "source": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-xhdpi\\ic_baseline_favorite_24.png"
+    },
+    {
+        "merged": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_baseline_noshufle.png.flat",
+        "source": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-xhdpi\\ic_baseline_noshufle.png"
     },
     {
         "merged": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_stat_name.png.flat",
@@ -290,6 +346,10 @@
     {
         "merged": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable_musicnotegauche.gif.flat",
         "source": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\src\\main\\res\\drawable\\musicnotegauche.gif"
+    },
+    {
+        "merged": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_baseline_shuffle_24.png.flat",
+        "source": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-mdpi\\ic_baseline_shuffle_24.png"
     },
     {
         "merged": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_spotify_deconnection.xml.flat",
@@ -338,6 +398,10 @@
     {
         "merged": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_arrow_right.png.flat",
         "source": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-hdpi\\ic_arrow_right.png"
+    },
+    {
+        "merged": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_baseline_noshufle.png.flat",
+        "source": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-hdpi\\ic_baseline_noshufle.png"
     },
     {
         "merged": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_ic_arrow_right.xml.flat",
@@ -416,6 +480,10 @@
         "source": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-ldpi\\ic_baseline_favorite_border_24.png"
     },
     {
+        "merged": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21_ic_baseline_repeat_24.xml.flat",
+        "source": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-anydpi-v21\\ic_baseline_repeat_24.xml"
+    },
+    {
         "merged": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_ic_loudspeaker_1.xml.flat",
         "source": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\src\\main\\res\\drawable-v24\\ic_loudspeaker_1.xml"
     },
@@ -440,6 +508,10 @@
         "source": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\src\\main\\res\\drawable\\androidlogo.png"
     },
     {
+        "merged": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_baseline_norepeat.png.flat",
+        "source": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-mdpi\\ic_baseline_norepeat.png"
+    },
+    {
         "merged": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_baseline_fullscreen_24.png.flat",
         "source": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-xhdpi\\ic_baseline_fullscreen_24.png"
     },
@@ -450,6 +522,10 @@
     {
         "merged": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_arrow_right.png.flat",
         "source": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-xhdpi\\ic_arrow_right.png"
+    },
+    {
+        "merged": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_baseline_shuffle_24.png.flat",
+        "source": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-hdpi\\ic_baseline_shuffle_24.png"
     },
     {
         "merged": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_file.png.flat",
@@ -486,6 +562,10 @@
     {
         "merged": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi_ic_hamburger_1.png.flat",
         "source": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxxhdpi\\ic_hamburger_1.png"
+    },
+    {
+        "merged": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi_ic_baseline_noshufle.png.flat",
+        "source": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-ldpi\\ic_baseline_noshufle.png"
     },
     {
         "merged": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_speaker.png.flat",
@@ -572,8 +652,16 @@
         "source": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-mdpi\\ic_speaker.png"
     },
     {
+        "merged": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_baseline_shuffle_24.png.flat",
+        "source": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxhdpi\\ic_baseline_shuffle_24.png"
+    },
+    {
         "merged": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_loudspeaker.png.flat",
         "source": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-mdpi\\ic_loudspeaker.png"
+    },
+    {
+        "merged": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi_ic_baseline_repeat_24.png.flat",
+        "source": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxxhdpi\\ic_baseline_repeat_24.png"
     },
     {
         "merged": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_baseline_search_24.png.flat",
@@ -614,6 +702,10 @@
     {
         "merged": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_baseline_more_vert_24.png.flat",
         "source": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-hdpi\\ic_baseline_more_vert_24.png"
+    },
+    {
+        "merged": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi_ic_baseline_norepeat.png.flat",
+        "source": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxxhdpi\\ic_baseline_norepeat.png"
     },
     {
         "merged": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi_ic_home.png.flat",
@@ -684,6 +776,10 @@
         "source": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxhdpi\\ic_file.png"
     },
     {
+        "merged": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi_ic_baseline_shuffle_24.png.flat",
+        "source": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxxhdpi\\ic_baseline_shuffle_24.png"
+    },
+    {
         "merged": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_hamburger_1.png.flat",
         "source": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-hdpi\\ic_hamburger_1.png"
     },
@@ -734,6 +830,10 @@
     {
         "merged": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_ic_speaker.xml.flat",
         "source": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\src\\main\\res\\drawable-v24\\ic_speaker.xml"
+    },
+    {
+        "merged": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi_ic_baseline_trending_flat_24.png.flat",
+        "source": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxxhdpi\\ic_baseline_trending_flat_24.png"
     },
     {
         "merged": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi_ic_action_android_musique.png.flat",
@@ -876,6 +976,10 @@
         "source": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\src\\main\\res\\anim\\load_down_anim.xml"
     },
     {
+        "merged": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_baseline_repeat_24.png.flat",
+        "source": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-hdpi\\ic_baseline_repeat_24.png"
+    },
+    {
         "merged": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_baseline_dehaze_24.png.flat",
         "source": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-hdpi\\ic_baseline_dehaze_24.png"
     },
@@ -898,6 +1002,10 @@
     {
         "merged": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_home.xml.flat",
         "source": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\src\\main\\res\\layout\\activity_home.xml"
+    },
+    {
+        "merged": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_baseline_trending_flat_24.png.flat",
+        "source": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-xhdpi\\ic_baseline_trending_flat_24.png"
     },
     {
         "merged": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi_ic_baseline_dehaze_24.png.flat",
@@ -940,12 +1048,20 @@
         "source": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxxhdpi\\ic_speaker.png"
     },
     {
+        "merged": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_baseline_norepeat.png.flat",
+        "source": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-xhdpi\\ic_baseline_norepeat.png"
+    },
+    {
         "merged": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_arrow_right.png.flat",
         "source": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-mdpi\\ic_arrow_right.png"
     },
     {
         "merged": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\layout_appbar.xml.flat",
         "source": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\src\\main\\res\\layout\\appbar.xml"
+    },
+    {
+        "merged": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_baseline_norepeat.png.flat",
+        "source": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxhdpi\\ic_baseline_norepeat.png"
     },
     {
         "merged": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_baseline_fullscreen_24.png.flat",
@@ -972,6 +1088,10 @@
         "source": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-anydpi-v21\\ic_add.xml"
     },
     {
+        "merged": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_baseline_norepeat.png.flat",
+        "source": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-hdpi\\ic_baseline_norepeat.png"
+    },
+    {
         "merged": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_stat_name.png.flat",
         "source": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\src\\main\\res\\drawable-hdpi\\ic_stat_name.png"
     },
@@ -984,8 +1104,20 @@
         "source": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-mdpi\\ic_baseline_favorite_border_24.png"
     },
     {
+        "merged": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_baseline_repeat_24.png.flat",
+        "source": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-xhdpi\\ic_baseline_repeat_24.png"
+    },
+    {
+        "merged": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi_ic_baseline_trending_flat_24.png.flat",
+        "source": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-ldpi\\ic_baseline_trending_flat_24.png"
+    },
+    {
         "merged": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\layout_album_view_layout.xml.flat",
         "source": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\src\\main\\res\\layout\\album_view_layout.xml"
+    },
+    {
+        "merged": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_baseline_trending_flat_24.png.flat",
+        "source": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-mdpi\\ic_baseline_trending_flat_24.png"
     },
     {
         "merged": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\menu_music_menu.xml.flat",
@@ -994,6 +1126,10 @@
     {
         "merged": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_file.png.flat",
         "source": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-xhdpi\\ic_file.png"
+    },
+    {
+        "merged": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21_ic_baseline_noshufle.xml.flat",
+        "source": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-anydpi-v21\\ic_baseline_noshufle.xml"
     },
     {
         "merged": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_action_android_musique.png.flat",
@@ -1006,5 +1142,9 @@
     {
         "merged": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_ic_baseline_stop_24.xml.flat",
         "source": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\src\\main\\res\\drawable-v24\\ic_baseline_stop_24.xml"
+    },
+    {
+        "merged": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_baseline_trending_flat_24.png.flat",
+        "source": "D:\\Cegep\\ProjetIntegration\\Android\\ProjetIntegration-KBH\\Projet_dintgration\\app\\build\\generated\\res\\pngs\\debug\\drawable-hdpi\\ic_baseline_trending_flat_24.png"
     }
 ]
