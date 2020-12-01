@@ -36,17 +36,20 @@ import com.example.projetdintegration.DBHelpers.Classes.Music;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 
 @RequiresApi(api = Build.VERSION_CODES.O)
 public class MediaPlaybackService extends Service {
     private static final String TAG = "MediaPlaybackService";
     public static boolean running = false;
+    public static boolean repeat = false;
     public static MediaPlayer mediaPlayer;
     private static MediaPlaybackService instance = null;
     static Boolean playing = true;
     public static int playingId = 0;
     //static String[] mediaList = {"bladee", "boku", "sea", "tacoma_narrows"};
     static ArrayList<Music> musicArrayList = new ArrayList<>();
+    static ArrayList<Music> musicArrayListCopy = new ArrayList<>();
     static Notification mediaPlayingNotification;
 
     private final IBinder binder = new LocalBinder();
@@ -101,12 +104,29 @@ public class MediaPlaybackService extends Service {
         Log.d(TAG, "updateMusicList: playingId = " + songId);
         musicArrayList = playlist;
         playingId = songId;
+
         try{
             RestartPlayer();
             PlayFromPause();
+            //pour avoir une copie en tout temps
+            musicArrayListCopy.addAll(musicArrayList);
         }catch (IOException e){
             Log.e(TAG, "updateMusicList: error " + e );
         }
+    }
+
+    public void shuffleMusicList(){
+        Music songPlaying = musicArrayList.get(playingId);
+        Collections.shuffle(musicArrayList);
+        playingId = musicArrayList.indexOf(songPlaying);
+    }
+
+    public void resetMusicList(){
+        Music songPlaying = musicArrayList.get(playingId);
+        for(int i = 0; i < musicArrayList.size(); i++){
+            musicArrayList.set(i, musicArrayListCopy.get(i));
+        }
+        playingId = musicArrayList.indexOf(songPlaying);
     }
 
     public void Play() throws IOException {
@@ -174,12 +194,14 @@ public class MediaPlaybackService extends Service {
     }
 
     public void PlayNext() throws IOException, NullPointerException {
-        if(playingId < musicArrayList.size() - 1){
+        if(playingId < musicArrayList.size() - 1 && !repeat){
             playingId++;
             RestartPlayer();
         }
-        else if(playingId == musicArrayList.size() - 1){
+        else if(playingId == musicArrayList.size() - 1 && !repeat){
             playingId = 0;
+            RestartPlayer();
+        }else if(repeat){
             RestartPlayer();
         }
     }
