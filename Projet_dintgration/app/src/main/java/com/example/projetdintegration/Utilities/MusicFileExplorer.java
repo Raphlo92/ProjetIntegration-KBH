@@ -71,11 +71,11 @@ public class MusicFileExplorer {
                 File childFile = new File(file.getAbsolutePath() + "/" + child);
                 Log.d(TAG, "getAllChildren: childPath = " + file.getAbsolutePath() + "/" + child);
 
-                if(lastSearch.before(new Date(file.lastModified()))){
-                    files.add(childFile);
-                    if(childFile.list() != null)
-                        getAllNewestChildren(file.getAbsolutePath() + "/" + child, files, lastSearch);
-                }
+//                if(lastSearch.before(new Date(file.lastModified()))){
+//                    files.add(childFile);
+//                    if(childFile.list() != null)
+//                        getAllNewestChildren(file.getAbsolutePath() + "/" + child, files, lastSearch);
+//                }
             }
         }
 

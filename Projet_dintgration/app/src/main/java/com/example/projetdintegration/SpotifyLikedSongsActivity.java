@@ -22,6 +22,7 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.example.projetdintegration.DBHelpers.Classes.SpotifyMusic;
 import com.google.android.material.navigation.NavigationView;
 import com.spotify.android.appremote.api.ContentApi;
 import com.spotify.android.appremote.api.ImagesApi;
@@ -37,10 +38,10 @@ public class SpotifyLikedSongsActivity extends AppCompatActivity {
     NavigationView navigationView;
     Toolbar toolbar;
     Menu menu;
+    MediaPlaybackService.LocalBinder binder;
     ContentApi contenu;
     ListView listView;
     boolean userScrolled;
-    SpotifyNavigationList navigationList;
     RelativeLayout progressBar;
     Boolean noMoreDataToFetch;
     int startIndexOfDataFetch;
@@ -86,7 +87,7 @@ public class SpotifyLikedSongsActivity extends AppCompatActivity {
         playableListener = new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                SpotifyNavigationItem selectedItem = (SpotifyNavigationItem) parent.getItemAtPosition(position);
+                SpotifyNavigationItem selectedItem =new SpotifyNavigationItem(((SpotifyMusic) parent.getItemAtPosition(position)).transformToListItem());
                 Log.i("SpotifyLikedSongs",selectedItem.baseNavigationItem.toString());
                 if (SpotifyMusicListActivity.determineIfHasChildren(selectedItem, new SpotifyNavigationItem(likedSongsItem)))
                     sendPlayableToMusicPlayer(selectedItem.getURI());
@@ -138,7 +139,7 @@ public class SpotifyLikedSongsActivity extends AppCompatActivity {
                 for (ListItem item : listItems.items){
                     navigationItems.add(new SpotifyNavigationItem(item));
                 }
-                navigationList = new SpotifyNavigationList(navigationItems);
+                SpotifyMusicListActivity.navigationList = new SpotifyNavigationList(navigationItems);
                 displayListItems(navigationItems);
             }
         };
@@ -172,7 +173,7 @@ public class SpotifyLikedSongsActivity extends AppCompatActivity {
                     for (ListItem item : listItems.items) {
                         items.add(new SpotifyNavigationItem(item));
                     }
-                    navigationList.updateContentInList(items, progressBar);
+                    SpotifyMusicListActivity.navigationList.updateContentInList(items, progressBar);
                 }else {
                     progressBar.setVisibility(View.GONE);
                     noMoreDataToFetch = true;
@@ -181,9 +182,9 @@ public class SpotifyLikedSongsActivity extends AppCompatActivity {
         });
     }
     private void displayListItems(ArrayList<SpotifyNavigationItem> navigationItems){
-        navigationList.transformToXML(listView,this);
-        navigationList.setListOnClickListener(playableListener,listView);
-        navigationList.setListOnScrollListener(onScrollListener,listView);
+        SpotifyMusicListActivity.navigationList.transformToXML(listView,this,binder);
+        SpotifyMusicListActivity.navigationList.setListOnClickListener(playableListener,listView);
+        SpotifyMusicListActivity.navigationList.setListOnScrollListener(onScrollListener,listView);
     }
     private void getElementChildren(ListItem item, CallResult.ResultCallback<ListItems> callback){
         contenu.getChildrenOfItem(item,SpotifyMusicListActivity.NUMBER_OF_ELEMENTS_TO_LOAD,startIndexOfDataFetch).setResultCallback(callback);

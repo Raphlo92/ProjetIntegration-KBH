@@ -60,18 +60,18 @@ public class DBInitializer {
         Date lastInit;
         public DBInitialisingService() {
             super("DBInitialisingService");
-            this.lastInit = Date.from(Instant.now());
+            //this.lastInit = Date.from(Instant.now());
         }
 
         @Override
         protected void onHandleIntent(@Nullable Intent intent) {
             Log.d(TAG, "onHandleIntent: Started");
             ArrayList<File> files = new ArrayList<>();
-            //MusicFileExplorer.getAllNewestChildren(MusicFileExplorer.DIRECTORY_MUSIC, files, lastInit);
+            MusicFileExplorer.getAllNewestChildren(MusicFileExplorer.DIRECTORY_MUSIC, files, lastInit);
             MusicFileExplorer.getAllChildren(MusicFileExplorer.DIRECTORY_MUSIC, files);
 
             new DBInitializer(this).Init(files);
-            lastInit = Date.from(Instant.now());
+            //lastInit = Date.from(Instant.now());
         }
     }
 
@@ -97,50 +97,50 @@ public class DBInitializer {
             files.addAll(getFilesFromMediaStore());
         }
 
-        for (File file : files) {
-            //if(lastModified.before(new Date(file.lastModified())))
-
-            Log.d(TAG, "Init: File reading");
-
-            Path path = Paths.get(file.toURI());
-
-            Log.d(TAG, "Init: " + path.getFileName() + ": type = " + MusicFileExplorer.getMimeType(file));
-
-            String mimeType = MusicFileExplorer.getMimeType(file);
-
-            if(mimeType != null){
-                mimeType = mimeType.split("/")[0];
-                if(mimeType.equals("video") || mimeType.equals("audio")){
-                    metadata = getMetadata(path.toAbsolutePath().toString());
-                    Log.d(TAG, "Init: \nmusicName = " + path.getFileName() +
-                            "\nmusicArtist = " + metadata[0] +
-                            "\nmusicAlbum = " + metadata[1] +
-                            "\nmusicGenre = " + metadata[2] +
-                            "\nmusicDuration = " + metadata[3]+
-                            "\nmusicImage = " + metadata[4]);
-                    Artists artistsDBHelper = new Artists(DBWriter);
-                    Albums albumsDBHelper = new Albums(DBWriter);
-                    Musics musicsDBHelper = new Musics(DBWriter);
-
-                    if(!currentAlbum.equals(metadata[1])){
-                        if(!currentArtist.equals(metadata[0])){
-                            currentArtist = metadata[0];
-                            Artist artist = new Artist(0, currentArtist);
-                            artistsDBHelper.Insert(artist);
-                        }
-                        currentAlbum = metadata[1];
-                        currentImagePath = metadata[4];
-
-                        Album album = new Album(0, currentAlbum, currentImagePath, currentArtist, metadata[2]);
-                        albumsDBHelper.Insert(album);
-                    }
-
-                    Music music = new Music(0, path.getFileName().toString(), Double.parseDouble(metadata[3]) / 1000, mimeType,  path.toAbsolutePath().toString(), metadata[2], currentArtist, currentAlbum, false);
-                    musicsDBHelper.Insert(music);
-                }
-
-            }
-        }
+//        for (File file : files) {
+//            //if(lastModified.before(new Date(file.lastModified())))
+//
+//            Log.d(TAG, "Init: File reading");
+//
+//            Path path = Paths.get(file.toURI());
+//
+//            Log.d(TAG, "Init: " + path.getFileName() + ": type = " + MusicFileExplorer.getMimeType(file));
+//
+//            String mimeType = MusicFileExplorer.getMimeType(file);
+//
+//            if(mimeType != null){
+//                mimeType = mimeType.split("/")[0];
+//                if(mimeType.equals("video") || mimeType.equals("audio")){
+//                    metadata = getMetadata(path.toAbsolutePath().toString());
+//                    Log.d(TAG, "Init: \nmusicName = " + path.getFileName() +
+//                            "\nmusicArtist = " + metadata[0] +
+//                            "\nmusicAlbum = " + metadata[1] +
+//                            "\nmusicGenre = " + metadata[2] +
+//                            "\nmusicDuration = " + metadata[3]+
+//                            "\nmusicImage = " + metadata[4]);
+//                    Artists artistsDBHelper = new Artists(DBWriter);
+//                    Albums albumsDBHelper = new Albums(DBWriter);
+//                    Musics musicsDBHelper = new Musics(DBWriter);
+//
+//                    if(!currentAlbum.equals(metadata[1])){
+//                        if(!currentArtist.equals(metadata[0])){
+//                            currentArtist = metadata[0];
+//                            Artist artist = new Artist(0, currentArtist);
+//                            artistsDBHelper.Insert(artist);
+//                        }
+//                        currentAlbum = metadata[1];
+//                        currentImagePath = metadata[4];
+//
+//                        Album album = new Album(0, currentAlbum, currentImagePath, currentArtist, metadata[2]);
+//                        albumsDBHelper.Insert(album);
+//                    }
+//
+//                    Music music = new Music(0, path.getFileName().toString(), Double.parseDouble(metadata[3]) / 1000, mimeType,  path.toAbsolutePath().toString(), metadata[2], currentArtist, currentAlbum, false);
+//                    musicsDBHelper.Insert(music);
+//                }
+//
+//            }
+//        }
     }
 
     public ArrayList<File> getFilesFromMediaStore(){
