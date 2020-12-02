@@ -81,7 +81,7 @@ public class MediaPlaybackService extends Service {
         return binder;
     }
 
-    public void PlayNow(ArrayList<Music> playlist, int songId){
+    public void UpdateMusicList(ArrayList<Music> playlist, int songId){
         Log.d(TAG, "updateMusicList: playingId = " + songId);
         if(musicArrayList.isEmpty())
             musicArrayList.addAll(playlist);
@@ -113,7 +113,7 @@ public class MediaPlaybackService extends Service {
     public void AddNext(Music music){
         if(musicArrayList.size() == 0){
             Add(music);
-            PlayNow(musicArrayList, 0);
+            UpdateMusicList(musicArrayList, 0);
 
         }
         else if(musicArrayList.size() == playingId + 1){

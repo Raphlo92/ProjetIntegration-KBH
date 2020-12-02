@@ -109,7 +109,7 @@ public class MusicListAdapter extends ArrayAdapter<Music> {
 
         holder.item.setOnClickListener(view -> {
             Log.d(TAG, "onItemClick: Started");
-            binder.getService().updateMusicList(musics, position);
+            binder.getService().UpdateMusicList(musics, position);
             this.mContext.startActivity(intent);
         });
         holder.item.setOnLongClickListener(view -> {
