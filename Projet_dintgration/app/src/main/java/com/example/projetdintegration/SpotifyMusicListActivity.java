@@ -337,7 +337,7 @@ class SpotifyNavigationList{
     ArrayList<SpotifyNavigationItem> navigationItems;
     public SpotifyNavigationList(ArrayList<SpotifyNavigationItem> items){
         navigationItems = items;
-        musics = transformToMusicsListArray(navigationItems);
+        musics = new ArrayList<Music>();
     }
     public void addItem(SpotifyNavigationItem item){
         navigationItems.add(item);
@@ -345,14 +345,16 @@ class SpotifyNavigationList{
     public void transformToXML(ListView listView,Context context, MediaPlaybackService.LocalBinder binder){
         //arrayAdapter = new ArrayAdapter<>(context,android.R.layout.simple_list_item_1,navigationItems);
         adapter = new MusicListAdapter(context,R.layout.music_listitem_layout, musics,-1,binder);
+        musics.addAll(transformToMusicsListArray(navigationItems,adapter));
         listView.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
     }
     public void updateContentInList(ArrayList<SpotifyNavigationItem> items, RelativeLayout progressBar){
       //  new Handler().postDelayed(new Runnable() {
           //  @Override
          //   public void run() {
                 navigationItems.addAll(items);
-                musics.addAll(transformToMusicsListArray(items));
+                musics.addAll(transformToMusicsListArray(items,adapter));
                 adapter.notifyDataSetChanged();
                 progressBar.setVisibility(View.GONE);
          //   }
@@ -364,7 +366,7 @@ class SpotifyNavigationList{
     public void setListOnScrollListener(AbsListView.OnScrollListener scrollListener, ListView listView){
         listView.setOnScrollListener(scrollListener);
     }
-    static public ArrayList<Music> transformToMusicsListArray(ArrayList<SpotifyNavigationItem> items){
+    static public ArrayList<Music> transformToMusicsListArray(ArrayList<SpotifyNavigationItem> items, MusicListAdapter adapter){
         ArrayList<Music> musics = new ArrayList<>();
         for (SpotifyNavigationItem item : items) {
             musics.add(new SpotifyMusic(item.getTitle(),item.getURI(), false,item.isPlayable(),item.hasChildren(),item.getID(),item.getImageURI(),item.baseNavigationItem.subtitle,determineItemType(item.getID())));
@@ -376,11 +378,13 @@ class SpotifyNavigationList{
                 public void onResult(LibraryState libraryState) {
                     if(libraryState.canAdd)
                         ((SpotifyMusic)music).setFavorite(libraryState.isAdded);
+                    adapter.notifyDataSetChanged();
                 }
             });
         }
         return musics;
     }
+
 
     private static String determineItemType(String id) {
         Log.i("DetermineTypeTest",id);

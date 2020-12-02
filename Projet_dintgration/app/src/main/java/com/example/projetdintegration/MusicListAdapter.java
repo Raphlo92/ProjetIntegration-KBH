@@ -166,11 +166,11 @@ public class MusicListAdapter extends ArrayAdapter<Music> {
         });
     }
 
-    public void refreshSpotify() {
-        this.clear();
-        this.addAll(SpotifyNavigationList.transformToMusicsListArray(SpotifyMusicListActivity.navigationList.navigationItems));
-        this.notifyDataSetChanged();
-    }
+    //public void refreshSpotify() {
+    //    this.clear();
+    //    this.addAll(SpotifyNavigationList.transformToMusicsListArray(SpotifyMusicListActivity.navigationList.navigationItems));
+    //    this.notifyDataSetChanged();
+    //}
 
     @NonNull
     @Override

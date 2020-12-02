@@ -120,7 +120,7 @@ public class SpotifyLikedSongsActivity extends AppCompatActivity {
                 for(ListItem item : listItems.items)
                     if(item.id.contains(SpotifyMusicListActivity.SPOTIFY_COLLECTION_LINK)) {
                         likedSongsItem = item;
-                        ((TextView)findViewById(R.id.textView_categorie_name)).setText(likedSongsItem.title);
+                        ((TextView)findViewById(R.id.PageTitle)).setText(likedSongsItem.title);
                         imagesApi.getImage(likedSongsItem.imageUri).setResultCallback(new CallResult.ResultCallback<Bitmap>() {
                             @Override
                             public void onResult(Bitmap bitmap) {

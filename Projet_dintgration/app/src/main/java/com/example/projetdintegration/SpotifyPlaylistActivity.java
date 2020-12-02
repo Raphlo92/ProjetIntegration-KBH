@@ -158,12 +158,12 @@ public class SpotifyPlaylistActivity extends AppCompatActivity {
                 manageAlbumView();
             else
                 setContentView(R.layout.spotify_bibliotheque_start);
-            TextView categorieName = findViewById(R.id.textView_categorie_name);
+            TextView categorieName = findViewById(R.id.PageTitle);
             categorieName.setText(R.string.spotify_playlist_view_base_text);
             categorieName.setText(selectedPlaylist.getTitle());
         }else{
             setContentView(R.layout.spotify_bibliotheque_start);
-            TextView categorieName = findViewById(R.id.textView_categorie_name);
+            TextView categorieName = findViewById(R.id.PageTitle);
             categorieName.setText(R.string.spotify_playlist_view_base_text);
         }
     }
