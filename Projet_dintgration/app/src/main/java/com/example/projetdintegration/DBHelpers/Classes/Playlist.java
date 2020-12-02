@@ -1,6 +1,11 @@
 package com.example.projetdintegration.DBHelpers.Classes;
 
+import android.util.Log;
+
+import androidx.annotation.Nullable;
+
 public class Playlist implements IDBClass {
+    private static final String TAG = "Playlist";
     private int id;
     private String name;
     private String type;
@@ -33,5 +38,18 @@ public class Playlist implements IDBClass {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    @Override
+    public boolean equals(@Nullable Object obj) {
+        if (obj == null){
+            return false;
+        }
+        Log.d(TAG, "equals: obj.class = " + obj.getClass().getName());
+        if (obj.getClass().getName().equals(this.getClass().getName())){
+            Playlist comparedPlaylist = (Playlist)obj;
+            return comparedPlaylist.getName().equals(getName());
+        }
+        return false;
     }
 }

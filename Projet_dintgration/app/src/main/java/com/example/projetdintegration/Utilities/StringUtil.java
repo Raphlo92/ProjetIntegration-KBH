@@ -11,22 +11,16 @@ public class StringUtil {
         return input.replaceAll("[()\\[\\]{}]", "");
     }
 
-    public static boolean Matches(String match, String input){
-        Pattern pattern;
-        Matcher matcher;
-        return false;
-    }
-
     public static String ReplaceAbbreviations(String input){
         input = input.replaceAll("Alt.", "Alternative");
 
         return input;
     }
 
-    public static String toCommaSeparatedString(ArrayList<Integer> list) {
+    public static String toCommaSeparatedString(ArrayList<?> list) {
         if (list.size() > 0) {
             StringBuilder nameBuilder = new StringBuilder();
-            for (Integer item : list) {
+            for (Object item : list) {
                 nameBuilder.append(item).append(", ");
             }
             nameBuilder.deleteCharAt(nameBuilder.length() - 1);

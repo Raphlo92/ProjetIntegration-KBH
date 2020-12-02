@@ -96,7 +96,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String SQL_CREATE_TABLE_PLAYLIST =
             "CREATE TABLE IF NOT EXISTS " + Contract.TablePlaylist.TABLE_NAME + " (" +
                     Contract.TablePlaylist._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
-                    Contract.TablePlaylist.COLUMN_NAME_NAME + " TEXT NOT NULL," +
+                    Contract.TablePlaylist.COLUMN_NAME_NAME + " TEXT NOT NULL UNIQUE," +
                     Contract.TablePlaylist.COLUMN_NAME_TYPE + " TEXT NOT NULL)";
 
     public static final String SQL_CREATE_TABLE_MUSIC_PLAYLIST =

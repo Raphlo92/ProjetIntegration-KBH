@@ -1,7 +1,6 @@
 package com.example.projetdintegration;
 
 import android.content.Context;
-import android.media.Image;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,22 +8,18 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.projetdintegration.DBHelpers.Classes.Music;
-import com.example.projetdintegration.DBHelpers.Classes.*;
 import com.example.projetdintegration.DBHelpers.DBHelper;
 import com.example.projetdintegration.DBHelpers.Musics;
 import com.example.projetdintegration.DBHelpers.Playlists;
 import com.example.projetdintegration.Utilities.PopupHelper;
 
 import java.util.ArrayList;
-import java.util.function.BiConsumer;
-import java.util.function.Function;
 
 public class MusicListAdapter extends ArrayAdapter<Music> {
     private static final String TAG = "MusicListAdapter";
@@ -110,10 +105,10 @@ public class MusicListAdapter extends ArrayAdapter<Music> {
 
         holder.item.setOnClickListener(view -> {
             Log.d(TAG, "onItemClick: Started");
-            binder.getService().updateMusicList(musics, position);
+            binder.getService().PlayNow(musics, position);
         });
         holder.item.setOnLongClickListener(view -> {
-            popupHelper.showMusicOptions(view, music);
+            popupHelper.showMusicOptions(view, music, position, binder);
             return true;
         });
         if (music.isFavorite()){
@@ -138,7 +133,7 @@ public class MusicListAdapter extends ArrayAdapter<Music> {
         });
 
         holder.options.setOnClickListener(view -> {
-            popupHelper.showMusicOptions(view, music); 
+            popupHelper.showMusicOptions(view, music, position, binder);
         });
 
         return convertView;

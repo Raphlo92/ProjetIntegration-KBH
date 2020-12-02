@@ -1,11 +1,16 @@
 package com.example.projetdintegration.Utilities;
 
 import android.app.AlertDialog.Builder;
+import android.app.Dialog;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
+import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -17,11 +22,17 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+
 import com.example.projetdintegration.DBHelpers.Classes.IDBClass;
 import com.example.projetdintegration.DBHelpers.Classes.Playlist;
 import com.example.projetdintegration.DBHelpers.DBHelper;
 import com.example.projetdintegration.DBHelpers.Musics;
 import com.example.projetdintegration.DBHelpers.Playlists;
+import com.example.projetdintegration.MediaPlaybackService;
 import com.example.projetdintegration.MusicListActivity;
 import com.example.projetdintegration.PlaylistListActivity;
 import com.example.projetdintegration.R;
@@ -31,6 +42,7 @@ import com.example.projetdintegration.DBHelpers.Classes.Music;
 import java.util.ArrayList;
 
 public class PopupHelper {
+    private static final String TAG = "PopupHelper";
     private Context mContext;
     private DBHelper dbHelper;
     private Playlists playlistsWriter;
@@ -52,38 +64,167 @@ public class PopupHelper {
         popup.show();
     }
 
+    public static class PlaylistDialog extends DialogFragment{
+        Context mContext;
+        Playlist playlist;
+        ArrayList<Playlist> playlists;
+        Playlists playlistsWriter;
+        Playlists playlistsReader;
+        public PlaylistDialog(Context context, Playlist playlist){
+            super();
+            mContext = context;
+            DBHelper dbHelper = new DBHelper(mContext);
+            playlistsWriter = new Playlists(dbHelper.getWritableDatabase(), mContext);
+            playlistsReader = new Playlists(dbHelper.getReadableDatabase(), mContext);
+
+            ArrayList<IDBClass> dbPlaylists = playlistsReader.Select(null, null, null, null, null, null);
+            playlists = new ArrayList<>();
+            for(IDBClass pl : dbPlaylists){
+                playlists.add((Playlist)pl);
+            }
+
+            this.playlist = playlist;
+        }
+
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+
+            String title = "Créer une liste de lectures";
+            String buttonTitle = "Créer";
+
+            // inflate the custom dialog layout
+            LayoutInflater inflater = getActivity().getLayoutInflater();
+            View view = inflater.inflate(R.layout.playlist_input_form_layout, null);
+
+            final EditText editPlaylistName = view.findViewById(R.id.playlistInputName);
+
+
+            editPlaylistName.addTextChangedListener(new TextWatcher(){
+
+                @Override
+                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                    AlertDialog dialog = (AlertDialog) getDialog();
+                    if(dialog != null){
+                        String playlistName = editPlaylistName.getText().toString();
+                        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(!playlistName.isEmpty() && !playlists.contains(new Playlist(0, playlistName, "")));
+                    }
+                }
+
+                @Override
+                public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                    AlertDialog dialog = (AlertDialog) getDialog();
+                    if(dialog != null){
+                        String playlistName = editPlaylistName.getText().toString();
+                        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(!playlistName.isEmpty() && !playlists.contains(new Playlist(0, playlistName, "")));
+                    }
+                }
+
+                @Override
+                public void afterTextChanged(Editable editable) {
+                    AlertDialog dialog = (AlertDialog) getDialog();
+                    if(dialog != null){
+                        String playlistName = editPlaylistName.getText().toString();
+                        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(!playlistName.isEmpty() && !playlists.contains(new Playlist(0, playlistName, "")));
+                    }
+                }
+            });
+
+            // build the alert dialog
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            builder.setView(view);
+            if (playlist != null){
+                title = "Modifier la liste de lectures";
+                buttonTitle = "Modifier";
+                editPlaylistName.setText(playlist.getName());
+                builder.setPositiveButton(buttonTitle, (dialog, i) -> {
+                    String playlistName = editPlaylistName.getText().toString();
+                    ContentValues values = new ContentValues();
+                    values.put(TablePlaylist.COLUMN_NAME_NAME, playlistName);
+                    String whereClause = TablePlaylist._ID + " = ?";
+                    String[] whereArgs = { playlist.getId() + "" };
+                    playlistsWriter.Update(values, whereClause, whereArgs);
+
+                    ArrayList<IDBClass> dbPlaylists = playlistsReader.Select(null, null, null, null, null, null);
+                    playlists = new ArrayList<>();
+                    for(IDBClass pl : dbPlaylists){
+                        playlists.add((Playlist)pl);
+                    }
+
+                    dialog.dismiss();
+                    if (mContext.getClass() == MusicListActivity.class){
+                        final TextView pageTitle = (TextView) ((MusicListActivity) mContext).findViewById(R.id.PageTitle);
+                        pageTitle.setText(playlistName);
+                    }});
+                PlaylistListActivity.RefreshView(mContext);
+
+            }
+            else{
+                builder.setPositiveButton(buttonTitle, (dialog, id) -> {
+                    String playlistName = editPlaylistName.getText().toString();
+                    Playlist playlist = new Playlist(0, playlistName, "normal");
+
+                    playlistsWriter.Insert(playlist);
+                    PlaylistListActivity.RefreshView(mContext);
+                    playlists.add(playlist);
+
+                    dialog.dismiss();
+                });
+            }
+            builder.setTitle(title);
+            return builder.create();
+        }
+
+        @Override
+        public void onResume() {
+            super.onResume();
+
+            // disable positive button by default
+            AlertDialog dialog = (AlertDialog) getDialog();
+            dialog.getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(false);
+        }
+    }
+
     public void showCreateForm(){
-        String title = "Créer une liste de lectures";
-        String buttonTitle = "Create";
 
-        LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        final View formElementsView = inflater.inflate(R.layout.playlist_input_form_layout, null, false);
-        final EditText editPlaylistName = formElementsView.findViewById(R.id.playlistInputName);
+        FragmentManager fm = ((FragmentActivity)mContext).getSupportFragmentManager();
 
-        Builder builder = new Builder(mContext);
+        PlaylistDialog dialog = new PlaylistDialog(mContext, null);
+        dialog.show(fm, "PlaylistCreateDialog");
+
+        /*Builder builder = new Builder(mContext);
         builder.setView(formElementsView);
         builder.setTitle(title);
-        builder.setPositiveButton(buttonTitle, (dialog, i) -> {
-            String playlistName = editPlaylistName.getText().toString();
-            Playlist playlist = new Playlist(0, playlistName, "normal");
-            Playlists playlistsWriter = new Playlists(dbHelper.getWritableDatabase(), mContext);
-            playlistsWriter.Insert(playlist);
-            dialog.dismiss();
-            PlaylistListActivity.RefreshView(mContext);
-        });
+        builder.setPositiveButton(buttonTitle, new DialogInterface.OnClickListener(){
+
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+                String playlistName = editPlaylistName.getText().toString();
+                if (!playlistName.isEmpty()) {
+                    Playlist playlist = new Playlist(0, playlistName, "normal");
+                    Playlists playlistsWriter = new Playlists(dbHelper.getWritableDatabase(), mContext);
+                    playlistsWriter.Insert(playlist);
+                    PlaylistListActivity.RefreshView(mContext);
+                    dialogInterface.dismiss();
+                }
+
+            }});
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             builder.setOnDismissListener(dialog -> {
                 //TODO save data somewhere
             });
         }
-        builder.show();
+        builder.show();*/
     }
 
     public void showEditForm(Playlist playlist){
-        String title = "Modifier la liste de lectures";
-        String buttonTitle = "Modifier";
+        FragmentManager fm = ((FragmentActivity)mContext).getSupportFragmentManager();
 
-        LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        PlaylistDialog dialog = new PlaylistDialog(mContext, playlist);
+        dialog.show(fm, "PlaylistEditDialog");
+
+        /*LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         final View formElementsView = inflater.inflate(R.layout.playlist_input_form_layout, null, false);
         final EditText editPlaylistName = formElementsView.findViewById(R.id.playlistInputName);
         editPlaylistName.setText(playlist.getName());
@@ -110,7 +251,7 @@ public class PopupHelper {
                 //TODO save data somewhere
             });
         }
-        builder.show();
+        builder.show();*/
     }
 
 
@@ -136,37 +277,36 @@ public class PopupHelper {
     }
 
     //TODO finish the back-end options
-    public void showMusicOptions(View v, Music music){
+    public void showMusicOptions(View v, Music music, int position, MediaPlaybackService.LocalBinder binder){
 
         PopupMenu popup = new PopupMenu(mContext, v);
         MenuInflater inflater = popup.getMenuInflater();
         inflater.inflate(R.menu.music_menu, popup.getMenu());
 
+        Musics DBMusicsReader = new Musics(dbHelper.getReadableDatabase(), mContext);
 
+        ArrayList<Music> musics = DBMusicsReader.LastSelect();
+        Log.d(TAG, "showMusicOptions: size = " + musics.size());
 
         popup.setOnMenuItemClickListener(item -> {
             AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
             switch (item.getItemId()) {
                 case R.id.playNow:
-                    //TODO override the queue and play this music now
+                    binder.getService().PlayNow(musics, position);
                     return true;
                 case R.id.playNext:
-                    //TODO add to queue as the next music
+                    binder.getService().AddNext(music);
                     return true;
                 case R.id.addToQueue:
-                    //TODO add to queue as the last music
+                    binder.getService().Add(music);
                     return true;
                 case R.id.addToPlaylist:
-                    //TODO find a way to get the playlist ID and had the music to it
                     showAddToPlaylists(v, music);
-
                     return true;
                 case R.id.musicOfArtist:
-                    //TODO go to a view of all the music of the same artist (find artist ID)
                     ShowMusicOfArtiste(music);
                     return true;
                 case R.id.musicInAlbum:
-                    //TODO go to a view of all the music in the same album (find playlist ID)
                     ShowmusicInAlbum(music);
                     return true;
                 /*case R.id.addToSpotifyFav:

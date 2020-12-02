@@ -1,36 +1,17 @@
 package com.example.projetdintegration;
 
-import android.app.Application;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Binder;
 import android.os.IBinder;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.VideoView;
-import android.content.ComponentName;
-import android.content.Context;
-import android.content.Intent;
-import android.content.ServiceConnection;
-import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Build;
-import android.os.Bundle;
-import android.os.Handler;
-import android.os.IBinder;
 import android.util.Log;
-import android.view.View;
-import android.widget.ImageButton;
-import android.widget.SeekBar;
-import android.widget.TextView;
-
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.projetdintegration.DBHelpers.Classes.Music;
 
@@ -38,7 +19,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 
-@RequiresApi(api = Build.VERSION_CODES.O)
 public class MediaPlaybackService extends Service {
     private static final String TAG = "MediaPlaybackService";
     public static boolean running = false;
@@ -55,7 +35,7 @@ public class MediaPlaybackService extends Service {
     private final IBinder binder = new LocalBinder();
 
     public class LocalBinder extends Binder {
-        MediaPlaybackService getService() {
+        public MediaPlaybackService getService() {
             return MediaPlaybackService.this;
         }
     }
@@ -100,7 +80,7 @@ public class MediaPlaybackService extends Service {
         return binder;
     }
 
-    public void updateMusicList(ArrayList<Music> playlist, int songId){
+    public void PlayNow(ArrayList<Music> playlist, int songId){
         Log.d(TAG, "updateMusicList: playingId = " + songId);
         musicArrayList = playlist;
         playingId = songId;
@@ -112,6 +92,25 @@ public class MediaPlaybackService extends Service {
             musicArrayListCopy.addAll(musicArrayList);
         }catch (IOException e){
             Log.e(TAG, "updateMusicList: error " + e );
+        }
+    }
+
+    public void Add(Music music)
+    {
+        musicArrayList.add(music);
+    }
+
+    public void AddNext(Music music){
+        if(musicArrayList.size() == 0){
+            Add(music);
+            PlayNow(musicArrayList, 0);
+
+        }
+        else if(musicArrayList.size() == playingId + 1){
+            Add(music);
+        }
+        else{
+            musicArrayList.add(playingId + 1, music);
         }
     }
 

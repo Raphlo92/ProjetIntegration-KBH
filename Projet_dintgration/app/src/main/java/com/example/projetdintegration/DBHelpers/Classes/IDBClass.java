@@ -11,4 +11,5 @@ public interface IDBClass {
     String getName();
 
     void setName(String title);
+
 }
