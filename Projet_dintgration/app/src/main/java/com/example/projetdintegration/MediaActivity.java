@@ -131,7 +131,7 @@ public class MediaActivity extends AppCompatActivity{
             }
         });
         SeekBarUpdater();
-        InfoUpdater();
+        //InfoUpdater();
     }
 
     public class GestionnairePlayPause implements View.OnClickListener {
@@ -293,7 +293,7 @@ public class MediaActivity extends AppCompatActivity{
         });
     }
 
-    public void InfoUpdater(){
+    /*public void InfoUpdater(){
         MediaActivity.this.runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -302,7 +302,7 @@ public class MediaActivity extends AppCompatActivity{
             }
 
         });
-    }
+    }*/
 
 
     /*public void Pause() {
@@ -338,6 +338,7 @@ public class MediaActivity extends AppCompatActivity{
     }*/
 
     public void SetInfos(){
+
         if (MediaPlaybackService.mediaPlayer != null){
             playingId = MediaPlaybackService.playingId;
             int minutes = MediaPlaybackService.mediaPlayer.getDuration() / (60 * 1000);
@@ -346,7 +347,7 @@ public class MediaActivity extends AppCompatActivity{
             maxTime.setText(time);
             seekBar.setMax(MediaPlaybackService.mediaPlayer.getDuration() / 1000);
             mediaName.setText(MediaPlaybackService.musicArrayList.get(playingId).getName());
-            if(MediaPlaybackService.musicArrayList.get(playingId).getType().equals("audio")){
+            if(MediaPlaybackService.musicArrayList.get(playingId).getType().contains("audio")){
                 videoView.setVisibility(View.INVISIBLE);
                 coverArt.setVisibility(View.VISIBLE);
                 android.media.MediaMetadataRetriever mmr = new MediaMetadataRetriever();
@@ -372,6 +373,11 @@ public class MediaActivity extends AppCompatActivity{
                 videoView.start();
                 videoView.seekTo(MediaPlaybackService.mediaPlayer.getCurrentPosition());
             }
+        }
+        else{
+            videoView.setVisibility(View.INVISIBLE);
+            coverArt.setVisibility(View.VISIBLE);
+            coverArt.setImageResource(R.drawable.ic_music_note_24);
         }
     }
 

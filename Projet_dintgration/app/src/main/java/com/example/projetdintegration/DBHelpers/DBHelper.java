@@ -23,7 +23,7 @@ public class DBHelper extends SQLiteOpenHelper {
             public static final String COLUMN_NAME_CATEGORY = "category";
         }
 
-        /*public static class TableArtist implements BaseColumns {
+        public static class TableArtist implements BaseColumns {
             public static final String TABLE_NAME = "artist";
             public static final String COLUMN_NAME_NAME = "name";
         }
@@ -39,7 +39,7 @@ public class DBHelper extends SQLiteOpenHelper {
         public static class TableCategory implements BaseColumns {
             public static final String TABLE_NAME = "category";
             public static final String COLUMN_NAME_NAME = "name";
-        }*/
+        }
 
         public static class TablePlaylist implements BaseColumns {
             public static final String TABLE_NAME = "playlist";
@@ -69,7 +69,7 @@ public class DBHelper extends SQLiteOpenHelper {
                     Contract.TableMusic.COLUMN_NAME_ALBUM + " TEXT NOT NULL," +
                     Contract.TableMusic.COLUMN_NAME_CATEGORY + " TEXT)" ;
 
-    /*public static final String SQL_CREATE_TABLE_ARTIST =
+    public static final String SQL_CREATE_TABLE_ARTIST =
             "CREATE TABLE IF NOT EXISTS " + Contract.TableArtist.TABLE_NAME + " (" +
                     Contract.TableArtist._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                     Contract.TableArtist.COLUMN_NAME_NAME + " TEXT NOT NULL)";
@@ -91,7 +91,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String SQL_CREATE_TABLE_CATEGORY =
             "CREATE TABLE IF NOT EXISTS " + Contract.TableCategory.TABLE_NAME + " (" +
                     Contract.TableCategory._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
-                    Contract.TableCategory.COLUMN_NAME_NAME + " TEXT NOT NULL)";*/
+                    Contract.TableCategory.COLUMN_NAME_NAME + " TEXT NOT NULL)";
 
     public static final String SQL_CREATE_TABLE_PLAYLIST =
             "CREATE TABLE IF NOT EXISTS " + Contract.TablePlaylist.TABLE_NAME + " (" +
@@ -108,14 +108,14 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String SQL_DELETE_TABLE_MUSIC =
             "DROP TABLE IF EXISTS " + Contract.TableMusic.TABLE_NAME;
 
-    /*public static final String SQL_DELETE_TABLE_ARTIST =
+    public static final String SQL_DELETE_TABLE_ARTIST =
             "DROP TABLE IF EXISTS " + Contract.TableArtist.TABLE_NAME;
 
     public static final String SQL_DELETE_TABLE_ALBUM =
             "DROP TABLE IF EXISTS " + Contract.TableAlbum.TABLE_NAME;
 
     public static final String SQL_DELETE_TABLE_CATEGORY =
-            "DROP TABLE IF EXISTS " + Contract.TableCategory.TABLE_NAME;*/
+            "DROP TABLE IF EXISTS " + Contract.TableCategory.TABLE_NAME;
 
     public static final String SQL_DELETE_TABLE_PLAYLIST =
             "DROP TABLE IF EXISTS " + Contract.TablePlaylist.TABLE_NAME;
@@ -124,7 +124,7 @@ public class DBHelper extends SQLiteOpenHelper {
             "DROP TABLE IF EXISTS " + Contract.TableMusicPlaylist.TABLE_NAME;
     //endregion
 
-    public static final int DB_VERSION = 2;
+    public static final int DB_VERSION = 3;
     public static final String DB_NAME = "AndroidMusique.db";
 
     public DBHelper(Context context) {
@@ -147,10 +147,10 @@ public class DBHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         if(oldVersion != newVersion){
             db.execSQL(SQL_DELETE_TABLE_MUSIC_PLAYLIST);
-            /*db.execSQL(SQL_DELETE_TABLE_MUSIC);
+            db.execSQL(SQL_DELETE_TABLE_MUSIC);
             db.execSQL(SQL_DELETE_TABLE_ALBUM);
             db.execSQL(SQL_DELETE_TABLE_ARTIST);
-            db.execSQL(SQL_DELETE_TABLE_CATEGORY);*/
+            db.execSQL(SQL_DELETE_TABLE_CATEGORY);
             db.execSQL(SQL_DELETE_TABLE_PLAYLIST);
             onCreate(db);
         }

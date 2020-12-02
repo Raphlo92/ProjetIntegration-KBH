@@ -149,7 +149,7 @@
         <VideoView
             android:id="@+id/videoView"
             android:layout_width="match_parent"
-            android:layout_height="354dp"
+            android:layout_height="match_parent"
             android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
@@ -166,11 +166,11 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_marginStart="129dp"
-            android:layout_marginLeft="129dp"
+            android:layout_marginStart="128dp"
+            android:layout_marginLeft="128dp"
             android:layout_marginTop="12dp"
-            android:layout_marginEnd="127dp"
-            android:layout_marginRight="127dp"
+            android:layout_marginEnd="128dp"
+            android:layout_marginRight="128dp"
             tools:srcCompat="@tools:sample/avatars" />
 
 

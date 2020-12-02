@@ -92,44 +92,50 @@ public class DBInitializer {
         Cursor cursorV = context.getContentResolver().query(MediaStore.Video.Media.EXTERNAL_CONTENT_URI, null, null, null, MediaStore.Video.Media.DATE_ADDED + " DESC");
         if(cursorA != null){
             while(cursorA.moveToNext()){
-                String path = cursorA.getString(cursorA.getColumnIndexOrThrow(MediaStore.Audio.Media.DATA));
-                mmr.setDataSource(path);
-                int id = cursorA.getInt(cursorA.getColumnIndex(MediaStore.Audio.Media._ID));
-                String title = cursorA.getString(cursorA.getColumnIndexOrThrow(MediaStore.Audio.Media.TITLE)).trim();
-                String type = cursorA.getString(cursorA.getColumnIndexOrThrow(MediaStore.Audio.Media.MIME_TYPE));
-                String artist =  cursorA.getString(cursorA.getColumnIndexOrThrow(MediaStore.Audio.Media.ARTIST)).trim();
-                String album =  cursorA.getString(cursorA.getColumnIndexOrThrow(MediaStore.Audio.Media.ALBUM)).trim();
-                String genre =  mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_GENRE);
-                String duration =  mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION);
+                if (cursorA.getInt(cursorA.getColumnIndex(MediaStore.Audio.Media.IS_MUSIC)) != 0) {
+                    String path = cursorA.getString(cursorA.getColumnIndexOrThrow(MediaStore.Audio.Media.DATA));
+                    mmr.setDataSource(path);
+                    int id = cursorA.getInt(cursorA.getColumnIndex(MediaStore.Audio.Media._ID));
+                    int isMusic = cursorA.getInt(cursorA.getColumnIndex(MediaStore.Audio.Media.IS_MUSIC));
+                    String title = cursorA.getString(cursorA.getColumnIndexOrThrow(MediaStore.Audio.Media.TITLE));
 
-                if (genre != null){
-                    genre = StringUtil.Strip(genre.trim());
-                    genre = StringUtil.ReplaceAbbreviations(genre);
+                    Log.d(TAG, "getAllMusicsInMediaStore: "+ title + ": IsMusic = " + isMusic);
 
-                    if (NumberUtil.tryParseInt(genre)){
-                        genre = getCategoryNameById(context, Integer.parseInt(genre));
+                    String type = cursorA.getString(cursorA.getColumnIndexOrThrow(MediaStore.Audio.Media.MIME_TYPE));
+                    String artist =  cursorA.getString(cursorA.getColumnIndexOrThrow(MediaStore.Audio.Media.ARTIST));
+                    String album =  cursorA.getString(cursorA.getColumnIndexOrThrow(MediaStore.Audio.Media.ALBUM));
+                    String genre =  mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_GENRE);
+                    String duration =  mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION);
+
+                    if (genre != null){
+                        genre = StringUtil.Strip(genre.trim());
+                        genre = StringUtil.ReplaceAbbreviations(genre);
+
+                        if (NumberUtil.tryParseInt(genre)){
+                            genre = getCategoryNameById(context, Integer.parseInt(genre));
+                        }
                     }
-                }
-                else{
-                    genre = "";
-                }
+                    else{
+                        genre = "";
+                    }
 
-                if (duration != null){
-                    duration = duration.trim();
-                }
-                else
-                    duration = "0";
+                    if (duration != null){
+                        duration = duration.trim();
+                    }
+                    else
+                        duration = "0";
 
-                Log.d(TAG, "MediaStore: Music: " +
-                        "\nid = " + + id +
-                        "\ntitle = " + title +
-                        "\nduration = " + duration +
-                        "\ntype = " + type +
-                        "\npath = " + path +
-                        "\nartist = " + artist +
-                        "\nalbum = " + album +
-                        "\ngenre = " + genre);
-                musics.add(new Music(id, title, Double.parseDouble(duration) / 1000, type, path, genre, artist, album, playlistsDBHelper.isInFavorites(id)));
+                    Log.d(TAG, "MediaStore: Music: " +
+                            "\nid = " + + id +
+                            "\ntitle = " + title +
+                            "\nduration = " + duration +
+                            "\ntype = " + type +
+                            "\npath = " + path +
+                            "\nartist = " + artist +
+                            "\nalbum = " + album +
+                            "\ngenre = " + genre);
+                    musics.add(new Music(id, title, Double.parseDouble(duration) / 1000, type, path, genre, artist, album, playlistsDBHelper.isInFavorites(id)));
+                }
             }
             cursorA.close();
         }
@@ -141,10 +147,10 @@ public class DBInitializer {
                 mmr.setDataSource(path);
                 int id = cursorV.getInt(cursorV.getColumnIndex(MediaStore.Video.Media._ID));
                 Log.d(TAG, "getAllMusicsInMediaStore: id = " + id);
-                String title = cursorV.getString(cursorV.getColumnIndexOrThrow(MediaStore.Video.Media.TITLE)).trim();
+                String title = cursorV.getString(cursorV.getColumnIndexOrThrow(MediaStore.Video.Media.TITLE));
                 String type = cursorV.getString(cursorV.getColumnIndexOrThrow(MediaStore.Video.Media.MIME_TYPE));
-                String artist =  cursorV.getString(cursorV.getColumnIndexOrThrow(MediaStore.Video.Media.ARTIST)).trim();
-                String album =  cursorV.getString(cursorV.getColumnIndexOrThrow(MediaStore.Video.Media.ALBUM)).trim();
+                String artist =  cursorV.getString(cursorV.getColumnIndexOrThrow(MediaStore.Video.Media.ARTIST));
+                String album =  cursorV.getString(cursorV.getColumnIndexOrThrow(MediaStore.Video.Media.ALBUM));
                 String genre =  mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_GENRE);
                 String duration =  mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION);
 

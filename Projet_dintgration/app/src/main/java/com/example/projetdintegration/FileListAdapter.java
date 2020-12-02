@@ -35,6 +35,7 @@ public class FileListAdapter extends RecyclerView.Adapter<FileListAdapter.ViewHo
     private Context mContext;
     int mResource;
     ArrayList<Music> musics;
+    MediaPlaybackService.LocalBinder binder;
 
     static class ViewHolder extends RecyclerView.ViewHolder {
         TextView title;
@@ -47,11 +48,12 @@ public class FileListAdapter extends RecyclerView.Adapter<FileListAdapter.ViewHo
         }
     }
 
-    public FileListAdapter(@NonNull Context context, int resource, @NonNull ArrayList<Music> musics) {
+    public FileListAdapter(@NonNull Context context, int resource, @NonNull ArrayList<Music> musics, MediaPlaybackService.LocalBinder binder) {
         super();
         mContext = context;
         mResource = resource;
         this.musics = musics;
+        this.binder = binder;
     }
 
     @NonNull
@@ -76,6 +78,10 @@ public class FileListAdapter extends RecyclerView.Adapter<FileListAdapter.ViewHo
         else{
             holder.album.setImageResource(R.drawable.ic_file);
         }
+
+        holder.album.setOnClickListener(view -> {
+            binder.getService().PlayNow(musics, position);
+        });
 
         holder.title.setText(title);
     }

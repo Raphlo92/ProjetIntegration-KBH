@@ -396,7 +396,7 @@ public class PopupHelper {
     }
 
     //TODO : Take the user input to after give it to the musiclistActivity
-    public void showSearchForm(){
+    public void showSearchForm() {
         String title = "rechercher de vos chanson";
         String buttonTitle = "Rechercher";
 
@@ -406,18 +406,43 @@ public class PopupHelper {
         final EditText editSearchMusic = formElementsView.findViewById(R.id.playlistInputName);
         editSearchMusic.setText(researchContainer);
 
-        Musics DBMusicsReader = new Musics(dbHelper.getReadableDatabase(), mContext);
+
+        Musics DBMusicsReader = new Musics(new DBHelper(mContext).getReadableDatabase(), mContext);
+        //Artists DBArtistesReader = new Artists(new DBHelper(mContext).getReadableDatabase());
+        //Albums DBAlbumsReader = new Albums(new DBHelper(mContext).getReadableDatabase());
 
         Builder builder = new Builder(mContext);
         builder.setView(formElementsView);
         builder.setTitle(title);
         builder.setPositiveButton(buttonTitle, (dialog, i) -> {
-            String MusicsName = editSearchMusic.getText().toString();
-            researchContainer = MusicsName;
+            String input = editSearchMusic.getText().toString();
+            researchContainer = input;
 
-            String[] whereArgs = {"%" + MusicsName + "%" };
-            DBMusicsReader.Select(null, DBHelper.Contract.TableMusic.COLUMN_NAME_TITLE + " LIKE ?", whereArgs, null, null, null);
-            MusicListActivity.RefreshView(mContext);
+            String[] whereArgs = {"%" + input + "%", "%" + input + "%", "%" + input + "%"};
+
+            /*ArrayList<IDBClass> DBAlbums = DBAlbumsReader.Select(null, DBHelper.Contract.TableAlbum.COLUMN_NAME_TITLE + " LIKE ?", whereArgs, null, null, null);
+            //ArrayList<IDBClass> DBArtists = DBArtistesReader.Select(null, DBHelper.Contract.TableArtist.COLUMN_NAME_NAME + " LIKE ?", whereArgs, null, null, null);
+            ArrayList<Integer> IDS_Artist = new ArrayList<Integer>();
+            for (IDBClass artist:DBArtists){
+                IDS_Artist.add(artist.getId());
+            }
+            ArrayList<Integer> IDS_Album = new ArrayList<Integer>();
+            for (IDBClass album : DBAlbums) {
+                IDS_Album.add(album.getId());
+            }*/
+
+            String WhereClause = DBHelper.Contract.TableMusic.COLUMN_NAME_TITLE + " LIKE ? OR " +
+                    DBHelper.Contract.TableMusic.COLUMN_NAME_ARTIST + " LIKE ? OR " +
+                    DBHelper.Contract.TableMusic.COLUMN_NAME_ALBUM + " LIKE ?";
+
+            ArrayList<IDBClass> DBMusics = DBMusicsReader.Select(null, WhereClause, whereArgs, null, null, null);
+
+
+            ArrayList<Music> musics = new ArrayList<>();
+            for (IDBClass music : DBMusics) {
+                musics.add((Music) music);
+            }
+            MusicListActivity.RefreshViewFromList(mContext, musics);
             dialog.dismiss();
         });
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
@@ -440,7 +465,7 @@ public class PopupHelper {
         final EditText editSearchMusic = formElementsView.findViewById(R.id.playlistInputName);
         editSearchMusic.setText(music.getArtist());
 
-        Musics DBMusicsReader = new Musics(dbHelper.getReadableDatabase(),mContext);
+        Musics DBMusicsReader = new Musics(new DBHelper(mContext).getReadableDatabase(), mContext);
 
         Builder builder = new Builder(mContext);
         builder.setView(formElementsView);
@@ -449,10 +474,15 @@ public class PopupHelper {
             String ArtistsName = editSearchMusic.getText().toString();
 
             String[] whereArgs = {"%" + ArtistsName + "%" };
-            ArrayList<IDBClass> DBMusics = DBMusicsReader.Select(null, MediaStore.Audio.Media.ARTIST + " LIKE ?", whereArgs, null, null, null);
+
+            String WhereClause = DBHelper.Contract.TableMusic.COLUMN_NAME_ARTIST + " LIKE ?";
+
+            ArrayList<IDBClass> DBArtists = DBMusicsReader.Select(null, WhereClause, whereArgs, null, null, null);
 
             ArrayList<Music> musics = new ArrayList<>();
-            for(IDBClass artist:DBMusics) { musics.add((Music)artist); }
+            for (IDBClass artist : DBArtists) {
+                musics.add((Music) artist);
+            }
             MusicListActivity.RefreshViewFromList(mContext, musics);
             dialog.dismiss();
         });
@@ -476,7 +506,7 @@ public class PopupHelper {
         final EditText editSearchMusic = formElementsView.findViewById(R.id.playlistInputName);
         editSearchMusic.setText(music.getAlbum());
 
-        Musics DBMusicsReader = new Musics(dbHelper.getReadableDatabase(),mContext);
+        Musics DBMusicsReader = new Musics(new DBHelper(mContext).getReadableDatabase(), mContext);
 
         Builder builder = new Builder(mContext);
         builder.setView(formElementsView);
@@ -484,11 +514,16 @@ public class PopupHelper {
         builder.setPositiveButton(buttonTitle, (dialog, i) -> {
             String AlbumsName = editSearchMusic.getText().toString();
 
-            String[] whereArgs = {AlbumsName};
-            ArrayList<IDBClass> DBMusics = DBMusicsReader.Select(null, MediaStore.Audio.Media.ALBUM + " LIKE ?", whereArgs, null, null, null);
+            String[] whereArgs = {"%" + AlbumsName + "%" };
+
+            String WhereClause = DBHelper.Contract.TableMusic.COLUMN_NAME_ALBUM + " LIKE ?";
+
+            ArrayList<IDBClass> DBAlbums = DBMusicsReader.Select(null, WhereClause, whereArgs, null, null, null);
 
             ArrayList<Music> musics = new ArrayList<>();
-            for(IDBClass album:DBMusics) { musics.add((Music)album); }
+            for (IDBClass album : DBAlbums) {
+                musics.add((Music) album);
+            }
             MusicListActivity.RefreshViewFromList(mContext, musics);
             dialog.dismiss();
         });
@@ -500,5 +535,6 @@ public class PopupHelper {
         builder.show();
 
     }
+
 
 }

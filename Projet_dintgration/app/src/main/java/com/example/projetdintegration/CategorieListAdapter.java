@@ -2,6 +2,7 @@ package com.example.projetdintegration;
 
 import android.content.Context;
 import android.media.MediaMetadataRetriever;
+import android.util.LruCache;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,6 +29,7 @@ public class CategorieListAdapter extends RecyclerView.Adapter<CategorieListAdap
     private Context mContext;
     int mResource;
     ArrayList<Category> categories;
+    MediaPlaybackService.LocalBinder binder;
 
     @NonNull
     @Override
@@ -49,7 +51,7 @@ public class CategorieListAdapter extends RecyclerView.Adapter<CategorieListAdap
         Musics DBMusicsReader = new Musics(new DBHelper(mContext).getReadableDatabase(),  mContext);
         ArrayList<Music> musics = DBMusicsReader.getAllMusicInCategory(category.getId());
 
-        FileListAdapter adapter = new FileListAdapter(mContext, R.layout.mainactivity_imagebutton_adapter, musics);
+        FileListAdapter adapter = new FileListAdapter(mContext, R.layout.mainactivity_imagebutton_adapter, musics, binder);
         holder.musics.setAdapter(adapter);
 
 
@@ -75,10 +77,11 @@ public class CategorieListAdapter extends RecyclerView.Adapter<CategorieListAdap
         }
     }
 
-    public CategorieListAdapter(@NonNull Context context, int resource, @NonNull ArrayList<Category> categories) {
+    public CategorieListAdapter(@NonNull Context context, int resource, @NonNull ArrayList<Category> categories, MediaPlaybackService.LocalBinder binder) {
         super();
         mContext = context;
         mResource = resource;
         this.categories = categories;
+        this.binder = binder;
     }
 }

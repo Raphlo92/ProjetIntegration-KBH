@@ -6,8 +6,13 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.app.Service;
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
+import android.content.ServiceConnection;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.util.Log;
 import android.view.Menu;
 import android.widget.ImageView;
@@ -49,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
     DBHelper dbHelper;
     Musics DBMusicsReader;
     Musics DBMusicsWriter;
+    MediaPlaybackService.LocalBinder binder = HomeActivity.binder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -181,7 +187,7 @@ public class MainActivity extends AppCompatActivity {
             //scrollviews[i].setAdapter(adapter);
             //scrollviews[i].setLayoutManager(layout);
         }
-        CategorieListAdapter adapter = new CategorieListAdapter(this, R.layout.mainactivity_adapter_layout, categories);
+        CategorieListAdapter adapter = new CategorieListAdapter(this, R.layout.mainactivity_adapter_layout, categories, binder);
         LinearLayoutManager layout = new LinearLayoutManager(this);
         layout.setOrientation(RecyclerView.VERTICAL);
         final RecyclerView catList = (RecyclerView) findViewById(R.id.categorie_list);
