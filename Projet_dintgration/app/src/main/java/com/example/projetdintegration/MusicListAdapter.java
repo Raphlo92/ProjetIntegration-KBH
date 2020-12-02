@@ -1,6 +1,8 @@
 package com.example.projetdintegration;
 
 import android.content.Context;
+import android.content.Intent;
+import android.media.Image;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +14,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.projetdintegration.DBHelpers.Classes.Music;
 import com.example.projetdintegration.DBHelpers.DBHelper;
@@ -63,6 +66,7 @@ public class MusicListAdapter extends ArrayAdapter<Music> {
         String artist = getItem(position).getArtist();
         String album = getItem(position).getAlbum();
         boolean favorite = getItem(position).isFavorite();
+        Intent intent = new Intent(this.getContext(), MediaActivity.class);
 
         Playlists playlistsWriter = new Playlists(new DBHelper(mContext).getWritableDatabase(), mContext);
         Music music = new Music(id, title, length, type, path, category, artist, album, favorite);
@@ -105,7 +109,8 @@ public class MusicListAdapter extends ArrayAdapter<Music> {
 
         holder.item.setOnClickListener(view -> {
             Log.d(TAG, "onItemClick: Started");
-            binder.getService().PlayNow(musics, position);
+            binder.getService().updateMusicList(musics, position);
+            this.mContext.startActivity(intent);
         });
         holder.item.setOnLongClickListener(view -> {
             popupHelper.showMusicOptions(view, music, position, binder);
