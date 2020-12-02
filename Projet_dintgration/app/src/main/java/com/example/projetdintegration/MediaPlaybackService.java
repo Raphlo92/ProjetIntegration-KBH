@@ -43,6 +43,7 @@ public class MediaPlaybackService extends Service {
     private static final String TAG = "MediaPlaybackService";
     public static boolean running = false;
     public static boolean repeat = false;
+    public static boolean shuffle = false;
     public static MediaPlayer mediaPlayer;
     private static MediaPlaybackService instance = null;
     static Boolean playing = true;
@@ -102,7 +103,14 @@ public class MediaPlaybackService extends Service {
 
     public void updateMusicList(ArrayList<Music> playlist, int songId){
         Log.d(TAG, "updateMusicList: playingId = " + songId);
-        musicArrayList = playlist;
+        if(musicArrayList.isEmpty())
+            musicArrayList.addAll(playlist);
+        else {
+            for(int i = 0; i < musicArrayList.size(); i++){
+                musicArrayList.set(i, musicArrayListCopy.get(i));
+            }
+        }
+
         playingId = songId;
 
         try{
@@ -110,6 +118,8 @@ public class MediaPlaybackService extends Service {
             PlayFromPause();
             //pour avoir une copie en tout temps
             musicArrayListCopy.addAll(musicArrayList);
+            if(shuffle)
+                shuffleMusicList();
         }catch (IOException e){
             Log.e(TAG, "updateMusicList: error " + e );
         }
