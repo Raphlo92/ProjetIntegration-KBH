@@ -4,8 +4,11 @@ import android.app.IntentService;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.media.MediaMetadataRetriever;
+import android.net.Uri;
+import android.provider.MediaStore;
 import android.util.Log;
 
 import androidx.annotation.Nullable;
@@ -21,6 +24,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
+import java.net.URI;
 import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -62,9 +66,9 @@ public class DBInitializer {
         @Override
         protected void onHandleIntent(@Nullable Intent intent) {
             Log.d(TAG, "onHandleIntent: Started");
-            ArrayList<File> files = new ArrayList<>();
+            ArrayList<File> files = getFilesFromMediaStore(this);
             //MusicFileExplorer.getAllNewestChildren(MusicFileExplorer.DIRECTORY_MUSIC, files, lastInit);
-            MusicFileExplorer.getAllChildren(MusicFileExplorer.DIRECTORY_MUSIC, files);
+            //MusicFileExplorer.getAllChildren(MusicFileExplorer.DIRECTORY_MUSIC, files);
 
             new DBInitializer(this).Init(files);
             lastInit = Date.from(Instant.now());
@@ -72,9 +76,12 @@ public class DBInitializer {
     }
 
     public void Init(ArrayList<File> files){
-        lastModified = Date.from(Instant.now());
+        //lastModified = Date.from(Instant.now());
         Log.d(TAG, "Init: Started");
         String[] metadata;
+        String currentAlbum = "";
+        String currentArtist = "";
+        String currentImagePath = "";
 
         dbHelper.onUpgrade(dbHelper.getWritableDatabase(), DBHelper.DB_VERSION, DBHelper.DB_VERSION + 1);
 
@@ -85,105 +92,77 @@ public class DBInitializer {
         playlistsDBHelper.initFavorites();
 
         Log.d(TAG, "Init: FilesSize() = " + files.size());
+
+        /*if(files.size() == 0){
+            files.addAll(getFilesFromMediaStore());
+        }*/
+
         for (File file : files) {
-            if(lastModified.before(new Date(file.lastModified())))
+            //if(lastModified.before(new Date(file.lastModified())))
 
             Log.d(TAG, "Init: File reading");
-            //if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-                Path path = Paths.get(file.toURI());
 
-                Log.d(TAG, "Init: " + path.getFileName() + ": type = " + MusicFileExplorer.getMimeType(file));
+            Path path = Paths.get(file.toURI());
 
-                String mimeType = MusicFileExplorer.getMimeType(file);
+            Log.d(TAG, "Init: " + path.getFileName() + ": type = " + MusicFileExplorer.getMimeType(file));
 
-                if(mimeType != null){
-                    mimeType = mimeType.split("/")[0];
-                    if(mimeType.equals("video") || mimeType.equals("audio")){
-                        metadata = getMetadata(path.toAbsolutePath().toString());
-                        Log.d(TAG, "Init: \nmusicName = " + path.getFileName() +
-                                "\nmusicArtist = " + metadata[0] +
-                                "\nmusicAlbum = " + metadata[1] +
-                                "\nmusicGenre = " + metadata[2] +
-                                "\nmusicDuration = " + metadata[3]);
-                        Music music = new Music(0, path.getFileName().toString(), Double.parseDouble(metadata[3]) / 1000, "audio",  path.toAbsolutePath().toString(), metadata[2], metadata[0], metadata[1], false);
-                        Musics musicsDBHelper = new Musics(DBWriter);
-                        musicsDBHelper.Insert(music);
-                    }
-                    else if(mimeType.equals("image")){
-                        //TODO update image in Album DB Table
+            String mimeType = MusicFileExplorer.getMimeType(file);
 
-                        //get Album Id by Name => name being the name of folder where the image is (ALBUM_NAME_COUNT = 6)
-                        //  PATH TO ALBUM PROPS : /storage/emulated/0/Music/{Artist}/{Album}/*/{PropFile}
-                        //                            1        2    3   4       5       6
-                        String albumName = path.getName(ALBUM_NAME_COUNT).toString();
-                        //update Album using know data (ID)
-                        //  update image = "imagePath" where Id = (ID)
-                        Albums albumsDBHelper = new Albums(DBWriter);
-
-                        ContentValues values = new ContentValues();
-                        values.put(DBHelper.Contract.TableAlbum.COLUMN_NAME_IMAGE, path.toAbsolutePath().toString());
-                        String whereClause = DBHelper.Contract.TableAlbum.COLUMN_NAME_TITLE + " = ?";
-                        String[] whereArgs = { albumName };
-
-                        albumsDBHelper.Update(values, whereClause, whereArgs);
-                    }
-                }
-                else if(path.getNameCount() == ARTIST_NAME_COUNT){
-                    Log.d(TAG, "Init: artistName = " + path.getFileName());
-                    Artist artist = new Artist(0, path.getFileName().toString());
+            if(mimeType != null){
+                mimeType = mimeType.split("/")[0];
+                if(mimeType.equals("video") || mimeType.equals("audio")){
+                    metadata = getMetadata(path.toAbsolutePath().toString());
+                    Log.d(TAG, "Init: \nmusicTitle = " + metadata[0] +
+                            "\nmusicArtist = " + metadata[1] +
+                            "\nmusicAlbum = " + metadata[2] +
+                            "\nmusicGenre = " + metadata[3] +
+                            "\nmusicDuration = " + metadata[4]+
+                            "\nmusicImage = " + metadata[5]);
                     Artists artistsDBHelper = new Artists(DBWriter);
-                    artistsDBHelper.Insert(artist);
-                }
-                else if(path.getNameCount() == ALBUM_NAME_COUNT){
-                    Log.d(TAG, "Init: albumName = " + path.getFileName());
-
-                    String firstMusic = file.list()[0];
-
-                    Path musicPath = Paths.get(path.toAbsolutePath() + "/" + firstMusic);
-                    metadata = getMetadata(musicPath.toAbsolutePath().toString());
-
-                    Album album = new Album(0, path.getFileName().toString(), metadata[4], path.getName(ARTIST_NAME_COUNT).toString(), metadata[2]);
                     Albums albumsDBHelper = new Albums(DBWriter);
-                    albumsDBHelper.Insert(album);
+                    Musics musicsDBHelper = new Musics(DBWriter);
+
+                    if(!currentAlbum.equals(metadata[2])){
+                        if(!currentArtist.equals(metadata[1])){
+                            currentArtist = metadata[1];
+                            Artist artist = new Artist(0, currentArtist);
+                            artistsDBHelper.Insert(artist);
+                        }
+                        currentAlbum = metadata[2];
+                        currentImagePath = metadata[5];
+
+                        Album album = new Album(0, currentAlbum, currentImagePath, currentArtist, metadata[3]);
+                        albumsDBHelper.Insert(album);
+                    }
+
+                    Music music = new Music(0, metadata[0], Double.parseDouble(metadata[4]) / 1000, mimeType,  path.toAbsolutePath().toString(), metadata[3], currentArtist, currentAlbum, false);
+                    musicsDBHelper.Insert(music);
                 }
 
-
-
-                /*
-                switch (path.getNameCount()){
-                    case ARTIST_NAME_COUNT:
-                        Log.d(TAG, "Init: artistName = " + path.getFileName());
-                        Artist artist = new Artist(0, path.getFileName().toString());
-                        Artists artistsDBHelper = new Artists(DBWriter);
-                        artistsDBHelper.Insert(artist);
-                        break;
-                    case ALBUM_NAME_COUNT:
-                        Log.d(TAG, "Init: albumName = " + path.getFileName());
-
-                        String firstMusic = file.list()[0];
-
-                        Path musicPath = Paths.get(path.toAbsolutePath() + "/" + firstMusic);
-                        metadata = getMetadata(musicPath.toAbsolutePath().toString());
-
-                        Album album = new Album(0, path.getFileName().toString(), path.getName(ARTIST_NAME_COUNT).toString(), metadata[2]);
-                        Albums albumsDBHelper = new Albums(DBWriter);
-                        albumsDBHelper.Insert(album);
-                        break;
-                    case MUSIC_NAME_COUNT:
-                        metadata = getMetadata(path.toAbsolutePath().toString());
-                        Log.d(TAG, "Init: \nmusicName = " + path.getFileName() +
-                                "\nmusicArtist = " + metadata[0] +
-                                "\nmusicAlbum = " + metadata[1] +
-                                "\nmusicGenre = " + metadata[2] +
-                                "\nmusicDuration = " + metadata[3]);
-                        Music music = new Music(0, path.getFileName().toString(), Double.parseDouble(metadata[3]) / 1000, "audio",  path.toAbsolutePath().toString(), metadata[2], metadata[0], metadata[1], false);
-                        Musics musicsDBHelper = new Musics(DBWriter);
-                        musicsDBHelper.Insert(music);
-                        break;
-                }*/
             }
         }
-    //}
+    }
+
+    public static ArrayList<File> getFilesFromMediaStore(Context context){
+        ArrayList<File> files = new ArrayList<>();
+
+        Cursor cursor = context.getContentResolver().query(
+                MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, null, null, null,
+                MediaStore.Audio.Media.DEFAULT_SORT_ORDER);
+        if(cursor == null){
+            return null;
+        }
+
+        while(cursor.moveToNext()){
+            String path = cursor.getString(cursor
+                    .getColumnIndexOrThrow(MediaStore.Audio.Media.DATA));
+
+            files.add(new File(path));
+        }
+
+        cursor.close();
+        return files;
+    }
 
     public String getCategory(Album album){
         String category = "";
@@ -231,10 +210,11 @@ public class DBInitializer {
         //TODO Strip genre and make sure they are in the DB
         //TODO - Extra: find the closes resembling genre
         MediaMetadataRetriever mmr = new MediaMetadataRetriever();
-        String[] res = {"unknown", "unknown", "unknown", "0", "unknown"};
+        String[] res = {"unknown", "unknown", "unknown", "unknown", "0", "unknown"};
         try {
             mmr.setDataSource(path);
 
+            String title = mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_TITLE);
             String artist =  mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ARTIST);
             String album =  mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ALBUM);
             String genre =  mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_GENRE);
@@ -245,18 +225,23 @@ public class DBInitializer {
             }
 
 
+            Log.d(TAG, "getMetadata: title = " + title);
             Log.d(TAG, "metadata: artist = " + artist);
             Log.d(TAG, "metadata: album = " + album);
             Log.d(TAG, "metadata: genre = " + genre);
             Log.d(TAG, "metadata: duration = " + duration);
 
+            if(title != null){
+                res[0] = title.trim();
+            }
+
             if (artist != null){
-                res[0] = artist.trim();
+                res[1] = artist.trim();
             }
 
 
             if (album != null){
-                res[1] = album.trim();
+                res[2] = album.trim();
             }
 
             if (genre != null){
@@ -267,15 +252,15 @@ public class DBInitializer {
                     genre = Categories.getNameById(DBReader, Integer.parseInt(genre));
                 }
 
-                res[2] = genre;
+                res[3] = genre;
             }
 
             if (duration != null){
-                res[3] = duration.trim();
+                res[4] = duration.trim();
             }
 
             if (albumImagePath != null){
-                res[4] = albumImagePath;
+                res[5] = albumImagePath;
             }
         }
         catch(Exception e){}

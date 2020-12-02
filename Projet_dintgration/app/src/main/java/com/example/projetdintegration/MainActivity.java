@@ -118,10 +118,6 @@ public class MainActivity extends AppCompatActivity {
         final TextView pageTitle = (TextView) findViewById(R.id.PageTitle);
         pageTitle.setText(R.string.nav_home);
 
-        //final ImageView imageView2 = (ImageView) findViewById(R.id.imageView2);
-        //imageView2.setImageResource(R.drawable.ic_add);
-        //imageView2.setVisibility(View.INVISIBLE);
-
         ArrayList<IDBClass> dbMusics = new ArrayList<>();
         ArrayList<Music> musics = new ArrayList<>();
 
@@ -148,7 +144,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void scrollView_UI() throws InterruptedException {
 
-        final RecyclerView[] scrollviews = {
+        /*final RecyclerView[] scrollviews = {
                 (RecyclerView) findViewById(R.id.slideshow1),
                 (RecyclerView) findViewById(R.id.slideshow2),
                 (RecyclerView) findViewById(R.id.slideshow3),
@@ -172,7 +168,7 @@ public class MainActivity extends AppCompatActivity {
                 (TextView) findViewById(R.id.slideshow8Title),
                 (TextView) findViewById(R.id.slideshow9Title),
                 (TextView) findViewById(R.id.slideshow10Title)
-        };
+        };*/
 
         //final ListView listView2 = (ListView) findViewById(R.id.listView2);
 
@@ -188,40 +184,29 @@ public class MainActivity extends AppCompatActivity {
         //Determiner 10 categories random
         //Pour chaques categories ajouter dynamiquement les musiques
         //En utilisant des adapters
-        ArrayList<IDBClass> dbMusics;
-        ArrayList<Music> musics;
 
         int max = Math.min(categoriesUsed.size(), 10);
 
         for (int i = 0; i < max; i++) {
-            dbMusics = new ArrayList<>();
-            musics = new ArrayList<>();
             int randomIndex = rand.nextInt(categoriesUsed.size());
             IDBClass randomElement = categoriesUsed.get(randomIndex);
             Category RandCat = (Category) randomElement;
             categories.add(RandCat);
             categoriesUsed.remove(randomIndex);
 
-            String whereClause = DBHelper.Contract.TableMusic.COLUMN_NAME_ID_CATEGORY + " = ?";
-            String[] whereArgs = {RandCat.getId() + ""};
 
 
-            dbMusics = DBMusicsReader.Select(null, whereClause, whereArgs, null, null, null);
-            musics = new ArrayList<>();
 
-            for (IDBClass music : dbMusics) {
-                //music = dbMusics.get(rand.nextInt(dbMusics.size()));
-                musics.add((Music) music);
-            }
-
-            FileListAdapter adapter = new FileListAdapter(this, R.layout.mainactivity_imagebutton_adapter, musics);
-            scrollviewTitles[i].setText(RandCat.getName());
-            scrollviews[i].setAdapter(adapter);
-            LinearLayoutManager layout = new LinearLayoutManager(this);
-            layout.setOrientation(RecyclerView.HORIZONTAL);
-            scrollviews[i].setLayoutManager(layout);
-
+            //scrollviewTitles[i].setText(RandCat.getName());
+            //scrollviews[i].setAdapter(adapter);
+            //scrollviews[i].setLayoutManager(layout);
         }
+        CategorieListAdapter adapter = new CategorieListAdapter(this, R.layout.mainactivity_adapter_layout, categories);
+        LinearLayoutManager layout = new LinearLayoutManager(this);
+        layout.setOrientation(RecyclerView.VERTICAL);
+        final RecyclerView catList = (RecyclerView) findViewById(R.id.categorie_list);
+        catList.setAdapter(adapter);
+        catList.setLayoutManager(layout);
 
     }
 }

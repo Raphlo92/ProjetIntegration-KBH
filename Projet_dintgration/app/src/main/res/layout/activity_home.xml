@@ -43,14 +43,12 @@
 
     <ImageView
         android:id="@+id/logo"
-        android:layout_width="289dp"
-        android:layout_height="386dp"
+        android:layout_width="407dp"
+        android:layout_height="461dp"
         android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
         android:layout_marginTop="100dp"
         android:layout_marginEnd="10dp"
-        android:layout_marginRight="10dp"
-        android:src="@drawable/androidlogo"
+        android:src="@drawable/transparent_android_musique_logo512x512"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -2,9 +2,11 @@ package com.example.projetdintegration;
 
 import android.app.Person;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.icu.text.Transliterator;
+import android.media.MediaMetadataRetriever;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,11 +38,12 @@ public class FileListAdapter extends RecyclerView.Adapter<FileListAdapter.ViewHo
 
     static class ViewHolder extends RecyclerView.ViewHolder {
         TextView title;
-        ImageButton album;
+        ImageView album;
         RelativeLayout parentLayout;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            album = (ImageButton) itemView.findViewById(R.id.mediaActivityButton1);
+            album = (ImageView) itemView.findViewById(R.id.mainFileImage);
+            title = (TextView) itemView.findViewById(R.id.mainFileName);
         }
     }
 
@@ -51,43 +54,6 @@ public class FileListAdapter extends RecyclerView.Adapter<FileListAdapter.ViewHo
         this.musics = musics;
     }
 
-    /*public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        int id = getItem(position).getId();
-        String title = getItem(position).getName();
-        double length = getItem(position).getLength(); // in seconds
-        String type = getItem(position).getType();
-        String path = getItem(position).getPath();
-        String category = getItem(position).getCategory();
-        String artist = getItem(position).getArtist();
-        String album = getItem(position).getAlbum();
-        boolean favorite = getItem(position).isFavorite();
-
-        Music music = new Music(id, title, length, type, path, category, artist, album, favorite);
-        ViewHolder holder = new ViewHolder();
-        final View result;
-
-        if (convertView == null) {
-            LayoutInflater inflater = LayoutInflater.from(mContext);
-            convertView = inflater.inflate(mResource, parent, false);
-
-            holder = new ViewHolder();
-            holder.album = (ImageButton) convertView.findViewById(R.id.mediaActivityButton1);
-            result = convertView;
-
-            convertView.setTag(holder);
-        } else {
-            holder = (ViewHolder) convertView.getTag();
-            result = convertView;
-    }
-
-
-        lastPosition = position;
-        holder.album.setImageDrawable(Drawable.createFromPath("@drawable/ic_file"));
-
-
-        return convertView;
-    }*/
-
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -97,26 +63,22 @@ public class FileListAdapter extends RecyclerView.Adapter<FileListAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        int id = musics.get(position).getId();
         String title = musics.get(position).getName();
-        double length = musics.get(position).getLength(); // in seconds
-        String type = musics.get(position).getType();
         String path = musics.get(position).getPath();
-        String category = musics.get(position).getCategory();
-        String artist = musics.get(position).getArtist();
-        String album = musics.get(position).getAlbum();
-        boolean favorite = musics.get(position).isFavorite();
 
-        Music music = new Music(id, title, length, type, path, category, artist, album, favorite);
+        MediaMetadataRetriever mmr = new MediaMetadataRetriever();
+        mmr.setDataSource(path);
+        byte[] artByte = mmr.getEmbeddedPicture();
+        if(artByte != null){
+            Bitmap bm = BitmapFactory.decodeByteArray(artByte, 0, artByte.length);
+            holder.album.setImageBitmap(bm);
+        }
+        else{
+            holder.album.setImageResource(R.drawable.ic_file);
+        }
 
-        //if(path == null)
-        holder.album.setImageResource(R.drawable.ic_file);
-        //else {
-        //    holder.album.setImageBitmap(BitmapFactory.decodeFile(path));
-        //}
-        lastPosition = position;
+        holder.title.setText(title);
     }
-
     @Override
     public int getItemCount() {
         return musics.size();

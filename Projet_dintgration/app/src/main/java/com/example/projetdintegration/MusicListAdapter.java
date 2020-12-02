@@ -23,6 +23,8 @@ import com.example.projetdintegration.DBHelpers.Playlists;
 import com.example.projetdintegration.Utilities.PopupHelper;
 
 import java.util.ArrayList;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
 
 public class MusicListAdapter extends ArrayAdapter<Music> {
     private static final String TAG = "MusicListAdapter";
@@ -31,6 +33,8 @@ public class MusicListAdapter extends ArrayAdapter<Music> {
     private int lastPosition = -1;
     private PopupHelper popupHelper;
     private int playlistId;
+    ArrayList<Music> musics;
+    MediaPlaybackService.LocalBinder binder;
 
 
     static class ViewHolder {
@@ -42,12 +46,14 @@ public class MusicListAdapter extends ArrayAdapter<Music> {
         ImageView options;
     }
 
-    public MusicListAdapter(@NonNull Context context, int resource, @NonNull ArrayList<Music> objects, int playlistId) {
-        super(context, resource, objects);
+    public MusicListAdapter(@NonNull Context context, int resource, @NonNull ArrayList<Music> musics, int playlistId, MediaPlaybackService.LocalBinder binder) {
+        super(context, resource, musics);
         mContext = context;
         mRessource = resource;
         popupHelper = new PopupHelper(context);
         this.playlistId = playlistId;
+        this.musics = musics;
+        this.binder = binder;
     }
 
     @NonNull
@@ -102,6 +108,10 @@ public class MusicListAdapter extends ArrayAdapter<Music> {
         holder.artist.setText(music.getArtist());
         holder.length.setText(Music.TimeToString(music.getLength()));
 
+        holder.item.setOnClickListener(view -> {
+            Log.d(TAG, "onItemClick: Started");
+            binder.getService().updateMusicList(musics, position);
+        });
         holder.item.setOnLongClickListener(view -> {
             popupHelper.showMusicOptions(view, music);
             return true;

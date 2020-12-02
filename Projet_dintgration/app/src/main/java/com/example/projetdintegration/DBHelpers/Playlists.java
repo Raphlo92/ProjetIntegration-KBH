@@ -131,14 +131,17 @@ public class Playlists extends AbstractDBHelper {
     }
 
     public boolean isInFavorites(int musicId){
+        return isInPlaylist(musicId, getFavoritesId());
+    }
+
+    public boolean isInPlaylist(int musicId, int playlistId){
         String[] columns = { TableMusicPlaylist.COLUMN_NAME_ID_MUSIC };
-        boolean favorite = false;
         String where = TableMusicPlaylist.COLUMN_NAME_ID_MUSIC + " = ? AND " + TableMusicPlaylist.COLUMN_NAME_ID_PLAYLIST + " = ?";
-        String[] whereArgs = {musicId + "", getFavoritesId() + ""};
+        String[] whereArgs = {musicId + "", playlistId + ""};
         Cursor cursor = DB.query(TableMusicPlaylist.TABLE_NAME, columns , where, whereArgs, null, null, null);
-        favorite = cursor.moveToNext();
+        boolean inPlaylist = cursor.moveToNext();
         cursor.close();
-        return favorite;
+        return inPlaylist;
     }
 
     public int getFavoritesId(){

@@ -1,76 +1,47 @@
 package com.example.projetdintegration;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.HorizontalScrollView;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.projetdintegration.DBHelpers.Categories;
 import com.example.projetdintegration.DBHelpers.Classes.Category;
 import com.example.projetdintegration.DBHelpers.Classes.IDBClass;
 import com.example.projetdintegration.DBHelpers.Classes.Music;
 import com.example.projetdintegration.DBHelpers.DBHelper;
 import com.example.projetdintegration.DBHelpers.Musics;
-import com.example.projetdintegration.DBHelpers.Playlists;
 
 import java.util.ArrayList;
 import java.util.Random;
 
-public class CategorieListAdapter extends ArrayAdapter<Category> {
+public class CategorieListAdapter extends RecyclerView.Adapter<CategorieListAdapter.ViewHolder> {
 
     private static final String Tag = " FileListAdapter";
     private int lastPosition = -1;
     private Context mContext;
     int mResource;
-
-    static class ViewHolder {
-        TextView title;
-        ListView musics;
-    }
-
-    public CategorieListAdapter(@NonNull Context context, int resource, @NonNull ArrayList<Category> objects) {
-        super(context, resource, objects);
-        mContext = context;
-        mResource = resource;
-    }
+    ArrayList<Category> categories;
 
     @NonNull
     @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        int id = getItem(position).getId();
-        String title = getItem(position).getName();
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.mainactivity_adapter_layout, parent, false);
+        return new ViewHolder(v);
+    }
 
-        View result;
+    @Override
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        int id = categories.get(position).getId();
+        String title = categories.get(position).getName();
 
         Category category = new Category(id, title);
-        ViewHolder holder = new ViewHolder();
 
-        if (convertView == null) {
-            LayoutInflater inflater = LayoutInflater.from(mContext);
-            convertView = inflater.inflate(mResource, parent, false);
-
-            holder = new ViewHolder();
-            holder.title = (TextView) convertView.findViewById(R.id.TextView);
-            holder.musics = (ListView)  convertView.findViewById(R.id.slideshow);
-
-            result = convertView;
-
-            convertView.setTag(holder);
-        } else {
-            holder = (ViewHolder) convertView.getTag();
-            result = convertView;
-        }
         lastPosition = position;
         holder.title.setText(category.getName());
 
@@ -86,12 +57,38 @@ public class CategorieListAdapter extends ArrayAdapter<Category> {
         for (IDBClass music : dbMusics) {
             music = dbMusics.get(rand.nextInt(dbMusics.size()));
             musics.add((Music) music);
-            dbMusics.remove(music);
         }
 
         FileListAdapter adapter = new FileListAdapter(mContext, R.layout.mainactivity_imagebutton_adapter, musics);
-        //holder.musics.setAdapter(adapter);
+        holder.musics.setAdapter(adapter);
 
-        return convertView;
+
+        LinearLayoutManager layout = new LinearLayoutManager(mContext);
+        layout.setOrientation(RecyclerView.HORIZONTAL);
+        holder.musics.setLayoutManager(layout);
+
+    }
+
+    @Override
+    public int getItemCount() {
+        return categories.size();
+    }
+
+    static class ViewHolder extends RecyclerView.ViewHolder {
+        TextView title;
+        RecyclerView musics;
+
+        public ViewHolder(@NonNull View itemView) {
+            super(itemView);
+            title = itemView.findViewById(R.id.TextView);
+            musics = itemView.findViewById(R.id.slideshow);
+        }
+    }
+
+    public CategorieListAdapter(@NonNull Context context, int resource, @NonNull ArrayList<Category> categories) {
+        super();
+        mContext = context;
+        mResource = resource;
+        this.categories = categories;
     }
 }

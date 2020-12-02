@@ -1,7 +1,12 @@
 package com.example.projetdintegration;
 
+import android.app.Service;
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
+import android.content.ServiceConnection;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Menu;
@@ -26,6 +31,7 @@ import com.example.projetdintegration.DBHelpers.Playlists;
 import com.example.projetdintegration.Utilities.PopupHelper;
 import com.google.android.material.navigation.NavigationView;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class MusicListActivity extends AppCompatActivity {
@@ -39,18 +45,40 @@ public class MusicListActivity extends AppCompatActivity {
     Musics DBMusicsWriter;
     Playlists DBPlaylistsReader;
     static MusicListAdapter adapter;
+    static int playlistId;
+    MediaPlaybackService.LocalBinder binder;
+    Service mPService;
+    boolean mPBound = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        int playlistId = getIntent().getIntExtra(DBHelper.Contract.TablePlaylist._ID, -1);
+        ServiceConnection connection = new ServiceConnection() {
+
+            @Override
+            public void onServiceConnected(ComponentName className, IBinder service){
+                Log.d(TAG, "onServiceConnected: binder Created");
+                binder = (MediaPlaybackService.LocalBinder) service;
+                mPService = binder.getService();
+                mPBound = true;
+                generateListView(playlistId);
+            }
+            @Override
+            public void onServiceDisconnected(ComponentName arg0){
+                mPBound = false;
+            }
+        };
+        Intent intent = new Intent(this, MediaPlaybackService.class);
+        bindService(intent, connection, Context.BIND_AUTO_CREATE);
+
+        playlistId = getIntent().getIntExtra(DBHelper.Contract.TablePlaylist._ID, -1);
         setContentView(R.layout.activity_list);
 
         PopupHelper popupHelper = new PopupHelper(this);
 
         final ImageView imageView1 = (ImageView) findViewById(R.id.imageView1);
-        imageView1.setImageResource(R.drawable.ic_add);
+        imageView1.setImageResource(R.drawable.ic_baseline_search_24);
         imageView1.setVisibility(View.VISIBLE);
         imageView1.setOnClickListener(view -> {
             Log.d(TAG, "imageView1: onClickListener() ");
@@ -67,7 +95,7 @@ public class MusicListActivity extends AppCompatActivity {
         DBPlaylistsReader = new Playlists(dbHelper.getReadableDatabase());
         //
 
-        Categories.exists(dbHelper.getReadableDatabase(), "Ro");
+        //Categories.exists(dbHelper.getReadableDatabase(), "Ro");
 
         //region Navigation
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -99,11 +127,10 @@ public class MusicListActivity extends AppCompatActivity {
 
         NavigationManager.determinerOptionsAfficher(navigationView.getMenu());
         //endregion
-
-        generateListView(playlistId);
     }
 
     void generateListView(int playlistId){
+        Log.d(TAG, "generateListView: Started");
         ArrayList<IDBClass> dbMusics = new ArrayList<>();
         ArrayList<Music> musics = new ArrayList<>();
         final ImageView imageView1 = (ImageView) findViewById(R.id.imageView1);
@@ -138,21 +165,20 @@ public class MusicListActivity extends AppCompatActivity {
 
             dbMusics = DBMusicsReader.Select(null, null, null, null, null, null);
             imageView1.setImageResource(R.drawable.ic_baseline_search_24);
-            imageView2.setImageResource(R.drawable.androidlogo);
+            imageView2.setImageResource(R.drawable.transparent_android_musique_logo512x512);
             imageView1.setVisibility(View.VISIBLE);
             imageView2.setVisibility(View.VISIBLE);
+        }
 
+        for (IDBClass music: dbMusics) {
+            musics.add((Music) music);
+        }
 
-            for (IDBClass music: dbMusics) {
-                musics.add((Music) music);
-            }
-
-            final ListView listView = (ListView) findViewById(R.id.listView);
-            adapter = new MusicListAdapter(this, R.layout.music_listitem_layout, musics, playlistId);
-            listView.setAdapter(adapter);
+        final ListView listView = (ListView) findViewById(R.id.listView);
+        adapter = new MusicListAdapter(this, R.layout.music_listitem_layout, musics, playlistId, binder);
+        listView.setAdapter(adapter);
 
         }
-    }
     @Override
     public void onBackPressed() {
         Log.d(TAG, "onBackPressed: Started");
@@ -160,6 +186,30 @@ public class MusicListActivity extends AppCompatActivity {
             drawerLayout.closeDrawer(GravityCompat.START);
         else
             super.onBackPressed();
+    }
+
+    public static void RefreshView(Context context){
+        ArrayList<IDBClass> dbMusics = new ArrayList<>();
+        ArrayList<Music> musics = new ArrayList<>();
+        DBHelper dbHelper = new DBHelper(context);
+        Musics DBMusicsReader = new Musics(dbHelper.getReadableDatabase());
+        Musics DBMusicsWriter = new Musics(dbHelper.getWritableDatabase());
+        Playlists DBPlaylistsReader = new Playlists(dbHelper.getReadableDatabase());
+        if(playlistId > -1){
+            dbMusics = DBPlaylistsReader.getAllMusicsInPlaylist(playlistId);
+        }
+        else{
+            dbMusics = DBMusicsReader.Select(null, null, null, null, null, null);
+        }
+
+        for (IDBClass music: dbMusics) {
+            musics.add((Music) music);
+        }
+
+        adapter.clear();
+        adapter.addAll(musics);
+        adapter.notifyDataSetChanged();
+
     }
 
     public static void RefreshViewFromList(Context context, ArrayList<Music> musics){

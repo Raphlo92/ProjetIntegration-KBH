@@ -104,7 +104,7 @@ public class SpotifyMusicPlayer extends AppCompatActivity {
         playButton = findViewById(R.id.playButton);
         nextButton = findViewById(R.id.forwardButton);
         previousButton = findViewById(R.id.rewindButton);
-        stopButton = findViewById(R.id.stopButton);
+        //stopButton = findViewById(R.id.stopButton);
     }
     private void initializeDisplayComponents(){
         mediaName = findViewById(R.id.mediaName);

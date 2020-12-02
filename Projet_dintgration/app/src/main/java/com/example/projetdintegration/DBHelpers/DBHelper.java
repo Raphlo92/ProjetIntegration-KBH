@@ -42,6 +42,9 @@ public class DBHelper extends SQLiteOpenHelper {
             public static final String TABLE_NAME = "playlist";
             public static final String COLUMN_NAME_NAME = "name";
             public static final String COLUMN_NAME_TYPE = "type";
+            public static final String NORMAL_TYPE = "normal";
+            public static final String RELATIVE_TYPE = "favorites";
+            public static final String FAVORITES = "relative";
         }
 
         public static class TableMusicPlaylist implements BaseColumns {

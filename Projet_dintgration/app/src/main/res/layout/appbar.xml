@@ -19,8 +19,9 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/toolbarContainer"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="86dp"
         >
 
     <androidx.appcompat.widget.Toolbar
@@ -77,7 +78,7 @@
                 android:layout_height="46dp"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                app:srcCompat="@drawable/androidlogo" />
+                app:srcCompat="@drawable/transparent_android_musique_logo512x512" />
             </RelativeLayout>
         </RelativeLayout>
 

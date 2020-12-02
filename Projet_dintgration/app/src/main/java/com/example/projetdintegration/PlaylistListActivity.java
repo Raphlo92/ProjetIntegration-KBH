@@ -35,7 +35,7 @@ public class PlaylistListActivity extends AppCompatActivity {
     static DBHelper dbHelper;
     Playlists DBPlaylistsReader;
     Playlists DBPlaylistsWriter;
-    PlaylistListAdapter adapter;
+    static PlaylistListAdapter adapter;
 
 
     @Override
@@ -132,9 +132,9 @@ public class PlaylistListActivity extends AppCompatActivity {
             playlists.add((Playlist) playlist);
         }
 
-        //adapter.clear();
-        //adapter.addAll(playlists);
-        //adapter.notifyDataSetChanged();
+        adapter.clear();
+        adapter.addAll(playlists);
+        adapter.notifyDataSetChanged();
 
     }
 }

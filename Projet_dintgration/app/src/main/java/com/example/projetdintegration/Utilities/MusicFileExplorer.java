@@ -10,10 +10,12 @@ import java.util.Date;
 public class MusicFileExplorer {
     //PATH TO MUSICS : /storage/emulated/0/Music/{Artist}/{Album}/{Music}
     //PATH TO ALBUM PROPS : /storage/emulated/0/Music/{Artist}/{Album}/{PropFile}
+    //FILES TO IGNORE : files starting with '.'
 
     //FileOutputStream
     //FileInputStream
     //File
+
     static ArrayList<File> files = new ArrayList<>();
     //public static final String DIRECTORY_MUSIC = "src/main/res/raw";//"C:/Users/Kevin/Music";//"/storage/emulated/0/Music";
     public static final String DIRECTORY_MUSIC = "/storage/emulated/0/Music";
@@ -82,7 +84,8 @@ public class MusicFileExplorer {
     public static void getAllChildren(String path, ArrayList<File> files){
         Log.d(TAG, "getAllChildren: Started");
         File file = new File(path);
-        String[] children = file.list();
+
+        String[] children = file.list(); //null
         //ArrayList<File> files = new ArrayList<>();
 
         if(children != null){
@@ -110,8 +113,15 @@ public class MusicFileExplorer {
         }
 
         Log.d(TAG, "getMimeType: extension = "+ extension);
+        String mimeType = MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension);
 
-        return MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension);
+        if(extension != null){
+            if(mimeType != null){
+                return MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension);
+            }
+            return "unsupported";
+        }
+        return null;
     }
 
     public static File getFile(String path) {

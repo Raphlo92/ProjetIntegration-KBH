@@ -183,6 +183,7 @@ public class Musics extends AbstractDBHelper {
         };
 
         String whereClause = DBHelper.Contract.TableCategory._ID + " IN (" + CSIds + ")";
+        whereClause = DBHelper.Contract.TableCategory._ID + " IN (" + CSIds + ")";
 
 
         musics = categoriesDBHelper.Select(columns, whereClause, null, null, null, null);
