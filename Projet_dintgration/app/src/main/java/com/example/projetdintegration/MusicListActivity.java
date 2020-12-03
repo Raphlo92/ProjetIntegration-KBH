@@ -161,7 +161,7 @@ public class MusicListActivity extends AppCompatActivity {
         }
         else{
 
-            dbMusics = DBMusicsReader.Select(null, null, null, null, null, null);
+            dbMusics = DBMusicsReader.SavedSelect(null, null, null, null, null, null);
             imageView1.setImageResource(R.drawable.ic_baseline_search_24);
             imageView2.setImageResource(R.drawable.transparent_android_musique_logo512x512);
             imageView1.setVisibility(View.VISIBLE);

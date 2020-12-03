@@ -198,9 +198,54 @@ public class Playlists extends AbstractDBHelper {
 
         Musics DBMusicReader = new Musics(new DBHelper(mContext).getReadableDatabase(), mContext);
 
-        musics = DBMusicReader.Select(null, whereClause, null, null, null, null);
+        musics = DBMusicReader.SavedSelect(null, whereClause, null, null, null, null);
 
         return musics;
+    }
+
+    public ArrayList<String> getAllArtistsInPlaylist(int playlistId){
+        ArrayList<String> artists = new ArrayList<>();
+        String[] columns = {DBHelper.Contract.TableMusic.COLUMN_NAME_ARTIST};
+        String CSIds = StringUtil.toCommaSeparatedString(getAllMusicsIdsInPlaylist(playlistId)) ;
+        String whereClause = DBHelper.Contract.TableMusic._ID + " IN (" + CSIds + ")";
+
+        Cursor cursor = DB.query(DBHelper.Contract.TableMusic.TABLE_NAME, columns, whereClause, null, DBHelper.Contract.TableMusic.COLUMN_NAME_ARTIST, null, null);
+        while (cursor.moveToNext()){
+            String name = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.Contract.TableMusic.COLUMN_NAME_ARTIST));
+            artists.add("\""+name+"\"");
+        }
+        cursor.close();
+        return artists;
+    }
+
+    public ArrayList<String> getAllAlbumsInPlaylist(int playlistId){
+        ArrayList<String> albums = new ArrayList<>();
+        String[] columns = {DBHelper.Contract.TableMusic.COLUMN_NAME_ALBUM};
+        String CSIds = StringUtil.toCommaSeparatedString(getAllMusicsIdsInPlaylist(playlistId)) ;
+        String whereClause = DBHelper.Contract.TableMusic._ID + " IN (" + CSIds + ")";
+
+        Cursor cursor = DB.query(DBHelper.Contract.TableMusic.TABLE_NAME, columns, whereClause, null, DBHelper.Contract.TableMusic.COLUMN_NAME_ALBUM, null, null);
+        while (cursor.moveToNext()){
+            String name = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.Contract.TableMusic.COLUMN_NAME_ALBUM));
+            albums.add("\""+name+"\"");
+        }
+        cursor.close();
+        return albums;
+    }
+
+    public ArrayList<String> getAllCategoriesInPlaylist(int playlistId){
+        ArrayList<String> categories = new ArrayList<>();
+        String[] columns = {DBHelper.Contract.TableMusic.COLUMN_NAME_CATEGORY};
+        String CSIds = StringUtil.toCommaSeparatedString(getAllMusicsIdsInPlaylist(playlistId)) ;
+        String whereClause = DBHelper.Contract.TableMusic._ID + " IN (" + CSIds + ")";
+
+        Cursor cursor = DB.query(DBHelper.Contract.TableMusic.TABLE_NAME, columns, whereClause, null, DBHelper.Contract.TableMusic.COLUMN_NAME_CATEGORY, null, null);
+        while (cursor.moveToNext()){
+            String name = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.Contract.TableMusic.COLUMN_NAME_CATEGORY));
+            categories.add("\""+name+"\"");
+        }
+        cursor.close();
+        return categories;
     }
 
     public static String getPlaylistName(SQLiteDatabase db, int playlistId){
@@ -225,7 +270,7 @@ public class Playlists extends AbstractDBHelper {
 
         while (cursor.moveToNext()){
             playlist.setName(cursor.getString(cursor.getColumnIndexOrThrow(TablePlaylist.COLUMN_NAME_NAME)));
-            playlist.setType(cursor.getString(cursor.getColumnIndexOrThrow(TablePlaylist.COLUMN_NAME_NAME)));
+            playlist.setType(cursor.getString(cursor.getColumnIndexOrThrow(TablePlaylist.COLUMN_NAME_TYPE)));
         }
 
         cursor.close();

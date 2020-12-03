@@ -82,7 +82,7 @@ public class Musics extends AbstractDBHelper {
 
     @Override
     public ArrayList<IDBClass> Select(String[] columns, String whereClause, String[] whereArgs, String groupBy, String having, String orderBy) {
-        lastWhereClause = whereClause; lastWhereArgs = whereArgs; lastOrderBy = orderBy; lastHaving = having; lastOrderBy = orderBy;
+        //lastWhereClause = whereClause; lastWhereArgs = whereArgs; lastOrderBy = orderBy; lastHaving = having; lastOrderBy = orderBy;
         //TODO check integrity of parameters
         Cursor cursor = DB.query(TABLE_NAME, columns, whereClause, whereArgs, groupBy, having, orderBy);
         ArrayList<IDBClass> newMusics = new ArrayList<>();
@@ -105,6 +105,11 @@ public class Musics extends AbstractDBHelper {
         musics = newMusics;
         cursor.close();
         return newMusics;
+    }
+
+    public ArrayList<IDBClass> SavedSelect(String[] columns, String whereClause, String[] whereArgs, String groupBy, String having, String orderBy){
+        lastWhereClause = whereClause; lastWhereArgs = whereArgs; lastOrderBy = orderBy; lastHaving = having; lastOrderBy = orderBy;
+        return Select(columns, whereClause, whereArgs,groupBy, having, orderBy);
     }
 
     public ArrayList<Music> LastSelect(){

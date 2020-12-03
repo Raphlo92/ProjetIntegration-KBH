@@ -50,26 +50,85 @@ public class DBInitializer {
     DBHelper dbHelper;
     SQLiteDatabase DBWriter;
     SQLiteDatabase DBReader;
+    Musics DBMusicsReader;
+    Playlists DBPlaylistsReader;
+    Playlists DBPlaylistsWriter;
     public DBInitializer(Context context) {
         mContext = context;
         dbHelper = new DBHelper(context);
         DBWriter = dbHelper.getWritableDatabase();
         DBReader = dbHelper.getReadableDatabase();
+        DBMusicsReader = new Musics(DBReader, context);
+        DBPlaylistsReader = new Playlists(DBReader, context);
+        DBPlaylistsWriter = new Playlists(DBReader, context);
     }
 
     public static class DBInitialisingService extends IntentService{
 
+
+
         //Date lastInit;
         public DBInitialisingService() {
             super("DBInitialisingService");
+
             //this.lastInit = Date.from(Instant.now());
         }
 
         @Override
         protected void onHandleIntent(@Nullable Intent intent) {
             Log.d(TAG, "onHandleIntent: Started");
-            new DBInitializer(this).Init(getAllMusicsInMediaStore(this));
+            DBInitializer dbInit = new DBInitializer(this);
+            dbInit.Init(getAllMusicsInMediaStore(this));
+            dbInit.FillAllRelativePlaylists();
             //lastInit = Date.from(Instant.now());
+        }
+    }
+
+    public void FillRelativePlaylist(int playlistId){
+        String whereClause = DBHelper.Contract.TablePlaylist._ID + " = ?";
+        String[] whereArgs = {playlistId + ""};
+        String relativeType = "\"none\"";
+        String CSArtists = "\"none\"";
+        String CSAlbums = "\"none\"";
+        String CSCategories = "\"none\"";
+
+
+        Cursor cursor = DBReader.query(DBHelper.Contract.TablePlaylist.TABLE_NAME, null, whereClause, whereArgs, null, null, null);
+        if(cursor != null){
+            cursor.moveToFirst();
+            relativeType = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.Contract.TablePlaylist.COLUMN_NAME_TYPE));
+            cursor.close();
+        }
+
+        whereClause = "";
+        if(relativeType.contains(DBHelper.Contract.TableMusic.COLUMN_NAME_ARTIST)){
+            CSArtists = StringUtil.toCommaSeparatedString(DBPlaylistsReader.getAllArtistsInPlaylist(playlistId));
+        }
+        if(relativeType.contains(DBHelper.Contract.TableMusic.COLUMN_NAME_ALBUM)){
+            CSAlbums = StringUtil.toCommaSeparatedString(DBPlaylistsReader.getAllAlbumsInPlaylist(playlistId));
+        }
+        if(relativeType.contains(DBHelper.Contract.TableMusic.COLUMN_NAME_CATEGORY)){
+            CSCategories = StringUtil.toCommaSeparatedString(DBPlaylistsReader.getAllCategoriesInPlaylist(playlistId));
+        }
+
+        whereClause = DBHelper.Contract.TableMusic.COLUMN_NAME_ARTIST + " IN ("+CSArtists+") OR " +
+                DBHelper.Contract.TableMusic.COLUMN_NAME_ALBUM + " IN ("+CSAlbums+") OR " +
+                DBHelper.Contract.TableMusic.COLUMN_NAME_CATEGORY + " IN ("+CSCategories+")";
+        Log.d(TAG, "FillRelativePlaylist: whereClause = " + whereClause);
+        ArrayList<IDBClass> dbMusics = DBMusicsReader.Select(null, whereClause, null, null, null, null);
+
+        for (IDBClass music : dbMusics){
+            DBPlaylistsWriter.AddToPlaylist(music.getId(), playlistId);
+        }
+
+    }
+
+    public void FillAllRelativePlaylists(){
+        String whereClause = DBHelper.Contract.TablePlaylist.COLUMN_NAME_TYPE + " LIKE ?";
+        String[] whereArgs = {"%" + DBHelper.Contract.TablePlaylist.RELATIVE_TYPE + "%"};
+        ArrayList<IDBClass> dbPlaylists = DBPlaylistsReader.Select(null, whereClause, whereArgs, null, null, null);
+        for (IDBClass playlist : dbPlaylists){
+            FillRelativePlaylist(playlist.getId());
         }
     }
 

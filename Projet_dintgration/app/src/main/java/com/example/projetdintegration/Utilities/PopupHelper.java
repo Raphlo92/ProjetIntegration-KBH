@@ -7,7 +7,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -17,8 +16,10 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView.AdapterContextMenuInfo;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.PopupMenu;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 
@@ -30,6 +31,7 @@ import androidx.fragment.app.FragmentManager;
 import com.example.projetdintegration.DBHelpers.Classes.IDBClass;
 import com.example.projetdintegration.DBHelpers.Classes.Playlist;
 import com.example.projetdintegration.DBHelpers.DBHelper;
+import com.example.projetdintegration.DBHelpers.DBInitializer;
 import com.example.projetdintegration.DBHelpers.Musics;
 import com.example.projetdintegration.DBHelpers.Playlists;
 import com.example.projetdintegration.MediaPlaybackService;
@@ -64,13 +66,112 @@ public class PopupHelper {
         popup.show();
     }
 
-    public static class PlaylistDialog extends DialogFragment{
+    public static class PlaylistMakeRelativeDialog extends DialogFragment{
         Context mContext;
         Playlist playlist;
         ArrayList<Playlist> playlists;
         Playlists playlistsWriter;
         Playlists playlistsReader;
-        public PlaylistDialog(Context context, Playlist playlist){
+        public PlaylistMakeRelativeDialog(Context context, Playlist playlist){
+            super();
+            mContext = context;
+            DBHelper dbHelper = new DBHelper(mContext);
+            playlistsWriter = new Playlists(dbHelper.getWritableDatabase(), mContext);
+            playlistsReader = new Playlists(dbHelper.getReadableDatabase(), mContext);
+
+            ArrayList<IDBClass> dbPlaylists = playlistsReader.Select(null, null, null, null, null, null);
+            playlists = new ArrayList<>();
+            for(IDBClass pl : dbPlaylists){
+                playlists.add((Playlist)pl);
+            }
+
+            this.playlist = playlist;
+        }
+
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+
+            String title = "Rendre relative sur: ";
+            String buttonTitle = "OK";
+
+            // inflate the custom dialog layout
+            LayoutInflater inflater = getActivity().getLayoutInflater();
+            View view = inflater.inflate(R.layout.make_relative_form_layout, null);
+
+            final CheckBox artistCB = view.findViewById(R.id.relativeToArtist);
+            final CheckBox albumCB = view.findViewById(R.id.relativeToAlbum);
+            final CheckBox categoryCB = view.findViewById(R.id.relativeToCategory);
+
+            artistCB.setOnClickListener(view1 -> {
+                AlertDialog dialog = (AlertDialog) getDialog();
+                if(dialog != null)
+                    dialog.getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(artistCB.isChecked() || albumCB.isChecked() || categoryCB.isChecked());
+            });
+
+            albumCB.setOnClickListener(view1 -> {
+                AlertDialog dialog = (AlertDialog) getDialog();
+                if(dialog != null)
+                    dialog.getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(artistCB.isChecked() || albumCB.isChecked() || categoryCB.isChecked());
+            });
+
+            categoryCB.setOnClickListener(view1 -> {
+                AlertDialog dialog = (AlertDialog) getDialog();
+                if(dialog != null)
+                    dialog.getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(artistCB.isChecked() || albumCB.isChecked() || categoryCB.isChecked());
+            });
+
+
+            // build the alert dialog
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            builder.setView(view);
+            if (playlist != null){
+                builder.setPositiveButton(buttonTitle, (dialog, i) -> {
+                    ContentValues values = new ContentValues();
+                    String relativeToArtist = (artistCB.isChecked())? "/" + DBHelper.Contract.TableMusic.COLUMN_NAME_ARTIST : "";
+                    String relativeToAlbum = (albumCB.isChecked())? "/" + DBHelper.Contract.TableMusic.COLUMN_NAME_ALBUM : "";
+                    String relativeToCategory = (categoryCB.isChecked())? "/" + DBHelper.Contract.TableMusic.COLUMN_NAME_CATEGORY : "";
+                    String relativeType = TablePlaylist.RELATIVE_TYPE + relativeToArtist + relativeToAlbum + relativeToCategory;
+                    values.put(TablePlaylist.COLUMN_NAME_TYPE, relativeType);
+                    String whereClause = TablePlaylist._ID + " = ?";
+                    String[] whereArgs = { playlist.getId() + "" };
+                    playlistsWriter.Update(values, whereClause, whereArgs);
+                    playlist.setType(relativeType);
+
+                    new DBInitializer(mContext).FillRelativePlaylist(playlist.getId());
+
+                    PlaylistListActivity.RefreshView(mContext);
+                    ArrayList<Music> musics = new ArrayList<>();
+                    for (IDBClass music : playlistsReader.getAllMusicsInPlaylist(playlist.getId())){
+                        musics.add((Music)music);
+                    }
+                    MusicListActivity.RefreshViewFromList(mContext, musics);
+                    dialog.dismiss();
+                });
+
+
+
+            }
+            builder.setTitle(title);
+            return builder.create();
+        }
+
+        @Override
+        public void onResume() {
+            super.onResume();
+
+            // disable positive button by default
+            AlertDialog dialog = (AlertDialog) getDialog();
+            dialog.getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(false);
+        }
+    }
+
+    public static class PlaylistInputDialog extends DialogFragment{
+        Context mContext;
+        Playlist playlist;
+        ArrayList<Playlist> playlists;
+        Playlists playlistsWriter;
+        Playlists playlistsReader;
+        public PlaylistInputDialog(Context context, Playlist playlist){
             super();
             mContext = context;
             DBHelper dbHelper = new DBHelper(mContext);
@@ -185,75 +286,18 @@ public class PopupHelper {
     }
 
     public void showCreateForm(){
-
         FragmentManager fm = ((FragmentActivity)mContext).getSupportFragmentManager();
 
-        PlaylistDialog dialog = new PlaylistDialog(mContext, null);
+        PlaylistInputDialog dialog = new PlaylistInputDialog(mContext, null);
         dialog.show(fm, "PlaylistCreateDialog");
-
-        /*Builder builder = new Builder(mContext);
-        builder.setView(formElementsView);
-        builder.setTitle(title);
-        builder.setPositiveButton(buttonTitle, new DialogInterface.OnClickListener(){
-
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-
-                String playlistName = editPlaylistName.getText().toString();
-                if (!playlistName.isEmpty()) {
-                    Playlist playlist = new Playlist(0, playlistName, "normal");
-                    Playlists playlistsWriter = new Playlists(dbHelper.getWritableDatabase(), mContext);
-                    playlistsWriter.Insert(playlist);
-                    PlaylistListActivity.RefreshView(mContext);
-                    dialogInterface.dismiss();
-                }
-
-            }});
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-            builder.setOnDismissListener(dialog -> {
-                //TODO save data somewhere
-            });
-        }
-        builder.show();*/
     }
 
     public void showEditForm(Playlist playlist){
         FragmentManager fm = ((FragmentActivity)mContext).getSupportFragmentManager();
 
-        PlaylistDialog dialog = new PlaylistDialog(mContext, playlist);
+        PlaylistInputDialog dialog = new PlaylistInputDialog(mContext, playlist);
         dialog.show(fm, "PlaylistEditDialog");
-
-        /*LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        final View formElementsView = inflater.inflate(R.layout.playlist_input_form_layout, null, false);
-        final EditText editPlaylistName = formElementsView.findViewById(R.id.playlistInputName);
-        editPlaylistName.setText(playlist.getName());
-
-        Builder builder = new Builder(mContext);
-        builder.setView(formElementsView);
-        builder.setTitle(title);
-        builder.setPositiveButton(buttonTitle, (dialog, i) -> {
-            String playlistName = editPlaylistName.getText().toString();
-            ContentValues values = new ContentValues();
-            values.put(TablePlaylist.COLUMN_NAME_NAME, playlistName);
-            String whereClause = TablePlaylist._ID + " = ?";
-            String[] whereArgs = { playlist.getId() + "" };
-            playlistsWriter.Update(values, whereClause, whereArgs);
-            dialog.dismiss();
-            if (mContext.getClass() == MusicListActivity.class){
-                final TextView pageTitle = (TextView) ((MusicListActivity) mContext).findViewById(R.id.PageTitle);
-                pageTitle.setText(playlistName);
-            }
-            //PlaylistListActivity.RefreshView();
-        });
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-            builder.setOnDismissListener(dialog -> {
-                //TODO save data somewhere
-            });
-        }
-        builder.show();*/
     }
-
 
     public void showDeleteForm(int playlistId){
         String title = "Êtes-vous sure de vouloir supprimer la liste de lectures";
@@ -266,7 +310,7 @@ public class PopupHelper {
             String whereClause = TablePlaylist._ID + " = ?";
             String[] whereArgs = { playlistId + "" };
             playlistsWriter.Delete(whereClause, whereArgs);
-            //PlaylistListActivity.RefreshView();
+            PlaylistListActivity.RefreshView(mContext);
             mContext.startActivity(new Intent(mContext, PlaylistListActivity.class));
             dialog.dismiss();
         });
@@ -274,6 +318,28 @@ public class PopupHelper {
             dialog.dismiss();
         });
         builder.show();
+    }
+
+    public void showMakeRelativeForm(Playlist playlist){
+        FragmentManager fm = ((FragmentActivity)mContext).getSupportFragmentManager();
+
+        PlaylistMakeRelativeDialog dialog = new PlaylistMakeRelativeDialog(mContext, playlist);
+        dialog.show(fm, "PlaylistMakeRelativeDialog");
+    }
+
+    public void removeRelativeType(Playlist playlist){
+        ContentValues values = new ContentValues();
+        values.put(TablePlaylist.COLUMN_NAME_TYPE, TablePlaylist.NORMAL_TYPE);
+        playlist.setType(TablePlaylist.NORMAL_TYPE);
+        String whereClause = TablePlaylist._ID + " = ?";
+        String[] whereArgs = { playlist.getId() + "" };
+        playlistsWriter.Update(values, whereClause, whereArgs);
+        PlaylistListActivity.RefreshView(mContext);
+        ArrayList<Music> musics = new ArrayList<>();
+        for (IDBClass music : playlistsReader.getAllMusicsInPlaylist(playlist.getId())){
+            musics.add((Music)music);
+        }
+        MusicListActivity.RefreshViewFromList(mContext, musics);
     }
 
     //TODO finish the back-end options
@@ -327,6 +393,10 @@ public class PopupHelper {
         PopupMenu popup = new PopupMenu(mContext, v);
         MenuInflater inflater = popup.getMenuInflater();
         inflater.inflate(R.menu.playlist_menu, popup.getMenu());
+        popup.getMenu().getItem(2).setChecked(playlist.getType().contains(TablePlaylist.RELATIVE_TYPE));
+
+        Log.d(TAG, "showPlaylistOptions: " + playlist.getType());
+        Log.d(TAG, "showPlaylistOptions: " +  popup.getMenu().getItem(2).isChecked());
 
         popup.setOnMenuItemClickListener(item -> {
             AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
@@ -341,6 +411,12 @@ public class PopupHelper {
                     return true;
                 case R.id.makeRelative:
                     //TODO add to queue as the next music
+                    if(!item.isChecked()){
+                        showMakeRelativeForm(playlist);
+                    }
+                    else{
+                        removeRelativeType(playlist);
+                    }
                     return true;
                 default:
                     return false;
@@ -370,10 +446,15 @@ public class PopupHelper {
         inflater.inflate(R.menu.add_to_playlist_menu, menu);
 
         popup.setOnMenuItemClickListener(item -> {
+            Playlist playlist = Playlists.getPlaylistById(dbHelper.getReadableDatabase(), item.getItemId());
             if(item.isChecked())
                 playlistsWriter.RemoveFromPlaylist(musicToAdd.getId(), item.getItemId());
-            else
+            else{
                 playlistsWriter.AddToPlaylist(musicToAdd.getId(), item.getItemId());
+                if(playlist.getType().contains(TablePlaylist.RELATIVE_TYPE)){
+                    new DBInitializer(mContext).FillRelativePlaylist(playlist.getId());
+                }
+            }
             item.setChecked(!item.isChecked());
             item.setShowAsAction(MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW);
             item.setActionView(new View(mContext));
@@ -435,7 +516,7 @@ public class PopupHelper {
                     DBHelper.Contract.TableMusic.COLUMN_NAME_ARTIST + " LIKE ? OR " +
                     DBHelper.Contract.TableMusic.COLUMN_NAME_ALBUM + " LIKE ?";
 
-            ArrayList<IDBClass> DBMusics = DBMusicsReader.Select(null, WhereClause, whereArgs, null, null, null);
+            ArrayList<IDBClass> DBMusics = DBMusicsReader.SavedSelect(null, WhereClause, whereArgs, null, null, null);
 
 
             ArrayList<Music> musics = new ArrayList<>();
@@ -477,7 +558,7 @@ public class PopupHelper {
 
             String WhereClause = DBHelper.Contract.TableMusic.COLUMN_NAME_ARTIST + " LIKE ?";
 
-            ArrayList<IDBClass> DBArtists = DBMusicsReader.Select(null, WhereClause, whereArgs, null, null, null);
+            ArrayList<IDBClass> DBArtists = DBMusicsReader.SavedSelect(null, WhereClause, whereArgs, null, null, null);
 
             ArrayList<Music> musics = new ArrayList<>();
             for (IDBClass artist : DBArtists) {
@@ -518,7 +599,7 @@ public class PopupHelper {
 
             String WhereClause = DBHelper.Contract.TableMusic.COLUMN_NAME_ALBUM + " LIKE ?";
 
-            ArrayList<IDBClass> DBAlbums = DBMusicsReader.Select(null, WhereClause, whereArgs, null, null, null);
+            ArrayList<IDBClass> DBAlbums = DBMusicsReader.SavedSelect(null, WhereClause, whereArgs, null, null, null);
 
             ArrayList<Music> musics = new ArrayList<>();
             for (IDBClass album : DBAlbums) {
