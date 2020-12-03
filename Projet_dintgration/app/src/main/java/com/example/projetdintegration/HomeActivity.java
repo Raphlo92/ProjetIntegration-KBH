@@ -1,12 +1,15 @@
 package com.example.projetdintegration;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.app.Service;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
@@ -17,16 +20,20 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.projetdintegration.DBHelpers.Categories;
 import com.example.projetdintegration.DBHelpers.DBHelper;
 import com.example.projetdintegration.DBHelpers.DBInitializer;
 import com.example.projetdintegration.DBHelpers.Musics;
 import com.example.projetdintegration.DBHelpers.Playlists;
+import com.gun0912.tedpermission.PermissionListener;
+import com.gun0912.tedpermission.TedPermission;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -44,33 +51,67 @@ public class HomeActivity extends AppCompatActivity {
     boolean mPBound;
     static MediaPlaybackService.LocalBinder binder;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+        PermissionListener permissionlistener = new PermissionListener() {
+            @Override
+            public void onPermissionGranted() {
+                Toast.makeText(HomeActivity.this, "Permission Granted", Toast.LENGTH_SHORT).show();
+
+            }
+
+            @Override
+            public void onPermissionDenied(List<String> deniedPermissions) {
+                Toast.makeText(HomeActivity.this, "Permission Denied\n" + deniedPermissions.toString(), Toast.LENGTH_LONG)
+                        .show();
+                try {
+                    wait(2000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                System. exit(1);
+            }
+
+        };
+
+
+        TedPermission.with(HomeActivity.this)
+                .setPermissionListener(permissionlistener)
+                .setPermissions(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE)
+                .check();
+
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_home);
         animtionsplashsreen();
 
-        Intent intent = new Intent(this, DBInitializer.DBInitialisingService.class);
-        startService(intent);
 
-        ServiceConnection connection = new ServiceConnection() {
+        if (ContextCompat.checkSelfPermission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+            Intent intent = new Intent(this, DBInitializer.DBInitialisingService.class);
+            startService(intent);
 
-            @Override
-            public void onServiceConnected(ComponentName className, IBinder service){
-                Log.d(TAG, "onServiceConnected: binder Created");
-                binder = (MediaPlaybackService.LocalBinder) service;
-                mPService = binder.getService();
-                mPBound = true;
-            }
-            @Override
-            public void onServiceDisconnected(ComponentName arg0){
-                mPBound = false;
-            }
-        };
+            ServiceConnection connection = new ServiceConnection() {
 
-        Intent MediaIntent = new Intent(this, MediaPlaybackService.class);
-        bindService(intent, connection, Context.BIND_AUTO_CREATE);
+                @Override
+                public void onServiceConnected(ComponentName className, IBinder service) {
+                    Log.d(TAG, "onServiceConnected: binder Created");
+                    binder = (MediaPlaybackService.LocalBinder) service;
+                    mPService = binder.getService();
+                    mPBound = true;
+                }
+
+                @Override
+                public void onServiceDisconnected(ComponentName arg0) {
+                    mPBound = false;
+                }
+            };
+
+            Intent MediaIntent = new Intent(this, MediaPlaybackService.class);
+            bindService(intent, connection, Context.BIND_AUTO_CREATE);
+        }
     }
 
     public void animtionsplashsreen() {

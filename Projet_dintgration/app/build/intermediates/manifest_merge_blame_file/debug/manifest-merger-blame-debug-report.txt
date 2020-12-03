@@ -125,12 +125,22 @@
 60-->C:\Users\Kevin\OneDrive\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\app\src\main\AndroidManifest.xml:48:18-54
 61
 62        <activity
-62-->[:spotify-auth-release-1.2.3] C:\Users\Kevin\OneDrive\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\spotify-auth-release-1.2.3\build\.transforms\4bfbc5c731847dffadd9f1ece44444db\jetified-spotify-auth-release-1.2.3\AndroidManifest.xml:34:9-37:20
-63            android:name="com.spotify.sdk.android.auth.LoginActivity"
-63-->[:spotify-auth-release-1.2.3] C:\Users\Kevin\OneDrive\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\spotify-auth-release-1.2.3\build\.transforms\4bfbc5c731847dffadd9f1ece44444db\jetified-spotify-auth-release-1.2.3\AndroidManifest.xml:35:13-70
-64            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
-64-->[:spotify-auth-release-1.2.3] C:\Users\Kevin\OneDrive\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\spotify-auth-release-1.2.3\build\.transforms\4bfbc5c731847dffadd9f1ece44444db\jetified-spotify-auth-release-1.2.3\AndroidManifest.xml:36:13-72
-65        </activity>
-66    </application>
-67
-68</manifest>
+62-->[gun0912.ted:tedpermission:2.2.2] C:\Users\Kevin\.gradle\caches\transforms-2\files-2.1\773dbbcf5f6fa04e17836dc1dc7653af\jetified-tedpermission-2.2.2\AndroidManifest.xml:10:9-14:67
+63            android:name="com.gun0912.tedpermission.TedPermissionActivity"
+63-->[gun0912.ted:tedpermission:2.2.2] C:\Users\Kevin\.gradle\caches\transforms-2\files-2.1\773dbbcf5f6fa04e17836dc1dc7653af\jetified-tedpermission-2.2.2\AndroidManifest.xml:11:13-75
+64            android:configChanges="mcc|mnc|locale|keyboard|keyboardHidden|screenLayout|fontScale|uiMode|orientation|screenSize|layoutDirection"
+64-->[gun0912.ted:tedpermission:2.2.2] C:\Users\Kevin\.gradle\caches\transforms-2\files-2.1\773dbbcf5f6fa04e17836dc1dc7653af\jetified-tedpermission-2.2.2\AndroidManifest.xml:12:13-144
+65            android:screenOrientation="unspecified"
+65-->[gun0912.ted:tedpermission:2.2.2] C:\Users\Kevin\.gradle\caches\transforms-2\files-2.1\773dbbcf5f6fa04e17836dc1dc7653af\jetified-tedpermission-2.2.2\AndroidManifest.xml:13:13-52
+66            android:theme="@style/Theme.Transparent.Permission" />
+66-->[gun0912.ted:tedpermission:2.2.2] C:\Users\Kevin\.gradle\caches\transforms-2\files-2.1\773dbbcf5f6fa04e17836dc1dc7653af\jetified-tedpermission-2.2.2\AndroidManifest.xml:14:13-64
+67        <activity
+67-->[:spotify-auth-release-1.2.3] C:\Users\Kevin\OneDrive\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\spotify-auth-release-1.2.3\build\.transforms\4bfbc5c731847dffadd9f1ece44444db\jetified-spotify-auth-release-1.2.3\AndroidManifest.xml:34:9-37:20
+68            android:name="com.spotify.sdk.android.auth.LoginActivity"
+68-->[:spotify-auth-release-1.2.3] C:\Users\Kevin\OneDrive\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\spotify-auth-release-1.2.3\build\.transforms\4bfbc5c731847dffadd9f1ece44444db\jetified-spotify-auth-release-1.2.3\AndroidManifest.xml:35:13-70
+69            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+69-->[:spotify-auth-release-1.2.3] C:\Users\Kevin\OneDrive\Documents\GitHub\ProjetIntegration-KBH\Projet_dintgration\spotify-auth-release-1.2.3\build\.transforms\4bfbc5c731847dffadd9f1ece44444db\jetified-spotify-auth-release-1.2.3\AndroidManifest.xml:36:13-72
+70        </activity>
+71    </application>
+72
+73</manifest>
