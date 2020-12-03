@@ -11,9 +11,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.CheckBox;
@@ -48,18 +46,17 @@ public class PopupHelper {
     private Context mContext;
     private DBHelper dbHelper;
     private Playlists playlistsWriter;
-    private Playlists playlistsReader;
     private Musics researchmusic;
     private String researchContainer;
 
-    public PopupHelper(Context context){
+    public PopupHelper(Context context) {
         mContext = context;
         dbHelper = new DBHelper(context);
         playlistsWriter = new Playlists(dbHelper.getWritableDatabase(), context);
         playlistsReader = new Playlists(dbHelper.getReadableDatabase(), context);
     }
 
-    public void showOptionsPopup(View v, int menuRes){
+    public void showOptionsPopup(View v, int menuRes) {
         PopupMenu popup = new PopupMenu(mContext, v);
         MenuInflater inflater = popup.getMenuInflater();
         inflater.inflate(menuRes, popup.getMenu());
@@ -299,7 +296,7 @@ public class PopupHelper {
         dialog.show(fm, "PlaylistEditDialog");
     }
 
-    public void showDeleteForm(int playlistId){
+    public void showDeleteForm(int playlistId) {
         String title = "Êtes-vous sure de vouloir supprimer la liste de lectures";
         String posButtonTitle = "Supprimer";
         String negButtonTitle = "Annuler";
@@ -308,7 +305,7 @@ public class PopupHelper {
         builder.setTitle(title);
         builder.setPositiveButton(posButtonTitle, (dialog, i) -> {
             String whereClause = TablePlaylist._ID + " = ?";
-            String[] whereArgs = { playlistId + "" };
+            String[] whereArgs = {playlistId + ""};
             playlistsWriter.Delete(whereClause, whereArgs);
             PlaylistListActivity.RefreshView(mContext);
             mContext.startActivity(new Intent(mContext, PlaylistListActivity.class));
@@ -388,8 +385,7 @@ public class PopupHelper {
         popup.show();
     }
 
-    public void showPlaylistOptions(View v, Playlist playlist){
-
+    public void showPlaylistOptions(View v, Playlist playlist) {
         PopupMenu popup = new PopupMenu(mContext, v);
         MenuInflater inflater = popup.getMenuInflater();
         inflater.inflate(R.menu.playlist_menu, popup.getMenu());
@@ -516,7 +512,7 @@ public class PopupHelper {
                     DBHelper.Contract.TableMusic.COLUMN_NAME_ARTIST + " LIKE ? OR " +
                     DBHelper.Contract.TableMusic.COLUMN_NAME_ALBUM + " LIKE ?";
 
-            ArrayList<IDBClass> DBMusics = DBMusicsReader.SavedSelect(null, WhereClause, whereArgs, null, null, null);
+            ArrayList<IDBClass> DBMusics = DBMusicsReader.Select(null, WhereClause, whereArgs, null, null, null);
 
 
             ArrayList<Music> musics = new ArrayList<>();
@@ -532,6 +528,37 @@ public class PopupHelper {
             });
         }
         builder.show();
+
+    }
+
+    public ArrayList<Integer> ListArtiste(String KeyWord) {
+        Artists DBArtistesReader = new Artists(new DBHelper(mContext).getReadableDatabase());
+        String[] whereArgs = {"%" + KeyWord + "%"};
+
+        ArrayList<IDBClass> DBArtists = DBArtistesReader.Select(null, DBHelper.Contract.TableArtist.COLUMN_NAME_NAME + " LIKE ?", whereArgs, null, null, null);
+
+        ArrayList<Integer> IDS_Artist = new ArrayList<Integer>();
+
+        for (IDBClass artist : DBArtists) {
+            IDS_Artist.add(artist.getId());
+        }
+
+        return IDS_Artist;
+    }
+
+    public ArrayList<Integer> ListAlbum(String KeyWord)
+    {
+        Albums DBAlbumsReader = new Albums(new DBHelper(mContext).getReadableDatabase());
+        String[] whereArgs = {"%" + KeyWord + "%"};
+
+        ArrayList<IDBClass> DBAlbums = DBAlbumsReader.Select(null, DBHelper.Contract.TableAlbum.COLUMN_NAME_TITLE + " LIKE ?", whereArgs, null, null, null);
+        ArrayList<Integer> IDS_Album = new ArrayList<Integer>();
+
+        for (IDBClass album : DBAlbums) {
+            IDS_Album.add(album.getId());
+        }
+
+        return IDS_Album;
 
     }
 

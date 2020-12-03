@@ -1,8 +1,12 @@
 package com.example.projetdintegration;
 
+import androidx.annotation.DrawableRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -11,6 +15,13 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.Manifest;
+import android.app.IntentService;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.util.Log;
@@ -21,6 +32,15 @@ import android.widget.ListView;
 import android.view.View;
 import android.widget.TextView;
 
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -33,8 +53,11 @@ import com.example.projetdintegration.DBHelpers.Classes.Music;
 import com.example.projetdintegration.DBHelpers.DBHelper;
 import com.example.projetdintegration.DBHelpers.Musics;
 import com.example.projetdintegration.DBHelpers.Playlists;
+import com.gun0912.tedpermission.PermissionListener;
+import com.gun0912.tedpermission.TedPermission;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
@@ -60,6 +83,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
 
         PopupHelper popupHelper = new PopupHelper(this);
 
@@ -125,6 +150,8 @@ public class MainActivity extends AppCompatActivity {
             super.onBackPressed();
     }
 
+
+
     public void scrollView_UI() throws InterruptedException {
 
         /*final RecyclerView[] scrollviews = {
@@ -180,9 +207,6 @@ public class MainActivity extends AppCompatActivity {
             categories.add(RandCat);
             categoriesUsed.remove(randomIndex);
 
-
-
-
             //scrollviewTitles[i].setText(RandCat.getName());
             //scrollviews[i].setAdapter(adapter);
             //scrollviews[i].setLayoutManager(layout);
@@ -195,4 +219,5 @@ public class MainActivity extends AppCompatActivity {
         catList.setLayoutManager(layout);
 
     }
+
 }

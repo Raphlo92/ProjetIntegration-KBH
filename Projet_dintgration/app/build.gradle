@@ -45,7 +45,7 @@ dependencies {
     implementation project(":spotify-auth-release-1.2.3")
     compile 'pl.droidsonroids.gif:android-gif-drawable:1.2.3'
 
-
+    implementation 'gun0912.ted:tedpermission:2.2.2'
 
 
 }

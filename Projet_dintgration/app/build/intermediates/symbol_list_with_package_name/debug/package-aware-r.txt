@@ -2423,6 +2423,9 @@ string spotify_not_found
 string spotify_playlist_view_base_text
 string spotify_recently_played_base_text
 string status_bar_notification_info_overflow
+string tedpermission_close
+string tedpermission_confirm
+string tedpermission_setting
 string title_activity_music__page
 style AlertDialog_AppCompat
 style AlertDialog_AppCompat_Light
@@ -2891,6 +2894,7 @@ style Theme_MaterialComponents_Light_NoActionBar
 style Theme_MaterialComponents_Light_NoActionBar_Bridge
 style Theme_MaterialComponents_NoActionBar
 style Theme_MaterialComponents_NoActionBar_Bridge
+style Theme_Transparent_Permission
 style ThemeOverlay_AppCompat
 style ThemeOverlay_AppCompat_ActionBar
 style ThemeOverlay_AppCompat_Dark
