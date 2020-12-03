@@ -46,6 +46,9 @@ public class MediaActivity extends AppCompatActivity{
     ImageView coverArt;
     int playingId = 0;
     private static final String TAG = "MediaActivity";
+    DrawerLayout drawerLayout;
+    NavigationView navigationView;
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,8 +56,6 @@ public class MediaActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_media_activity);
 
-
-        //region header
         if(getResources().getConfiguration().orientation != Configuration.ORIENTATION_LANDSCAPE){
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         navigationView = (NavigationView) findViewById(R.id.nav_view);
@@ -79,52 +80,51 @@ public class MediaActivity extends AppCompatActivity{
         final ImageView imageView2 = (ImageView) findViewById(R.id.imageView2);
         imageView1.setVisibility(View.INVISIBLE);
         imageView2.setVisibility(View.INVISIBLE);
-        }
-        //endregion
 
 
-        playButton = findViewById(R.id.playButton);
-        shuffleButton = findViewById(R.id.shuffleButton);
-        repeatButton = findViewById(R.id.repeatButton);
-        ImageButton rewindButton = findViewById(R.id.rewindButton);
-        ImageButton forwardButton = findViewById(R.id.forwardButton);
-        seekBar = findViewById(R.id.seekBar);
+            playButton = findViewById(R.id.playButton);
+            shuffleButton = findViewById(R.id.shuffleButton);
+            repeatButton = findViewById(R.id.repeatButton);
+            ImageButton rewindButton = findViewById(R.id.rewindButton);
+            ImageButton forwardButton = findViewById(R.id.forwardButton);
+            seekBar = findViewById(R.id.seekBar);
 
-        currentTime = findViewById(R.id.currentTime);
-        maxTime = findViewById(R.id.maxTime);
-        mediaName = findViewById(R.id.mediaName);
-        videoView = findViewById(R.id.videoView);
-        coverArt = findViewById(R.id.coverArt);
+            currentTime = findViewById(R.id.currentTime);
+            maxTime = findViewById(R.id.maxTime);
+            mediaName = findViewById(R.id.mediaName);
+            videoView = findViewById(R.id.videoView);
+            coverArt = findViewById(R.id.coverArt);
 
-        playButton.setOnClickListener(new GestionnairePlayPause());
-        rewindButton.setOnClickListener(new GestionnaireRewind());
-        forwardButton.setOnClickListener(new GestionnaireForward());
-        shuffleButton.setOnClickListener(new GestionnaireShuffle());
-        repeatButton.setOnClickListener(new GestionnaireRepeat());
+            playButton.setOnClickListener(new GestionnairePlayPause());
+            rewindButton.setOnClickListener(new GestionnaireRewind());
+            forwardButton.setOnClickListener(new GestionnaireForward());
+            shuffleButton.setOnClickListener(new GestionnaireShuffle());
+            repeatButton.setOnClickListener(new GestionnaireRepeat());
 
-        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                if (fromUser) {
-                    MediaPlaybackService.mediaPlayer.seekTo(progress * 1000);
-                    videoView.seekTo(progress * 1000);
-                    String time = progress % (1000*60*60) / (1000*60) + ":" + (progress % (1000 * 60 * 60) % (1000 * 60) / 1000);
-                    currentTime.setText(time);
+            seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                @Override
+                public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                    if (fromUser) {
+                        MediaPlaybackService.mediaPlayer.seekTo(progress * 1000);
+                        videoView.seekTo(progress * 1000);
+                        String time = progress % (1000 * 60 * 60) / (1000 * 60) + ":" + (progress % (1000 * 60 * 60) % (1000 * 60) / 1000);
+                        currentTime.setText(time);
+                    }
                 }
-            }
 
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
+                @Override
+                public void onStartTrackingTouch(SeekBar seekBar) {
 
-            }
+                }
 
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
+                @Override
+                public void onStopTrackingTouch(SeekBar seekBar) {
 
-            }
-        });
-        SeekBarUpdater();
-        //InfoUpdater();
+                }
+            });
+            SeekBarUpdater();
+            //InfoUpdater();
+        }
     }
 
     public class GestionnairePlayPause implements View.OnClickListener {
