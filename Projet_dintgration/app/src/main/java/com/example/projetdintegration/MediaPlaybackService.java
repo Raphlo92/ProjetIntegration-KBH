@@ -23,11 +23,10 @@ public class MediaPlaybackService extends Service {
     private static final String TAG = "MediaPlaybackService";
     public static boolean running = false;
     public static boolean repeat = false;
+    public static boolean shuffle = false;
     public static MediaPlayer mediaPlayer;
-    private static MediaPlaybackService instance = null;
     static Boolean playing = true;
     public static int playingId = 0;
-    //static String[] mediaList = {"bladee", "boku", "sea", "tacoma_narrows"};
     static ArrayList<Music> musicArrayList = new ArrayList<>();
     static ArrayList<Music> musicArrayListCopy = new ArrayList<>();
     static Notification mediaPlayingNotification;
@@ -80,16 +79,26 @@ public class MediaPlaybackService extends Service {
         return binder;
     }
 
-    public void PlayNow(ArrayList<Music> playlist, int songId){
+    public void UpdateMusicList(ArrayList<Music> playlist, int songId){
         Log.d(TAG, "updateMusicList: playingId = " + songId);
-        musicArrayList = playlist;
+        if(musicArrayList.isEmpty())
+            musicArrayList.addAll(playlist);
+        else {
+            for(int i = 0; i < musicArrayList.size(); i++){
+                musicArrayList.set(i, musicArrayListCopy.get(i));
+            }
+        }
+
         playingId = songId;
 
         try{
             RestartPlayer();
             PlayFromPause();
             //pour avoir une copie en tout temps
-            musicArrayListCopy.addAll(musicArrayList);
+            if(musicArrayListCopy.isEmpty())
+                musicArrayListCopy.addAll(musicArrayList);
+            if(shuffle)
+                shuffleMusicList();
         }catch (IOException e){
             Log.e(TAG, "updateMusicList: error " + e );
         }
@@ -98,19 +107,21 @@ public class MediaPlaybackService extends Service {
     public void Add(Music music)
     {
         musicArrayList.add(music);
+        musicArrayListCopy.add(music);
     }
 
     public void AddNext(Music music){
         if(musicArrayList.size() == 0){
             Add(music);
-            PlayNow(musicArrayList, 0);
-
+            UpdateMusicList(musicArrayList, 0);
         }
         else if(musicArrayList.size() == playingId + 1){
             Add(music);
+
         }
         else{
             musicArrayList.add(playingId + 1, music);
+            musicArrayListCopy.add(playingId + 1, music);
         }
     }
 
@@ -122,10 +133,10 @@ public class MediaPlaybackService extends Service {
 
     public void resetMusicList(){
         Music songPlaying = musicArrayList.get(playingId);
-        for(int i = 0; i < musicArrayList.size(); i++){
-            musicArrayList.set(i, musicArrayListCopy.get(i));
-        }
+        musicArrayList.clear();
+        musicArrayList.addAll(musicArrayListCopy);
         playingId = musicArrayList.indexOf(songPlaying);
+        Log.e(TAG, "resetMusicList: " + playingId );
     }
 
     public void Play() throws IOException {
@@ -193,6 +204,7 @@ public class MediaPlaybackService extends Service {
     }
 
     public void PlayNext() throws IOException, NullPointerException {
+
         if(playingId < musicArrayList.size() - 1 && !repeat){
             playingId++;
             RestartPlayer();
@@ -206,6 +218,7 @@ public class MediaPlaybackService extends Service {
     }
 
     public void PlayPrevious(View v) throws IOException {
+        Log.e(TAG, "PlayPrevious: " + playingId );
         if (mediaPlayer != null) {
             if (playingId == 0 || mediaPlayer.getCurrentPosition() / 1000 > 5) {
                 RestartPlayer();
@@ -241,8 +254,9 @@ public class MediaPlaybackService extends Service {
     }
 
     static Uri getMedia() {
-        if (musicArrayList.size() != 0)
+        if (musicArrayList.size() != 0) {
             return Uri.parse(musicArrayList.get(playingId).getPath());
+        }
         return null;
     }
 

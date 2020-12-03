@@ -57,8 +57,8 @@
         <activity android:name="com.example.projetdintegration.SpotifyMusicPlayer" />
         <activity android:name="com.example.projetdintegration.MainActivity" />
 
-        <service android:name="com.example.projetdintegration.DBHelpers.DBInitializer$DBInitialisingService" />
         <service android:name="com.example.projetdintegration.MediaPlaybackService" />
+        <service android:name="com.example.projetdintegration.DBHelpers.DBInitializer$DBInitialisingService" />
 
         <activity
             android:name="com.gun0912.tedpermission.TedPermissionActivity"

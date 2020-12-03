@@ -34,25 +34,21 @@ public class MediaActivity extends AppCompatActivity{
 
     MediaPlaybackService mPService;
     boolean mPBound = false;
-    boolean shuffle = false;
     SeekBar seekBar;
     Handler handler = new Handler();
     VideoView videoView;
     TextView currentTime;
     TextView maxTime;
     TextView mediaName;
-    Boolean playing = true;
     ImageButton playButton;
     ImageButton shuffleButton;
     ImageButton repeatButton;
     ImageView coverArt;
     int playingId = 0;
+    private static final String TAG = "MediaActivity";
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar;
-    //static String[] mediaList = {"bladee", "boku", "sea", "tacoma_narrows"};
-    //String VIDEO_SAMPLE = mediaList[0];
-    private static final String TAG = "MediaActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,8 +56,6 @@ public class MediaActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_media_activity);
 
-
-        //region header
         if(getResources().getConfiguration().orientation != Configuration.ORIENTATION_LANDSCAPE){
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         navigationView = (NavigationView) findViewById(R.id.nav_view);
@@ -86,52 +80,51 @@ public class MediaActivity extends AppCompatActivity{
         final ImageView imageView2 = (ImageView) findViewById(R.id.imageView2);
         imageView1.setVisibility(View.INVISIBLE);
         imageView2.setVisibility(View.INVISIBLE);
-        }
-        //endregion
 
 
-        playButton = findViewById(R.id.playButton);
-        shuffleButton = findViewById(R.id.shuffleButton);
-        repeatButton = findViewById(R.id.repeatButton);
-        ImageButton rewindButton = findViewById(R.id.rewindButton);
-        ImageButton forwardButton = findViewById(R.id.forwardButton);
-        seekBar = findViewById(R.id.seekBar);
+            playButton = findViewById(R.id.playButton);
+            shuffleButton = findViewById(R.id.shuffleButton);
+            repeatButton = findViewById(R.id.repeatButton);
+            ImageButton rewindButton = findViewById(R.id.rewindButton);
+            ImageButton forwardButton = findViewById(R.id.forwardButton);
+            seekBar = findViewById(R.id.seekBar);
 
-        currentTime = findViewById(R.id.currentTime);
-        maxTime = findViewById(R.id.maxTime);
-        mediaName = findViewById(R.id.mediaName);
-        videoView = findViewById(R.id.videoView);
-        coverArt = findViewById(R.id.coverArt);
+            currentTime = findViewById(R.id.currentTime);
+            maxTime = findViewById(R.id.maxTime);
+            mediaName = findViewById(R.id.mediaName);
+            videoView = findViewById(R.id.videoView);
+            coverArt = findViewById(R.id.coverArt);
 
-        playButton.setOnClickListener(new GestionnairePlayPause());
-        rewindButton.setOnClickListener(new GestionnaireRewind());
-        forwardButton.setOnClickListener(new GestionnaireForward());
-        shuffleButton.setOnClickListener(new GestionnaireShuffle());
-        repeatButton.setOnClickListener(new GestionnaireRepeat());
+            playButton.setOnClickListener(new GestionnairePlayPause());
+            rewindButton.setOnClickListener(new GestionnaireRewind());
+            forwardButton.setOnClickListener(new GestionnaireForward());
+            shuffleButton.setOnClickListener(new GestionnaireShuffle());
+            repeatButton.setOnClickListener(new GestionnaireRepeat());
 
-        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                if (fromUser) {
-                    MediaPlaybackService.mediaPlayer.seekTo(progress * 1000);
-                    videoView.seekTo(progress * 1000);
-                    String time = progress % (1000*60*60) / (1000*60) + ":" + (progress % (1000 * 60 * 60) % (1000 * 60) / 1000);
-                    currentTime.setText(time);
+            seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                @Override
+                public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                    if (fromUser) {
+                        MediaPlaybackService.mediaPlayer.seekTo(progress * 1000);
+                        videoView.seekTo(progress * 1000);
+                        String time = progress % (1000 * 60 * 60) / (1000 * 60) + ":" + (progress % (1000 * 60 * 60) % (1000 * 60) / 1000);
+                        currentTime.setText(time);
+                    }
                 }
-            }
 
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
+                @Override
+                public void onStartTrackingTouch(SeekBar seekBar) {
 
-            }
+                }
 
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
+                @Override
+                public void onStopTrackingTouch(SeekBar seekBar) {
 
-            }
-        });
-        SeekBarUpdater();
-        //InfoUpdater();
+                }
+            });
+            SeekBarUpdater();
+            //InfoUpdater();
+        }
     }
 
     public class GestionnairePlayPause implements View.OnClickListener {
@@ -190,28 +183,29 @@ public class MediaActivity extends AppCompatActivity{
 
     public class GestionnaireShuffle implements View.OnClickListener{
         public void onClick(View v){
-            if(!shuffle){
-                shuffleButton.setImageResource(R.drawable.ic_baseline_shuffle_24);
-                mPService.shuffleMusicList();
-                shuffle = true;
-            }
-            else{
-                shuffleButton.setImageResource(R.drawable.ic_baseline_trending_flat_24);
-                mPService.resetMusicList();
-                shuffle = false;
+            if(MediaPlaybackService.musicArrayList.size() != 0) {
+                if (!MediaPlaybackService.shuffle) {
+                    shuffleButton.setImageResource(R.drawable.ic_baseline_shuffle_24);
+                    mPService.shuffleMusicList();
+                    MediaPlaybackService.shuffle = true;
+                } else {
+                    shuffleButton.setImageResource(R.drawable.ic_baseline_trending_flat_24);
+                    mPService.resetMusicList();
+                    MediaPlaybackService.shuffle = false;
+                }
             }
         }
     }
 
     public class GestionnaireRepeat implements View.OnClickListener{
         public void onClick(View v){
-            if(!mPService.repeat){
+            if(!MediaPlaybackService.repeat){
                 repeatButton.setImageResource(R.drawable.ic_baseline_repeat_24);
-                mPService.repeat = true;
+                MediaPlaybackService.repeat = true;
             }
             else{
                 repeatButton.setImageResource(R.drawable.ic_baseline_norepeat);
-                mPService.repeat = false;
+                MediaPlaybackService.repeat = false;
             }
         }
     }
@@ -304,6 +298,26 @@ public class MediaActivity extends AppCompatActivity{
         });
     }*/
 
+    @Override
+    public void onResume(){
+        super.onResume();
+        RefreshButtons();
+    }
+
+    public void RefreshButtons(){
+        if(MediaPlaybackService.shuffle)
+            shuffleButton.setImageResource(R.drawable.ic_baseline_shuffle_24);
+        else
+            shuffleButton.setImageResource(R.drawable.ic_baseline_trending_flat_24);
+        if(MediaPlaybackService.repeat)
+            repeatButton.setImageResource(R.drawable.ic_baseline_repeat_24);
+        else
+            repeatButton.setImageResource(R.drawable.ic_baseline_norepeat);
+        if(MediaPlaybackService.playing)
+            playButton.setImageResource(R.drawable.ic_baseline_pause_24);
+        else
+            playButton.setImageResource(R.drawable.ic_baseline_play_arrow_24);
+    }
 
     /*public void Pause() {
         mPService.Pause();
@@ -337,6 +351,44 @@ public class MediaActivity extends AppCompatActivity{
         mPService.RestartPlayer();
     }*/
 
+    /*public void SetInfos(){
+        if (MediaPlaybackService.mediaPlayer != null){
+            playingId = MediaPlaybackService.playingId;
+            int minutes = MediaPlaybackService.mediaPlayer.getDuration() / (60 * 1000);
+            int seconds = (MediaPlaybackService.mediaPlayer.getDuration() / 1000) % 60;
+            String time = String.format("%d:%02d", minutes, seconds);
+            maxTime.setText(time);
+            seekBar.setMax(MediaPlaybackService.mediaPlayer.getDuration() / 1000);
+            mediaName.setText(MediaPlaybackService.musicArrayList.get(playingId).getName());
+            if(MediaPlaybackService.musicArrayList.get(playingId).getType().contains("audio")){
+                videoView.setVisibility(View.INVISIBLE);
+                coverArt.setVisibility(View.VISIBLE);
+                android.media.MediaMetadataRetriever mmr = new MediaMetadataRetriever();
+                mmr.setDataSource(MediaPlaybackService.musicArrayList.get(playingId).getPath());
+                byte[] data = mmr.getEmbeddedPicture();
+                Log.i(TAG, "SetInfos: data = " + data );
+
+                if(data != null){
+                    Bitmap bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
+                    coverArt.setImageBitmap(bitmap);
+                }
+                else{
+                    coverArt.setImageResource(R.drawable.ic_music_note_24);
+                }
+                coverArt.setAdjustViewBounds(true);
+            }
+            else {
+                videoView.setVisibility(View.VISIBLE);
+                coverArt.setVisibility(View.INVISIBLE);
+                if (videoView == null) {
+                    initializePlayer();
+                }
+                if(MediaPlaybackService.playing) {
+                    videoView.start();
+                    videoView.seekTo(MediaPlaybackService.mediaPlayer.getCurrentPosition());
+                }
+            }
+        }*/
     public void SetInfos(){
 
         if (MediaPlaybackService.mediaPlayer != null){

@@ -359,7 +359,8 @@ public class PopupHelper {
             AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
             switch (item.getItemId()) {
                 case R.id.playNow:
-                    binder.getService().PlayNow(musics, position);
+                    binder.getService().UpdateMusicList(musics, position);
+                    //TODO override the queue and play this music now
                     return true;
                 case R.id.playNext:
                     binder.getService().AddNext(music);
