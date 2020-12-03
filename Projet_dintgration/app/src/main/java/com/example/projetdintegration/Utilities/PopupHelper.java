@@ -7,11 +7,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.CheckBox;
@@ -46,6 +49,7 @@ public class PopupHelper {
     private Context mContext;
     private DBHelper dbHelper;
     private Playlists playlistsWriter;
+    private Playlists playlistsReader;
     private Musics researchmusic;
     private String researchContainer;
 
@@ -530,38 +534,7 @@ public class PopupHelper {
         builder.show();
 
     }
-
-    public ArrayList<Integer> ListArtiste(String KeyWord) {
-        Artists DBArtistesReader = new Artists(new DBHelper(mContext).getReadableDatabase());
-        String[] whereArgs = {"%" + KeyWord + "%"};
-
-        ArrayList<IDBClass> DBArtists = DBArtistesReader.Select(null, DBHelper.Contract.TableArtist.COLUMN_NAME_NAME + " LIKE ?", whereArgs, null, null, null);
-
-        ArrayList<Integer> IDS_Artist = new ArrayList<Integer>();
-
-        for (IDBClass artist : DBArtists) {
-            IDS_Artist.add(artist.getId());
-        }
-
-        return IDS_Artist;
-    }
-
-    public ArrayList<Integer> ListAlbum(String KeyWord)
-    {
-        Albums DBAlbumsReader = new Albums(new DBHelper(mContext).getReadableDatabase());
-        String[] whereArgs = {"%" + KeyWord + "%"};
-
-        ArrayList<IDBClass> DBAlbums = DBAlbumsReader.Select(null, DBHelper.Contract.TableAlbum.COLUMN_NAME_TITLE + " LIKE ?", whereArgs, null, null, null);
-        ArrayList<Integer> IDS_Album = new ArrayList<Integer>();
-
-        for (IDBClass album : DBAlbums) {
-            IDS_Album.add(album.getId());
-        }
-
-        return IDS_Album;
-
-    }
-
+    
     public void ShowMusicOfArtiste(Music music)
     {
         String title = "rechercher de vos Artiste";

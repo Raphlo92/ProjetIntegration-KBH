@@ -1,15 +1,11 @@
 package com.example.projetdintegration;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
-
 import android.Manifest;
 import android.app.Service;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
-import android.database.sqlite.SQLiteDatabase;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
@@ -22,17 +18,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+
 import com.example.projetdintegration.DBHelpers.DBHelper;
 import com.example.projetdintegration.DBHelpers.DBInitializer;
 import com.example.projetdintegration.DBHelpers.Musics;
-import com.example.projetdintegration.DBHelpers.Playlists;
 import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.TedPermission;
 
-import static com.example.projetdintegration.DBHelpers.DBInitializer.getAllMusicsInMediaStore;
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class HomeActivity extends AppCompatActivity {
@@ -60,11 +54,6 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         animtionsplashsreen();
 
-        Intent intent = new Intent(this, DBInitializer.DBInitialisingService.class);
-        startService(intent);
-        //dbHelper.onUpgrade(dbHelper.getWritableDatabase(), dbVersion, DBHelper.DB_VERSION);
-
-
         PermissionListener permissionlistener = new PermissionListener() {
             @Override
             public void onPermissionGranted() {
@@ -80,9 +69,6 @@ public class HomeActivity extends AppCompatActivity {
             }
 
         };
-
-        Intent MediaIntent = new Intent(this, MediaPlaybackService.class);
-        bindService(MediaIntent, connection, Context.BIND_AUTO_CREATE);
 
         TedPermission.with(HomeActivity.this)
                 .setPermissionListener(permissionlistener)
@@ -115,7 +101,7 @@ public class HomeActivity extends AppCompatActivity {
             };
 
             Intent MediaIntent = new Intent(this, MediaPlaybackService.class);
-            bindService(intent, connection, Context.BIND_AUTO_CREATE);
+            bindService(MediaIntent, connection, Context.BIND_AUTO_CREATE);
         }
     }
 
