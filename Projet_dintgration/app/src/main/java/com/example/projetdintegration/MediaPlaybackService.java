@@ -25,13 +25,10 @@ public class MediaPlaybackService extends Service {
     public static boolean repeat = false;
     public static boolean shuffle = false;
     public static MediaPlayer mediaPlayer;
-    private static MediaPlaybackService instance = null;
     static Boolean playing = true;
     public static int playingId = 0;
-    //static String[] mediaList = {"bladee", "boku", "sea", "tacoma_narrows"};
     static ArrayList<Music> musicArrayList = new ArrayList<>();
     static ArrayList<Music> musicArrayListCopy = new ArrayList<>();
-    static ArrayList<Music> fileAttente = new ArrayList<>();
     static Notification mediaPlayingNotification;
 
     private final IBinder binder = new LocalBinder();
