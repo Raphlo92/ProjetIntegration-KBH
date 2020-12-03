@@ -16,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.projetdintegration.DBHelpers.Classes.Music;
+import com.example.projetdintegration.DBHelpers.Classes.SpotifyMusic;
 import com.example.projetdintegration.DBHelpers.DBHelper;
 import com.example.projetdintegration.DBHelpers.Musics;
 import com.example.projetdintegration.DBHelpers.Playlists;
@@ -62,18 +63,19 @@ public class MusicListAdapter extends ArrayAdapter<Music> {
         DBMusicsReader = new Musics(dbHelper.getReadableDatabase(), mContext);
         this.musics = musics;
         this.binder = binder;
-        playlistsWriter = new Playlists(new DBHelper(mContext).getWritableDatabase());
+        playlistsWriter = new Playlists(new DBHelper(mContext).getWritableDatabase(), mContext);
     }
 
     public void initHolderValues(ViewHolder holder, Music music){
         if(music.getType().equals("Spotify")){
             initHolderValuesSpotify(holder,(SpotifyMusic) music);
         }else{
-            initHolderValuesLocal(holder,music);
+            initHolderValuesLocal(holder,music, lastPosition);
         }
     }
 
-    private void initHolderValuesLocal(ViewHolder holder, Music music) {
+    private void initHolderValuesLocal(ViewHolder holder, Music music, int position) {
+        Intent intent = new Intent(this.getContext(), MediaActivity.class);
         holder.title.setText(music.getName());
         holder.artist.setText(music.getArtist());
         holder.length.setText(Music.TimeToString(music.getLength()));
@@ -152,17 +154,20 @@ public class MusicListAdapter extends ArrayAdapter<Music> {
         });
         holder.item.setOnLongClickListener(view -> {
             if (music.getPath().contains(SpotifyMusicListActivity.SPOTIFY_ALBUM_LINK))
-                popupHelper.showMusicOptions(view, music,callbackRemove,callbackAdd,music.isFavorite());
+                popupHelper.showMusicOptions(view, music,callbackRemove,callbackAdd, getPosition(music), binder,music.isFavorite());
             else
-                popupHelper.showMusicOptions(view, music,callbackRemove,callbackAdd);
+                popupHelper.showMusicOptions(view, music,callbackRemove,callbackAdd, getPosition(music), binder);
 
             return true;
         });
+        holder.item.setOnClickListener(view -> {
+
+        });
         holder.options.setOnClickListener(view -> {
             if (music.getPath().contains(SpotifyMusicListActivity.SPOTIFY_ALBUM_LINK))
-                popupHelper.showMusicOptions(view, music,callbackRemove,callbackAdd, music.isFavorite());
+                popupHelper.showMusicOptions(view, music,callbackRemove,callbackAdd, getPosition(music), binder, music.isFavorite());
             else
-                popupHelper.showMusicOptions(view, music,callbackRemove,callbackAdd);
+                popupHelper.showMusicOptions(view, music,callbackRemove,callbackAdd, getPosition(music), binder);
         });
     }
 
@@ -199,7 +204,7 @@ public class MusicListAdapter extends ArrayAdapter<Music> {
                 (position > lastPosition)? R.anim.load_down_anim : R.anim.load_up_anim);
         result.startAnimation(animation);*/
         lastPosition = position;
-        initHolderValues(holder,music);
+        initHolderValues(holder, music);
 
         return convertView;
     }
