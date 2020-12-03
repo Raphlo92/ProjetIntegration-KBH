@@ -70,7 +70,6 @@ public class DBInitializer {
         //Date lastInit;
         public DBInitialisingService() {
             super("DBInitialisingService");
-
             //this.lastInit = Date.from(Instant.now());
         }
 

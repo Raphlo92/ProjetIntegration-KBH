@@ -34,11 +34,17 @@ import com.example.projetdintegration.DBHelpers.DBInitializer;
 import com.example.projetdintegration.DBHelpers.Musics;
 import com.example.projetdintegration.DBHelpers.Playlists;
 import com.example.projetdintegration.MediaPlaybackService;
+import com.example.projetdintegration.LierSpotifyActivity;
+import com.example.projetdintegration.MainActivity;
 import com.example.projetdintegration.MusicListActivity;
 import com.example.projetdintegration.PlaylistListActivity;
 import com.example.projetdintegration.R;
 import com.example.projetdintegration.DBHelpers.DBHelper.Contract.TablePlaylist;
 import com.example.projetdintegration.DBHelpers.Classes.Music;
+import com.example.projetdintegration.Utilities.SpotifyLibraryManager;
+import com.spotify.protocol.client.CallResult;
+import com.spotify.protocol.types.Empty;
+import com.spotify.protocol.types.LibraryState;
 
 import java.util.ArrayList;
 
@@ -342,17 +348,20 @@ public class PopupHelper {
     }
 
     //TODO finish the back-end options
-    public void showMusicOptions(View v, Music music, int position, MediaPlaybackService.LocalBinder binder){
-
+    public void showMusicOptions(View v, Music music,CallResult.ResultCallback<Empty> callbackRemove, CallResult.ResultCallback<Empty> callbackAdd, boolean... isAdded){
         PopupMenu popup = new PopupMenu(mContext, v);
         MenuInflater inflater = popup.getMenuInflater();
         inflater.inflate(R.menu.music_menu, popup.getMenu());
-
-        Musics DBMusicsReader = new Musics(dbHelper.getReadableDatabase(), mContext);
-
-        ArrayList<Music> musics = DBMusicsReader.LastSelect();
-        Log.d(TAG, "showMusicOptions: size = " + musics.size());
-
+        Menu menu = popup.getMenu();
+        if(isAdded != null && isAdded.length == 1){
+            MenuItem item = menu.findItem(R.id.addToSpotifyPlaylist);
+            item.setVisible(true);
+            if(isAdded[0])
+                item.setTitle(R.string.add_to_spotify_list);
+            else
+                item.setTitle(R.string.remove_from_spotify_list);
+        }else
+            menu.findItem(R.id.addToSpotifyPlaylist).setVisible(false);
         popup.setOnMenuItemClickListener(item -> {
             AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
             switch (item.getItemId()) {
@@ -375,17 +384,71 @@ public class PopupHelper {
                 case R.id.musicInAlbum:
                     ShowmusicInAlbum(music);
                     return true;
-                /*case R.id.addToSpotifyFav:
-                    return true;
                 case R.id.addToSpotifyPlaylist:
-                    return true;*/
+                    addToSpotifyLibrary(v,music,callbackRemove,callbackAdd);
+                    return true;
                 default:
                     return false;
             }
-
         });
-
         popup.show();
+    }public void showMusicOptions(View v, Music music, boolean... isAdded){
+        PopupMenu popup = new PopupMenu(mContext, v);
+        MenuInflater inflater = popup.getMenuInflater();
+        inflater.inflate(R.menu.music_menu, popup.getMenu());
+        Menu menu = popup.getMenu();
+        if(isAdded != null && isAdded.length == 1){
+            MenuItem item = menu.findItem(R.id.addToSpotifyPlaylist);
+            item.setVisible(true);
+            if(isAdded[0])
+                item.setTitle(R.string.add_to_spotify_list);
+            else
+                item.setTitle(R.string.remove_from_spotify_list);
+        }else
+            menu.findItem(R.id.addToSpotifyPlaylist).setVisible(false);
+        popup.setOnMenuItemClickListener(item -> {
+            AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
+            switch (item.getItemId()) {
+                case R.id.playNow:
+                    //TODO override the queue and play this music now
+                    return true;
+                case R.id.playNext:
+                    //TODO add to queue as the next music
+                    return true;
+                case R.id.addToQueue:
+                    //TODO add to queue as the last music
+                    return true;
+                case R.id.addToPlaylist:
+                    //TODO find a way to get the playlist ID and had the music to it
+                    showAddToPlaylists(v, music);
+                    return true;
+                case R.id.musicOfArtist:
+                    //TODO go to a view of all the music of the same artist (find artist ID)
+                    return true;
+                case R.id.musicInAlbum:
+                    //TODO go to a view of all the music in the same album (find playlist ID)
+                    return true;
+                case R.id.addToSpotifyPlaylist:
+                    addToSpotifyLibrary(v,music,null,null);
+                    return true;
+                default:
+                    return false;
+            }
+        });
+        popup.show();
+    }
+    private void addToSpotifyLibrary(View v, Music music, CallResult.ResultCallback<Empty> callbackRemove, CallResult.ResultCallback<Empty> callbackAdd) {
+        SpotifyLibraryManager libraryManager = new SpotifyLibraryManager(LierSpotifyActivity.appRemote.getUserApi());
+        libraryManager.getLibraryState(music.getPath(), new CallResult.ResultCallback<LibraryState>() {
+            @Override
+            public void onResult(LibraryState libraryState) {
+                if(libraryState.canAdd)
+                    if(libraryState.isAdded)
+                        libraryManager.removeFromLibrary(music.getPath(),callbackRemove);
+                    else
+                        libraryManager.addToLibrary(music.getPath(), callbackAdd);
+            }
+        });
     }
 
     public void showPlaylistOptions(View v, Playlist playlist) {

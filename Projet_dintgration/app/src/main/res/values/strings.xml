@@ -45,7 +45,8 @@
     <string name="music_of_artist">Autres musiques par l\'artist</string>
     <string name="music_in_album">Autres musiques de l\'album</string>
     <string name="like_on_spotify">Ajouter au favoris Spotify</string>
-    <string name="add_to_spotify_list">Ajouter à un liste Spotify</string>
+    <string name="add_to_spotify_list">Ajouter l\'album à votre bibiliothèque</string>
+    <string name="remove_from_spotify_list">Enlever l\'album de votre bibiliothèque</string>
 
     <string name="editPlaylistName">Changer de nom</string>
     <string name="deletePlaylist">Supprimer</string>
