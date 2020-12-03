@@ -79,15 +79,13 @@ public class MediaPlaybackService extends Service {
         return binder;
     }
 
-    public void UpdateMusicList(ArrayList<Music> playlist, int songId){
+    public void PlayNow(ArrayList<Music> playlist, int songId){
         Log.d(TAG, "updateMusicList: playingId = " + songId);
-        if(musicArrayList.isEmpty())
-            musicArrayList.addAll(playlist);
-        else {
-            for(int i = 0; i < musicArrayList.size(); i++){
-                musicArrayList.set(i, musicArrayListCopy.get(i));
-            }
-        }
+        //if(musicArrayList.isEmpty())
+            musicArrayList = playlist;
+        //else {
+
+        //}
 
         playingId = songId;
 
@@ -95,8 +93,8 @@ public class MediaPlaybackService extends Service {
             RestartPlayer();
             PlayFromPause();
             //pour avoir une copie en tout temps
-            if(musicArrayListCopy.isEmpty())
-                musicArrayListCopy.addAll(musicArrayList);
+            musicArrayListCopy.clear();
+            musicArrayListCopy.addAll(musicArrayList);
             if(shuffle)
                 shuffleMusicList();
         }catch (IOException e){
@@ -113,7 +111,7 @@ public class MediaPlaybackService extends Service {
     public void AddNext(Music music){
         if(musicArrayList.size() == 0){
             Add(music);
-            UpdateMusicList(musicArrayList, 0);
+            PlayNow(musicArrayList, 0);
         }
         else if(musicArrayList.size() == playingId + 1){
             Add(music);

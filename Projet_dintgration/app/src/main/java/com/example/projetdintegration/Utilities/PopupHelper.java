@@ -7,7 +7,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -20,7 +19,6 @@ import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.PopupMenu;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 
@@ -359,7 +357,7 @@ public class PopupHelper {
             AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
             switch (item.getItemId()) {
                 case R.id.playNow:
-                    binder.getService().UpdateMusicList(musics, position);
+                    binder.getService().PlayNow(musics, position);
                     //TODO override the queue and play this music now
                     return true;
                 case R.id.playNext:
@@ -517,7 +515,7 @@ public class PopupHelper {
                     DBHelper.Contract.TableMusic.COLUMN_NAME_ARTIST + " LIKE ? OR " +
                     DBHelper.Contract.TableMusic.COLUMN_NAME_ALBUM + " LIKE ?";
 
-            ArrayList<IDBClass> DBMusics = DBMusicsReader.Select(null, WhereClause, whereArgs, null, null, null);
+            ArrayList<IDBClass> DBMusics = DBMusicsReader.SavedSelect(null, WhereClause, whereArgs, null, null, null);
 
 
             ArrayList<Music> musics = new ArrayList<>();

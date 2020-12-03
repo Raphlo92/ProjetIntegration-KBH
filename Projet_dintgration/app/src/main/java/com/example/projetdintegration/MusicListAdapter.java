@@ -2,7 +2,6 @@ package com.example.projetdintegration;
 
 import android.content.Context;
 import android.content.Intent;
-import android.media.Image;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,7 +13,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.projetdintegration.DBHelpers.Classes.Music;
 import com.example.projetdintegration.DBHelpers.DBHelper;
@@ -31,9 +29,10 @@ public class MusicListAdapter extends ArrayAdapter<Music> {
     private int lastPosition = -1;
     private PopupHelper popupHelper;
     private int playlistId;
+    DBHelper dbHelper;
+    Musics DBMusicsReader;
     ArrayList<Music> musics;
     MediaPlaybackService.LocalBinder binder;
-
 
     static class ViewHolder {
         LinearLayout item;
@@ -50,6 +49,8 @@ public class MusicListAdapter extends ArrayAdapter<Music> {
         mRessource = resource;
         popupHelper = new PopupHelper(context);
         this.playlistId = playlistId;
+        dbHelper = new DBHelper(mContext);
+        DBMusicsReader = new Musics(dbHelper.getReadableDatabase(), mContext);
         this.musics = musics;
         this.binder = binder;
     }
@@ -57,19 +58,10 @@ public class MusicListAdapter extends ArrayAdapter<Music> {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        int id = getItem(position).getId();
-        String title = getItem(position).getName();
-        double length = getItem(position).getLength(); // in seconds
-        String type = getItem(position).getType();
-        String path = getItem(position).getPath();
-        String category = getItem(position).getCategory();
-        String artist = getItem(position).getArtist();
-        String album = getItem(position).getAlbum();
-        boolean favorite = getItem(position).isFavorite();
         Intent intent = new Intent(this.getContext(), MediaActivity.class);
 
         Playlists playlistsWriter = new Playlists(new DBHelper(mContext).getWritableDatabase(), mContext);
-        Music music = new Music(id, title, length, type, path, category, artist, album, favorite);
+        Music music = getItem(position);
 
         final View result;
         ViewHolder holder;
@@ -109,7 +101,7 @@ public class MusicListAdapter extends ArrayAdapter<Music> {
 
         holder.item.setOnClickListener(view -> {
             Log.d(TAG, "onItemClick: Started");
-            binder.getService().UpdateMusicList(musics, position);
+            binder.getService().PlayNow(musics, position);
             this.mContext.startActivity(intent);
         });
         holder.item.setOnLongClickListener(view -> {
@@ -134,7 +126,7 @@ public class MusicListAdapter extends ArrayAdapter<Music> {
                 holder.favorite.setImageResource(R.drawable.ic_baseline_favorite_border_24);
 
             }
-            this.refresh(playlistId);
+            this.refresh();
         });
 
         holder.options.setOnClickListener(view -> {
@@ -144,11 +136,7 @@ public class MusicListAdapter extends ArrayAdapter<Music> {
         return convertView;
     }
 
-    public void refresh(int playlistId){
-        DBHelper dbHelper = new DBHelper(mContext);
-        Musics DBMusicsReader = new Musics(dbHelper.getReadableDatabase(), mContext);
-        musics = DBMusicsReader.LastSelect();
-
+    public void refresh(){
         this.clear();
         this.addAll(musics);
         this.notifyDataSetChanged();

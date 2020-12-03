@@ -56,75 +56,77 @@ public class MediaActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_media_activity);
 
-        if(getResources().getConfiguration().orientation != Configuration.ORIENTATION_LANDSCAPE){
-        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        navigationView = (NavigationView) findViewById(R.id.nav_view);
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        navigationView.bringToFront();
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_open_drawer_description,
-                R.string.navigation_close_drawer_description);
-        drawerLayout.addDrawerListener(toggle);
-        toggle.syncState();
-        navigationView.setNavigationItemSelectedListener(new NavigationManager(this, this) {
-            @Override
-            public void gotoMedia() {}
-        });
-        navigationView.setCheckedItem(R.id.nav_mediaActivity);
-        NavigationManager.determinerOptionsAfficher(navigationView.getMenu());
-
-        final TextView pageTitle = (TextView) findViewById(R.id.PageTitle);
-        pageTitle.setText(R.string.nav_mediaActivity);
-
-        final ImageView imageView1 = (ImageView) findViewById(R.id.imageView1);
-        final ImageView imageView2 = (ImageView) findViewById(R.id.imageView2);
-        imageView1.setVisibility(View.INVISIBLE);
-        imageView2.setVisibility(View.INVISIBLE);
-
-
-            playButton = findViewById(R.id.playButton);
-            shuffleButton = findViewById(R.id.shuffleButton);
-            repeatButton = findViewById(R.id.repeatButton);
-            ImageButton rewindButton = findViewById(R.id.rewindButton);
-            ImageButton forwardButton = findViewById(R.id.forwardButton);
-            seekBar = findViewById(R.id.seekBar);
-
-            currentTime = findViewById(R.id.currentTime);
-            maxTime = findViewById(R.id.maxTime);
-            mediaName = findViewById(R.id.mediaName);
-            videoView = findViewById(R.id.videoView);
-            coverArt = findViewById(R.id.coverArt);
-
-            playButton.setOnClickListener(new GestionnairePlayPause());
-            rewindButton.setOnClickListener(new GestionnaireRewind());
-            forwardButton.setOnClickListener(new GestionnaireForward());
-            shuffleButton.setOnClickListener(new GestionnaireShuffle());
-            repeatButton.setOnClickListener(new GestionnaireRepeat());
-
-            seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        if (getResources().getConfiguration().orientation != Configuration.ORIENTATION_LANDSCAPE) {
+            drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+            navigationView = (NavigationView) findViewById(R.id.nav_view);
+            toolbar = (Toolbar) findViewById(R.id.toolbar);
+            setSupportActionBar(toolbar);
+            navigationView.bringToFront();
+            ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_open_drawer_description,
+                    R.string.navigation_close_drawer_description);
+            drawerLayout.addDrawerListener(toggle);
+            toggle.syncState();
+            navigationView.setNavigationItemSelectedListener(new NavigationManager(this, this) {
                 @Override
-                public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                    if (fromUser) {
-                        MediaPlaybackService.mediaPlayer.seekTo(progress * 1000);
-                        videoView.seekTo(progress * 1000);
-                        String time = progress % (1000 * 60 * 60) / (1000 * 60) + ":" + (progress % (1000 * 60 * 60) % (1000 * 60) / 1000);
-                        currentTime.setText(time);
-                    }
-                }
-
-                @Override
-                public void onStartTrackingTouch(SeekBar seekBar) {
-
-                }
-
-                @Override
-                public void onStopTrackingTouch(SeekBar seekBar) {
-
+                public void gotoMedia() {
                 }
             });
-            SeekBarUpdater();
-            //InfoUpdater();
+            navigationView.setCheckedItem(R.id.nav_mediaActivity);
+            NavigationManager.determinerOptionsAfficher(navigationView.getMenu());
+
+
+
+            final TextView pageTitle = (TextView) findViewById(R.id.PageTitle);
+            pageTitle.setText(R.string.nav_mediaActivity);
+
+            final ImageView imageView1 = (ImageView) findViewById(R.id.imageView1);
+            final ImageView imageView2 = (ImageView) findViewById(R.id.imageView2);
+            imageView1.setVisibility(View.INVISIBLE);
+            imageView2.setVisibility(View.INVISIBLE);
         }
+
+        playButton = findViewById(R.id.playButton);
+        shuffleButton = findViewById(R.id.shuffleButton);
+        repeatButton = findViewById(R.id.repeatButton);
+        ImageButton rewindButton = findViewById(R.id.rewindButton);
+        ImageButton forwardButton = findViewById(R.id.forwardButton);
+        seekBar = findViewById(R.id.seekBar);
+
+        currentTime = findViewById(R.id.currentTime);
+        maxTime = findViewById(R.id.maxTime);
+        mediaName = findViewById(R.id.mediaName);
+        videoView = findViewById(R.id.videoView);
+        coverArt = findViewById(R.id.coverArt);
+
+        playButton.setOnClickListener(new GestionnairePlayPause());
+        rewindButton.setOnClickListener(new GestionnaireRewind());
+        forwardButton.setOnClickListener(new GestionnaireForward());
+        shuffleButton.setOnClickListener(new GestionnaireShuffle());
+        repeatButton.setOnClickListener(new GestionnaireRepeat());
+
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                if (fromUser) {
+                    MediaPlaybackService.mediaPlayer.seekTo(progress * 1000);
+                    videoView.seekTo(progress * 1000);
+                    String time = progress % (1000 * 60 * 60) / (1000 * 60) + ":" + (progress % (1000 * 60 * 60) % (1000 * 60) / 1000);
+                    currentTime.setText(time);
+                }
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+        SeekBarUpdater();
+        //InfoUpdater();
     }
 
     public class GestionnairePlayPause implements View.OnClickListener {
