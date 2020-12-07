@@ -19,6 +19,12 @@
         <item
             android:id="@+id/musicInAlbum"
             android:title="@string/music_in_album"/>
+        <!--<item
+            android:id="@+id/addToSpotifyFav"
+            android:title="@string/like_on_spotify"/>-->
+        <item
+            android:id="@+id/addToSpotifyPlaylist"
+            android:title="@string/add_to_spotify_list"/>
     </group>
 
 </menu>
