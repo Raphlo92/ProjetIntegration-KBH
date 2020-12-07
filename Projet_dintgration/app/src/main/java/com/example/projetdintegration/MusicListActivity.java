@@ -179,6 +179,7 @@ public class MusicListActivity extends AppCompatActivity {
         }
     @Override
     public void onBackPressed() {
+        PlaylistListActivity.RefreshView(this);
         Log.d(TAG, "onBackPressed: Started");
         if (drawerLayout.isDrawerOpen(GravityCompat.START))
             drawerLayout.closeDrawer(GravityCompat.START);
