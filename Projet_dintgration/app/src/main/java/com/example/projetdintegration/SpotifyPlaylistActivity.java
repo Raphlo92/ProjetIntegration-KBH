@@ -7,10 +7,14 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.app.Service;
+import android.content.ComponentName;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
@@ -55,10 +59,25 @@ public class SpotifyPlaylistActivity extends AppCompatActivity {
     AbsListView.OnScrollListener onScrollListener;
     CallResult.ResultCallback<ListItems> fetchChildrenCallback;
     CallResult.ResultCallback<ListItems> displayListItemsCallBack;
+    Service mPService;
+    boolean mPBound;
     public static final String EXTRA_PLAYLIST_ITEM_SELECTED = "EXTRA_PLAYLIST_ITEM_SELECTED";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ServiceConnection connection = new ServiceConnection() {
+
+            @Override
+            public void onServiceConnected(ComponentName className, IBinder service){
+                binder = (MediaPlaybackService.LocalBinder) service;
+                mPService = binder.getService();
+                mPBound = true;
+            }
+            @Override
+            public void onServiceDisconnected(ComponentName arg0){
+                mPBound = false;
+            }
+        };
         if(!getIntent().getBooleanExtra(EXTRA_PLAYLIST_ITEM_SELECTED, false))
             selectedPlaylist = null;
         determineContentViewToSet();

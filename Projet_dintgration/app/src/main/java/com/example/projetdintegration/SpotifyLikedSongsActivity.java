@@ -7,10 +7,14 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.app.Service;
+import android.content.ComponentName;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.telecom.Call;
 import android.util.Log;
 import android.view.Menu;
@@ -52,9 +56,24 @@ public class SpotifyLikedSongsActivity extends AppCompatActivity {
     AdapterView.OnItemClickListener playableListener;
     AbsListView.OnScrollListener onScrollListener;
     ListItem likedSongsItem;
+    Service mPService;
+    boolean mPBound;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ServiceConnection connection = new ServiceConnection() {
+
+            @Override
+            public void onServiceConnected(ComponentName className, IBinder service){
+                binder = (MediaPlaybackService.LocalBinder) service;
+                mPService = binder.getService();
+                mPBound = true;
+            }
+            @Override
+            public void onServiceDisconnected(ComponentName arg0){
+                mPBound = false;
+            }
+        };
         setContentView(R.layout.album_view_layout);
         progressBar = (RelativeLayout) findViewById(R.id.loadItemsListView);
         listView = (ListView) findViewById(R.id.list_spotify_bibliotheque_start);
