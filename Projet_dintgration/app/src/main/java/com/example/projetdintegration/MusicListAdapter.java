@@ -102,6 +102,7 @@ public class MusicListAdapter extends ArrayAdapter<Music> {
                 holder.favorite.setImageResource(R.drawable.ic_baseline_favorite_border_24);
 
             }
+            musics = DBMusicsReader.LastSelect();
             this.refresh();
         });
 
