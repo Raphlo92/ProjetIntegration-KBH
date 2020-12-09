@@ -15,7 +15,9 @@ import android.util.Log;
 
 import com.example.projetdintegration.DBHelpers.Classes.Music;
 import com.spotify.android.appremote.api.PlayerApi;
+import com.spotify.protocol.client.CallResult;
 import com.spotify.protocol.client.Subscription;
+import com.spotify.protocol.types.CrossfadeState;
 import com.spotify.protocol.types.PlayerState;
 
 import java.io.IOException;
@@ -178,9 +180,9 @@ public class MediaPlaybackService extends Service {
 
     public void PlayFromPause() throws IOException {
         if(musicArrayList.get(playingId).getType().equals("Spotify") && spotifyPlayerIsReady){
-            if(!playing && spotifyPlayerState != null && spotifyPlayerState.isPaused){
-                spotifyPlayer.resume();
-                playing = true;
+            if(!playing && spotifyPlayerState != null && spotifyPlayerState.isPaused && musicArrayList.get(playingId).getPath().equals(spotifyPlayerState.track.uri)){
+                    spotifyPlayer.resume();
+                    playing = true;
             }else{
                 Play();
             }
