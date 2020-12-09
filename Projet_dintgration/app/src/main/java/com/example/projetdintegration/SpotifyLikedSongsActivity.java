@@ -9,6 +9,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.app.Service;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.graphics.Bitmap;
@@ -74,6 +75,8 @@ public class SpotifyLikedSongsActivity extends AppCompatActivity {
                 mPBound = false;
             }
         };
+        Intent intent = new Intent(this, MediaPlaybackService.class);
+        bindService(intent, connection, Context.BIND_AUTO_CREATE);
         setContentView(R.layout.album_view_layout);
         progressBar = (RelativeLayout) findViewById(R.id.loadItemsListView);
         listView = (ListView) findViewById(R.id.list_spotify_bibliotheque_start);

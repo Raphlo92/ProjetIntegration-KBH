@@ -9,6 +9,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.app.Service;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.graphics.Bitmap;
@@ -78,6 +79,8 @@ public class SpotifyPlaylistActivity extends AppCompatActivity {
                 mPBound = false;
             }
         };
+        Intent intent = new Intent(this, MediaPlaybackService.class);
+        bindService(intent, connection, Context.BIND_AUTO_CREATE);
         if(!getIntent().getBooleanExtra(EXTRA_PLAYLIST_ITEM_SELECTED, false))
             selectedPlaylist = null;
         determineContentViewToSet();
