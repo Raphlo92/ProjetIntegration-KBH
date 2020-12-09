@@ -90,7 +90,7 @@ public class SpotifyLikedSongsActivity extends AppCompatActivity {
                 SpotifyNavigationItem selectedItem =new SpotifyNavigationItem(((SpotifyMusic) parent.getItemAtPosition(position)).transformToListItem());
                 Log.i("SpotifyLikedSongs",selectedItem.baseNavigationItem.toString());
                 if (SpotifyMusicListActivity.determineIfHasChildren(selectedItem, new SpotifyNavigationItem(likedSongsItem)))
-                    sendPlayableToMusicPlayer(selectedItem.getURI());
+                    sendPlayableToMusicPlayer(position);
                 else
                     getElementChildren(selectedItem.getBaseListItem(), displayListItemsCallBack);
 
@@ -144,6 +144,11 @@ public class SpotifyLikedSongsActivity extends AppCompatActivity {
             }
         };
     }
+    public void sendPlayableToMusicPlayer(int position) {
+        Intent intent = new Intent(this, MediaActivity.class);
+        binder.getService().PlayNow(SpotifyMusicListActivity.navigationList.musics,position);
+        startActivity(intent);
+    }
     private void initializeListViewContent(){
         noMoreDataToFetch = false;
         startIndexOfDataFetch = 0;
@@ -151,11 +156,6 @@ public class SpotifyLikedSongsActivity extends AppCompatActivity {
         contenu = LierSpotifyActivity.appRemote.getContentApi();
         Log.i(TAG, "In initializeListViewContent");
         contenu.getRecommendedContentItems(LierSpotifyActivity.CONTENT_API_RECOMMENDED_CALL).setResultCallback(fetchChildrenCallback);
-    }
-    private void sendPlayableToMusicPlayer(String uri) {
-        Intent intent = new Intent(this,SpotifyMusicPlayer.class);
-        intent.putExtra(SpotifyMusicPlayer.EXTRA_SPOTIFY_MUSIC_PLAYER_URI,uri);
-        startActivity(intent);
     }
     private void loadMoreContent(ListItem item){
         if(!noMoreDataToFetch){

@@ -27,6 +27,10 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.navigation.NavigationView;
+import com.spotify.android.appremote.api.ImagesApi;
+import com.spotify.protocol.client.CallResult;
+import com.spotify.protocol.client.Subscription;
+import com.spotify.protocol.types.PlayerState;
 
 import java.io.IOException;
 
@@ -108,8 +112,12 @@ public class MediaActivity extends AppCompatActivity{
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 if (fromUser) {
-                    MediaPlaybackService.mediaPlayer.seekTo(progress * 1000);
-                    videoView.seekTo(progress * 1000);
+                    if(MediaPlaybackService.musicArrayList.get(MediaPlaybackService.playingId).getType().equals("Spotify")){
+                        MediaPlaybackService.spotifyPlayer.seekTo(progress * 1000);
+                    }else {
+                        MediaPlaybackService.mediaPlayer.seekTo(progress * 1000);
+                        videoView.seekTo(progress * 1000);
+                    }
                     String time = progress % (1000 * 60 * 60) / (1000 * 60) + ":" + (progress % (1000 * 60 * 60) % (1000 * 60) / 1000);
                     currentTime.setText(time);
                 }
@@ -125,13 +133,38 @@ public class MediaActivity extends AppCompatActivity{
 
             }
         });
+        if(LierSpotifyActivity.appRemote != null && LierSpotifyActivity.appRemote.isConnected()){
+            LierSpotifyActivity.appRemote.getPlayerApi().subscribeToPlayerState().setEventCallback(new Subscription.EventCallback<PlayerState>() {
+                @Override
+                public void onEvent(PlayerState playerState) {
+                    Log.d(TAG,"EventCall in spotify");
+                    manageSeekBar(playerState.playbackPosition);
+                    MediaPlaybackService.spotifyPlayerState = playerState;
+                    setInfosSpotify();
+                }
+            });
+        }
         SeekBarUpdater();
         //InfoUpdater();
     }
 
     public class GestionnairePlayPause implements View.OnClickListener {
         public void onClick(View v) {
-            if (MediaPlaybackService.mediaPlayer != null) {
+            if(MediaPlaybackService.musicArrayList.get(MediaPlaybackService.playingId).getType().equals("Spotify")){
+                if(!mPService.playing){
+                    try{
+                        mPService.PlayFromPause();
+                    }catch (IOException ioe){ioe.printStackTrace();}
+                    playButton.setImageResource(R.drawable.ic_baseline_pause_24);
+                    mPService.playing = true;
+                }else {
+                    if(mPService.playing && !MediaPlaybackService.spotifyPlayerState.isPaused){
+                        mPService.Pause();
+                    }
+                    playButton.setImageResource(R.drawable.ic_baseline_play_arrow_24);
+                    mPService.playing = false;
+                }
+            }else if (MediaPlaybackService.mediaPlayer != null) {
                 if (!mPService.playing) {
                     Log.d(TAG, "onClick: playing");
                     try {
@@ -164,7 +197,10 @@ public class MediaActivity extends AppCompatActivity{
             try {
                 mPService.PlayPrevious(v);
                 initializePlayer();
-                SetInfos();
+                if(MediaPlaybackService.musicArrayList.get(MediaPlaybackService.playingId).getType().equals("Spotify"))
+                    setInfosSpotify();
+                else
+                    SetInfos();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -176,7 +212,10 @@ public class MediaActivity extends AppCompatActivity{
             try {
                 mPService.PlayNext();
                 initializePlayer();
-                SetInfos();
+                if(MediaPlaybackService.musicArrayList.get(MediaPlaybackService.playingId).getType().equals("Spotify"))
+                    setInfosSpotify();
+                else
+                    SetInfos();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -214,14 +253,16 @@ public class MediaActivity extends AppCompatActivity{
 
     public void initializePlayer() {
         videoView = findViewById(R.id.videoView);
-        Uri videoUri = MediaPlaybackService.getMedia();
-        videoView.setVideoURI(videoUri);
-        videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-            @Override
-            public void onPrepared(MediaPlayer mediaPlayer) {
-                mediaPlayer.setVolume(0,0);
-            }
-        });
+        if(!MediaPlaybackService.musicArrayList.get(MediaPlaybackService.playingId).getType().equals("Spotify")) {
+            Uri videoUri = MediaPlaybackService.getMedia();
+            videoView.setVideoURI(videoUri);
+            videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                @Override
+                public void onPrepared(MediaPlayer mediaPlayer) {
+                    mediaPlayer.setVolume(0, 0);
+                }
+            });
+        }
     }
 
     @Override
@@ -253,14 +294,22 @@ public class MediaActivity extends AppCompatActivity{
                 if(!MediaPlaybackService.running) {
                     mPService.Play();
                     initializePlayer();
-                    videoView.start();
-                    SetInfos();
+                    if(!MediaPlaybackService.musicArrayList.get(MediaPlaybackService.playingId).getType().equals("Spotify")) {
+                        videoView.start();
+                        SetInfos();
+                    }else {
+                        setInfosSpotify();
+                    }
                 }else
                 {
                     initializePlayer();
-                    SetInfos();
-                    videoView.seekTo(MediaPlaybackService.mediaPlayer.getCurrentPosition());
-                    videoView.start();
+                    if(MediaPlaybackService.musicArrayList.get(MediaPlaybackService.playingId).getType().equals("Spotify") && MediaPlaybackService.spotifyPlayerState != null){
+                        setInfosSpotify();
+                    }else if(MediaPlaybackService.mediaPlayer != null && (!MediaPlaybackService.musicArrayList.get(MediaPlaybackService.playingId).getType().equals("Spotify"))){
+                        SetInfos();
+                        videoView.seekTo(MediaPlaybackService.mediaPlayer.getCurrentPosition());
+                        videoView.start();
+                    }
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -276,17 +325,28 @@ public class MediaActivity extends AppCompatActivity{
         MediaActivity.this.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                if (MediaPlaybackService.mediaPlayer != null) {
+                if(MediaPlaybackService.musicArrayList.get(MediaPlaybackService.playingId).getType().equals("Spotify")){
+                    if(MediaPlaybackService.spotifyPlayerState != null && !MediaPlaybackService.spotifyPlayerState.isPaused){
+                        manageSeekBar((seekBar.getProgress() + 1) * 1000);
+                    }
+                    handler.postDelayed(this,1000);
+                }else if (MediaPlaybackService.mediaPlayer != null) {
                     int currentPosition = MediaPlaybackService.mediaPlayer.getCurrentPosition();
                     seekBar.setProgress(currentPosition / 1000);
                     int minutes = currentPosition / (60 * 1000);
                     int seconds = (currentPosition / 1000) % 60;
                     String time = String.format("%d:%02d", minutes, seconds);
                     currentTime.setText(time);
+                    handler.postDelayed(this, 100);
                 }
-                handler.postDelayed(this, 100);
             }
         });
+    }
+    private void manageSeekBar(long playbackPosition) {
+        int totalTimeMinutes = (int) (playbackPosition / (1000 * 60));
+        int totalTimeSeconds = (int)((playbackPosition / 1000) % 60);
+        seekBar.setProgress((int)playbackPosition / 1000);
+        currentTime.setText(String.format("%d:%02d", totalTimeMinutes, totalTimeSeconds));
     }
 
     /*public void InfoUpdater(){
@@ -393,7 +453,7 @@ public class MediaActivity extends AppCompatActivity{
         }*/
     public void SetInfos(){
 
-        if (MediaPlaybackService.mediaPlayer != null){
+        if (MediaPlaybackService.mediaPlayer != null && !MediaPlaybackService.musicArrayList.get(playingId).getType().equals("Spotify")){
             playingId = MediaPlaybackService.playingId;
             int minutes = MediaPlaybackService.mediaPlayer.getDuration() / (60 * 1000);
             int seconds = (MediaPlaybackService.mediaPlayer.getDuration() / 1000) % 60;
@@ -427,11 +487,37 @@ public class MediaActivity extends AppCompatActivity{
                 videoView.start();
                 videoView.seekTo(MediaPlaybackService.mediaPlayer.getCurrentPosition());
             }
-        }
+        }else if(MediaPlaybackService.musicArrayList.get(playingId).getType().equals("Spotify"))
+            setInfosSpotify();
         else{
             videoView.setVisibility(View.INVISIBLE);
             coverArt.setVisibility(View.VISIBLE);
             coverArt.setImageResource(R.drawable.ic_music_note_24);
+        }
+    }
+
+    public void setInfosSpotify(){
+        if(MediaPlaybackService.spotifyPlayerIsReady && MediaPlaybackService.spotifyPlayerState != null && MediaPlaybackService.spotifyPlayerState.track != null && MediaPlaybackService.musicArrayList.get(playingId).getType().equals("Spotify")){
+            int totalTimeMinutes = (int)MediaPlaybackService.spotifyPlayerState.track.duration / (1000 * 60);
+            int totalTimeSeconds = (int)((MediaPlaybackService.spotifyPlayerState.track.duration / 1000) % 60);
+            maxTime.setText(String.format("%d:%02d", totalTimeMinutes, totalTimeSeconds));
+            seekBar.setMax((int)(MediaPlaybackService.spotifyPlayerState.track.duration / 1000));
+            String fullTrackName = MediaPlaybackService.spotifyPlayerState.track.name + " - " +
+                    MediaPlaybackService.spotifyPlayerState.track.album.name + " de " + MediaPlaybackService.spotifyPlayerState.track.artist.name;
+            mediaName.setText(fullTrackName);
+            videoView.setVisibility(View.INVISIBLE);
+            coverArt.setVisibility(View.VISIBLE);
+            ImagesApi imagesApi = LierSpotifyActivity.appRemote.getImagesApi();
+            imagesApi.getImage(MediaPlaybackService.spotifyPlayerState.track.imageUri).setResultCallback(new CallResult.ResultCallback<Bitmap>() {
+                @Override
+                public void onResult(Bitmap bitmap) {
+                    coverArt.setAdjustViewBounds(false);
+                    coverArt.setImageBitmap(bitmap);
+                    coverArt.setAdjustViewBounds(true);
+                }
+            });
+            coverArt.setImageResource(R.drawable.ic_music_note_24);
+            coverArt.setAdjustViewBounds(true);
         }
     }
 

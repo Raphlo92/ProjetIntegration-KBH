@@ -93,7 +93,7 @@ public class SpotifyRecentlyListenedActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 SpotifyNavigationItem currentSelectedItem = new SpotifyNavigationItem(((SpotifyMusic) parent.getItemAtPosition(position)).transformToListItem());
                 if(SpotifyMusicListActivity.determineIfHasChildren(currentSelectedItem, selectedItem))
-                    sendPlayableToMusicPlayer(selectedItem.getURI());
+                    sendPlayableToMusicPlayer(position);
                 else{
                     selectedItem = currentSelectedItem;
                     reloadActivity(true);
@@ -177,9 +177,9 @@ public class SpotifyRecentlyListenedActivity extends AppCompatActivity {
             }
         });
     }
-    private void sendPlayableToMusicPlayer(String uri) {
-        Intent intent = new Intent(this,SpotifyMusicPlayer.class);
-        intent.putExtra(SpotifyMusicPlayer.EXTRA_SPOTIFY_MUSIC_PLAYER_URI,uri);
+    public void sendPlayableToMusicPlayer(int position) {
+        Intent intent = new Intent(this, MediaActivity.class);
+        binder.getService().PlayNow(SpotifyMusicListActivity.navigationList.musics,position);
         startActivity(intent);
     }
     private void loadMoreContent(ListItem item){

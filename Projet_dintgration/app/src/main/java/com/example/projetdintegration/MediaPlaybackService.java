@@ -14,6 +14,9 @@ import android.os.Build;
 import android.util.Log;
 
 import com.example.projetdintegration.DBHelpers.Classes.Music;
+import com.spotify.android.appremote.api.PlayerApi;
+import com.spotify.protocol.client.Subscription;
+import com.spotify.protocol.types.PlayerState;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -25,8 +28,13 @@ public class MediaPlaybackService extends Service {
     public static boolean repeat = false;
     public static boolean shuffle = false;
     public static MediaPlayer mediaPlayer;
+    public static PlayerApi spotifyPlayer;
     static Boolean playing = true;
+    static boolean spotifyPlayerIsReady = false;
     public static int playingId = 0;
+    public static boolean playNext = false;
+    public static boolean trackHasStarted = false;
+    public static PlayerState spotifyPlayerState;
     static ArrayList<Music> musicArrayList = new ArrayList<>();
     static ArrayList<Music> musicArrayListCopy = new ArrayList<>();
     static Notification mediaPlayingNotification;
@@ -81,6 +89,7 @@ public class MediaPlaybackService extends Service {
 
     public void PlayNow(ArrayList<Music> playlist, int songId){
         Log.d(TAG, "updateMusicList: playingId = " + songId);
+        Log.i(TAG,playlist.toString());
         //if(musicArrayList.isEmpty())
             musicArrayList = playlist;
         //else {
@@ -148,16 +157,19 @@ public class MediaPlaybackService extends Service {
                             .build();
             if (mediaPlayer == null) {
                 initializePlayer();
-                mediaPlayer.setOnCompletionListener(mp -> {
+                /*mediaPlayer.setOnCompletionListener(mp -> {
                     try {
                         PlayNext();
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                });
+                });*/
             }
             if(!running) {
-                mediaPlayer.start();
+                if(musicArrayList.get(playingId).getType().equals("Spotify")){
+                    spotifyPlayer.play(musicArrayList.get(playingId).getPath());
+                }else
+                    mediaPlayer.start();
                 running = true;
             }
             startForeground(1, mediaPlayingNotification);
@@ -165,7 +177,14 @@ public class MediaPlaybackService extends Service {
     }
 
     public void PlayFromPause() throws IOException {
-        if(mediaPlayer != null) {
+        if(musicArrayList.get(playingId).getType().equals("Spotify") && spotifyPlayerIsReady){
+            if(!playing && spotifyPlayerState != null && spotifyPlayerState.isPaused){
+                spotifyPlayer.resume();
+                playing = true;
+            }else{
+                Play();
+            }
+        }else if(mediaPlayer != null) {
             if (!playing) {
                 mediaPlayer.start();
                 playing = true;
@@ -178,6 +197,8 @@ public class MediaPlaybackService extends Service {
     }
 
     public void StopPlayer() {
+        if(spotifyPlayer != null && !spotifyPlayerState.isPaused)
+            spotifyPlayer.pause();
         if (mediaPlayer != null) {
             mediaPlayer.stop();
             mediaPlayer = null;
@@ -187,7 +208,7 @@ public class MediaPlaybackService extends Service {
     }
 
     public void initializePlayer() throws IOException {
-        if(mediaPlayer == null) {
+        if(mediaPlayer == null && !musicArrayList.get(playingId).getType().equals("Spotify")) {
             Uri file = getMedia();
             Log.e(TAG, "initializePlayer: file = " + file);
             mediaPlayer = MediaPlayer.create(this, file);
@@ -199,10 +220,35 @@ public class MediaPlaybackService extends Service {
                 }
             });
         }
+        if(spotifyPlayer == null && LierSpotifyActivity.appRemote != null && LierSpotifyActivity.appRemote.isConnected()){
+            spotifyPlayer = LierSpotifyActivity.appRemote.getPlayerApi();
+            spotifyPlayer.subscribeToPlayerState().setEventCallback(new Subscription.EventCallback<PlayerState>() {
+                @Override
+                public void onEvent(PlayerState playerState) {
+                    //boolean songPlayingIsNotRight = playerState.track.uri != spotifyPlayerState.track.uri || ;
+                    Log.d(TAG,"EventCall in spotify");
+                    if(!trackHasStarted && playerState.playbackPosition > 0 && playerState.track.duration > 0 && !playerState.isPaused)
+                        trackHasStarted = true;
+                    boolean hasEnded = trackHasStarted && playerState.isPaused && playerState.playbackPosition == 0;
+                    if(spotifyPlayerState != null && hasEnded){
+                        trackHasStarted = false;
+                        try{
+                            PlayNext();
+                            spotifyPlayer.pause();
+                        }catch (IOException ioe){ ioe.printStackTrace();}
+                    }//else if(songPlayingIsNotRight && !playerState.isPaused){
+
+                    //}
+                    spotifyPlayerState = playerState;
+                }
+            });
+            spotifyPlayerIsReady = true;
+        }
     }
 
     public void PlayNext() throws IOException, NullPointerException {
-
+        Log.i(TAG,repeat + " : repeat");
+        Log.i(TAG, musicArrayList.toString());
         if(playingId < musicArrayList.size() - 1 && !repeat){
             playingId++;
             RestartPlayer();
@@ -217,28 +263,46 @@ public class MediaPlaybackService extends Service {
 
     public void PlayPrevious(View v) throws IOException {
         Log.e(TAG, "PlayPrevious: " + playingId );
-        if (mediaPlayer != null) {
-            if (playingId == 0 || mediaPlayer.getCurrentPosition() / 1000 > 5) {
-                RestartPlayer();
-            } else {
-                playingId--;
-                RestartPlayer();
-                PlayFromPause();
+        if(musicArrayList.get(playingId).getType().equals("Spotify")) {
+            if(spotifyPlayerIsReady){
+                spotifyPlayer.pause();
+                if(playingId == 0 ||(spotifyPlayerState != null && spotifyPlayerState.playbackPosition /1000 > 5))
+                    RestartPlayer();
+                else{
+                    playingId--;
+                    RestartPlayer();
+                    PlayFromPause();
+                }
+            }
+        }else{
+            if (mediaPlayer != null) {
+                if (playingId == 0 || mediaPlayer.getCurrentPosition() / 1000 > 5) {
+                    RestartPlayer();
+                } else {
+                    playingId--;
+                    RestartPlayer();
+                    PlayFromPause();
+                }
             }
         }
     }
 
     public void RestartPlayer() throws IOException, NullPointerException {
+        if(spotifyPlayerIsReady && spotifyPlayerState != null && !spotifyPlayerState.isPaused){
+            spotifyPlayer.pause();
+            running = false;
+        }
         if (mediaPlayer != null) {
             mediaPlayer.stop();
             mediaPlayer = null;
-            initializePlayer();
-            updateNotification();
-            playing = false;
-            PlayFromPause();
-            playing = true;
-            running = true;
         }
+        initializePlayer();
+        updateNotification();
+        playing = false;
+        running = false;
+        PlayFromPause();
+        playing = true;
+        running = true;
     }
 
     public void Stop(View v) {
@@ -246,8 +310,14 @@ public class MediaPlaybackService extends Service {
     }
 
     public void Pause() {
-        if (mediaPlayer != null) {
-            mediaPlayer.pause();
+        if(musicArrayList.get(playingId).getType().equals("Spotify")) {
+            if(spotifyPlayerIsReady){
+                spotifyPlayer.pause();
+            }
+        }else{
+            if (mediaPlayer != null) {
+                mediaPlayer.pause();
+            }
         }
     }
 

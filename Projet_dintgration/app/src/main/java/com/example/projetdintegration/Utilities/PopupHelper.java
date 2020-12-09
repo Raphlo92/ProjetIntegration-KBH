@@ -354,6 +354,8 @@ public class PopupHelper {
         MenuInflater inflater = popup.getMenuInflater();
         inflater.inflate(R.menu.music_menu, popup.getMenu());
         Menu menu = popup.getMenu();
+        menu.findItem(R.id.musicOfArtist).setVisible(false);
+        menu.findItem(R.id.musicInAlbum).setVisible(false);
         if(isAdded != null && isAdded.length == 1){
             MenuItem item = menu.findItem(R.id.addToSpotifyPlaylist);
             item.setVisible(true);
@@ -380,10 +382,10 @@ public class PopupHelper {
                     showAddToPlaylists(v, music);
                     return true;
                 case R.id.musicOfArtist:
-                    ShowMusicOfArtiste(music);
+                    //ShowMusicOfArtiste(music);
                     return true;
                 case R.id.musicInAlbum:
-                    ShowmusicInAlbum(music);
+                    //ShowmusicInAlbum(music);
                     return true;
                 case R.id.addToSpotifyPlaylist:
                     addToSpotifyLibrary(v,music,callbackRemove,callbackAdd);

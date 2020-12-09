@@ -1,12 +1,16 @@
 package com.example.projetdintegration;
 
+import android.app.Service;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.IBinder;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
@@ -76,12 +80,29 @@ public class SpotifyMusicListActivity extends AppCompatActivity {
     public static final String SPOTIFY_SHUFFLE_IMAGE_NAME = "ic_eis_shuffle";
     public static final String EXTRA_SPOTIFY_URI = "EXTRA_SPOTIFY_URI";
     boolean userScrolled;
+    Service mPService;
+    boolean mPBound;
     public static final int NUMBER_OF_ELEMENTS_TO_LOAD = 15;
     public static final String EXTRA_LIST_ITEM_SELECTED = "EXTRA_LIST_ITEM_SELECTED";
     static public ListItem lastSelected;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ServiceConnection connection = new ServiceConnection() {
+
+            @Override
+            public void onServiceConnected(ComponentName className, IBinder service){
+                binder = (MediaPlaybackService.LocalBinder) service;
+                mPService = binder.getService();
+                mPBound = true;
+            }
+            @Override
+            public void onServiceDisconnected(ComponentName arg0){
+                mPBound = false;
+            }
+        };
+        Intent intent = new Intent(this, MediaPlaybackService.class);
+        bindService(intent, connection, Context.BIND_AUTO_CREATE);
         if(!getIntent().getBooleanExtra(EXTRA_LIST_ITEM_SELECTED, false))
             lastSelected = null;
         determineContentViewToSet();
@@ -198,7 +219,7 @@ public class SpotifyMusicListActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 SpotifyNavigationItem selectedItem = new SpotifyNavigationItem(((SpotifyMusic) parent.getItemAtPosition(position)).transformToListItem());
                 if(determineIfHasChildren(selectedItem, new SpotifyNavigationItem(lastSelected)))
-                    sendPlayableToMusicPlayer(selectedItem.getURI());
+                    sendPlayableToMusicPlayer(position);
                 else{
                     lastSelected = selectedItem.getBaseListItem();
                     reloadActivity(true);
@@ -217,9 +238,9 @@ public class SpotifyMusicListActivity extends AppCompatActivity {
     public static String getSpotifyIdUniqueKeyPart(String spotifyId){
         return spotifyId.substring(spotifyId.lastIndexOf(':') + 1);
     }
-    private void sendPlayableToMusicPlayer(String uri) {
-        Intent intent = new Intent(this,SpotifyMusicPlayer.class);
-        intent.putExtra(SpotifyMusicPlayer.EXTRA_SPOTIFY_MUSIC_PLAYER_URI,uri);
+    public void sendPlayableToMusicPlayer(int position) {
+        Intent intent = new Intent(this, MediaActivity.class);
+        binder.getService().PlayNow(navigationList.musics,position);
         startActivity(intent);
     }
     private void getElementChildren(ListItem item){
